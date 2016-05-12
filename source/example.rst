@@ -88,8 +88,6 @@ Setting the ARP Timeout to 1000 seconds via FlexSwitch's Python SDK, utilizing m
 	>>> FlexSwitch("*Switch IP*", *TCP port*).createArpConfig("<*VRF*>",<"*Timeout*">)
 	
 **OPTIONS:**
-
-::
 	
 +------------------+------------+------------+-------------------------------------------+----------+----------+
 | Python Method    | Variables  | Type       |  Description                              | Required |  Default |   
