@@ -1,4 +1,4 @@
-.. FlexSwitch documentation master file, created by
+.. FlexSwitchSDK documentation master file, created by
    sphinx-quickstart on Mon Apr  4 12:27:04 2016.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -91,9 +91,6 @@ Setting the ARP Timeout to 1000 seconds via FlexSwitch's Python SDK, utilizing m
 
 ::
 	
-  createArpConfig(self, param string ArpConfigKey :  Arp config VRF ID,
-                        param integer Timeout :  Global Arp entry timeout value. Default value:600 seconds)
-
 +------------------+------------+------------+-------------------------------------------+----------+----------+
 | Python Method    | Variables  | Type       |  Description                              | Required |  Default |   
 +==================+============+============+===========================================+==========+==========+ 
@@ -112,7 +109,7 @@ Below are examples for utilizing this method via the Python CLI, python script a
 
 ::  
 
-	>>>from flexswitchV2 import FlexSwitch
+	>>> from flexswitchV2 import FlexSwitch
 	>>> FlexSwitch("10.1.10.243", 8080).createArpConfig("1", 1000)
 	({u'ObjectId': u'45dff5a0-7dc1-441d-723d-ccf731186ece', u'Error': u''}, None)      
 
@@ -253,7 +250,7 @@ Below are examples for utilizing this method via the Python CLI, python script a
 
 ::
 
-	>>>from flexswitchV2 import FlexSwitch
+	>>> from flexswitchV2 import FlexSwitch
 	>>> FlexSwitch("10.1.10.243", 8080).createArpStatic("50.1.1.10","01:23:34:56:78")
 	({u'ObjectId': u'9e81f7d4-f9f0-4c86-556b-6398e47897bc', u'Error': u''}, None)
 	
@@ -386,8 +383,8 @@ Below are examples for utilizing this method via the Python CLI, python script a
 1. Python CLI 
 ::
 
-	>>>from flexswitchV2 import FlexSwitch
-	>>>FlexSwitch("10.1.10.243", 8080).getAllArpEntryStates()
+	>>> from flexswitchV2 import FlexSwitch
+	>>> flexSwitch("10.1.10.243", 8080).getAllArpEntryStates()
 	[{u'Object': {u'ConfigObj': None, u'Intf': u'fpPort47', u'Vlan': u'Internal Vlan', u'IpAddr': u'172.16.0.14', u'ExpiryTimeLeft': u'9m24.869691096s', u'MacAddr': u'a8:9d:21:aa:8e:01'}, u'ObjectId': u''}, {u'Object': {u'ConfigObj': None, u'Intf': u'fpPort49', u'Vlan': u'Internal Vlan', u'IpAddr': u'172.16.0.20', u'ExpiryTimeLeft': u'9m43.991376701s', u'MacAddr': u'00:02:03:04:05:00'}, u'ObjectId': u''}]
 
 
@@ -449,7 +446,7 @@ Display via Rest API
 
 You can return the value of an object based on any of the variables within that object.  For example you can query an ARP entry via an IPv4 Address. 
 
-The example below will show how to grab a specific ARP entry based on IP address. 
+The example below will show how to grab a specific ARP entry by IP address. 
 
 **COMMAND:**
 
@@ -489,7 +486,7 @@ The example below will show how to grab a specific ARP entry based on IP address
 Displaying via Python SDK
 *************************
 
-Displaying all ARP entries utilizing FlexSwitch's Python SDK, utilizing method *getAllArpEntryStates()*
+Displaying all ARP entries utilizing FlexSwitch's Python SDK, utilizing method *getArpEntryStates()*
 
 **COMMAND:**
 
@@ -511,7 +508,7 @@ Displaying all ARP entries utilizing FlexSwitch's Python SDK, utilizing method *
 
 ::
 
-	>>>from flexswitchV2 import FlexSwitch
+	>>> from flexswitchV2 import FlexSwitch
 	>>> FlexSwitch("10.1.10.243", 8080).getArpEntryState("172.16.0.20")
 	({u'Object': {u'ConfigObj': None, u'Intf': u'fpPort49', u'Vlan': u'Internal Vlan', u'IpAddr': u'172.16.0.20', u'ExpiryTimeLeft': u'16m38.505153914s', u'MacAddr': u'00:02:03:04:05:00'}, u'ObjectId': u''}, None)
 
@@ -717,18 +714,19 @@ Demand Mode
 
 In demand mode, no Hello packets are exchanged after the session is established; it is assumed that the endpoints have another way to verify connectivity to each other, perhaps on the underlying physical layer.
 
-.. Per-link
-.. """"""""
+..
+	Per-link
+	""""""""
 
-.. Since traditional Asynchronous BFD is an IP point-to-point protocol, it has no concept of layer 2 links that may exist between two devices.  This is especially true for layer 2 port-channels with multiple member-links.   
-If these one of these links happen to fail, while BFD is running across them, it may result in a false-positive detection of a connectivity failure.  This could have unintended impact, by bringing down an associated routing-protocol session incorrectly, 
-thus taking our an entire port-channel, rather than a single-link.  
+	Since traditional Asynchronous BFD is an IP point-to-point protocol, it has no concept of layer 2 links that may exist between two devices.  This is especially true for layer 2 port-channels with multiple member-links.   
+	If these one of these links happen to fail, while BFD is running across them, it may result in a false-positive detection of a connectivity failure.  This could have unintended impact, by bringing down an associated routing-protocol session incorrectly, 
+	thus taking our an entire port-channel, rather than a single-link.  
 
-.. BFD over LAG or BFD per-link was created as an enhancement to limit the impact of single port-channel member-link failure.  When BFD per-link is enabled on a port-channel interface, an asynchronous mode BFD sessions is run on every port-channel member link.  This allows for failure detection of a single port-channel member-link, 
-limiting the impact and traffic-transitions to only links that failed.  When all BFD sessions fail on a particular port-channel interface, only then are the associated protocol sessions torn down, allowing for accurate fault detection. 
+	BFD over LAG or BFD per-link was created as an enhancement to limit the impact of single port-channel member-link failure.  When BFD per-link is enabled on a port-channel interface, an asynchronous mode BFD sessions is run on every port-channel member link.  This allows for failure detection of a single port-channel member-link, 
+	limiting the impact and traffic-transitions to only links that failed.  When all BFD sessions fail on a particular port-channel interface, only then are the associated protocol sessions torn down, allowing for accurate fault detection. 
 
 
-Protocol Specific failure detection
+Protocol Specific Failure Detection
 """"""""""""""""""""""""""""""""""""
 
 For more details on how BFD integrates with other protocols, please see that protocols specific section:
@@ -1202,7 +1200,7 @@ Here we are creating the BFD session parameters that will be utilized by the BFD
 
 ::
 
-	>>>from flexswitchV2 import FlexSwitch
+	>>> from flexswitchV2 import FlexSwitch
 	>>> FlexSwitch("10.1.10.243", 8080).createBfdSessionParam("BFD_Session", LocalMultiplier=3, RequiredMinRxInterval=250, DesiredMinTxInterval=250)
 	({u'ObjectId': u'5b4a4b49-7310-444e-64da-5d8e8764e914', u'Error': u''}, None)
 
@@ -1254,7 +1252,7 @@ Attaching BFD params to a BFD session
 
 			::
 
-				>>>from flexswitchV2 import FlexSwitch
+				>>> from flexswitchV2 import FlexSwitch
 				>>> FlexSwitch("10.1.10.243", 8080).createBfdSession(ParaName="BFD_Sessions", IpAddr="1.1.1.1")
 				({u'ObjectId': u'5b4a4b49-7310-444e-64da-5d8e8764e914', u'Error': u''}, None)
 
@@ -1758,18 +1756,186 @@ Configuring with Rest API
 
 **EXAMPLE:**
 
-::
+Here we will configure a BGP session between two devices running FlexSwitch and check the status of these devices. 
 
-	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":500,"NeighborAddress":"1.1.1.1"}' 'http://10.1.10.243:8080/public/v1/config/BGPNeighbor'
-	{"ObjectId":"e530c4dc-1a81-4f68-593f-29aa877276e7","Error":""}
+Currently we are keeping track of BGP session FSM states based on a numeric value:
+
++---------------+--------------+
+| BGP FSM state | Numeric value|
++---------------+--------------+
+| Idle          |      1       |
++---------------+--------------+
+| Active        |      2       |
++---------------+--------------+
+| Connect       |      3       |
++---------------+--------------+
+| OpenSent      |      4       |
++---------------+--------------+
+| OpenConfirm   |      5       |
++---------------+--------------+
+| Established   |      6       |
++---------------+--------------+
+
+
+Below we will demonstrate how to create a BGP neighbor relationship between two BGP peers, Device1(10.1.10.241) and Device2(10.1.10.243) in AS 65535.  Display the BGP sessions status on each device and that they are exchanging a connected route from interface Vlan10.  
+
+.. Note:: This is assuming each device has BGP enabled and are in AS 65535 and redistribution of connected routes has been enabled for Vlan10. 
+
+
+See Topology1 for details:
+
+Topology 1:
+
+.. image:: images/BGP_Diagram1.png
+
+
+
+1. On device 10.1.10.243, we will create a neighbor to 1.1.1.1 from IPv4 1.1.1.2
+	::
+
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":65535,"NeighborAddress":"1.1.1.1"}' 'http://10.1.10.243:8080/public/v1/config/BGPNeighbor'
+		{"ObjectId":"5977ffa7-67bd-4847-7597-4175b513883c","Error":""}
 	
 
-Validation:
+2. On device 10.1.10.241, we will create a neighbor 1.1.1.2 from IPv4 1.1.1.1
+
+	::
+
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":65535,"NeighborAddress":"2.2.2.2"}' 'http://10.1.10.241:8080/public/v1/config/BGPNeighbor'
+		{"ObjectId":"b72d2e52-8878-490e-5ee8-6873bd40f423","Error":""}
+
+3. Validation:
+
+Below it can be seen that both  Device1 and Device2 are in the Established state (Session State 6), and are exchanging routing information for the prefix on Vlan10. 
+
+
+On Device1 (10.1.10.241):
+
+Neighbor 1.1.1.2 in the Established state (Session State 6), and is receiving a single prefix from this peer. 
 
 ::
 	
-	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.243:8080/public/v1/state/BGPNeighbors' | python -m json.tool
+	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.241:8080/public/v1/state/BGPNeighbors' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100  2999    0  2999    0     0   414k      0 --:--:-- --:--:-- --:--:--  488k
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 0,
+		"ObjCount": 1,
+		"Objects": [
+			{
+				"Object": {
+					"AddPathsMaxTx": 0,
+					"AddPathsRx": false,
+					"AuthPassword": "",
+					"BfdNeighborState": "",
+					"ConfigObj": null,
+					"ConnectRetryTime": 60,
+					"Description": "",
+					"HoldTime": 180,
+					"IfIndex": 0,
+					"KeepaliveTime": 60,
+					"LocalAS": 65535,
+					"MaxPrefixes": 0,
+					"MaxPrefixesDisconnect": false,
+					"MaxPrefixesRestartTimer": 0,
+					"MaxPrefixesThresholdPct": 80,
+					"Messages": {
+						"Received": {
+							"Notification": 1,
+							"Update": 4
+						},
+						"Sent": {
+							"Notification": 1,
+							"Update": 7
+						}
+					},
+					"MultiHopEnable": false,
+					"MultiHopTTL": 0,
+					"NeighborAddress": "1.1.1.2",
+					"PeerAS": 65535,
+					"PeerGroup": "",
+					"PeerType": 1,
+					"Queues": {
+						"Input": 0,
+						"Output": 0
+					},
+					"RouteReflectorClient": false,
+					"RouteReflectorClusterId": 0,
+					"SessionState": 6, <---------Session is Established
+					"TotalPrefixes": 1 <--------Received 1 Prefix
+				},
+            	"ObjectId": "b72d2e52-8878-490e-5ee8-6873bd40f423"
+			}
+		]
+	}
 
+BGP Routes:
+
+Device1 is receiving 10.10.0.0/24 with next hop of 1.1.1.2, which is the IP address on fpPort47 on Device2 and the redistributed route 10.10.1.0/24 in the BGP table from Vlan10:
+
+::
+
+	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.241:8080/public/v1/state/BGPRoutes' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100  5005    0  5005    0     0   489k      0 --:--:-- --:--:-- --:--:--  543k
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 0,
+		"ObjCount": 2,
+		"Objects": [
+
+			{
+				"Object": {
+					"CIDRLen": 24,
+					"ConfigObj": null,
+					"LocalPref": 0,
+					"Metric": 0,
+					"Network": "10.10.1.0",
+					"NextHop": "0.0.0.0",
+					"Path": null,
+					"PathId": 0,
+					"UpdatedDuration": "21m15.486384069s",
+					"UpdatedTime": "2016-05-11 12:36:32.932082062 -0700 PDT"
+				},
+				"ObjectId": ""
+			},
+			{
+				"Object": {
+					"CIDRLen": 24,
+					"ConfigObj": null,
+					"LocalPref": 0,
+					"Metric": 0,
+					"Network": "10.10.0.0",
+					"NextHop": "1.1.1.2",
+					"Path": [
+                    	"65535",
+                	],
+					"PathId": 0,
+					"UpdatedDuration": "11m15.485818198s",
+					"UpdatedTime": "2016-05-11 12:46:02.932650633 -0700 PDT"
+				},
+				"ObjectId": ""
+			}
+		]
+	}
+
+	
+
+
+
+
+
+On Device2 (10.1.10.243):
+
+Neighbor 1.1.1.1 in the Established state (Session State 6), and is receiving a single prefix from this peer. 
+
+::
+	
 	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.243:8080/public/v1/state/BGPNeighbors' | python -m json.tool
 	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
 									 Dload  Upload   Total   Spent    Left  Speed
@@ -1810,8 +1976,8 @@ Validation:
 					"MultiHopEnable": false,
 					"MultiHopTTL": 0,
 					"NeighborAddress": "1.1.1.1",
-					"PeerAS": 500,
-					"PeerGroup": "Group1",
+					"PeerAS": 65535,
+					"PeerGroup": "",
 					"PeerType": 1,
 					"Queues": {
 						"Input": 0,
@@ -1819,27 +1985,76 @@ Validation:
 					},
 					"RouteReflectorClient": false,
 					"RouteReflectorClusterId": 0,
-					"SessionState": 6,
-					"TotalPrefixes": 11
+					"SessionState": 6, <---------Session is Established
+					"TotalPrefixes": 1 <--------Received 1 Prefix
 				},
 				"ObjectId": "5977ffa7-67bd-4847-7597-4175b513883c"
 			}
+		]
+	}
 
+BGP Routes:
+
+Device2 is receiving 10.10.1.0/24 with next hop of 1.1.1.1, which is the IP address on fpPort47 on Device1 and the redistributed route 10.10.0.0/24 in the BGP table from Vlan10:
+
+::
+
+	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.243:8080/public/v1/state/BGPRoutes' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100  3442    0  3442    0     0   411k      0 --:--:-- --:--:-- --:--:--  480k
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 0,
+		"ObjCount": 2,
+		"Objects": [
+			{
+				"Object": {
+					"CIDRLen": 26,
+					"ConfigObj": null,
+					"LocalPref": 0,
+					"Metric": 0,
+					"Network": "10.10.0.0",
+					"NextHop": "0.0.0.0",
+					"Path": null,
+					"PathId": 0,			  
+					"UpdatedDuration": "21m14.232453255s",",
+					"UpdatedTime": "2016-05-11 12:36:31.432218651 -0700 PDT"
+				},
+				"ObjectId": ""
+			},
+			{
+				"Object": {
+					"CIDRLen": 26,
+					"ConfigObj": null,
+					"LocalPref": 0,
+					"Metric": 0,
+					"Network": "10.10.1.0",
+					"NextHop": "1.1.1.1",
+					"Path": [
+						"65535",
+					],
+					"PathId": 0,
+					"UpdatedDuration": "11m14.223927853s",
+					"UpdatedTime": "2016-05-11 12:46:02.55002553 -0700 PDT"
+				},
+				"ObjectId": ""
+			}
 		]
 	}
 
 
-Timers
-******
-
-Local AS
-********
-Authentication
-**************
-
 
 Configuring with Python SDK
 """"""""""""""""""""""""""""
+**COMMAND**
+
+	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":<*Peer AS Number*>,"LocalAS":"<*Local AS number*>","AuthPassword":<*Password*>,"Description":<*Peer Description*>,"NeighborAddress":<*IPv4 Address*> ,"IfIndex":<*Interface IfIndex*>,"RouteReflectorClusterId":<*ClusterID*>,"RouteReflectorClient":<*true/false*>,"MultiHopEnable":<*true/false*>,"MultiHopTTL":<*TTL*>, "ConnectRetryTime":<*Retry Timer*>, "HoldTime":<*Hold down Timer*>, "KeepAliveTime":<*Keepalive Timer*>, "AddPathRx":<*true/false*>, "AddPathsMaxTx":<*Max Transmit AddPaths*>,"PeerGroup":<*Peer Group Name*>, "BfdEnable":<*true/false*>, "BfdSessionParam":<*Bfd session param profile*>, "MaxPrefixes"":<*number of prefix's*>, "MaxPrefixesThresholdPct":<*Percentage of Prefix's*>, "MaxPrefixesDisconnect":<*true/false*>, "MaxPrefixesRestartTimer":<*Restart Timer*>	}' 'http://<*your-switchip*>:8080/public/v1/config/BGPNeighbor'
+
+
+**OPTIONS**
+
 
 +----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | Python Method        | Variables               | Type       |  Description                                                                            | Required |  Default | 
@@ -1890,15 +2105,285 @@ Configuring with Python SDK
 +----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 
 
+**EXAMPLE:**
+
+Here we will configure a BGP session between two devices running FlexSwitch and check the status of these devices. 
+
+Currently we are keeping track of BGP session FSM states based on a numeric value:
+
++---------------+--------------+
+| BGP FSM state | Numeric value|
++---------------+--------------+
+| Idle          |      1       |
++---------------+--------------+
+| Active        |      2       |
++---------------+--------------+
+| Connect       |      3       |
++---------------+--------------+
+| OpenSent      |      4       |
++---------------+--------------+
+| OpenConfirm   |      5       |
++---------------+--------------+
+| Established   |      6       |
++---------------+--------------+
+
+
+Below we will demonstrate how to create a BGP neighbor relationship between two BGP peers, Device1(10.1.10.241) and Device2(10.1.10.243) in AS 65535.  Display the BGP sessions status on each device and that they are exchanging a connected route from interface Vlan10.  
+
+.. Note:: This is assuming each device has BGP enabled and are in AS 65535 and redistribution of connected routes has been enabled for Vlan10. 
+
+
+See Topology1 for details:
+
+Topology 1:
+
+.. image:: images/BGP_Diagram1.png
 
 
 
-Timers
-******
-Local AS
-********
-Authentication
-**************
+1. On device 10.1.10.243, we will create a neighbor to 1.1.1.1 from IPv4 1.1.1.2
+	::
+
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":65535,"NeighborAddress":"1.1.1.1"}' 'http://10.1.10.243:8080/public/v1/config/BGPNeighbor'
+		{"ObjectId":"5977ffa7-67bd-4847-7597-4175b513883c","Error":""}
+	
+
+2. On device 10.1.10.241, we will create a neighbor 1.1.1.2 from IPv4 1.1.1.1
+
+	::
+
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":65535,"NeighborAddress":"2.2.2.2"}' 'http://10.1.10.241:8080/public/v1/config/BGPNeighbor'
+		{"ObjectId":"b72d2e52-8878-490e-5ee8-6873bd40f423","Error":""}
+
+3. Validation:
+
+Below it can be seen that both  Device1 and Device2 are in the Established state (Session State 6), and are exchanging routing information for the prefix on Vlan10. 
+
+
+On Device1 (10.1.10.241):
+
+::
+	
+	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.241:8080/public/v1/state/BGPNeighbors' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100  2999    0  2999    0     0   414k      0 --:--:-- --:--:-- --:--:--  488k
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 0,
+		"ObjCount": 1,
+		"Objects": [
+			{
+				"Object": {
+					"AddPathsMaxTx": 0,
+					"AddPathsRx": false,
+					"AuthPassword": "",
+					"BfdNeighborState": "",
+					"ConfigObj": null,
+					"ConnectRetryTime": 60,
+					"Description": "",
+					"HoldTime": 180,
+					"IfIndex": 0,
+					"KeepaliveTime": 60,
+					"LocalAS": 65535,
+					"MaxPrefixes": 0,
+					"MaxPrefixesDisconnect": false,
+					"MaxPrefixesRestartTimer": 0,
+					"MaxPrefixesThresholdPct": 80,
+					"Messages": {
+						"Received": {
+							"Notification": 1,
+							"Update": 4
+						},
+						"Sent": {
+							"Notification": 1,
+							"Update": 7
+						}
+					},
+					"MultiHopEnable": false,
+					"MultiHopTTL": 0,
+					"NeighborAddress": "1.1.1.2",
+					"PeerAS": 65535,
+					"PeerGroup": "",
+					"PeerType": 1,
+					"Queues": {
+						"Input": 0,
+						"Output": 0
+					},
+					"RouteReflectorClient": false,
+					"RouteReflectorClusterId": 0,
+					"SessionState": 6, <---------Session is Established
+					"TotalPrefixes": 1 <--------Received 1 Prefix
+				},
+            	"ObjectId": "b72d2e52-8878-490e-5ee8-6873bd40f423"
+			}
+		]
+	}
+
+BGP Routes:
+
+::
+
+	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.241:8080/public/v1/state/BGPRoutes' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100  5005    0  5005    0     0   489k      0 --:--:-- --:--:-- --:--:--  543k
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 0,
+		"ObjCount": 2,
+		"Objects": [
+
+			{
+				"Object": {
+					"CIDRLen": 24,
+					"ConfigObj": null,
+					"LocalPref": 0,
+					"Metric": 0,
+					"Network": "10.10.1.0",
+					"NextHop": "0.0.0.0",
+					"Path": null,
+					"PathId": 0,
+					"UpdatedDuration": "21m15.486384069s",
+					"UpdatedTime": "2016-05-11 12:36:32.932082062 -0700 PDT"
+				},
+				"ObjectId": ""
+			},
+			{
+				"Object": {
+					"CIDRLen": 24,
+					"ConfigObj": null,
+					"LocalPref": 0,
+					"Metric": 0,
+					"Network": "10.10.2.0",
+					"NextHop": "1.1.1.1",
+					"Path": [
+                    	"65535",
+                	],
+					"PathId": 0,
+					"UpdatedDuration": "11m15.485818198s",
+					"UpdatedTime": "2016-05-11 12:46:02.932650633 -0700 PDT"
+				},
+				"ObjectId": ""
+			}
+		]
+	}
+
+
+
+On Device2 (10.1.10.243):
+
+::
+	
+	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.243:8080/public/v1/state/BGPNeighbors' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100  2270    0  2270    0     0   227k      0 --:--:-- --:--:-- --:--:--  246k
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 0,
+		"ObjCount": 1,
+		"Objects": [
+			{
+				"Object": {
+					"AddPathsMaxTx": 0,
+					"AddPathsRx": false,
+					"AuthPassword": "",
+					"BfdNeighborState": "",
+					"ConfigObj": null,
+					"ConnectRetryTime": 60,
+					"Description": "",
+					"HoldTime": 180,
+					"IfIndex": 0,
+					"KeepaliveTime": 60,
+					"LocalAS": 65535,
+					"MaxPrefixes": 0,
+					"MaxPrefixesDisconnect": false,
+					"MaxPrefixesRestartTimer": 0,
+					"MaxPrefixesThresholdPct": 80,
+					"Messages": {
+						"Received": {
+							"Notification": 1,
+							"Update": 9
+						},
+						"Sent": {
+							"Notification": 1,
+							"Update": 6
+						}
+					},
+					"MultiHopEnable": false,
+					"MultiHopTTL": 0,
+					"NeighborAddress": "1.1.1.1",
+					"PeerAS": 65535,
+					"PeerGroup": "",
+					"PeerType": 1,
+					"Queues": {
+						"Input": 0,
+						"Output": 0
+					},
+					"RouteReflectorClient": false,
+					"RouteReflectorClusterId": 0,
+					"SessionState": 6, <---------Session is Established
+					"TotalPrefixes": 1 <--------Received 1 Prefix
+				},
+				"ObjectId": "5977ffa7-67bd-4847-7597-4175b513883c"
+			}
+		]
+	}
+
+BGP Routes:
+
+::
+
+curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json'  'http://10.1.10.243:8080/public/v1/state/BGPRoutes' | python -m json.tool
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  3442    0  3442    0     0   411k      0 --:--:-- --:--:-- --:--:--  480k
+{
+    "CurrentMarker": 0,
+    "MoreExist": false,
+    "NextMarker": 0,
+    "ObjCount": 2,
+    "Objects": [
+        {
+            "Object": {
+                "CIDRLen": 26,
+                "ConfigObj": null,
+                "LocalPref": 0,
+                "Metric": 0,
+                "Network": "10.10.0.0",
+                "NextHop": "0.0.0.0",
+                "Path": null,
+                "PathId": 0,			  
+                "UpdatedDuration": "21m14.232453255s",",
+                "UpdatedTime": "2016-05-11 12:36:31.432218651 -0700 PDT"
+            },
+            "ObjectId": ""
+        },
+        {
+            "Object": {
+                "CIDRLen": 26,
+                "ConfigObj": null,
+                "LocalPref": 0,
+                "Metric": 0,
+                "Network": "10.10.0.64",
+                "NextHop": "172.16.0.14",
+                "Path": [
+                    "65535",
+                ],
+                "PathId": 0,
+                "UpdatedDuration": "11m14.223927853s",
+                "UpdatedTime": "2016-05-11 12:46:02.55002553 -0700 PDT"
+            },
+            "ObjectId": ""
+        }
+    ]
+}
+
+
 
 Peer Groups
 ^^^^^^^^^^^
@@ -1915,6 +2400,12 @@ Configuring with Rest API
 Configuring with Python SDK
 """""""""""""""""""""""""""""""""""
 
+Redistribution
+^^^^^^^^^^^^^^
+Configuring with Rest API 
+"""""""""""""""""""""""""
+Configuring with Python SDK
+"""""""""""""""""""""""""""
 
 Policies
 ^^^^^^^^
