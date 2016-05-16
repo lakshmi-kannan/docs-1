@@ -127,45 +127,54 @@ Protocol Daemons
 FlexSwitch utilizes many different protocol daemons.  Each one is an independent structure that runs as a separate daemon independent of the system as a whole. 
 This allows for any set of daemons to be run based on end-user preference.  This results in less code being executed and thus greater stability. 
 
+Layer 3 Daemons
+"""""""""""""""
+
 ARP Daemon
-""""""""""
+**********
 
 .. image:: images/ARP.png
 
 BFD Daemon
-""""""""""
+**********
 
 .. image:: images/BFD_Design.png
 
 OSPF Daemon
-"""""""""""
+***********
 
 .. image:: images/OSPF_Architecture.png
 
 BGP Daemon
-""""""""""
+**********
 
-.. image:: images/BGP_Architecture.png
+.. image:: images/BGP_Module.png
+
+
+Layer 2 Daemons
+"""""""""""""""
 
 STP Daemon
-""""""""""
+**********
 
 .. image:: images/STP_Architecture.png
 
 LACP Daemon
-"""""""""""
+***********
 
-.. image:: images/LACP_Architecture.png
+.. image:: images/LACPArchitectureOverview.png
 
 VXLAN Daemon
-""""""""""""
+************
 
 .. image:: images/VXLAN_Architecture.png
 
 VRRP Daemon
-"""""""""""
+***********
 
 .. image:: images/VRRP_Architecture.png
+
+
 
 How to use it?
 ^^^^^^^^^^^^^^

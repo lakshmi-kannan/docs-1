@@ -12,8 +12,8 @@ Welcome to FlexSwitch's documentation!
     Introduction        <introduction>
     Quick Start Guide   <quickstart>
     Installing FlexSwitch <install>
-    Example Configurations <example>
-    Example Use Cases	   <usecase>
+    Configuring FlexSwitch <example>
+    FlexSwitch UseCases  <usecase>
     Network Topologies    <topology>
     API Reference         <apis>
 
