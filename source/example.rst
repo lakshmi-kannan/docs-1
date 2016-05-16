@@ -1652,7 +1652,12 @@ Configuring with Python SDK
 ::
 
 
-	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).createBGPGlobal(ASNum=<*AS Number*>,RouterId=<*IP Addr*>,UseMultiplePaths=<*true/false*>,EBGPMaxPaths=<*Number of Paths*>,UseMultiplePaths=<*true/false*> ,IBGPMaxPaths=<*Number of Paths*>)
+	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).createBGPGlobal(ASNum=<*AS Number*>,
+									RouterId=<*IP Addr*>,
+									UseMultiplePaths=<*true/false*>,
+									EBGPMaxPaths=<*Number of Paths*>,
+									UseMultiplePaths=<*true/false*>, 
+									IBGPMaxPaths=<*Number of Paths*>,)
 	
 
 **OPTIONS:**
@@ -1744,7 +1749,7 @@ Configuring with Rest API
 +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | MaxPrefixes             | integer    | Maximum number of prefixes that can be received from the BGP neighbor                   |    no    |     0    |
 +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
-| MaxPrefixesThresholdPct | string     | The percentage of maximum prefixes before we start logging                              |    no    |    80%   |
+| MaxPrefixesThresholdPct | string     | The percentage of MaxPrefixes before we start logging                                   |    no    |    80%   |
 +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | MaxPrefixesDisconnect   | boolean    | Disconnect the BGP peer session when we receive the max prefixes from the neighbor      |    no    |  False   |
 +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
@@ -2059,7 +2064,28 @@ Configuring with Python SDK
 ::
 	
 	>>> from flexswitchV2 import FlexSwitch
-	>>> FlexSwitch("192.168.0.4", 8080).createBGPNeighbor(PeerAS=<*Peer AS Number*>,LocalAS=<*Local AS number*>,AuthPassword=<*Password*>,Description=<*Peer Description*>,NeighborAddress=<*IPv4 Address*> ,IfIndex=<*Interface IfIndex*>,RouteReflectorClusterId=<*ClusterID*>,RouteReflectorClient=<*true/false*>,MultiHopEnable=<*true/false*>,MultiHopTTL=<*TTL*>, ConnectRetryTime=<*Retry Timer*>, HoldTime=<*Hold down Timer*>, KeepAliveTime=<*Keepalive Timer*>, AddPathRx=<*true/false*>, AddPathsMaxTx=<*Max Transmit AddPaths*>,PeerGroup=<*Peer Group Name*>, BfdEnable=<*true/false*>, BfdSessionParam=<*Bfd session param profile*>, MaxPrefixes=<*number of prefix's*>, MaxPrefixesThresholdPct=<*Percentage of Prefix's*>, MaxPrefixesDisconnect=<*true/false*>, MaxPrefixesRestartTimer=<*Restart Timer*>)
+	>>> FlexSwitch("<*IP address*>", <*TCP Port *>).createBGPNeighbor(PeerAS=<*Peer AS Number*>
+									LocalAS=<*Local AS number*>,
+									AuthPassword=<*Password*>,
+									Description=<*Peer Description*>,
+									NeighborAddress=<*IPv4 Address*>, 
+									IfIndex=<*Interface IfIndex*>,
+									RouteReflectorClusterId=<*ClusterID*>,
+									RouteReflectorClient=<*true/false*>,
+									MultiHopEnable=<*true/false*>,
+									MultiHopTTL=<*TTL*>,
+									ConnectRetryTime=<*Retry Timer*>,
+									HoldTime=<*Hold down Timer*>,
+									KeepAliveTime=<*Keepalive Timer*>,
+									AddPathRx=<*true/false*>,
+									AddPathsMaxTx=<*Max Transmit AddPaths*>,
+									PeerGroup=<*Peer Group Name*>,
+									BfdEnable=<*true/false*>,
+									BfdSessionParam=<*Bfd session param profile*>,
+									MaxPrefixes=<*number of prefix's*>,
+									MaxPrefixesThresholdPct=<*Percentage of Prefix's*>,
+									MaxPrefixesDisconnect=<*true/false*>,
+									MaxPrefixesRestartTimer=<*Restart Timer*>,)
 
 
 **OPTIONS**
@@ -2068,7 +2094,7 @@ Configuring with Python SDK
 +----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | Python Method        | Variables               | Type       |  Description                                                                            | Required |  Default | 
 +======================+=========================+============+=========================================================================================+==========+==========+
-| createBGPGlobal      | PeerAS                  | integer    | Peer AS of the BGP neighbor                                                             |    Yes   |   None   |
+| createBGPNeighbor    | PeerAS                  | integer    | Peer AS of the BGP neighbor                                                             |    Yes   |   None   |
 |                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 |                      | LocalAS                 | integer    | Local AS of the BGP, overrides Global AS value, can be used to spoof AS number          |    no    |     0    |
 |                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
@@ -2106,7 +2132,7 @@ Configuring with Python SDK
 |                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 |                      | MaxPrefixes             | integer    | Maximum number of prefixes that can be received from the BGP neighbor                   |    no    |     0    |
 |                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
-|                      | MaxPrefixesThresholdPct | string     | The percentage of maximum prefixes before we start logging                              |    no    |    80%   |
+|                      | MaxPrefixesThresholdPct | string     | The percentage of MaxPrefixes before we start logging                                   |    no    |    80%   |
 |                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 |                      | MaxPrefixesDisconnect   | boolean    | Disconnect the BGP peer session when we receive the max prefixes from the neighbor      |    no    |  False   |
 |                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
@@ -2146,9 +2172,10 @@ Below we will demonstrate how to create a BGP neighbor relationship between two 
 
 See Topology1 for details:
 
-Topology 1:
-
 .. image:: images/BGP_Diagram1.png
+
+
+
 
 
 
@@ -2378,6 +2405,121 @@ BGP Routes:
 Peer Groups
 ^^^^^^^^^^^
 
+PeerGroups are utilized in order to apply common parameters to multiple BGP neighbors, such as peer-AS, timers, and routing policies   The advantage is a common place to apply and adjust variables for a neighbor, as well as reducing the amount
+of configuration needed. 
+
+.. Note:: Configuration applied directly to a neighbor takes precedence over configuration applied via a peer groups  
+
+Creating Peer Group
+"""""""""""""""""""
+
+
+Configuring with Rest API 
+*************************
+
+**COMMAND**
+
+**OPTIONS**
+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| Variables               | Type       |  Description                                                                            | Required |  Default | 
++=========================+============+=========================================================================================+==========+==========+
+| Name                    | string     | Name of the BGP peer group                                                              |    Yes   |   None   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| PeerAS                  | integer    | Peer AS of the BGP neighbor                                                             |    Yes   |   None   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| AuthPassword            | string     | Password to connect to the BGP neighbor                                                 |    no    |   None   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| Description             | string     | Description of the BGP neighbor                                                         |    no    |     0    |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| RouteReflectorClusterId | integer    | Cluster ID of the internal BGP neighbor router reflector client                         |    no    |     0    |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| RouteReflectorClient    | boolean    | Set/Clear BGP neighbor as a route reflector client                                      |    no    |  False   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| MultiHopEnable          | boolean    | Enable/Disable multihop for BGP neighbor                                                |    no    |  False   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| MultiHopTTL             | string     | Number of hops(TTL) to multi-hop BGP neighbor                                           |    no    |     0    |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| ConnectRetryTime        | integer    | Retry timer for BGP session reconnect attempt after disconnect/failure                  |    no    |    60s   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| HoldTime                | integer    | Hold down time for BGP neighbor failure/disconnect                                      |    no    |   180s   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| KeepaliveTime           | integer    | Frequency of BGP Keepalive messages                                                     |    no    |    60s   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| AddPathsRx              | boolean    | Enable/Disable reception of BGP Add-Path NLRI updates                                   |    no    |  False   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| AddPathsMaxTx           | integer    | Max number of additional paths that can be transmitted to BGP neighbor                  |    no    |     0    |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| MaxPrefixes             | integer    | Maximum number of prefixes that can be received from the BGP neighbor                   |    no    |     0    |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| MaxPrefixesThresholdPct | string     | The percentage of MaxPrefixes before we start logging                                   |    no    |    80%   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| MaxPrefixesDisconnect   | boolean    | Disconnect the BGP peer session when we receive the max prefixes from the neighbor      |    no    |  False   |
+|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| MaxPrefixesRestartTimer | string     | Time in seconds to wait before we start BGP peer session when we receive max prefixes   |    no    |   None   |                      
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+
+
+**EXAMPLE**
+
+
+Configuring with Python SDK
+***************************
+
+**COMMAND**
+
+**OPTIONS**
+
++----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| Python Method        | Variables               | Type       |  Description                                                                            | Required |  Default | 
++======================+=========================+============+=========================================================================================+==========+==========+
+| createBGPPeerGroup   | Name                    | string     | Name of the BGP peer group                                                              |    Yes   |   None   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | PeerAS                  | integer    | Peer AS of the BGP neighbor                                                             |    Yes   |   None   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | AuthPassword            | string     | Password to connect to the BGP neighbor                                                 |    no    |   None   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | Description             | string     | Description of the BGP neighbor                                                         |    no    |     0    |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | RouteReflectorClusterId | integer    | Cluster ID of the internal BGP neighbor router reflector client                         |    no    |     0    |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | RouteReflectorClient    | boolean    | Set/Clear BGP neighbor as a route reflector client                                      |    no    |  False   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | MultiHopEnable          | boolean    | Enable/Disable multihop for BGP neighbor                                                |    no    |  False   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | MultiHopTTL             | string     | Number of hops(TTL) to multi-hop BGP neighbor                                           |    no    |     0    |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | ConnectRetryTime        | integer    | Retry timer for BGP session reconnect attempt after disconnect/failure                  |    no    |    60s   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | HoldTime                | integer    | Hold down time for BGP neighbor failure/disconnect                                      |    no    |   180s   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | KeepaliveTime           | integer    | Frequency of BGP Keepalive messages                                                     |    no    |    60s   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | AddPathsRx              | boolean    | Enable/Disable reception of BGP Add-Path NLRI updates                                   |    no    |  False   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | AddPathsMaxTx           | integer    | Max number of additional paths that can be transmitted to BGP neighbor                  |    no    |     0    |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | MaxPrefixes             | integer    | Maximum number of prefixes that can be received from the BGP neighbor                   |    no    |     0    |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | MaxPrefixesThresholdPct | string     | The percentage of MaxPrefixes before we start logging                                   |    no    |    80%   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | MaxPrefixesDisconnect   | boolean    | Disconnect the BGP peer session when we receive the max prefixes from the neighbor      |    no    |  False   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | MaxPrefixesRestartTimer | string     | Time in seconds to wait before we start BGP peer session when we receive max prefixes   |    no    |   None   |                      
++----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+
+
+**EXAMPLE**
+
+
+Applying Peer Group
+"""""""""""""""""""
+
+**COMMAND**
+
+**OPTIONS**
+
+**EXAMPLE**
 
 Enabling BFD 
 ^^^^^^^^^^^^
@@ -2386,9 +2528,9 @@ Enabling MultiPath
 ^^^^^^^^^^^^^^^^^^
 
 Configuring with Rest API 
-""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""
 Configuring with Python SDK
-"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""
 
 Redistribution
 ^^^^^^^^^^^^^^
@@ -2401,89 +2543,89 @@ Policies
 ^^^^^^^^
 
 Configuring with Rest API 
-""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""
 Configuring with Python SDK
-"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""
 
 Route Reflectors
 ^^^^^^^^^^^^^^^^
 
 Configuring with Rest API 
-""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""
 Configuring with Python SDK
-"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""
 
 Add Path
 ^^^^^^^^
 
 Configuring with Rest API 
-""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 Configuring with Python SDK
-"""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 
 ----------------------
 
 Configuring DHCP Relay
 -----------------------
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configuring LLDP
 -----------------
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Configuring LoopBacks
 ----------------------
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configuring Logging
 ---------------------
 System 
 ^^^^^^^
 Configuring with Rest API 
-""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 Configuring with Python SDK
-""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 
 Daemon
 ^^^^^^^
 Configuring with Rest API 
-""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 Configuring with Python SDK
-""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 
 
 Configuring OSPF
 ------------------
 
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configuring IP Addresses
 --------------------------
 
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Configuring Routing Policies 
------------------------------
+Configuring Routing Policies
+----------------------------
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configuring Routing 
 -------------------
@@ -2498,9 +2640,9 @@ Policies
 ^^^^^^^^
 
 Configuring with Rest API 
-""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 Configuring with Python SDK
-""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 
 Configuring STP
 ----------------
@@ -2510,32 +2652,32 @@ RSTP
 RSTP-PVST+
 ^^^^^^^^^^
 Configuring with Rest API 
-""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 Configuring with Python SDK
-"""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""
 
 Configuring VLANS
 -------------------
 
 
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 Configuring VxLAN
 --------------------
 
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configuring VRRP
 -------------------
 
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
