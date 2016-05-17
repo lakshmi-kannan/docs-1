@@ -783,6 +783,8 @@ VRF name where BFD will be Globally enabled. By default this is the "*default*" 
 	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"Bfd":"default","Enable":true}' 'http://10.1.10.43:8080/public/v1/config/BfdGlobal'
 	{"ObjectId":"0880b0cb-d0da-461e-7826-9b2eef1b800e","Error":""}
 
+.. _bfd-session-parameters-rest:
+
 Creating BFD session parameters 
 *******************************
 
@@ -1156,6 +1158,9 @@ Can be applied with the following Python Script:
 		switch_ip = "10.1.10.243"
 		restIf = FlexSwitch(switch_ip, 8080)
 		restIf.createBfdGlobal("default", True)	
+
+
+.. _bfd-session-parameters-python:
 
 Creating BFD session parameters 
 *******************************
@@ -1543,7 +1548,8 @@ Can be viewed via the following python script.
 				"ReceivedAuthSeq": 0
 			}, 
 			"ObjectId": ""
-
+		}
+	]
 			
 ------------------
 
@@ -1606,6 +1612,8 @@ contain all the necessary information to forward data to these routes.  The UPDA
 Enabling Globally
 ^^^^^^^^^^^^^^^^^^
 
+.. _bgp-global-rest:
+
 Configuring with Rest API 
 """"""""""""""""""""""""""""""""
 
@@ -1644,6 +1652,7 @@ BGP requires a local AS Number and a Router ID to enable globally.  Once these t
 	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":65535,"RouterId":"1.1.1.1"}' 'http://192.168.0.2:8080/public/v1/config/BGPGlobal'
 	{"ObjectId":"c5f253d9-1f0d-461e-62aa-963b1ef3b0bd","Error":""}
 
+.. _bgp-global-python:
 
 Configuring with Python SDK
 """""""""""""""""""""""""""""""""""
@@ -1656,7 +1665,7 @@ Configuring with Python SDK
 									RouterId=<*IP Addr*>,
 									UseMultiplePaths=<*true/false*>,
 									EBGPMaxPaths=<*Number of Paths*>,
-									UseMultiplePaths=<*true/false*>, 
+									EBGPAllowMultipleAS=<*true/false*>, 
 									IBGPMaxPaths=<*Number of Paths*>,)
 	
 
@@ -1695,6 +1704,8 @@ Neighbor Setup
 ^^^^^^^^^^^^^^
 
 BGP requires established peering relationships to exchange routing information.  This section will assist in setting up a BGP peer with another device. 
+
+.. _bgp-neighbor-rest:
 
 Configuring with Rest API 
 """""""""""""""""""""""""
@@ -2054,6 +2065,7 @@ Device2 is receiving 10.10.1.0/24 with next hop of 1.1.1.0, which is the IP addr
 	}
 
 
+.. _bgp-neighbor-python:
 
 Configuring with Python SDK
 """"""""""""""""""""""""""""
@@ -3358,7 +3370,7 @@ Enabling BFD
 
 To ensure fast fail-over of BGP sessions during times of failures, BFD can be enabled, to enabled to ensure sub-second failure detection.  This is done by enabling BFD for that neighbor and tying a BFD session profile per-neighbor relationship. 
 
-.. Note:: This configuration can be enabled via a Peer Group OR directly on the neighbor itself. 
+.. Note:: This configuration can be enabled via a Peer Group OR directly on the neighbor itself. See :ref:`bgp-neighbor-rest` or :ref:`bgp-neighbor-python` for more details.
 
 Configuring with Rest API 
 """""""""""""""""""""""""
@@ -3366,8 +3378,18 @@ Configuring with Rest API
 **COMMAND**
 
 Update BGP neighbor:
+::
+
+	curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"NeighborAddress":"<*IP Address*>", "BfdEnable":"<*enable/disable BFD*>", "BfdSessionParam":"<*BFD parameter profile*>":}' 'http://10.1.10.245:8080/public/v1/config/BGPNeighbor'
 
 Enabled on BGP neighbor Creation:
+::
+
+	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"NeighborAddress":"<*IP Address*>", "BfdEnable":"<*enable/disable BFD*>", "BfdSessionParam":"<*BFD parameter profile*>":}' 'http://10.1.10.245:8080/public/v1/config/BGPNeighbor'
+
+
+.. Note:: This above example, is just a subset of the BGP Neighbor commands.  See :ref:`bgp-neighbor-rest` for more details
+
 
 **OPTIONS**
 
@@ -3384,13 +3406,159 @@ Enabled on BGP neighbor Creation:
 
 **EXAMPLE**
 
+Below is an example of enabling BFD on a BGP neighbor:
+
+1. Create BFD Session Parameters
+
+	::
+
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"Name":"BFD_session","LocalMultiplier":3,"DesiredMinTxInterval":250,"RequiredMinRxInterval":250}' 'http://10.1.10.245:8080/public/v1/config/BfdSessionParam'
+ 
+	.. Note:: See Creating :ref:`bfd-session-parameters-rest` section for more details. 
+
+
+2. Attach BFD session parameters and enable BFD on exisiting neighbor
+	::
+	
+		curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"NeighborAddress":"1.1.1.1", "BfdEnable":"true", "BfdSessionParam":"BFD_Session":}' 'http://10.1.10.245:8080/public/v1/config/BGPNeighbor'
+		{"ObjectId":"fcb3a338-1f10-4a18-56da-cc615516024f","Error":""}
+
+	.. Note:: Assumes BFD is enabled on the far-end BGP neighbor
+
+3. Verify BFD is enabled, in the up state and registered with BGP neighbor:
+	
+	Below we can see that BFD is up and passing traffic.  The *NumRxPackets* and *NumTxPackets* counters show that we are sending and receiving BFD hello packets. 
+	*RegisteredProtocols* is BGP, as well as the *SessionState* being in the **up** states. 
+
+
+	::
+
+		curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.245:8080/public/v1/state/BfdSessions' | python -m json.tool
+		  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+										 Dload  Upload   Total   Spent    Left  Speed
+		100  1415  100  1415    0     0   233k      0 --:--:-- --:--:-- --:--:--  276k
+		{
+			"CurrentMarker": 0,
+			"MoreExist": false,
+			"NextMarker": 0,
+			"ObjCount": 2,
+			"Objects": [
+				{
+					"Object": {
+						"AuthSeqKnown": false,
+						"AuthType": "",
+						"DemandMode": false,
+						"DesiredMinTxInterval": "250000(us)",
+						"DetectionMultiplier": 3,
+						"IfIndex": 30,
+						"IfName": "",
+						"InterfaceSpecific": false,
+						"IpAddr": "1.1.1.1",<--------------
+						"LocalDiagType": "None",
+						"LocalDiscriminator": 95,
+						"LocalMacAddr": "",
+						"NumRxPackets": 228806,<--------------
+						"NumTxPackets": 236795,<--------------
+						"ParamName": "BFD_Session",
+						"PerLinkSession": false,
+						"ReceivedAuthSeq": 0,
+						"RegisteredProtocols": "bgp, ",<--------------
+						"RemoteDemandMode": false,
+						"RemoteDetectionMultiplier": 3,
+						"RemoteDiscriminator": 288,
+						"RemoteMacAddr": "",
+						"RemoteMinRxInterval": "250000(us)",
+						"RemoteSessionState": "up",
+						"RequiredMinRxInterval": "250000(us)",
+						"SentAuthSeq": 0,
+						"SessionId": 95,
+						"SessionState": "up"<--------------
+					},
+					"ObjectId": ""
+				},
+
+
+	For the associated BGP neighbor, we can see that the *BfdNeighborState* is UP and this BGP neighbor *SessionState* in Established (state 6) is up:
+
+	::
+	
+		curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.245:8080/public/v1/state/BGPNeighbors' | python -m json.tool
+		  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+										 Dload  Upload   Total   Spent    Left  Speed
+		100  1547  100  1547    0     0   185k      0 --:--:-- --:--:-- --:--:--  215k
+		{
+			"CurrentMarker": 0,
+			"MoreExist": false,
+			"NextMarker": 0,
+			"ObjCount": 1,
+			"Objects": [
+				{
+					"Object": {
+						"AddPathsMaxTx": 0,
+						"AddPathsRx": false,
+						"AuthPassword": "",
+						"BfdNeighborState": "up", <--------------
+						"ConnectRetryTime": 60,
+						"Description": "",
+						"HoldTime": 180,
+						"IfIndex": 0,
+						"KeepaliveTime": 60,
+						"LocalAS": 420000006,
+						"MaxPrefixes": 0,
+						"MaxPrefixesDisconnect": false,
+						"MaxPrefixesRestartTimer": 0,
+						"MaxPrefixesThresholdPct": 80,
+						"Messages": {
+							"Received": {
+								"Notification": 0,
+								"Update": 25
+							},
+							"Sent": {
+								"Notification": 2,
+								"Update": 27
+							}
+						},
+						"MultiHopEnable": false,
+						"MultiHopTTL": 0,
+						"NeighborAddress": "1.1.1.1",
+						"PeerAS": 420000004,
+						"PeerGroup": "Group1",
+						"PeerType": 1,
+						"Queues": {
+							"Input": 0,
+							"Output": 0
+						},
+						"RouteReflectorClient": false,
+						"RouteReflectorClusterId": 0,
+						"SessionState": 6,<--------------
+						"TotalPrefixes": 7,
+						"UpdateSource": ""
+					},
+					"ObjectId": "fcb3a338-1f10-4a18-56da-cc615516024f"
+				},	
+			]
+			
+		In the BGP neighbor configuration, we can see the *BfdSessionParam* tied to this neighbor is BFD_Session:
+			::
+
+			
 Configuring with Python SDK
 """""""""""""""""""""""""""
 **COMMAND**
 
 Update BGP neighbor:
+::
 
-Enabled on BGP neighbor Creation:
+	FlexSwitch("10.1.10.245", 8080).updateBGPNeighbor(NeighborAddress="<*IP Address*>", IfIndex=<*IfIndex*>, BfdSessionParam="<*BFD parameter profile*>", BfdEnable=<*enable/disable bfd*>)
+
+Enabled on BGP neighbor creation:
+
+::
+	
+	FlexSwitch("10.1.10.245", 8080).createBGPNeighbor(NeighborAddress="<*IP Address*>", IfIndex=<*IfIndex*>, BfdSessionParam="<*BFD parameter profile*>", BfdEnable=<*enable/disable bfd*>)
+
+
+.. Note:: This above example, is just a subset of the BGP Neighbor commands.  See :ref:`bgp-neighbor-python`
 
 **OPTIONS**
 +----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
@@ -3405,18 +3573,267 @@ Enabled on BGP neighbor Creation:
 
 **EXAMPLE**
 
+
+Below is an example of enabling BFD on an existing BGP neighbor:
+
+1. Create BFD Session Parameters
+
+	::
+
+		>>> from flexswitchV2 import FlexSwitch
+		>>> FlexSwitch("10.1.10.245", 8080).createBfdSessionParam(Name="BFD_Session", RequiredMinRxInterval=250, DesiredMinTxInterval=250, LocalMultiplier=3)
+		({u'ObjectId': u'a4963a6b-b8cc-4dc8-7693-cbf907a0af0f', u'Error': u''}, None) 
+	.. Note:: See Creating :ref:`bfd-session-parameters-python` section for more details. 
+
+
+2. Attach BFD session parameters and enable BFD on exisiting neighbor
+	::
+	
+		FlexSwitch("10.1.10.245", 8080).updateBGPNeighbor(NeighborAddress="1.1.1.1", IfIndex=0, BfdSessionParam="BFD_Session", BfdEnable="True")
+		({u'ObjectId': u'3861ec9a-188f-44f2-4e49-db60267c600b', u'Error': u'None.'}, None)
+
+	.. Note:: Assumes BFD is enabled on the far-end BGP neighbor
+
+3. Verify BFD is enabled, in the up state and registered with BGP neighbor:
+	
+	Below we can see that BFD is up and passing traffic.  The *NumRxPackets* and *NumTxPackets* counters show that we are sending and receiving BFD hello packets. 
+	*RegisteredProtocols* is BGP, as well as the *SessionState* being in the **up** states. 
+
+	::
+		>>> print json.dumps(FlexSwitch("10.1.10.245", 8080).getAllBfdSessionStates(),indent=4)
+		[
+			{
+				"Object": {
+					"RegisteredProtocols": "bgp, ",  <-------------
+					"DesiredMinTxInterval": "250000(us)", 
+					"SessionId": 701, 
+					"ParamName": "BFD_Session", <-------------
+					"DemandMode": false, 
+					"DetectionMultiplier": 3, 
+					"SentAuthSeq": 0, 
+					"LocalDiscriminator": 701, 
+					"SessionState": "up", <-------------
+					"AuthSeqKnown": false, 
+					"PerLinkSession": false, 
+					"IfName": "", 
+					"ConfigObj": null, 
+					"RequiredMinRxInterval": "250000(us)", 
+					"AuthType": "", 
+					"RemoteDiscriminator": 1090519237, 
+					"RemoteSessionState": "up", 
+					"NumTxPackets": 747461, <-------------
+					"InterfaceSpecific": false, 
+					"NumRxPackets": 908113, <-------------
+					"RemoteDemandMode": false, 
+					"LocalMacAddr": "", 
+					"RemoteMinRxInterval": "250000(us)", 
+					"IpAddr": "1.1.1.1", <-------------
+					"RemoteMacAddr": "", 
+					"LocalDiagType": "None", 
+					"IfIndex": 47, 
+					"ReceivedAuthSeq": 0
+				}, 
+				"ObjectId": ""
+			},
+		]
+	
+	For the associated BGP neighbor, we can see that the *BfdNeighborState* is UP and this BGP neighbor *SessionState* in Established (state 6) is up:
+
+	::
+	
+		>>> print json.dumps(FlexSwitch("10.1.10.245", 8080).getAllBGPNeighborStates(),indent=4)
+		[
+			  {
+					"Object": {
+						"RouteReflectorClient": false, 
+						"MultiHopTTL": 0, 
+						"BfdNeighborState": "up", <--------------
+						"LocalAS": 420000006, 
+						"KeepaliveTime": 60, 
+						"AddPathsRx": false, 
+						"UpdateSource": "", 
+						"PeerGroup": "Group1", 
+						"PeerType": 0, 
+						"MaxPrefixesRestartTimer": 0, 
+						"Description": "", 
+						"TotalPrefixes": 0, 
+						"MultiHopEnable": false, 
+						"SessionState": 6, <--------------
+						"PeerAS": 420000005, 
+						"RouteReflectorClusterId": 0, 
+						"MaxPrefixesDisconnect": false, 
+						"Queues": {
+							"Input": 0, 
+							"Output": 0
+						}, 
+						"Messages": {
+							"Received": {
+								"Notification": 0, 
+								"Update": 5
+							}, 
+							"Sent": {
+								"Notification": 0, 
+								"Update": 5
+							}
+						}, 
+						"AddPathsMaxTx": 0, 
+						"NeighborAddress": "1.1.1.1", 
+						"MaxPrefixes": 0, 
+						"MaxPrefixesThresholdPct": 80, 
+						"AuthPassword": "", 
+						"IfIndex": 0, 
+						"HoldTime": 180, 
+						"ConnectRetryTime": 60
+					}, 
+					"ObjectId": "3861ec9a-188f-44f2-4e49-db60267c600b"
+				}
+			]
+
+		In the BGP neighbor configuration, we can see the *BfdSessionParam* tied to this neighbor is BFD_Session:
+		::
+
+			[		
+				{
+					"Object": {
+						"BfdEnable": true, 
+						"RouteReflectorClient": false, 
+						"MultiHopTTL": 0, 
+						"LocalAS": 420000006, 
+						"KeepaliveTime": 60, 
+						"AddPathsRx": false, 
+						"UpdateSource": "", 
+						"PeerGroup": "Group1", 
+						"MaxPrefixesRestartTimer": 0, 
+						"Description": "", 
+						"MultiHopEnable": false, 
+						"AuthPassword": "", 
+						"RouteReflectorClusterId": 0, 
+						"MaxPrefixesDisconnect": false, 
+						"PeerAS": 420000005, 
+						"AddPathsMaxTx": 0, 
+						"NeighborAddress": "1.1.1.1", 
+						"MaxPrefixes": 0, 
+						"MaxPrefixesThresholdPct": 80, 
+						"HoldTime": 180, 
+						"IfIndex": 0, 
+						"BfdSessionParam": "BFD_Session", <--------------
+						"ConnectRetryTime": 60
+					}, 
+					"ObjectId": "3861ec9a-188f-44f2-4e49-db60267c600b"
+				}
+			]			
+
+
 Enabling MultiPath
 ^^^^^^^^^^^^^^^^^^
-In order for BGP to be configured for ECMP, you need to enable BGP multi-path.  This will allow the BGP daemon to enable selection of Routes, that are equal upto the AS-Path length. 
+In order for BGP to be configured for Equal Cost Multi Path, or ECMP you must to enable BGP multipath.  This allows the BGP daemon to enable selection of routes that are deemed equal cost via the BGP path selection algorithm, as specified in RFC 4271.
 
-Even with BGP multi-path enabled, ONLY the selected best path, based on the BGP Path selection algorithm, is advertised to neighbors.  
+Once Multipath is enabled only the following path variables need to be equal:
 
-.. Note:: When utilizing BGP add-path, each add-path NLRI is considered separately for ECMP/Multipath.  Only the Best BGP path is still advertised to non add-path neighbors. 
+	- Weight
+	- Local-Preference
+	- AS-PATH Length
+	- Origin
+
+Keep in mind, that with BGP multipath enabled ONLY the selected best path for that prefix is advertised to neighbors. 
+
+
+.. Note:: When utilizing BGP add-path, each add-path NLRI is considered separately for BGP Path Selection algorithm as if they are separate prefixes.  This means that ECMP/Multipath is considered differently for each add-path NLRI.  Each add-path NLRI is advertised to add-path neighbors, even if prefix is the same.  For non add-path neighbors only the best BGP path is advertised. 
+
+
+Multi-path is enabled in the BGP Global object and can be enabled for IBGP routes and  EBGP routes separately.   FlexSwitch supports up to 32-way ECMP for BGP. 
+
+.. Note:: EBGP and IBGP routes will only be compared for ECMP, if both are enabled. 
 
 Configuring with Rest API 
 """""""""""""""""""""""""
+**COMMAND**
+
+Update BGP global
+::
+
+	curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":<*AS Number*>,"RouterId":"<*IP Addr*>","UseMultiplePaths":<*true/false*>,"EBGPMaxPaths":<*Number of Paths*>,"IBGPMaxPaths":<*Number of Paths*>}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+	
+On BGP global creation
+::
+
+	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":<*AS Number*>,"RouterId":"<*IP Addr*>","UseMultiplePaths":<*true/false*>,"EBGPMaxPaths":<*Number of Paths*>,"IBGPMaxPaths":<*Number of Paths*>}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+	
+.. Note:: This command is a variable being enabled part of BGPGlobal object. See :ref:`bgp-global-rest` for more details. 
+
+**OPTIONS:**
+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |     
++======================+============+=============================================+==========+==========+   
+| ASNum                | integer    | Local AS for BGP global config              |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
+| RouterId             | string     | Router id for BGP global config             |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
+| UseMultiplePaths     | boolean    | Enable/disable ECMP for BGP                 |    no    |  false   |
++----------------------+------------+---------------------------------------------+----------+----------+
+| EBGPMaxPaths         | integer    | Max ECMP paths from External BGP neighbors  |    no    |     0    |
++----------------------+------------+---------------------------------------------+----------+----------+
+| IBGPMaxPaths         | integer    | Max ECMP paths from Internal BGP neighbors  |    no    |     0    |
++----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+Below is an example on how to enable BGP multipath for both IBGP and EBGP routes:
+
+1. Configure Max Paths to desired paths for EBGP and IBGP and enable multipath:
+	a. In this example *EBGPMaxPaths* and *IBGPMaxPaths* are set to 32
+	b. Updating *UseMultiplePaths* to true to enable multipath
+
+::
+	
+	curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":65535,"RouterId":"1.1.1.1","UseMultiplePaths":true,"EBGPMaxPaths":32,"IBGPMaxPaths":32}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+
+.. Note:: BGPGlobal has already been configured with AS number of 65535 and RouterId of 1.1.1.1
+
 Configuring with Python SDK
 """""""""""""""""""""""""""
+**COMMAND**
+
+Update BGP global
+::
+
+	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).updateBGPGlobal(ASNum=<*AS Number*>,
+									RouterId=<*IP Addr*>,
+									UseMultiplePaths=<*true/false*>,
+									EBGPMaxPaths=<*Number of Paths*>,
+									IBGPMaxPaths=<*Number of Paths*>,)
+	
+On BGP global creation
+::
+
+	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).createBGPGlobal(ASNum=<*AS Number*>,
+									RouterId=<*IP Addr*>,
+									UseMultiplePaths=<*true/false*>,
+									EBGPMaxPaths=<*Number of Paths*>,
+									IBGPMaxPaths=<*Number of Paths*>,)	
+	
+.. Note:: This command is a variable being enabled part of BGPGlobal object. See :ref:`bgp-global-python` for more details.
+ 
+**OPTIONS:**
+
++-------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method     | Variables            | Type       |  Description                                | Required |  Default |     
++===================+======================+============+=============================================+==========+==========+   
+| createBGPGlobal   | ASNum                | integer    | Local AS for BGP global config              |    Yes   |   None   |
+|        OR         +----------------------+------------+---------------------------------------------+----------+----------+
+| updateBGPGlobal   | RouterId             | string     | Router id for BGP global config             |    Yes   |   None   |
+|                   +----------------------+------------+---------------------------------------------+----------+----------+
+|                   | UseMultiplePaths     | boolean    | Enable/disable ECMP for BGP                 |    no    |  False   |
+|                   +----------------------+------------+---------------------------------------------+----------+----------+
+|                   | EBGPMaxPaths         | integer    | Max ECMP paths from External BGP neighbors  |    no    |     0    |
+|                   +----------------------+------------+---------------------------------------------+----------+----------+
+|                   | IBGPMaxPaths         | integer    | Max ECMP paths from Internal BGP neighbors  |    no    |     0    |
++-------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+
 
 Redistribution
 ^^^^^^^^^^^^^^
