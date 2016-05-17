@@ -4044,5 +4044,47 @@ Configuring VRRP
 
 Configuring with Rest API 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        curl -H "Content-Type: application/json" -d '{"IfIndex":<*Interface Unique Id*>, "VRID":<*Virtual Router ID*>, "Priority":<*Priority for the Vitrual Router*>, "VirtualIPv4Addr":<*Virtual Router Ip Address*>}' http://<*your-switchip*>:8080/public/v1/VrrpIntf
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**COMMAND:**
+::
+
+
+	>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createVrrpIntf(
+							   VRID,
+							   IfIndex,
+							   VirtualIPv4Addr,
+							   PreemptMode=True,
+							   Priority=100,
+							   AdvertisementInterval=1,
+							   AcceptMode=False)
+
+**OPTIONS:**
+
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method        | Variables            | Type       |  Description                                | Required |  Default |
++======================+======================+============+=============================================+==========+==========+
+| createVrrpIntf       | VRID                 | integer    | Default Virtual Router ID                   |    Yes   |   None   |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | IfIndex              | integer    | Intf where VRID will be configured          |    Yes   |   None   |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | VirtualIPv4Addr      | string     | Ip Address for Virtual Router               |    no    |  Port Ip |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | PreemptMode          | boolean    | Preempt a lower-priority Master             |    no    |   True   |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | Priority             | integer    | Specifiying priority of Virtual Router      |    no    |    100   |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | AdvertisementInterval| integer    | Adverstise Time interval                    |    no    |     1    |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | AcceptMode           | boolean    | Accept Packets address to ifIndex           |    no    |   True   |
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE:**
+
+Vrrp requires VRID to enable it per port. Once it is configured then Protocol FSM will start
+
+::
+
+	>>> from flexswitchV2 import FlexSwitch
+	>>> FlexSwitch("192.168.0.2", 8080).createVrrpIntf(ifIndex=355413 ,VRID=1, VirtualIPv4Addr="172.16.0.1")
