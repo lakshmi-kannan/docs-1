@@ -3785,17 +3785,78 @@ Below is an example on how to enable BGP multipath for both IBGP and EBGP routes
 	a. In this example *EBGPMaxPaths* and *IBGPMaxPaths* are set to 32
 	b. Updating *UseMultiplePaths* to true to enable multipath
 
-::
+	::
 	
-	curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":65535,"RouterId":"1.1.1.1","UseMultiplePaths":true,"EBGPMaxPaths":32,"IBGPMaxPaths":32}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+		curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":65535,"RouterId":"1.1.1.1","UseMultiplePaths":true,"EBGPMaxPaths":32,"IBGPMaxPaths":32}' 'http://10.1.10.243:8080/public/v1/config/BGPGlobal'
+		{"ObjectId":"7f2c589d-3dea-4356-75be-91c7c2de18cb","Error":""}
 
+2. Validate in configuration and state objects that BGP Multipath is enabled:
+
+	**Configuration:**
+	::
+			
+		curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/config/BGPGlobals' | python -m json.tool
+		  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+										 Dload  Upload   Total   Spent    Left  Speed
+		100   344  100   344    0     0  62228      0 --:--:-- --:--:-- --:--:-- 68800
+		{
+			"CurrentMarker": 0,
+			"MoreExist": false,
+			"NextMarker": 0,
+			"ObjCount": 1,
+			"Objects": [
+				{
+					"Object": {
+						"ASNum": 420000005,
+						"EBGPAllowMultipleAS": true,
+						"EBGPMaxPaths": 32,
+						"IBGPMaxPaths": 0,
+						"Redistribution": [],
+						"RouterId": "1.1.1.1",
+						"UseMultiplePaths": true
+					},
+					"ObjectId": "7f2c589d-3dea-4356-75be-91c7c2de18cb"
+				}
+			]
+		}		
+
+	**State:**
+	::
+
+		curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/state/BGPGlobals' | python -m json.tool
+		  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+										 Dload  Upload   Total   Spent    Left  Speed
+		100   185  100   185    0     0  28664      0 --:--:-- --:--:-- --:--:-- 30833
+		{
+			"CurrentMarker": 0,
+			"MoreExist": false,
+			"NextMarker": 0,
+			"ObjCount": 1,
+			"Objects": [
+				{
+					"Object": {
+						"AS": 65535,
+						"EBGPAllowMultipleAS": true,
+						"EBGPMaxPaths": 32,
+						"IBGPMaxPaths": 32,
+						"RouterId": "1.1.1.1",
+						"TotalPaths": 0,
+						"TotalPrefixes": 0,
+						"UseMultiplePaths": true
+					},
+					"ObjectId": ""
+				}
+			]
+		
+		
 .. Note:: BGPGlobal has already been configured with AS number of 65535 and RouterId of 1.1.1.1
 
 Configuring with Python SDK
 """""""""""""""""""""""""""
 **COMMAND**
 
-Update BGP global
+Update BGP global:
+
 ::
 
 	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).updateBGPGlobal(ASNum=<*AS Number*>,
@@ -3804,7 +3865,8 @@ Update BGP global
 									EBGPMaxPaths=<*Number of Paths*>,
 									IBGPMaxPaths=<*Number of Paths*>,)
 	
-On BGP global creation
+On BGP global creation:
+
 ::
 
 	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).createBGPGlobal(ASNum=<*AS Number*>,
