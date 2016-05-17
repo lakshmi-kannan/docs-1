@@ -2686,13 +2686,14 @@ Configuring with Python SDK
 ::
 
 
-	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).createBGPGlobal(ASNum=<*AS Number*>,
-									RouterId=<*IP Addr*>,
-									UseMultiplePaths=<*true/false*>,
-									EBGPMaxPaths=<*Number of Paths*>,
-									UseMultiplePaths=<*true/false*>, 
-									IBGPMaxPaths=<*Number of Paths*>,)
-
+	>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createVrrpIntf(
+							   VRID,
+							   IfIndex,
+							   VirtualIPv4Addr,
+							   PreemptMode=True,
+							   Priority=100,
+							   AdvertisementInterval=1,
+							   AcceptMode=False)
 
 **OPTIONS:**
 
@@ -2716,9 +2717,9 @@ Configuring with Python SDK
 
 **EXAMPLE:**
 
-BGP requires a local AS Number and a Router ID to enable globally.  Once these two items are assigned, BGP will be globally enabled on FlexSwitch. 
+Vrrp requires VRID to enable it per port. Once it is configured then Protocol FSM will start
 
 ::
 
 	>>> from flexswitchV2 import FlexSwitch
-	>>> FlexSwitch("192.168.0.2", 8080).createBGPGlobal(ifIndex=355413 ,VRID=1, VirtualIPv4Addr="172.16.0.1")
+	>>> FlexSwitch("192.168.0.2", 8080).createVrrpIntf(ifIndex=355413 ,VRID=1, VirtualIPv4Addr="172.16.0.1")
