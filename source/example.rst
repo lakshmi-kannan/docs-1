@@ -3810,7 +3810,7 @@ Below is an example on how to enable BGP multipath for both IBGP and EBGP routes
 						"ASNum": 420000005,
 						"EBGPAllowMultipleAS": true,
 						"EBGPMaxPaths": 32,
-						"IBGPMaxPaths": 0,
+						"IBGPMaxPaths": 32,
 						"Redistribution": [],
 						"RouterId": "1.1.1.1",
 						"UseMultiplePaths": true
@@ -3847,7 +3847,7 @@ Below is an example on how to enable BGP multipath for both IBGP and EBGP routes
 					"ObjectId": ""
 				}
 			]
-		
+		}
 		
 .. Note:: BGPGlobal has already been configured with AS number of 65535 and RouterId of 1.1.1.1
 
