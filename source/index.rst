@@ -11,8 +11,7 @@ Welcome to FlexSwitch's documentation!
 
     Introduction        <introduction>
     Quick Start Guide   <quickstart>
-    Developer Guide     <developer>
-    Network Engineer Guide <nwengineer>
-    Configuring FlexSwitch <example>
+    Developer Home <developer>
+    Network Engineer Home <nwengineer>
+    Example Configurations <example>
     API Reference         <apis>
-    PythonSDK		<PythonSDK>

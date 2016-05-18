@@ -15,7 +15,7 @@ Instructions on how to start building FlexSwitch are available at ....
     Build instructions <install>
 
 System Architecture
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 .. image:: images/Software_Architecture.png
 
 .. toctree::
