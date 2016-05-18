@@ -783,6 +783,8 @@ VRF name where BFD will be Globally enabled. By default this is the "*default*" 
 	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"Bfd":"default","Enable":true}' 'http://10.1.10.43:8080/public/v1/config/BfdGlobal'
 	{"ObjectId":"0880b0cb-d0da-461e-7826-9b2eef1b800e","Error":""}
 
+.. _bfd-session-parameters-rest:
+
 Creating BFD session parameters 
 *******************************
 
@@ -1156,6 +1158,9 @@ Can be applied with the following Python Script:
 		switch_ip = "10.1.10.243"
 		restIf = FlexSwitch(switch_ip, 8080)
 		restIf.createBfdGlobal("default", True)	
+
+
+.. _bfd-session-parameters-python:
 
 Creating BFD session parameters 
 *******************************
@@ -1543,7 +1548,8 @@ Can be viewed via the following python script.
 				"ReceivedAuthSeq": 0
 			}, 
 			"ObjectId": ""
-
+		}
+	]
 			
 ------------------
 
@@ -1606,6 +1612,8 @@ contain all the necessary information to forward data to these routes.  The UPDA
 Enabling Globally
 ^^^^^^^^^^^^^^^^^^
 
+.. _bgp-global-rest:
+
 Configuring with Rest API 
 """"""""""""""""""""""""""""""""
 
@@ -1644,6 +1652,7 @@ BGP requires a local AS Number and a Router ID to enable globally.  Once these t
 	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":65535,"RouterId":"1.1.1.1"}' 'http://192.168.0.2:8080/public/v1/config/BGPGlobal'
 	{"ObjectId":"c5f253d9-1f0d-461e-62aa-963b1ef3b0bd","Error":""}
 
+.. _bgp-global-python:
 
 Configuring with Python SDK
 """""""""""""""""""""""""""""""""""
@@ -1656,7 +1665,7 @@ Configuring with Python SDK
 									RouterId=<*IP Addr*>,
 									UseMultiplePaths=<*true/false*>,
 									EBGPMaxPaths=<*Number of Paths*>,
-									UseMultiplePaths=<*true/false*>, 
+									EBGPAllowMultipleAS=<*true/false*>, 
 									IBGPMaxPaths=<*Number of Paths*>,)
 	
 
@@ -1695,6 +1704,8 @@ Neighbor Setup
 ^^^^^^^^^^^^^^
 
 BGP requires established peering relationships to exchange routing information.  This section will assist in setting up a BGP peer with another device. 
+
+.. _bgp-neighbor-rest:
 
 Configuring with Rest API 
 """""""""""""""""""""""""
@@ -1794,21 +1805,19 @@ Topology 1:
 .. image:: images/BGP_Diagram1.png
 
 
-
-1. On device 10.1.10.243, we will create a neighbor to 1.1.1.0 from IPv4 1.1.1.1
-	::
-
-		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":65535,"NeighborAddress":"1.1.1.0"}' 'http://10.1.10.243:8080/public/v1/config/BGPNeighbor'
-		{"ObjectId":"5977ffa7-67bd-4847-7597-4175b513883c","Error":""}
-	
-
-2. On device 10.1.10.241, we will create a neighbor 1.1.1.1 from IPv4 1.1.1.0
+1. On device1 (10.1.10.241), we will create a neighbor 1.1.1.1 from IPv4 1.1.1.0
 
 	::
 
 		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":65535,"NeighborAddress":"1.1.1.1"}' 'http://10.1.10.241:8080/public/v1/config/BGPNeighbor'
 		{"ObjectId":"b72d2e52-8878-490e-5ee8-6873bd40f423","Error":""}
 
+2. On device2 (10.1.10.243), we will create a neighbor to 1.1.1.0 from IPv4 1.1.1.1
+
+	::
+
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":65535,"NeighborAddress":"1.1.1.0"}' 'http://10.1.10.243:8080/public/v1/config/BGPNeighbor'
+		{"ObjectId":"5977ffa7-67bd-4847-7597-4175b513883c","Error":""}
 
 .. Note:: You can run RestAPI calls from any location that has IP connectivity to FlexSwitch.  
 
@@ -2056,6 +2065,7 @@ Device2 is receiving 10.10.1.0/24 with next hop of 1.1.1.0, which is the IP addr
 	}
 
 
+.. _bgp-neighbor-python:
 
 Configuring with Python SDK
 """"""""""""""""""""""""""""
@@ -2175,18 +2185,7 @@ See Topology1 for details:
 .. image:: images/BGP_Diagram1.png
 
 
-
-
-
-
-1. On device 10.1.10.243, we will create a neighbor to 1.1.1.0 from IPv4 1.1.1.1
-	::
-
-		>>> from flexswitchV2 import FlexSwitch
-		>>> FlexSwitch("10.1.0.243", 8080).createBGPNeighbor(PeerAS=65535 , NeighborAddress="1.1.1.0", IfIndex=0)
-		({u'ObjectId': u'28fb7889-ee13-4ee8-4d4b-784d8121f707', u'Error': u''}, None)
-
-2. On device 10.1.10.241, we will create a neighbor to 1.1.1.1 from IPv4 1.1.1.0
+1. On device1 (10.1.10.241), we will create a neighbor to 1.1.1.1 from IPv4 1.1.1.0
 
 	::
 	
@@ -2194,6 +2193,12 @@ See Topology1 for details:
 		>>> FlexSwitch("10.1.0.241", 8080).createBGPNeighbor(PeerAS=65535 , NeighborAddress="1.1.1.1", IfIndex=0)
 		({u'ObjectId': u'a34dde27-eea0-40ee-43f0-2836376accb7', u'Error': u''}, None)
 
+2. On device2 (10.1.10.243), we will create a neighbor to 1.1.1.0 from IPv4 1.1.1.1
+	::
+
+		>>> from flexswitchV2 import FlexSwitch
+		>>> FlexSwitch("10.1.0.243", 8080).createBGPNeighbor(PeerAS=65535 , NeighborAddress="1.1.1.0", IfIndex=0)
+		({u'ObjectId': u'28fb7889-ee13-4ee8-4d4b-784d8121f707', u'Error': u''}, None)
 
 .. Note:: You can run Python SDK methods from any location that has IP connectivity to FlexSwitch.  
 
@@ -2204,7 +2209,6 @@ Below it can be seen that both Device1 and Device2 are in the Established state 
 
 
 On Device1 (10.1.10.241):
-
 
 ::
 	
@@ -2262,10 +2266,9 @@ BGP Routes:
 
 Device1 is receiving 10.10.0.0/24 with next hop of 1.1.1.1, which is the IP address on fpPort47 on Device2 and the redistributed route 10.10.1.0/24 in the BGP table from Vlan10:
 
-
 ::
-	>>> print json.dumps(FlexSwitch("10.1.10.241", 8080).getAllBGPRouteStates(), indent=4)
 
+	>>> print json.dumps(FlexSwitch("10.1.10.241", 8080).getAllBGPRouteStates(), indent=4)
 	[
 		{
 			"Object": {
@@ -2361,8 +2364,8 @@ On Device2 (10.1.10.243):
 BGP Routes:
 
 ::
-	>>> print json.dumps(FlexSwitch("10.1.10.243", 8080).getAllBGPRouteStates(), indent=4)
 
+	>>> print json.dumps(FlexSwitch("10.1.10.243", 8080).getAllBGPRouteStates(), indent=4)
 	[
 		{
  			"Object": {
@@ -2405,19 +2408,24 @@ BGP Routes:
 Peer Groups
 ^^^^^^^^^^^
 
-PeerGroups are utilized in order to apply common parameters to multiple BGP neighbors, such as peer-AS, timers, and routing policies   The advantage is a common place to apply and adjust variables for a neighbor, as well as reducing the amount
-of configuration needed. 
+PeerGroups are utilized in order to apply common parameters to multiple BGP neighbors, such as Peer AS, Timers, and routing policies, etc.   The advantage is the ability to apply and adjust variables common to multiple neighbor as well as a reduction to the amount of overall configuration required.  
 
-.. Note:: Configuration applied directly to a neighbor takes precedence over configuration applied via a peer groups  
+.. Note:: Configuration applied directly to a neighbor takes precedence over configuration applied via a peer groups.  Configured peer group values, take precedence over default applied values on neighbor configuration. 
 
-Creating Peer Group
-"""""""""""""""""""
+Utilizing Peer Groups
+"""""""""""""""""""""
 
+Below is example of creating a Peer Group and applying it to a neighbor.  We will set the BGP Hold Time, Keep Alive Time for multiple neighbors. 
 
 Configuring with Rest API 
 *************************
 
 **COMMAND**
+
+::
+
+	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":<*Peer AS Number*>,"AuthPassword":<*Password*>,"Description":<*Peer Description*>,"RouteReflectorClusterId":<*ClusterID*>,"RouteReflectorClient":<*true/false*>,"MultiHopEnable":<*true/false*>,"MultiHopTTL":<*TTL*>, "ConnectRetryTime":<*Retry Timer*>, "HoldTime":<*Hold down Timer*>, "KeepAliveTime":<*Keepalive Timer*>, "AddPathRx":<*true/false*>, "AddPathsMaxTx":<*Max Transmit AddPaths*>, "MaxPrefixes"":<*number of prefix's*>, "MaxPrefixesThresholdPct":<*Percentage of Prefix's*>, "MaxPrefixesDisconnect":<*true/false*>, "MaxPrefixesRestartTimer":<*Restart Timer*>	}' 'http://<*your-switchip*>:8080/public/v1/config/BGPNeighbor'
+
 
 **OPTIONS**
 
@@ -2425,48 +2433,522 @@ Configuring with Rest API
 | Variables               | Type       |  Description                                                                            | Required |  Default | 
 +=========================+============+=========================================================================================+==========+==========+
 | Name                    | string     | Name of the BGP peer group                                                              |    Yes   |   None   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | PeerAS                  | integer    | Peer AS of the BGP neighbor                                                             |    Yes   |   None   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | AuthPassword            | string     | Password to connect to the BGP neighbor                                                 |    no    |   None   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | Description             | string     | Description of the BGP neighbor                                                         |    no    |     0    |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | RouteReflectorClusterId | integer    | Cluster ID of the internal BGP neighbor router reflector client                         |    no    |     0    |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | RouteReflectorClient    | boolean    | Set/Clear BGP neighbor as a route reflector client                                      |    no    |  False   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | MultiHopEnable          | boolean    | Enable/Disable multihop for BGP neighbor                                                |    no    |  False   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | MultiHopTTL             | string     | Number of hops(TTL) to multi-hop BGP neighbor                                           |    no    |     0    |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | ConnectRetryTime        | integer    | Retry timer for BGP session reconnect attempt after disconnect/failure                  |    no    |    60s   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | HoldTime                | integer    | Hold down time for BGP neighbor failure/disconnect                                      |    no    |   180s   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | KeepaliveTime           | integer    | Frequency of BGP Keepalive messages                                                     |    no    |    60s   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | AddPathsRx              | boolean    | Enable/Disable reception of BGP Add-Path NLRI updates                                   |    no    |  False   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | AddPathsMaxTx           | integer    | Max number of additional paths that can be transmitted to BGP neighbor                  |    no    |     0    |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | MaxPrefixes             | integer    | Maximum number of prefixes that can be received from the BGP neighbor                   |    no    |     0    |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | MaxPrefixesThresholdPct | string     | The percentage of MaxPrefixes before we start logging                                   |    no    |    80%   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | MaxPrefixesDisconnect   | boolean    | Disconnect the BGP peer session when we receive the max prefixes from the neighbor      |    no    |  False   |
-|-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | MaxPrefixesRestartTimer | string     | Time in seconds to wait before we start BGP peer session when we receive max prefixes   |    no    |   None   |                      
 +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 
 
 **EXAMPLE**
 
+The example provided will utilize the *Topology 1* seen below:
+
+Topology 1:
+
+.. image:: images/BGP_Diagram1.png
+
+1. On device1 (10.1.10.241), where I will create Peer Group *Group1*, setting the Keep Alive Time, Hold Time and Connect Retry Time. 
+	:: 
+	
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"KeepaliveTime":30, "HoldTime":90, "ConnectRetryTime":30 ,  "Name":"Group1"}' 'http://10.1.10.241:8080/public/v1/config/BGPPeerGroup'
+		{"ObjectId":"fb508ac1-9958-4922-7cfe-b41a48f9a72d","Error":""}
+		
+
+2. On device2 (10.1.10.243), where I will create Peer Group *Group1*, setting the Keep Alive Time, Hold Time and Connect Retry Time. 
+
+	::
+
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"KeepaliveTime":30, "HoldTime":90, "ConnectRetryTime":30 ,  "Name":"Group1"}' 'http://10.1.10.243:8080/public/v1/config/BGPPeerGroup'
+		{"ObjectId":"5977ffa7-67bd-4847-7597-4175b513883c","Error":""}
+	
+
+3. Utilizing previously created Neighbors on Device1 to apply Peer Group *Group1*
+
+	a. Existing neighbor configuration on Device1 
+	
+		.. Note:: PeerGroup field is blank
+	
+		::
+
+			curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.241:8080/public/v1/config/BGPNeighbors' | python -m json.tool
+			  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+											 Dload  Upload   Total   Spent    Left  Speed
+			100   612  100   612    0     0  43290      0 --:--:-- --:--:-- --:--:-- 47076
+			{
+				"CurrentMarker": 0,
+				"MoreExist": false,
+				"NextMarker": 0,
+				"ObjCount": 1,
+				"Objects": [
+					{
+						"Object": {
+							"AddPathsMaxTx": 0,
+							"AddPathsRx": false,
+							"AuthPassword": "",
+							"BfdEnable": false,
+							"BfdSessionParam": "default",
+							"ConfigObj": null,
+							"ConnectRetryTime": 60,
+							"Description": "",
+							"HoldTime": 180,
+							"IfIndex": 0,
+							"KeepaliveTime": 60,
+							"LocalAS": 0,
+							"MaxPrefixes": 0,
+							"MaxPrefixesDisconnect": false,
+							"MaxPrefixesRestartTimer": 0,
+							"MaxPrefixesThresholdPct": 80,
+							"MultiHopEnable": false,
+							"MultiHopTTL": 0,
+							"NeighborAddress": "1.1.1.0",
+							"PeerAS": 65535,
+							"PeerGroup": "",
+							"RouteReflectorClient": false,
+							"RouteReflectorClusterId": 0
+						},
+						"ObjectId": "358c6e8c-0b25-45b3-6f9c-2adef0d9b48c"
+					}
+				]
+			}
+			
+	b. Peer Group Configuration:
+		
+		Below we can see the following timers have been set within the Peer Group:
+				
+				* KeepaliveTime = 30
+				* ConnectRetryTime = 30
+				* HoldTime = 90
+		
+		::
+
+			curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.241:8080/public/v1/config/BGPPeerGroups' | python -m json.tool
+			  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+											 Dload  Upload   Total   Spent    Left  Speed
+			100   966  100   966    0     0   302k      0 --:--:-- --:--:-- --:--:--  471k
+			{
+				"CurrentMarker": 0,
+				"MoreExist": false,
+				"NextMarker": 0,
+				"ObjCount": 1,
+				"Objects": [
+					{
+						"Object": {
+							"AddPathsMaxTx": 0,
+							"AddPathsRx": false,
+							"AuthPassword": "",
+							"ConfigObj": null,
+							"ConnectRetryTime": 30,
+							"Description": "",
+							"HoldTime": 90,
+							"KeepaliveTime": 30,
+							"LocalAS": 0,
+							"MaxPrefixes": 0,
+							"MaxPrefixesDisconnect": false,
+							"MaxPrefixesRestartTimer": 0,
+							"MaxPrefixesThresholdPct": 0,
+							"MultiHopEnable": false,
+							"MultiHopTTL": 0,
+							"Name": "Group2",
+							"PeerAS": 0,
+							"RouteReflectorClient": false,
+							"RouteReflectorClusterId": 0
+						},
+						"ObjectId": "fb508ac1-9958-4922-7cfe-b41a48f9a72d"
+					},
+				]
+			}
+			
+
+	c. Applying Peer Group
+	
+		::
+			
+			curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"NeighborAddress":"1.1.1.0", "PeerGroup":"Group1"}' 'http://10.1.10.241:8080/public/v1/config/BGPNeighbor'
+			{"ObjectId":"358c6e8c-0b25-45b3-6f9c-2adef0d9b48c","Error":"None."}
+
+	d. Verification PeerGroup is applied to Neighbors
+	
+		We can see below in the configuration and state objects, that the "PeerGroup" field now has the value assigned to *Group1*
+
+		.. Note:: The timers specified in the Peer Group, *Group1*, have been updated to reflect the timers on the neighbor State Object.  The configuration object reflects the default configuration on the neighbor.  If these values were user configured, they would take precedence. 
+	
+		**Config:**
+			::
+
+				curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.241:8080/public/v1/config/BGPNeighbors' | python -m json.tool
+				  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+												 Dload  Upload   Total   Spent    Left  Speed
+				100   618  100   618    0     0   399k      0 --:--:-- --:--:-- --:--:--  603k
+				{
+					"CurrentMarker": 0,
+					"MoreExist": false,
+					"NextMarker": 0,
+					"ObjCount": 1,
+					"Objects": [
+						{
+							"Object": {
+								"AddPathsMaxTx": 0,
+								"AddPathsRx": false,
+								"AuthPassword": "",
+								"BfdEnable": false,
+								"BfdSessionParam": "default",
+								"ConfigObj": null,
+								"ConnectRetryTime": 60,
+								"Description": "",
+								"HoldTime": 180,
+								"IfIndex": 0,
+								"KeepaliveTime": 60,
+								"LocalAS": 0,
+								"MaxPrefixes": 0,
+								"MaxPrefixesDisconnect": false,
+								"MaxPrefixesRestartTimer": 0,
+								"MaxPrefixesThresholdPct": 80,
+								"MultiHopEnable": false,
+								"MultiHopTTL": 0,
+								"NeighborAddress": "1.1.1.0",
+								"PeerAS": 65535,
+								"PeerGroup": "Group1", <---------------
+								"RouteReflectorClient": false,
+								"RouteReflectorClusterId": 0
+							},
+							"ObjectId": "358c6e8c-0b25-45b3-6f9c-2adef0d9b48c"
+						}
+					]
+				}
+
+
+		**State**
+			::
+
+				curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.241:8080/public/v1/state/BGPNeighbors' | python -m json.tool
+				  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+												 Dload  Upload   Total   Spent    Left  Speed
+				100   765  100   765    0     0   269k      0 --:--:-- --:--:-- --:--:--  373k
+				{
+					"CurrentMarker": 0,
+					"MoreExist": false,
+					"NextMarker": 0,
+					"ObjCount": 1,
+					"Objects": [
+						{
+							"Object": {
+								"AddPathsMaxTx": 0,
+								"AddPathsRx": false,
+								"AuthPassword": "",
+								"BfdNeighborState": "",
+								"ConfigObj": null,
+								"ConnectRetryTime": 30, <---------------
+								"Description": "",
+								"HoldTime": 90,<---------------
+								"IfIndex": 0,
+								"KeepaliveTime": 30,<---------------
+								"LocalAS": 0,
+								"MaxPrefixes": 0,
+								"MaxPrefixesDisconnect": false,
+								"MaxPrefixesRestartTimer": 0,
+								"MaxPrefixesThresholdPct": 80,
+								"Messages": {
+									"Received": {
+										"Notification": 0,
+										"Update": 3
+									},
+									"Sent": {
+										"Notification": 0,
+										"Update": 2
+									}
+								},
+								"MultiHopEnable": false,
+								"MultiHopTTL": 0,
+								"NeighborAddress": "1.1.1.1",
+								"PeerAS": 65535,
+								"PeerGroup": "Group1",<---------------
+								"PeerType": 0,
+								"Queues": {
+									"Input": 0,
+									"Output": 0
+								},
+								"RouteReflectorClient": false,
+								"RouteReflectorClusterId": 0,
+								"SessionState": 6,
+								"TotalPrefixes": 1
+							},
+							"ObjectId": "358c6e8c-0b25-45b3-6f9c-2adef0d9b48c"
+						}
+					]
+				}
+
+4. Utilizing previously created Neighbors on Device2 to apply Peer Group *Group1*
+
+	a. Existing neighbor configuration on Device2
+	
+		.. Note:: PeerGroup field is blank
+	
+		::
+
+			curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/config/BGPNeighbors' | python -m json.tool
+			  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+											 Dload  Upload   Total   Spent    Left  Speed
+			100   612  100   612    0     0  43290      0 --:--:-- --:--:-- --:--:-- 47076
+			{
+				"CurrentMarker": 0,
+				"MoreExist": false,
+				"NextMarker": 0,
+				"ObjCount": 1,
+				"Objects": [
+					{
+						"Object": {
+							"AddPathsMaxTx": 0,
+							"AddPathsRx": false,
+							"AuthPassword": "",
+							"BfdEnable": false,
+							"BfdSessionParam": "default",
+							"ConfigObj": null,
+							"ConnectRetryTime": 60,
+							"Description": "",
+							"HoldTime": 180,
+							"IfIndex": 0,
+							"KeepaliveTime": 60,
+							"LocalAS": 0,
+							"MaxPrefixes": 0,
+							"MaxPrefixesDisconnect": false,
+							"MaxPrefixesRestartTimer": 0,
+							"MaxPrefixesThresholdPct": 80,
+							"MultiHopEnable": false,
+							"MultiHopTTL": 0,
+							"NeighborAddress": "1.1.1.1",
+							"PeerAS": 65535,
+							"PeerGroup": "",  <---------------
+							"RouteReflectorClient": false,
+							"RouteReflectorClusterId": 0
+						},
+						"ObjectId": "086b6651-474d-493a-4b3f-ee756435ac95"
+					}
+				]
+			}
+
+	b. Peer Group Configuration:
+		
+		Below we can see the following timers have been set within the Peer Group:
+				
+				* KeepaliveTime = 30
+				* ConnectRetryTime = 30
+				* HoldTime = 90
+		
+		::
+
+			curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/config/BGPPeerGroups' | python -m json.tool
+			  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+											 Dload  Upload   Total   Spent    Left  Speed
+			100   966  100   966    0     0   302k      0 --:--:-- --:--:-- --:--:--  471k
+			{
+				"CurrentMarker": 0,
+				"MoreExist": false,
+				"NextMarker": 0,
+				"ObjCount": 1,
+				"Objects": [
+					{
+						"Object": {
+							"AddPathsMaxTx": 0,
+							"AddPathsRx": false,
+							"AuthPassword": "",
+							"ConfigObj": null,
+							"ConnectRetryTime": 30,
+							"Description": "",
+							"HoldTime": 90,
+							"KeepaliveTime": 30,
+							"LocalAS": 0,
+							"MaxPrefixes": 0,
+							"MaxPrefixesDisconnect": false,
+							"MaxPrefixesRestartTimer": 0,
+							"MaxPrefixesThresholdPct": 0,
+							"MultiHopEnable": false,
+							"MultiHopTTL": 0,
+							"Name": "Group2",
+							"PeerAS": 0,
+							"RouteReflectorClient": false,
+							"RouteReflectorClusterId": 0
+						},
+						"ObjectId": "5977ffa7-67bd-4847-7597-4175b513883c"
+					},
+				]
+			}
+			
+	c. Applying Peer Group:
+		
+		::
+			
+			curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"NeighborAddress":"1.1.1.1", "PeerGroup":"Group1"}' 'http://10.1.10.243:8080/public/v1/config/BGPNeighbor'
+			{"ObjectId":"086b6651-474d-493a-4b3f-ee756435ac95","Error":"None."}
+
+	d. Verification PeerGroup is applied:
+
+		We can see below in the configuration and state objects, that the "PeerGroup" field now has the value assigned to *Group1*
+
+		.. Note:: The timers specified in the Peer Group, *Group1*, have been updated to reflect the timers on the neighbor State Object.  The configuration object reflects the default configuration on the neighbor.  If these values were user configured, they would take precedence. 
+	
+		**Config:**
+			::
+
+				curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/config/BGPNeighbors' | python -m json.tool
+				  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+												 Dload  Upload   Total   Spent    Left  Speed
+				100   618  100   618    0     0   399k      0 --:--:-- --:--:-- --:--:--  603k
+				{
+					"CurrentMarker": 0,
+					"MoreExist": false,
+					"NextMarker": 0,
+					"ObjCount": 1,
+					"Objects": [
+						{
+							"Object": {
+								"AddPathsMaxTx": 0,
+								"AddPathsRx": false,
+								"AuthPassword": "",
+								"BfdEnable": false,
+								"BfdSessionParam": "default",
+								"ConfigObj": null,
+								"ConnectRetryTime": 60,
+								"Description": "",
+								"HoldTime": 180,
+								"IfIndex": 0,
+								"KeepaliveTime": 60,
+								"LocalAS": 0,
+								"MaxPrefixes": 0,
+								"MaxPrefixesDisconnect": false,
+								"MaxPrefixesRestartTimer": 0,
+								"MaxPrefixesThresholdPct": 80,
+								"MultiHopEnable": false,
+								"MultiHopTTL": 0,
+								"NeighborAddress": "1.1.1.1",
+								"PeerAS": 65535,
+								"PeerGroup": "Group1", <------------------
+								"RouteReflectorClient": false,
+								"RouteReflectorClusterId": 0
+							},
+							"ObjectId": "086b6651-474d-493a-4b3f-ee756435ac95"
+						}
+					]
+				}
+
+
+		**State**
+			::
+
+				curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/state/BGPNeighbors' | python -m json.tool
+				  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+												 Dload  Upload   Total   Spent    Left  Speed
+				100   765  100   765    0     0   269k      0 --:--:-- --:--:-- --:--:--  373k
+				{
+					"CurrentMarker": 0,
+					"MoreExist": false,
+					"NextMarker": 0,
+					"ObjCount": 1,
+					"Objects": [
+						{
+							"Object": {
+								"AddPathsMaxTx": 0,
+								"AddPathsRx": false,
+								"AuthPassword": "",
+								"BfdNeighborState": "",
+								"ConfigObj": null,
+								"ConnectRetryTime": 30,<---------------
+								"Description": "",
+								"HoldTime": 90,<---------------
+								"IfIndex": 0,
+								"KeepaliveTime": 30,<---------------
+								"LocalAS": 0,
+								"MaxPrefixes": 0,
+								"MaxPrefixesDisconnect": false,
+								"MaxPrefixesRestartTimer": 0,
+								"MaxPrefixesThresholdPct": 80,
+								"Messages": {
+									"Received": {
+										"Notification": 0,
+										"Update": 3
+									},
+									"Sent": {
+										"Notification": 0,
+										"Update": 2
+									}
+								},
+								"MultiHopEnable": false,
+								"MultiHopTTL": 0,
+								"NeighborAddress": "1.1.1.1",
+								"PeerAS": 65535,
+								"PeerGroup": "Group1", <------------------
+								"PeerType": 0,
+								"Queues": {
+									"Input": 0,
+									"Output": 0
+								},
+								"RouteReflectorClient": false,
+								"RouteReflectorClusterId": 0,
+								"SessionState": 6,
+								"TotalPrefixes": 1
+							},
+							"ObjectId": "086b6651-474d-493a-4b3f-ee756435ac95"
+						}
+					]
+				}
+
 
 Configuring with Python SDK
 ***************************
 
+
 **COMMAND**
+
+::
+
+	>>> from flexswitchV2 import FlexSwitch
+	>>> FlexSwitch("<*IP address*>", <*TCP Port *>).createBGPPeerGroup(PeerAS=<*Peer AS Number*>
+									AuthPassword=<*Password*>,
+									Description=<*Peer Description*>,
+									RouteReflectorClusterId=<*ClusterID*>,
+									RouteReflectorClient=<*true/false*>,
+									MultiHopEnable=<*true/false*>,
+									MultiHopTTL=<*TTL*>,
+									ConnectRetryTime=<*Retry Timer*>,
+									HoldTime=<*Hold down Timer*>,
+									KeepAliveTime=<*Keepalive Timer*>,
+									AddPathRx=<*true/false*>,
+									AddPathsMaxTx=<*Max Transmit AddPaths*>,
+									MaxPrefixes=<*number of prefix's*>,
+									MaxPrefixesThresholdPct=<*Percentage of Prefix's*>,
+									MaxPrefixesDisconnect=<*true/false*>,
+									MaxPrefixesRestartTimer=<*Restart Timer*>,)
+
+	
+
 
 **OPTIONS**
 
@@ -2511,26 +2993,909 @@ Configuring with Python SDK
 
 **EXAMPLE**
 
+The example provided will utilize the *Topology 1* seen below:
 
-Applying Peer Group
-"""""""""""""""""""
+Topology 1:
 
-**COMMAND**
+.. image:: images/BGP_Diagram1.png
 
-**OPTIONS**
+1. On device1 (10.1.10.241), where I will create Peer Group *Group1*, setting the Keep Alive Time, Hold Time and Connect Retry Time. 
 
-**EXAMPLE**
+	::
+	
+		>>> from flexswitchV2 import FlexSwitch
+		>>> FlexSwitch("10.1.0.241", 8080).createBGPPeerGroup(KeepaliveTime=30, HoldTime=90, ConnectRetryTime=30 , Name="Group1")
+		({u'ObjectId': u'f91bc8e5-fcb7-461a-4c17-5298b19ab280', u'Error': u''}, None)
+		
+
+2. On device2 (10.1.10.243), where I will create Peer Group *Group1*, setting the Keep Alive Time, Hold Time and Connect Retry Time. 
+
+	::
+	
+		>>> from flexswitchV2 import FlexSwitch
+		>>> FlexSwitch("10.1.0.243", 8080).createBGPPeerGroup(KeepaliveTime=30, HoldTime=90, ConnectRetryTime=30 , Name="Group1")
+		({u'ObjectId': u'5683eeac-8457-65bd-43f0-23642abf2e78', u'Error': u''}, None)
+
+
+3. Utilizing previously created neighbors on Device1 to apply Peer Group *Group1*
+
+	a. Existing neighbor configuration on Device1 
+	
+		.. Note:: PeerGroup field is blank
+
+		::
+		
+			>>> print json.dumps(FlexSwitch("10.1.10.241", 8080).getAllBGPNeighbors(), indent=4)
+			[
+				{
+					"Object": {
+						"BfdEnable": False, 
+						"RouteReflectorClient": false, 
+						"MultiHopTTL": 0, 
+						"LocalAS": 0, 
+						"KeepaliveTime": 60, 
+						"AddPathsRx": false, 
+						"UpdateSource": " ", 
+						"PeerGroup": "", 
+						"MaxPrefixesRestartTimer": 0, 
+						"Description": "", 
+						"MultiHopEnable": false, 
+						"AuthPassword": "", 
+						"RouteReflectorClusterId": 0, 
+						"MaxPrefixesDisconnect": false, 
+						"PeerAS": 65535, 
+						"AddPathsMaxTx": 0, 
+						"NeighborAddress": "1.1.1.0", 
+						"MaxPrefixes": 0, 
+						"MaxPrefixesThresholdPct": 80, 
+						"HoldTime": 180, 
+						"IfIndex": 0, 
+						"BfdSessionParam": "", 
+						"ConnectRetryTime": 60
+					}, 
+					"ObjectId": "fd88413e-b0b5-420b-5596-ea0bd2337064"
+				}, 
+			]
+			
+	b. Peer Group Configuration:
+		
+		Below we can see the following timers have been set within the Peer Group:
+				
+				* KeepaliveTime = 30
+				* ConnectRetryTime = 30
+				* HoldTime = 90
+
+		::
+		
+			>>> print json.dumps(FlexSwitch("10.1.10.241", 8080).getAllBGPPeerGroups(), indent=4)
+			[
+				{
+					"Object": {
+						"RouteReflectorClusterId": 0, 
+						"RouteReflectorClient": false, 
+						"Description": "", 
+						"MaxPrefixes": 0, 
+						"MultiHopTTL": 0, 
+						"MaxPrefixesDisconnect": false, 
+						"PeerAS": 0, 
+						"KeepaliveTime": 30, 
+						"AuthPassword": "", 
+						"MaxPrefixesRestartTimer": 0, 
+						"AddPathsMaxTx": 0, 
+						"MultiHopEnable": false, 
+						"AddPathsRx": false, 
+						"UpdateSource": " ", 
+						"ConnectRetryTime": 30, 
+						"HoldTime": 90, 
+						"LocalAS": 0, 
+						"MaxPrefixesThresholdPct": 0, 
+						"Name": "Group1"
+					}, 
+					"ObjectId": "f91bc8e5-fcb7-461a-4c17-5298b19ab280"
+				}
+			]
+		
+	c. Applying Peer Group
+	
+		::
+			
+			>>> FlexSwitch("10.1.0.241", 8080).updateBGPNeighbor(NeighborAddress="1.1.1.0", PeerGroup="Group1")
+			({u'ObjectId': u'fd88413e-b0b5-420b-5596-ea0bd2337064', u'Error': u''}, None)
+			
+	d. Verification PeerGroup is applied to Neighbors
+	
+		We can see below in the configuration and state objects, that the "PeerGroup" field now has the value assigned to *Group1*
+
+		.. Note:: The timers specified in the Peer Group, *Group1*, have been updated to reflect the timers on the neighbor State Object.  The configuration object reflects the default configuration on the neighbor.  If these values were user configured, they would take precedence. 
+	
+		**Config:**
+			::
+
+				>>> print json.dumps(FlexSwitch("10.1.10.241", 8080).getAllBGPNeighbors(), indent=4)
+				[
+					{
+						"Object": {
+							"BfdEnable": false, 
+							"RouteReflectorClient": false, 
+							"MultiHopTTL": 0, 
+							"LocalAS": 0, 
+							"KeepaliveTime": 60, 
+							"AddPathsRx": false, 
+							"PeerGroup": "Group1", <---------------
+							"MaxPrefixesRestartTimer": 0, 
+							"Description": "", 
+							"MultiHopEnable": false, 
+							"AuthPassword": "", 
+							"RouteReflectorClusterId": 0, 
+							"MaxPrefixesDisconnect": false, 
+							"PeerAS": 65535, 
+							"AddPathsMaxTx": 0, 
+							"NeighborAddress": "1.1.1.0", 
+							"MaxPrefixes": 0, 
+							"MaxPrefixesThresholdPct": 80, 
+							"HoldTime": 180, 
+							"IfIndex": 0, 
+							"BfdSessionParam": "default", 
+							"ConnectRetryTime": 60
+						}, 
+						"ObjectId": "fd88413e-b0b5-420b-5596-ea0bd2337064"
+					},
+
+		**State**
+			::
+
+				>>> print json.dumps(FlexSwitch("10.1.10.241", 8080).getAllBGPNeighborStates(), indent=4)
+				[
+					{
+						"Object": {
+							"RouteReflectorClient": false, 
+							"MultiHopTTL": 0, 
+							"BfdNeighborState": "", 
+							"LocalAS": 0, 
+							"KeepaliveTime": 30, <---------------
+							"AddPathsRx": false, 
+							"PeerGroup": "Group1", <---------------
+							"PeerType": 1, 
+							"MaxPrefixesRestartTimer": 0, 
+							"Description": "", 
+							"TotalPrefixes": 8, 
+							"MultiHopEnable": false, 
+							"SessionState": 6, 
+							"PeerAS": 65535, 
+							"RouteReflectorClusterId": 0, 
+							"MaxPrefixesDisconnect": false, 
+							"Queues": {
+								"Input": 0, 
+								"Output": 0
+							}, 
+							"Messages": {
+								"Received": {
+									"Notification": 0, 
+									"Update": 3
+								}, 
+								"Sent": {
+									"Notification": 0, 
+									"Update": 4
+								}
+							}, 
+							"AddPathsMaxTx": 0, 
+							"NeighborAddress": "1.1.1.0", 
+							"MaxPrefixes": 0, 
+							"MaxPrefixesThresholdPct": 80, 
+							"AuthPassword": "", 
+							"IfIndex": 0, 
+							"HoldTime": 90, <---------------
+							"ConnectRetryTime": 30 <---------------
+						}, 
+						"ObjectId": "fd88413e-b0b5-420b-5596-ea0bd2337064"
+					}, 
+
+
+4. Utilizing previously created Neighbors on Device2 to apply Peer Group *Group1*
+
+	a. Existing neighbor configuration on Device2
+	
+		.. Note:: PeerGroup field is blank
+
+		::
+		
+			>>> print json.dumps(FlexSwitch("10.1.10.243", 8080).getAllBGPNeighbors(), indent=4)
+			[
+				{
+					"Object": {
+						"BfdEnable": False, 
+						"RouteReflectorClient": false, 
+						"MultiHopTTL": 0, 
+						"LocalAS": 0, 
+						"KeepaliveTime": 60, 
+						"AddPathsRx": false, 
+						"UpdateSource": " ", 
+						"PeerGroup": "", 
+						"MaxPrefixesRestartTimer": 0, 
+						"Description": "", 
+						"MultiHopEnable": false, 
+						"AuthPassword": "", 
+						"RouteReflectorClusterId": 0, 
+						"MaxPrefixesDisconnect": false, 
+						"PeerAS": 65535, 
+						"AddPathsMaxTx": 0, 
+						"NeighborAddress": "1.1.1.1", 
+						"MaxPrefixes": 0, 
+						"MaxPrefixesThresholdPct": 80, 
+						"HoldTime": 180, 
+						"IfIndex": 0, 
+						"BfdSessionParam": "", 
+						"ConnectRetryTime": 60
+					}, 
+					"ObjectId": "aad53634-a7d2-2314-9974-dea42f3456ac"
+				}, 
+			]
+			
+	b. Peer Group Configuration:
+		
+		Below we can see the following timers have been set within the Peer Group:
+				
+				* KeepaliveTime = 30
+				* ConnectRetryTime = 30
+				* HoldTime = 90
+
+		::
+		
+			>>> print json.dumps(FlexSwitch("10.1.10.243", 8080).getAllBGPPeerGroups(), indent=4)
+			[
+				{
+					"Object": {
+						"RouteReflectorClusterId": 0, 
+						"RouteReflectorClient": false, 
+						"Description": "", 
+						"MaxPrefixes": 0, 
+						"MultiHopTTL": 0, 
+						"MaxPrefixesDisconnect": false, 
+						"PeerAS": 0, 
+						"KeepaliveTime": 30, 
+						"AuthPassword": "", 
+						"MaxPrefixesRestartTimer": 0, 
+						"AddPathsMaxTx": 0, 
+						"MultiHopEnable": false, 
+						"AddPathsRx": false, 
+						"UpdateSource": " ", 
+						"ConnectRetryTime": 30, 
+						"HoldTime": 90, 
+						"LocalAS": 0, 
+						"MaxPrefixesThresholdPct": 0, 
+						"Name": "Group1"
+					}, 
+					"ObjectId": "5683eeac-8457-65bd-43f0-23642abf2e78"
+				}
+			]
+		
+	c. Applying Peer Group
+	
+		::
+			
+			>>> FlexSwitch("10.1.0.243", 8080).updateBGPNeighbor(NeighborAddress="1.1.1.0", PeerGroup="Group1")
+			({u'ObjectId': u'aad53634-a7d2-2314-9974-dea42f3456ac', u'Error': u''}, None)
+			
+	d. Verification PeerGroup is applied to Neighbors
+	
+		We can see below in the configuration and state objects, that the "PeerGroup" field now has the value assigned to *Group1*
+
+		.. Note:: The timers specified in the Peer Group, *Group1*, have been updated to reflect the timers on the neighbor State Object.  The configuration object reflects the default configuration on the neighbor.  If these values were user configured, they would take precedence. 
+	
+		**Config:**
+			::
+
+				>>> print json.dumps(FlexSwitch("10.1.10.243", 8080).getAllBGPNeighbors(), indent=4)
+				[
+					{
+						"Object": {
+							"BfdEnable": false, 
+							"RouteReflectorClient": false, 
+							"MultiHopTTL": 0, 
+							"LocalAS": 0, 
+							"KeepaliveTime": 60, 
+							"AddPathsRx": false, 
+							"PeerGroup": "Group1", <---------------
+							"MaxPrefixesRestartTimer": 0, 
+							"Description": "", 
+							"MultiHopEnable": false, 
+							"AuthPassword": "", 
+							"RouteReflectorClusterId": 0, 
+							"MaxPrefixesDisconnect": false, 
+							"PeerAS": 65535, 
+							"AddPathsMaxTx": 0, 
+							"NeighborAddress": "1.1.1.1", 
+							"MaxPrefixes": 0, 
+							"MaxPrefixesThresholdPct": 80, 
+							"HoldTime": 180, 
+							"IfIndex": 0, 
+							"BfdSessionParam": "default", 
+							"ConnectRetryTime": 60
+						}, 
+						"ObjectId": "aad53634-a7d2-2314-9974-dea42f3456ac"
+					},
+
+		**State**
+			::
+
+				>>> print json.dumps(FlexSwitch("10.1.10.241", 8080).getAllBGPNeighborStates(), indent=4)
+				[
+					{
+						"Object": {
+							"RouteReflectorClient": false, 
+							"MultiHopTTL": 0, 
+							"BfdNeighborState": "", 
+							"LocalAS": 0, 
+							"KeepaliveTime": 30, <---------------
+							"AddPathsRx": false, 
+							"PeerGroup": "Group1", <---------------
+							"PeerType": 1, 
+							"MaxPrefixesRestartTimer": 0, 
+							"Description": "", 
+							"TotalPrefixes": 8, 
+							"MultiHopEnable": false, 
+							"SessionState": 6, 
+							"PeerAS": 65535, 
+							"RouteReflectorClusterId": 0, 
+							"MaxPrefixesDisconnect": false, 
+							"Queues": {
+								"Input": 0, 
+								"Output": 0
+							}, 
+							"Messages": {
+								"Received": {
+									"Notification": 0, 
+									"Update": 3
+								}, 
+								"Sent": {
+									"Notification": 0, 
+									"Update": 4
+								}
+							}, 
+							"AddPathsMaxTx": 0, 
+							"NeighborAddress": "1.1.1.1", 
+							"MaxPrefixes": 0, 
+							"MaxPrefixesThresholdPct": 80, 
+							"AuthPassword": "", 
+							"IfIndex": 0, 
+							"HoldTime": 90, <---------------
+							"ConnectRetryTime": 30 <---------------
+						}, 
+						"ObjectId": "aad53634-a7d2-2314-9974-dea42f3456ac"
+					}, 
+
 
 Enabling BFD 
 ^^^^^^^^^^^^
 
-Enabling MultiPath
-^^^^^^^^^^^^^^^^^^
+To ensure fast fail-over of BGP sessions during times of failures, BFD can be enabled, to enabled to ensure sub-second failure detection.  This is done by enabling BFD for that neighbor and tying a BFD session profile per-neighbor relationship. 
+
+.. Note:: This configuration can be enabled via a Peer Group OR directly on the neighbor itself. See :ref:`bgp-neighbor-rest` or :ref:`bgp-neighbor-python` for more details.
 
 Configuring with Rest API 
 """""""""""""""""""""""""
+
+**COMMAND**
+
+Update BGP neighbor:
+::
+
+	curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"NeighborAddress":"<*IP Address*>", "BfdEnable":"<*enable/disable BFD*>", "BfdSessionParam":"<*BFD parameter profile*>":}' 'http://10.1.10.245:8080/public/v1/config/BGPNeighbor'
+
+Enabled on BGP neighbor Creation:
+::
+
+	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"NeighborAddress":"<*IP Address*>", "BfdEnable":"<*enable/disable BFD*>", "BfdSessionParam":"<*BFD parameter profile*>":}' 'http://10.1.10.245:8080/public/v1/config/BGPNeighbor'
+
+
+.. Note:: This above example, is just a subset of the BGP Neighbor commands.  See :ref:`bgp-neighbor-rest` for more details
+
+
+**OPTIONS**
+
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| Variables               | Type       |  Description                                                                            | Required |  Default | 
++=========================+============+=========================================================================================+==========+==========+
+| NeighborAddress         | string     | Address of the BGP neighbor (required if IfIndex is not supplied)                       |    Yes   |   None   |
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| BfdEnable               | boolean    | Enable/Disable BFD for BGP neigbor                                                      |    no    |  False   |
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| BfdSessionParam         | string     | BFD session parameter profile name to be utilized by BFD session                        |    no    |   None   |
++-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+
+
+**EXAMPLE**
+
+Below is an example of enabling BFD on a BGP neighbor:
+
+1. Create BFD Session Parameters
+
+	::
+
+		curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"Name":"BFD_session","LocalMultiplier":3,"DesiredMinTxInterval":250,"RequiredMinRxInterval":250}' 'http://10.1.10.245:8080/public/v1/config/BfdSessionParam'
+ 
+	.. Note:: See Creating :ref:`bfd-session-parameters-rest` section for more details. 
+
+
+2. Attach BFD session parameters and enable BFD on exisiting neighbor
+	::
+	
+		curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"NeighborAddress":"1.1.1.1", "BfdEnable":"true", "BfdSessionParam":"BFD_Session":}' 'http://10.1.10.245:8080/public/v1/config/BGPNeighbor'
+		{"ObjectId":"fcb3a338-1f10-4a18-56da-cc615516024f","Error":""}
+
+	.. Note:: Assumes BFD is enabled on the far-end BGP neighbor
+
+3. Verify BFD is enabled, in the up state and registered with BGP neighbor:
+	
+	Below we can see that BFD is up and passing traffic.  The *NumRxPackets* and *NumTxPackets* counters show that we are sending and receiving BFD hello packets. 
+	*RegisteredProtocols* is BGP, as well as the *SessionState* being in the **up** states. 
+
+
+	::
+
+		curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.245:8080/public/v1/state/BfdSessions' | python -m json.tool
+		  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+										 Dload  Upload   Total   Spent    Left  Speed
+		100  1415  100  1415    0     0   233k      0 --:--:-- --:--:-- --:--:--  276k
+		{
+			"CurrentMarker": 0,
+			"MoreExist": false,
+			"NextMarker": 0,
+			"ObjCount": 2,
+			"Objects": [
+				{
+					"Object": {
+						"AuthSeqKnown": false,
+						"AuthType": "",
+						"DemandMode": false,
+						"DesiredMinTxInterval": "250000(us)",
+						"DetectionMultiplier": 3,
+						"IfIndex": 30,
+						"IfName": "",
+						"InterfaceSpecific": false,
+						"IpAddr": "1.1.1.1",<--------------
+						"LocalDiagType": "None",
+						"LocalDiscriminator": 95,
+						"LocalMacAddr": "",
+						"NumRxPackets": 228806,<--------------
+						"NumTxPackets": 236795,<--------------
+						"ParamName": "BFD_Session",
+						"PerLinkSession": false,
+						"ReceivedAuthSeq": 0,
+						"RegisteredProtocols": "bgp, ",<--------------
+						"RemoteDemandMode": false,
+						"RemoteDetectionMultiplier": 3,
+						"RemoteDiscriminator": 288,
+						"RemoteMacAddr": "",
+						"RemoteMinRxInterval": "250000(us)",
+						"RemoteSessionState": "up",
+						"RequiredMinRxInterval": "250000(us)",
+						"SentAuthSeq": 0,
+						"SessionId": 95,
+						"SessionState": "up"<--------------
+					},
+					"ObjectId": ""
+				},
+
+
+	For the associated BGP neighbor, we can see that the *BfdNeighborState* is UP and this BGP neighbor *SessionState* in Established (state 6) is up:
+
+	::
+	
+		curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.245:8080/public/v1/state/BGPNeighbors' | python -m json.tool
+		  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+										 Dload  Upload   Total   Spent    Left  Speed
+		100  1547  100  1547    0     0   185k      0 --:--:-- --:--:-- --:--:--  215k
+		{
+			"CurrentMarker": 0,
+			"MoreExist": false,
+			"NextMarker": 0,
+			"ObjCount": 1,
+			"Objects": [
+				{
+					"Object": {
+						"AddPathsMaxTx": 0,
+						"AddPathsRx": false,
+						"AuthPassword": "",
+						"BfdNeighborState": "up", <--------------
+						"ConnectRetryTime": 60,
+						"Description": "",
+						"HoldTime": 180,
+						"IfIndex": 0,
+						"KeepaliveTime": 60,
+						"LocalAS": 420000006,
+						"MaxPrefixes": 0,
+						"MaxPrefixesDisconnect": false,
+						"MaxPrefixesRestartTimer": 0,
+						"MaxPrefixesThresholdPct": 80,
+						"Messages": {
+							"Received": {
+								"Notification": 0,
+								"Update": 25
+							},
+							"Sent": {
+								"Notification": 2,
+								"Update": 27
+							}
+						},
+						"MultiHopEnable": false,
+						"MultiHopTTL": 0,
+						"NeighborAddress": "1.1.1.1",
+						"PeerAS": 420000004,
+						"PeerGroup": "Group1",
+						"PeerType": 1,
+						"Queues": {
+							"Input": 0,
+							"Output": 0
+						},
+						"RouteReflectorClient": false,
+						"RouteReflectorClusterId": 0,
+						"SessionState": 6,<--------------
+						"TotalPrefixes": 7,
+						"UpdateSource": ""
+					},
+					"ObjectId": "fcb3a338-1f10-4a18-56da-cc615516024f"
+				},	
+			]
+			
+		In the BGP neighbor configuration, we can see the *BfdSessionParam* tied to this neighbor is BFD_Session:
+			::
+
+			
 Configuring with Python SDK
 """""""""""""""""""""""""""
+**COMMAND**
+
+Update BGP neighbor:
+::
+
+	FlexSwitch("10.1.10.245", 8080).updateBGPNeighbor(NeighborAddress="<*IP Address*>", IfIndex=<*IfIndex*>, BfdSessionParam="<*BFD parameter profile*>", BfdEnable=<*enable/disable bfd*>)
+
+Enabled on BGP neighbor creation:
+
+::
+	
+	FlexSwitch("10.1.10.245", 8080).createBGPNeighbor(NeighborAddress="<*IP Address*>", IfIndex=<*IfIndex*>, BfdSessionParam="<*BFD parameter profile*>", BfdEnable=<*enable/disable bfd*>)
+
+
+.. Note:: This above example, is just a subset of the BGP Neighbor commands.  See :ref:`bgp-neighbor-python`
+
+**OPTIONS**
++----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| Python Method        | Variables               | Type       |  Description                                                                            | Required |  Default | 
++======================+=========================+============+=========================================================================================+==========+==========+
+| createBGPNeighbor    | NeighborAddress         | string     | Address of the BGP neighbor (required if IfIndex is not supplied)                       |    Yes   |   None   |
+|       OR 	           +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+| updateBGPNeighbor    | BfdEnable               | boolean    | Enable/Disable BFD for BGP neigbor                                                      |    no    |  False   |
+|                      +-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+|                      | BfdSessionParam         | string     | BFD session parameter profile name to be utilized by BFD session                        |    no    |   None   |
++----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+
+Below is an example of enabling BFD on an existing BGP neighbor:
+
+1. Create BFD Session Parameters
+
+	::
+
+		>>> from flexswitchV2 import FlexSwitch
+		>>> FlexSwitch("10.1.10.245", 8080).createBfdSessionParam(Name="BFD_Session", RequiredMinRxInterval=250, DesiredMinTxInterval=250, LocalMultiplier=3)
+		({u'ObjectId': u'a4963a6b-b8cc-4dc8-7693-cbf907a0af0f', u'Error': u''}, None) 
+	.. Note:: See Creating :ref:`bfd-session-parameters-python` section for more details. 
+
+
+2. Attach BFD session parameters and enable BFD on exisiting neighbor
+	::
+	
+		FlexSwitch("10.1.10.245", 8080).updateBGPNeighbor(NeighborAddress="1.1.1.1", IfIndex=0, BfdSessionParam="BFD_Session", BfdEnable="True")
+		({u'ObjectId': u'3861ec9a-188f-44f2-4e49-db60267c600b', u'Error': u'None.'}, None)
+
+	.. Note:: Assumes BFD is enabled on the far-end BGP neighbor
+
+3. Verify BFD is enabled, in the up state and registered with BGP neighbor:
+	
+	Below we can see that BFD is up and passing traffic.  The *NumRxPackets* and *NumTxPackets* counters show that we are sending and receiving BFD hello packets. 
+	*RegisteredProtocols* is BGP, as well as the *SessionState* being in the **up** states. 
+
+	::
+		>>> print json.dumps(FlexSwitch("10.1.10.245", 8080).getAllBfdSessionStates(),indent=4)
+		[
+			{
+				"Object": {
+					"RegisteredProtocols": "bgp, ",  <-------------
+					"DesiredMinTxInterval": "250000(us)", 
+					"SessionId": 701, 
+					"ParamName": "BFD_Session", <-------------
+					"DemandMode": false, 
+					"DetectionMultiplier": 3, 
+					"SentAuthSeq": 0, 
+					"LocalDiscriminator": 701, 
+					"SessionState": "up", <-------------
+					"AuthSeqKnown": false, 
+					"PerLinkSession": false, 
+					"IfName": "", 
+					"ConfigObj": null, 
+					"RequiredMinRxInterval": "250000(us)", 
+					"AuthType": "", 
+					"RemoteDiscriminator": 1090519237, 
+					"RemoteSessionState": "up", 
+					"NumTxPackets": 747461, <-------------
+					"InterfaceSpecific": false, 
+					"NumRxPackets": 908113, <-------------
+					"RemoteDemandMode": false, 
+					"LocalMacAddr": "", 
+					"RemoteMinRxInterval": "250000(us)", 
+					"IpAddr": "1.1.1.1", <-------------
+					"RemoteMacAddr": "", 
+					"LocalDiagType": "None", 
+					"IfIndex": 47, 
+					"ReceivedAuthSeq": 0
+				}, 
+				"ObjectId": ""
+			},
+		]
+	
+	For the associated BGP neighbor, we can see that the *BfdNeighborState* is UP and this BGP neighbor *SessionState* in Established (state 6) is up:
+
+	::
+	
+		>>> print json.dumps(FlexSwitch("10.1.10.245", 8080).getAllBGPNeighborStates(),indent=4)
+		[
+			  {
+					"Object": {
+						"RouteReflectorClient": false, 
+						"MultiHopTTL": 0, 
+						"BfdNeighborState": "up", <--------------
+						"LocalAS": 420000006, 
+						"KeepaliveTime": 60, 
+						"AddPathsRx": false, 
+						"UpdateSource": "", 
+						"PeerGroup": "Group1", 
+						"PeerType": 0, 
+						"MaxPrefixesRestartTimer": 0, 
+						"Description": "", 
+						"TotalPrefixes": 0, 
+						"MultiHopEnable": false, 
+						"SessionState": 6, <--------------
+						"PeerAS": 420000005, 
+						"RouteReflectorClusterId": 0, 
+						"MaxPrefixesDisconnect": false, 
+						"Queues": {
+							"Input": 0, 
+							"Output": 0
+						}, 
+						"Messages": {
+							"Received": {
+								"Notification": 0, 
+								"Update": 5
+							}, 
+							"Sent": {
+								"Notification": 0, 
+								"Update": 5
+							}
+						}, 
+						"AddPathsMaxTx": 0, 
+						"NeighborAddress": "1.1.1.1", 
+						"MaxPrefixes": 0, 
+						"MaxPrefixesThresholdPct": 80, 
+						"AuthPassword": "", 
+						"IfIndex": 0, 
+						"HoldTime": 180, 
+						"ConnectRetryTime": 60
+					}, 
+					"ObjectId": "3861ec9a-188f-44f2-4e49-db60267c600b"
+				}
+			]
+
+		In the BGP neighbor configuration, we can see the *BfdSessionParam* tied to this neighbor is BFD_Session:
+		::
+
+			[		
+				{
+					"Object": {
+						"BfdEnable": true, 
+						"RouteReflectorClient": false, 
+						"MultiHopTTL": 0, 
+						"LocalAS": 420000006, 
+						"KeepaliveTime": 60, 
+						"AddPathsRx": false, 
+						"UpdateSource": "", 
+						"PeerGroup": "Group1", 
+						"MaxPrefixesRestartTimer": 0, 
+						"Description": "", 
+						"MultiHopEnable": false, 
+						"AuthPassword": "", 
+						"RouteReflectorClusterId": 0, 
+						"MaxPrefixesDisconnect": false, 
+						"PeerAS": 420000005, 
+						"AddPathsMaxTx": 0, 
+						"NeighborAddress": "1.1.1.1", 
+						"MaxPrefixes": 0, 
+						"MaxPrefixesThresholdPct": 80, 
+						"HoldTime": 180, 
+						"IfIndex": 0, 
+						"BfdSessionParam": "BFD_Session", <--------------
+						"ConnectRetryTime": 60
+					}, 
+					"ObjectId": "3861ec9a-188f-44f2-4e49-db60267c600b"
+				}
+			]			
+
+
+Enabling MultiPath
+^^^^^^^^^^^^^^^^^^
+In order for BGP to be configured for Equal Cost Multi Path, or ECMP you must to enable BGP multipath.  This allows the BGP daemon to enable selection of routes that are deemed equal cost via the BGP path selection algorithm, as specified in RFC 4271.
+
+Once Multipath is enabled only the following path variables need to be equal:
+
+	- Weight
+	- Local-Preference
+	- AS-PATH Length
+	- Origin
+
+Keep in mind, that with BGP multipath enabled ONLY the selected best path for that prefix is advertised to neighbors. 
+
+
+.. Note:: When utilizing BGP add-path, each add-path NLRI is considered separately for BGP Path Selection algorithm as if they are separate prefixes.  This means that ECMP/Multipath is considered differently for each add-path NLRI.  Each add-path NLRI is advertised to add-path neighbors, even if prefix is the same.  For non add-path neighbors only the best BGP path is advertised. 
+
+
+Multi-path is enabled in the BGP Global object and can be enabled for IBGP routes and  EBGP routes separately.   FlexSwitch supports up to 32-way ECMP for BGP. 
+
+.. Note:: EBGP and IBGP routes will only be compared for ECMP, if both are enabled. 
+
+Configuring with Rest API 
+"""""""""""""""""""""""""
+**COMMAND**
+
+Update BGP global
+::
+
+	curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":<*AS Number*>,"RouterId":"<*IP Addr*>","UseMultiplePaths":<*true/false*>,"EBGPMaxPaths":<*Number of Paths*>,"IBGPMaxPaths":<*Number of Paths*>}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+	
+On BGP global creation
+::
+
+	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":<*AS Number*>,"RouterId":"<*IP Addr*>","UseMultiplePaths":<*true/false*>,"EBGPMaxPaths":<*Number of Paths*>,"IBGPMaxPaths":<*Number of Paths*>}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+	
+.. Note:: This command is a variable being enabled part of BGPGlobal object. See :ref:`bgp-global-rest` for more details. 
+
+**OPTIONS:**
+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |     
++======================+============+=============================================+==========+==========+   
+| ASNum                | integer    | Local AS for BGP global config              |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
+| RouterId             | string     | Router id for BGP global config             |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
+| UseMultiplePaths     | boolean    | Enable/disable ECMP for BGP                 |    no    |  false   |
++----------------------+------------+---------------------------------------------+----------+----------+
+| EBGPMaxPaths         | integer    | Max ECMP paths from External BGP neighbors  |    no    |     0    |
++----------------------+------------+---------------------------------------------+----------+----------+
+| IBGPMaxPaths         | integer    | Max ECMP paths from Internal BGP neighbors  |    no    |     0    |
++----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+Below is an example on how to enable BGP multipath for both IBGP and EBGP routes:
+
+1. Configure Max Paths to desired paths for EBGP and IBGP and enable multipath:
+	a. In this example *EBGPMaxPaths* and *IBGPMaxPaths* are set to 32
+	b. Updating *UseMultiplePaths* to true to enable multipath
+
+	::
+	
+		curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":65535,"RouterId":"1.1.1.1","UseMultiplePaths":true,"EBGPMaxPaths":32,"IBGPMaxPaths":32}' 'http://10.1.10.243:8080/public/v1/config/BGPGlobal'
+		{"ObjectId":"7f2c589d-3dea-4356-75be-91c7c2de18cb","Error":""}
+
+2. Validate in configuration and state objects that BGP Multipath is enabled:
+
+	**Configuration:**
+	::
+			
+		curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/config/BGPGlobals' | python -m json.tool
+		  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+										 Dload  Upload   Total   Spent    Left  Speed
+		100   344  100   344    0     0  62228      0 --:--:-- --:--:-- --:--:-- 68800
+		{
+			"CurrentMarker": 0,
+			"MoreExist": false,
+			"NextMarker": 0,
+			"ObjCount": 1,
+			"Objects": [
+				{
+					"Object": {
+						"ASNum": 420000005,
+						"EBGPAllowMultipleAS": true,
+						"EBGPMaxPaths": 32,
+						"IBGPMaxPaths": 32,
+						"Redistribution": [],
+						"RouterId": "1.1.1.1",
+						"UseMultiplePaths": true
+					},
+					"ObjectId": "7f2c589d-3dea-4356-75be-91c7c2de18cb"
+				}
+			]
+		}		
+
+	**State:**
+	::
+
+		curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/state/BGPGlobals' | python -m json.tool
+		  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+										 Dload  Upload   Total   Spent    Left  Speed
+		100   185  100   185    0     0  28664      0 --:--:-- --:--:-- --:--:-- 30833
+		{
+			"CurrentMarker": 0,
+			"MoreExist": false,
+			"NextMarker": 0,
+			"ObjCount": 1,
+			"Objects": [
+				{
+					"Object": {
+						"AS": 65535,
+						"EBGPAllowMultipleAS": true,
+						"EBGPMaxPaths": 32,
+						"IBGPMaxPaths": 32,
+						"RouterId": "1.1.1.1",
+						"TotalPaths": 0,
+						"TotalPrefixes": 0,
+						"UseMultiplePaths": true
+					},
+					"ObjectId": ""
+				}
+			]
+		}
+		
+.. Note:: BGPGlobal has already been configured with AS number of 65535 and RouterId of 1.1.1.1
+
+Configuring with Python SDK
+"""""""""""""""""""""""""""
+**COMMAND**
+
+Update BGP global:
+
+::
+
+	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).updateBGPGlobal(ASNum=<*AS Number*>,
+									RouterId=<*IP Addr*>,
+									UseMultiplePaths=<*true/false*>,
+									EBGPMaxPaths=<*Number of Paths*>,
+									IBGPMaxPaths=<*Number of Paths*>,)
+	
+On BGP global creation:
+
+::
+
+	>>> FlexSwitch("<*Switch IP*>", <*TCP port*>).createBGPGlobal(ASNum=<*AS Number*>,
+									RouterId=<*IP Addr*>,
+									UseMultiplePaths=<*true/false*>,
+									EBGPMaxPaths=<*Number of Paths*>,
+									IBGPMaxPaths=<*Number of Paths*>,)	
+	
+.. Note:: This command is a variable being enabled part of BGPGlobal object. See :ref:`bgp-global-python` for more details.
+ 
+**OPTIONS:**
+
++-------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method     | Variables            | Type       |  Description                                | Required |  Default |     
++===================+======================+============+=============================================+==========+==========+   
+| createBGPGlobal   | ASNum                | integer    | Local AS for BGP global config              |    Yes   |   None   |
+|        OR         +----------------------+------------+---------------------------------------------+----------+----------+
+| updateBGPGlobal   | RouterId             | string     | Router id for BGP global config             |    Yes   |   None   |
+|                   +----------------------+------------+---------------------------------------------+----------+----------+
+|                   | UseMultiplePaths     | boolean    | Enable/disable ECMP for BGP                 |    no    |  False   |
+|                   +----------------------+------------+---------------------------------------------+----------+----------+
+|                   | EBGPMaxPaths         | integer    | Max ECMP paths from External BGP neighbors  |    no    |     0    |
+|                   +----------------------+------------+---------------------------------------------+----------+----------+
+|                   | IBGPMaxPaths         | integer    | Max ECMP paths from Internal BGP neighbors  |    no    |     0    |
++-------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+
 
 Redistribution
 ^^^^^^^^^^^^^^

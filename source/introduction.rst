@@ -30,10 +30,10 @@ GoLang
 
 Golang has become the modern programming language for systems and infrastructure programming.  Benefits of using GoLang:
 
-	- **Statically typed and Compiled** - All the type safety issues are caught during compile time, unlike at run time like Python, Java Script
-	- **Built In Garbage Collection**  - Programmer does not have to manage memory for allocation and frees. This eliminates many system crashes that are way too familiar for systems programmers.
-	- **Built In  concurrency** - Golang's concurrency patterns are very powerful and easy to use. 
-	- **Built in multi core support** - Golang's concurrency patterns are very powerful and easy to use.
+	- ++Statically typed and Compiled++ - All the type safety issues are caught during compile time, unlike at run time like Python, Java Script
+	- ++Built In Garbage Collection++  - Programmer does not have to manage memory for allocation and frees. This eliminates many system crashes that are way too familiar for systems programmers.
+	- ++Built In  concurrency++ - Golang's concurrency patterns are very powerful and easy to use. 
+	- ++Built in multi core support++ - Golang's concurrency patterns are very powerful and easy to use.
  
 FlexSwitch utilizes golang as the base language for all our development. This brings agility into our development and also quality into our software
 
@@ -51,10 +51,10 @@ Thrift RPC
 
 Apache Thrift has been very stable and scalable solution for Inter Process Communication (IPC)/Remote Procedure Calls (RPC)
 
-	- **Cross language, Multi language support** - Thrift supports multiple languages( golang, python, C++ etc). Clients and servers can be developed in  different languages.  
-	- **Simple Interface Definition Language** - IDL defined by Thrift is very simple to use. 
-	- **Compiler to generate Client and Server** - Thrift compiler generates client and server in various languages.
-	- **Best performance among other choices** - Thrift offers better performance than other RPC tools including gRPC, Protobuf3
+	- ++Cross language, Multi language support++ - Thrift supports multiple languages( golang, python, C++ etc). Clients and servers can be developed in  different languages.  
+	- ++Simple Interface Definition Language++ - IDL defined by Thrift is very simple to use. 
+	- ++Compiler to generate Client and Server++ - Thrift compiler generates client and server in various languages.
+	- ++Best performance among other choices++ - Thrift offers better performance than other RPC tools including gRPC, Protobuf3
 
 FlexSwitch utilizes Thrift for internal communication among our daemons. Thrift RPC is used only from top to down (i.e.) clients to servers.
 FlexSwitch ensures not to use RPC from a server to client allowing daemons to remain agnostic of their clients thus eliminating spaghetti dependencies. 
@@ -87,9 +87,9 @@ Redis
    
 Redis was written in ANSI C and very scaleable database. It also several other features.
 
-	- **In-Memory database** - Redis works primarily as In-Memory database with the option of synchronising the data to disk when needed. This is ideal for storing large state data like MAC Tables, Route tables, Statistics etc
-	- **Pub/Sub mechanism** - In addition to working as a database Redis offers pub/sub mechanism. So it can be used as a message broker as well.
-	- **High-availability** - Redis provides high-availability by supporting clusters. This would also help in Chassis based systems very well.
+	- ++In-Memory database++ - Redis works primarily as In-Memory database with the option of synchronising the data to disk when needed. This is ideal for storing large state data like MAC Tables, Route tables, Statistics etc
+	- ++Pub/Sub mechanism++ - In addition to working as a database Redis offers pub/sub mechanism. So it can be used as a message broker as well.
+	- ++High-availability++ - Redis provides high-availability by supporting clusters. This would also help in Chassis based systems very well.
 
 FlexSwitch utilizes Redis for storing system state, configuration, and externally visible events like link down, link up etc. 
 
@@ -131,55 +131,62 @@ Layer 3 Daemons
 """""""""""""""
 
 ARP Daemon
-**********
+++++++++++
 
 .. image:: images/ARP.png
 
 BFD Daemon
-**********
+++++++++++
 
 .. image:: images/BFD_Design.png
 
 OSPF Daemon
-***********
++++++++++++
 
 .. image:: images/OSPF_Architecture.png
 
 BGP Daemon
-**********
+++++++++++
 
 .. image:: images/BGP_Module.png
 
+VRRP Daemon
++++++++++++
+
+.. image:: images/VRRP_Architecture.png
 
 Layer 2 Daemons
 """""""""""""""
 
 STP Daemon
-**********
+++++++++++
 
 .. image:: images/STP_Architecture.png
 
 LACP Daemon
-***********
++++++++++++
 
 .. image:: images/LACPArchitectureOverview.png
 
+LLDP Daemon
++++++++++++
+
+.. image:: images/VRRP_Architecture.png
+
+
 VXLAN Daemon
-************
+++++++++++++
 
 .. image:: images/VXLAN_Architecture.png
 
-VRRP Daemon
-***********
 
-.. image:: images/VRRP_Architecture.png
 
 
 
 How to use it?
 ^^^^^^^^^^^^^^
 
-FlexSwitch comes supplied with a configuration manager which supplies the FrontEnd to our system and acts as a light-weight director of RESTful API calls.  This is the portion of the system, that will direct a configuration item to the appropriate daemon or database call.  In order to simplify how these calls are segmented for the user, the API calls are organized into two categories. *State* and *Config* operations.  Every object in the system has both a State and Config operation that can be performed against it.  
+FlexSwitch comes supplied with a configuration manager which supplies the FrontEnd to our system and acts as a light-weight director of RESTful API calls.  This is the portion of the system, that will direct a configuration item to the appropriate daemon or database call.  In order to simplify how these calls are segmented for the user, the API calls are organized into two categories. +State+ and +Config+ operations.  Every object in the system has both a State and Config operation that can be performed against it.  
 
 On the Config portion, this means when you supply the data you want in JSON format and sent to the associated API to have the configuration applied.  These operations can be done in 3 ways:
 
@@ -204,7 +211,7 @@ As you can see This is a 1:1 mapping of config to a specifc Object, in this case
 
 On the State side, this is more invovled, since you can have multiple items, that could potentially have thousand of different states.  Think the prefixes/next-hop entries` in the routing table or multiple IP/MAC mappings with an ARP table.  Due to this variance in data supplied, State operations are broken down into GetBulk, which supplies information from the entire object OR just an indiviual Get, which returns, just the parameters requested from an object.  The way in which these calls are made is based on the pluralization of the object itself.  
 
-Lets use ARP again as an example.  If you wished to grab all entry's from the ARP table, you would query the "*ArpEntry*" state object. However, in order to dictate you wanted all entires, rather than a specific value, you would add a trailing "*s*" to make the operation plural, resulting in a call of "*ArpEntrys*", see below:
+Lets use ARP again as an example.  If you wished to grab all entry's from the ARP table, you would query the "+ArpEntry+" state object. However, in order to dictate you wanted all entires, rather than a specific value, you would add a trailing "+s+" to make the operation plural, resulting in a call of "+ArpEntrys+", see below:
 
 ::
 
@@ -232,7 +239,7 @@ Lets use ARP again as an example.  If you wished to grab all entry's from the AR
         }
 
 
-If you attempted to make such a call to just "*ArpEntry*", you would be returned an error:
+If you attempted to make such a call to just "+ArpEntry+", you would be returned an error:
 
 ::
 
@@ -247,7 +254,7 @@ If you attempted to make such a call to just "*ArpEntry*", you would be returned
 This is due to the fact, that configruation manager expected JSON data to be supplied requesting a specific parameter to search the ARP table on. 
 
 
-In order to sucessfully, complete the "*ArpEntry*" query, we will supply JSON data for IP address 51.1.1.5:
+In order to sucessfully, complete the "+ArpEntry+" query, we will supply JSON data for IP address 51.1.1.5:
 
 ::
 
@@ -266,7 +273,7 @@ In order to sucessfully, complete the "*ArpEntry*" query, we will supply JSON da
             "ObjectId": ""
         }
 
-The call now returns sucessfully with the requested data.  Also note, that returned data is no longer wrapped in GetBulk "*Objects*" header; I.E. the following is missing:
+The call now returns sucessfully with the requested data.  Also note, that returned data is no longer wrapped in GetBulk "+Objects+" header; I.E. the following is missing:
 ::
 
             "CurrentMarker": 0,
@@ -302,9 +309,9 @@ In order to perform this operation with the Python SDK API, you would utilize th
 As you can see This is a 1:1 mapping of config to a specifc Object, in this case Timeout value of 1000 to ARP.
 
 
-On the State side, this is more invovled, since you can have multiple items, that could potentially have thousand of different states.  Think the prefixes/next-hop entries in the routing table or multiple IP/MAC mappings with an ARP table.  Due to this variance in data supplied, State operations are broken down into GetBulk, which supplies information from the entire object OR just an indiviual Get, which returns, just the parameters requested from an object.  The way in which these calls are made is performed by utilizing the method with "*getAll*" followed by the Object you wanted to grab; I.E. Arp, Bfd, BGP, etc.  
+On the State side, this is more invovled, since you can have multiple items, that could potentially have thousand of different states.  Think the prefixes/next-hop entries in the routing table or multiple IP/MAC mappings with an ARP table.  Due to this variance in data supplied, State operations are broken down into GetBulk, which supplies information from the entire object OR just an indiviual Get, which returns, just the parameters requested from an object.  The way in which these calls are made is performed by utilizing the method with "+getAll+" followed by the Object you wanted to grab; I.E. Arp, Bfd, BGP, etc.  
 
-Lets use ARP again as an example.  If you wished to grab all state entry's from the ARP table, you would utilize the "*getAllArpEntryStates()*" method. With all Python SDK methods, see below:
+Lets use ARP again as an example.  If you wished to grab all state entry's from the ARP table, you would utilize the "+getAllArpEntryStates()+" method. With all Python SDK methods, see below:
 
 
 ::
