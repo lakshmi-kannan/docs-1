@@ -4,34 +4,24 @@
    contain the root `toctree` directive.
 
 
-Introduction
-============
-FlexSwitch is the first open source network protocol suite offering complete layer2/layer3 functionality for accelerating development and deployment of whitebox networking gear
+How to Build FlexSwitch
+=======================
+FlexSwitch software is build to be completely modularized. FlexSwitch code is organized into various github repositories.
+Instructions on how to start building FlexSwitch are available at ....
 
-**FlexSwitch offers the following :**                                                                                       
-    - Fully programmable network protocol stack 
-    - RESTful APIs at every level 
-    - Highly customizable behavior
-    - Works on variety of switching silicon like Broadcom, Mellonox, Cavium, Barefoot                                   
-    - Portable architecture to work on hardware from variety of vendors like Acton, Celestica, Alpha Networks, Facebook Wedge
-    - Highly instrumented to help the Network operators troubleshoot issues
+.. toctree::
+   :maxdepth: 1
 
-Use cases
-----------
-FlexSwitch is well suited for the following use cases:
-    - Building whitebox networking devices like Datacenter switch, Router, Metro Transport element
-    - Building custom networking devices with off the shelf ethernet silicon
-    - Building Network Function Virtulaization elements
-
-Architecture
-^^^^^^^^^^^^
-
+    Build instructions <install>
 
 System Architecture
-"""""""""""""""""""
-
+^^^^^^^^^^^^
 .. image:: images/Software_Architecture.png
 
+.. toctree::
+   :maxdepth: 1
+
+    Architecture details <install>
 
 System Components
 ^^^^^^^^^^^^^^^^^

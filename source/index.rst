@@ -7,13 +7,12 @@ Welcome to FlexSwitch's documentation!
 =========================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
 
     Introduction        <introduction>
     Quick Start Guide   <quickstart>
-    Installing FlexSwitch <install>
+    Developer Guide     <developer>
+    Network Engineer Guide <nwengineer>
     Configuring FlexSwitch <example>
-    FlexSwitch UseCases  <usecase>
-    Network Topologies    <topology>
     API Reference         <apis>
     PythonSDK		<PythonSDK>
