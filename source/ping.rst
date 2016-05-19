@@ -45,7 +45,7 @@ Lets get started
     
     /etc/init.d/flexswitch start
 
-    - Lets start configuring interface with IP . 
+- Lets start configuring interface with IP . 
 
 ::
    
