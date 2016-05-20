@@ -41,10 +41,10 @@ GoLang
 
 Golang has become the modern programming language for systems and infrastructure programming.  Benefits of using GoLang:
 
-	- ++Statically typed and Compiled++ - All the type safety issues are caught during compile time, unlike at run time like Python, Java Script
-	- ++Built In Garbage Collection++  - Programmer does not have to manage memory for allocation and frees. This eliminates many system crashes that are way too familiar for systems programmers.
-	- ++Built In  concurrency++ - Golang's concurrency patterns are very powerful and easy to use. 
-	- ++Built in multi core support++ - Golang's concurrency patterns are very powerful and easy to use.
+	- **Statically typed and Compiled** - All the type safety issues are caught during compile time, unlike at run time like Python, Java Script
+	- **Built In Garbage Collection**  - Programmer does not have to manage memory for allocation and frees. This eliminates many system crashes that are way too familiar for systems programmers.
+	- **Built In  concurrency** - Golang's concurrency patterns are very powerful and easy to use. 
+	- **Built in multi core support** - Golang's concurrency patterns are very powerful and easy to use.
  
 FlexSwitch utilizes golang as the base language for all our development. This brings agility into our development and also quality into our software
 
@@ -62,10 +62,10 @@ Thrift RPC
 
 Apache Thrift has been very stable and scalable solution for Inter Process Communication (IPC)/Remote Procedure Calls (RPC)
 
-	- ++Cross language, Multi language support++ - Thrift supports multiple languages( golang, python, C++ etc). Clients and servers can be developed in  different languages.  
-	- ++Simple Interface Definition Language++ - IDL defined by Thrift is very simple to use. 
-	- ++Compiler to generate Client and Server++ - Thrift compiler generates client and server in various languages.
-	- ++Best performance among other choices++ - Thrift offers better performance than other RPC tools including gRPC, Protobuf3
+	- **Cross language, Multi language support** - Thrift supports multiple languages( golang, python, C** etc). Clients and servers can be developed in  different languages.  
+	- **Simple Interface Definition Language** - IDL defined by Thrift is very simple to use. 
+	- **Compiler to generate Client and Server** - Thrift compiler generates client and server in various languages.
+	- **Best performance among other choices** - Thrift offers better performance than other RPC tools including gRPC, Protobuf3
 
 FlexSwitch utilizes Thrift for internal communication among our daemons. Thrift RPC is used only from top to down (i.e.) clients to servers.
 FlexSwitch ensures not to use RPC from a server to client allowing daemons to remain agnostic of their clients thus eliminating spaghetti dependencies. 
@@ -98,9 +98,9 @@ Redis
    
 Redis was written in ANSI C and very scaleable database. It also several other features.
 
-	- ++In-Memory database++ - Redis works primarily as In-Memory database with the option of synchronising the data to disk when needed. This is ideal for storing large state data like MAC Tables, Route tables, Statistics etc
-	- ++Pub/Sub mechanism++ - In addition to working as a database Redis offers pub/sub mechanism. So it can be used as a message broker as well.
-	- ++High-availability++ - Redis provides high-availability by supporting clusters. This would also help in Chassis based systems very well.
+	- **In-Memory database** - Redis works primarily as In-Memory database with the option of synchronising the data to disk when needed. This is ideal for storing large state data like MAC Tables, Route tables, Statistics etc
+	- **Pub/Sub mechanism** - In addition to working as a database Redis offers pub/sub mechanism. So it can be used as a message broker as well.
+	- **High-availability** - Redis provides high-availability by supporting clusters. This would also help in Chassis based systems very well.
 
 FlexSwitch utilizes Redis for storing system state, configuration, and externally visible events like link down, link up etc. 
 
@@ -121,10 +121,23 @@ Monitors other system components and reports on their health.
 Routing Information Base
 """""""""""""""""""""""""
 
-This is FlexSwitch's central location for all route information and manipulation.  Any IPv4/IPv6 route that needs to be programmed into the underlying Merchant silicon is processed by the 
-RIB. 
+
+This is a implementation of Routing Information Base (RIB) in Go. Summary of functionality implemented by this module is as follows:
+
+Handle all network route based configuration (route create, route delete, route update) from either users or other applications (e.g., BGP, OSPF)
+
+Handle all routing policy based configuration : a. policy conditions create/delete/updates b. policy statements create/delete/updates c. policy definitions create/delete/updates
+
+Implement policy engine a. Based on the policy objects configured and applied on the device, the policy engine filter will match on the conditions provisioned and implement actions based on the application location. For instance, the policy engine filter may result in redistributing certain (route type based/ network prefix based) routes into other applications (BGP,OSPF, etc.,)
+
+Responsible for calling ASICd thrift APIs to program the routes in the FIB.
+
+ Architecture
+************
 
 .. image:: images/RIB_Architecture.png
+
+
 
 ASIC Daemon
 """""""""""
@@ -144,46 +157,173 @@ Layer 3 Daemons
 ARP Daemon
 ++++++++++
 
+The address resolution protocol (arp) is a protocol used by the Internet Protocol (IP) [RFC826], specifically IPv4, to map IP network addresses to the hardware addresses used by a data link protocol. The protocol operates below the network layer as a part of the interface between the OSI network and OSI link layer.
+
+Architecture
+************
+
 .. image:: images/ARP.png
+
+**Description**
+
+
+ARP module listens to ASICD notification for L3 interface creation/deletion. It starts Rx/Tx go routines on all L3 interface.
+
+	- When it receives any ARP request, ARP cache is updated with IP Address (source IP) to Mac Address (source MAC) in ARP request packet. Linux ARP stack replies to the ARP Request.
+	- When it receives any ARP reply, ARP cache is updated with IP Address (destination IP) to Mac Address (destination MAC) in the ARP reply packet.
+	- When it receives any IPv4 packet, ARP cache is updated with IP Address (source IP) to Mac Address (source MAC) in the IPv4 packet if source IP is in local subnet of the switch's L3 interface. And ARP module sends an ARP request packet for the destination IP address.
+	- When RIB module receives a route, RIB daemon sends ARP daemon a message to resolve IP Address to Mac Address mapping for the nexthop IP Address.
+
 
 BFD Daemon
 ++++++++++
 
+Architecture
+************
+
 .. image:: images/BFD_Design.png
+
+DHCP Relay
+++++++++++
+This module implements Dynamic Host Configuration Protocol Relay Agent. The protocol is standalone Process Daemon, with current dependencies with a configuration daemon CONFD and programability of HW Asic and/or Linux Kernel via ASICD
+
+The Relay Agent will have an instance running per interface.
+
+Architecture
+************
+.. image:: images/Dhcp_Relay_Agent.png
+
+**Dhcp Relay has following state:**
+
+Receive DISCOVER Packet
+Relay client Packet to all servers (configured) updating Relay Agent Information in Dhcp Options
+Receive OFFER Packet
+Send Unicast OFFER to Client (if configured) else Broadcast OFFER Packet
+Receive REQUEST Packet
+Relay REQUEST Packet to Server
+Receive ACK Packet
+Relay ACK Packet to Client
+
+**Configuration**
+
+Detailed information for the object can be found in models package The objects are created keeping in mind the basic Relay Agent Design.
+
+Global Config to enable/disable Relay Agent across all interfaces
+Create/Delete Relay Agent per interface
+Configure Server's for Relay Agent
+
+
 
 OSPF Daemon
 +++++++++++
 
+Architecture
+************
+
+This module implements Open Shortest Path First.v2 RFC 2328
+
 .. image:: images/OSPF_Architecture.png
+
+**Modules**
+
+OSPF has below components 1) Interface FSM - Handles per interfce OSPF config events,send hello packets, DR/BDR election . It signals Neighbor FSM whenenever new neighbor is detected.
+
+2) Neighbor FSM - This component implements RX packets such as DB description , LSA Update/Request/Ack. Takes care of flooding. Inform LSDB for different events such as neighbor full, install LSA.
+
+3) LSDB - LSA database. Stores 5 types of LSAs. Trigger SPF when new LSA is installed . Generate router/networks LSAs for neighbor full event. Generate summary LSA if ABR. Generate AS external if ASBR. Implements LSA ageing. Inform Neighbor FSM for flooding when new LSA is installed.
+
+4)SPF - Takes care of shortest path calculation and install routes. Signal LSDB to generate summary LSA when ABR.
+
+5) RIBd listener - Listens to RIBd updates when OSPF policy is configured. When router is acting as ASBR - RIbd listener will receive route updates as per the policy statement. It signals LSDB for AS external generation when router is configured as ASBR.
 
 BGP Daemon
 ++++++++++
 
+This is a implementation of Border Gateway Protocol (BGP-4) in Go.
+
+The following RFCs have been implemented:
+
+1. RFC-4271: Base BGP-4 RFC
+2. RFC-4456: Route reflector
+3. RFC-5492: Capabilities
+4. RFC-4893: Four-octet AS Numbers
+5. RFC-4760: Multiprotocol Extensions
+6. https://tools.ietf.org/html/draft-ietf-idr-add-paths-14: Advertisement of Multiple Paths in BGP
+
+Architecture
+************
 .. image:: images/BGP_Module.png
 
 VRRP Daemon
 +++++++++++
 
+This module implement Virtual Router Redundancy Protocol RFC 5798
+
+Architecture
+************
+
 .. image:: images/VRRP_Architecture.png
+
+**Interfaces**
+
+ - Create/Delete Virtual Router
+ - Change timers for VRRP packet, for e.g: Advertisement Timer
+
+**Configuration**
+
+ - VRRP configuration is based of https://tools.ietf.org/html/rfc5798#section-5.2
+ - Unless specified each instance of Virtual Router will use the default values specified in the RFC
 
 Layer 2 Daemons
 """""""""""""""
 
+
 STP Daemon
 ++++++++++
+
+This module supports the following spanning tree versions:
+
+ - STP IEEE 802.1D
+ - RSTP IEEE 802.1W
+ - Rapid-PVST+
+
+	
+
+Architecture
+************
 
 .. image:: images/STP_Architecture.png
 
 LACP Daemon
 +++++++++++
 
+This code base is to handle the LACP protocol according to 802.1ax-2014. This implemention currently only supports functionality related to version 1 of the protocol.
+
+The protocol is a standalone Process Daemon, with current dependencies with a configuration daemon CONFD and programability of HW ASIC and/or Linux Kernel via ASICD.
+
+The LACP protocol will have an instance running per interface. Each LACP represented state machine represented as part of the protocol will be running as a seperate go routine.
+
+Architecture
+************
+
 .. image:: images/LACPArchitectureOverview.png
 
 LLDP Daemon
 +++++++++++
 
+Module implements IEEE 802.1AB Link Layer Discovery Protocol.
+
+Architecture
+************
 .. image:: images/VRRP_Architecture.png
 
+
+**Support**
+
+ - Chassis Id TLV
+ - Port Id TLV
+ - TTL Tlv
+ - Marshalling/Un-Marshalling of Mandatory TLV's
 
 VXLAN Daemon
 ++++++++++++
@@ -344,7 +484,3 @@ If you wanted to make  a call to just grab a specific Arp Entry from the state t
 The call now returns sucessfully with only the requested data. 
 
  
-
-Utilizing Ansible
-"""""""""""""""""
-
