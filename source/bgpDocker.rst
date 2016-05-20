@@ -1,7 +1,7 @@
 BGP with 2 nodes 
 ======================
 
-:.. Note :: Make sure you go through ping and install docker tutorial in order to understand docker run commands below
+.. Note :: Make sure you go through ping and install docker tutorial in order to understand docker run commands below
 
 
 This tutorial will create 2 docker instances named bgp_inst1 and bgp_inst2.
