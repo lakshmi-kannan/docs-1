@@ -12,7 +12,7 @@ You can try FlexSwitch in our docker images or a commercially available whitebox
 .. toctree::
    :maxdepth: 1
 
-    Docker Tutorial <docker>
+    Docker Tutorial <intro_docker>
     Hardware Tutorial <hardware>
     Hardware Support matrix <hwmatrix>
 
