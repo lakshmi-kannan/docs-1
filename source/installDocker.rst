@@ -3,29 +3,32 @@ Getting ready with flexswitch
 
 Load docker image
 ^^^^^^^^^^^^^^^^^^^^^
-Flexv34.tar is the docker image with flexswitch package infused with it. 
+Flexv43.tar is the docker image with flexswitch package infused with it. 
 We have used ubuntu 14.04 base image to create this package. 
 ::
     
     Prerequisites - Preinstalled Docker on the host machine.
 
-- Download your .tar image from here
+- Download your .tar image 
 
 - Load the image   
  
 :: 
   
-   load < Flex34.tar
+   load < Flex43.tar
    
    docker images
 
-   <TODO add command output >
+   @snaproute-lab-r710-1:~$ docker images
+   REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+   libero18/ubuntu-14.04         Flexv43             311d7db88fdf        5 hours ago         605.5 MB
+
 
 Start the container 
 ^^^^^^^^^^^^^^^^^^^^^
 - Instantiate a container using command  
 
-docker run -d --log-driver=syslog  --cap-add=ALL  --name flex_container libero18/ubuntu-14.04:Flexv5
+docker run -dt --privileged --log-driver=syslog --cap-add=ALL  --name Spine1 --ip 192.168.0.2 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
 
 
 ::
@@ -33,16 +36,12 @@ docker run -d --log-driver=syslog  --cap-add=ALL  --name flex_container libero18
  **Note**  The flags used while spawning container . Which are necessary for proper functioning of the flexswitch
     --log-driver  This will enable syslog support for logging
     --cap-add=ALL In order to create/get on  linux interfaces enable all permissions.
+    --net - To create docker network for management IPs.
 
 Verify Flexswitch installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- Before starting the flexswitch start the syslog service and redis-server
+- When docker container is spawned by default we start rsyslogd and redis-server. 
 
-:: 
-
-
-     rsyslogd &
-     redis-server &
 
 - /etc/init.d/flexswitch is the script to start /stop the flexswitch daemons. 
 
@@ -53,7 +52,13 @@ Verify Flexswitch installation
 
 Basic commands 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Once all daemons are up , here are the basic commands you can use to get started . Note that the successive tutorials will cover detailed illustrations about configuration and debugging.
+- Start flexswitch 
+
+::
+
+    service flexswitch start
+
+
 
 - To access all REST APIs use swagger 
 
@@ -81,4 +86,14 @@ http://localhost:8080/api-docs/
     "NumActionCalls": "Total 0 Success 0",
     "FlexDaemons": [
     {
+
+- In case you need to flush all database and restart all daemons
+
+::
+
+   redis-cli
+    run command "flushdb"
+
+
+- Note that the successive tutorials will cover detailed illustrations about configuration and debugging.
 
