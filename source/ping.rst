@@ -100,21 +100,169 @@ It shows details if each daemon is up/down along and reason of failure if any.
 
 :: 
 
-    http://192.168.0.2:8080/public/v1/state/SystemStatus
-    Excerpt from the output
-
-    {
-    "ObjectId": "",
-    "Object": {
-    "Name": "c5d463d0c7c8",
-    "Ready": true,
-    "Reason": "None",
-    "UpTime": "53m13.224364167s",
-    "NumCreateCalls": "Total 10 Success 1",
-    "NumDeleteCalls": "Total 0 Success 0",
-    "NumUpdateCalls": "Total 0 Success 0",
-    "NumGetCalls": "Total 2 Success 1",
-    "NumActionCalls": "Total 0 Success 0",
+	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://192.168.0.2:8080/public/v1/state/SystemStatus' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100  2940    0  2940    0     0   232k      0 --:--:-- --:--:-- --:--:--  239k
+	{
+		"Object": {
+			"FlexDaemons": [
+				{
+					"Enable": true,
+					"KeepAlive": "Received 5 keepalives",
+					"Name": "ribd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:11:01.781882664 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 8 keepalives",
+					"Name": "bgpd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:51.859376317 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "arpd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:54.183839599 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "vxland",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:52.01611385 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "dhcpd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:52.307373655 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 5 keepalives",
+					"Name": "stpd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:53.812226563 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "lldpd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:54.02940049 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "bfdd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:11:02.116927367 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "confd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:52.074420955 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 5 keepalives",
+					"Name": "asicd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:51.773346755 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "dhcprelayd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:52.248453375 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "vrrpd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:54.899584199 +0000 UTC",
+					"State": "up"
+				},
+				{
+					"Enable": true,
+					"KeepAlive": "Received 4 keepalives",
+					"Name": "lacpd",
+					"Reason": "None",
+					"RestartCount": 0,
+					"RestartReason": "",
+					"RestartTime": "",
+					"StartTime": "2016-05-20 23:10:52.300769509 +0000 UTC",
+					"State": "up"
+				}
+			],
+			"Name": "2cffc37ad362",
+			"NumActionCalls": "Total 0 Success 0",
+			"NumCreateCalls": "Total 5 Success 3",
+			"NumDeleteCalls": "Total 0 Success 0",
+			"NumGetCalls": "Total 4 Success 3",
+			"NumUpdateCalls": "Total 1 Success 1",
+			"Ready": true,
+			"Reason": "None",
+			"UpTime": "21m28.74429995s"
+		},
+		"ObjectId": ""
+	}
 
 
 
