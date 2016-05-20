@@ -22,19 +22,23 @@ Make sure to start the container in privileged mode and syslog options enabled.
 -  Create point-to-point link between docker_ping1 and docker_ping2
 
 We create eth10 on docker_ping1 connected to eth20 on docker_ping2
+(Note - Get PIDs of docker containers running 
+`docker inspect -f '{{.State.Pid}}' docker_ping1`
 
+`docker inspect -f '{{.State.Pid}}' docker_ping2`
+)
 
 :: 
     
     These commands create eth10 and eth20 interfaces on docker_ping1 and docker_ping2 
     respectiviely.
     sudo ip link add eth10 type veth peer name eth20
+ 
+    sudo ip link set eth10 netns $<pid_docker_ping1>
+    sudo ip netns exec $<pid_docker_ping1> ip link set eth10 up
 
-    sudo ip link set eth10 netns $spine1_pid
-    sudo ip netns exec $spine1_pid ip link set eth10 up
-
-    sudo ip link set eth20 netns $leaf1_pid
-    sudo ip netns exec $leaf1_pid ip link set eth20 up
+    sudo ip link set eth20 netns $<pid_docker_ping2>
+    sudo ip netns exec $<pid_docker_ping2> ip link set eth20 up
 
 
 Configure docker_ping1 
