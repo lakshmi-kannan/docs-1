@@ -24,7 +24,10 @@ Go to next page to install docker image
 
 Here are the docker tutorials
 
-- Ping test <ping>
-- BGP with 2 nodes <bgp_docker>
-- OSPF with 2 nodes <ospf_docker>
-- ECMP <ecmp_docker>
+.. toctree::
+   :maxdepth: 1
+
+    Ping test <ping>
+    BGP with 2 nodes <bgp_docker>
+    OSPF with 2 nodes <ospf_docker>
+    ECMP <ecmp_docker>
