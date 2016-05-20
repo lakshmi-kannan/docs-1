@@ -14,6 +14,8 @@ Create containers
 -  Start the docker with flexswitch image on it with below command
 
 Make sure to start the container in privileged mode and syslog options enabled.
+We have created docker containers with network option "clos-oob-network" . 
+
 ::
     
     docker run -dt --privileged --log-driver=syslog --cap-add=ALL  --name docker_ping1 --ip 192.168.0.2 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
@@ -89,7 +91,7 @@ Following commands are same above  to spawn the container and create an interfac
      
     ping 40.1.1.2
 
-Debug Commands
+Show Commands
 ^^^^^^^^^^^^^^^^^^^^^
 
 - Check system health 
