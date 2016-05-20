@@ -7,6 +7,7 @@
 QuickStart Guide
 ================
 
+<<<<<<< HEAD
 Configuring FlexSwitch
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -641,4 +642,14 @@ Supporting Documentation
 - `Ansible <https://www.ansible.com>`_
 - `Jinja2 <http://jinja.pocoo.org/docs/dev/>`_
 
+=======
+You can try FlexSwitch in our docker images or a commercially available whitebox from vendors x,y,z
+
+.. toctree::
+   :maxdepth: 1
+
+    Docker Tutorial <docker>
+    Hardware Tutorial <hardware>
+    Hardware Support matrix <hwmatrix>
+>>>>>>> upstream/gh-pages
 

@@ -14,7 +14,7 @@ The SnapRoute FlexSwitch network protocol stack and accompanying toolchain is pr
 
 
 1. SCP flexswitch debian package to the whitebox switch:
-   *Default username: admin, default password: snaproute*
+   .. Note:: Default username: admin, default password: snaproute
 
 	:: 
 	
