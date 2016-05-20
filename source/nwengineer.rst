@@ -8,10 +8,11 @@ Network Engineer Guide
 ======================
 
 Using FlexSwitch you can build various network topologies for your 
-- Data center
-- Campus Network 
-- WAN network
-- Metro Network 
+
+    - Data center
+    - Campus Network 
+    - WAN network
+    - Metro Network 
 
 .. toctree::
    :maxdepth: 1
