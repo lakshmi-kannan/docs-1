@@ -336,25 +336,25 @@ It shows details if each daemon is up/down along and reason of failure if any.
 
 ::
 
-    http://192.168.0.2:8080/public/v1/state/ArpEntrys
-  
-    {
-    "MoreExist": false,
-    "ObjCount": 1,
-    "CurrentMarker": 0,
-    "NextMarker": 0,
-    "Objects": [
-    {
-     "ObjectId": "",
-     "Object": {
-     "IpAddr": "40.1.1.2",
-     "MacAddr": "e6:c9:7f:04:cd:0c",
-     "Vlan": "Internal Vlan",
-     "Intf": "eth10",
-     "ExpiryTimeLeft": "8m38.177476246s"
-    }
-    }
-    ]
-   }
-
-
+	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://192.168.0.2:8080/public/v1/state/ArpEntrys' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100   227  100   227    0     0  18210      0 --:--:-- --:--:-- --:--:-- 18916
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 0,
+		"ObjCount": 1,
+		"Objects": [
+			{
+				"Object": {
+					"ExpiryTimeLeft": "9m43.684650453s",
+					"Intf": "eth10",
+					"IpAddr": "40.1.1.2",
+					"MacAddr": "3a:f8:c0:3b:39:d0",
+					"Vlan": "Internal Vlan"
+				},
+				"ObjectId": ""
+			}
+		]
+	}
