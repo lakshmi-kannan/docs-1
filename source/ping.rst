@@ -122,119 +122,67 @@ It shows details if each daemon is up/down along and reason of failure if any.
 
 ::
 
-    http://192.168.0.2:8080/public/v1/state/Ports
+	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://192.168.0.2:8080/public/v1/state/Ports' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100   869  100   869    0     0   104k      0 --:--:-- --:--:-- --:--:--  121k
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 3,
+		"ObjCount": 2,
+		"Objects": [
+			{
+				"Object": {
+					"ErrDisableReason": "",
+					"IfInDiscards": 2,
+					"IfInErrors": 0,
+					"IfInOctets": 16759,
+					"IfInUcastPkts": 88,
+					"IfInUnknownProtos": 0,
+					"IfIndex": 1,
+					"IfOutDiscards": 0,
+					"IfOutErrors": 0,
+					"IfOutOctets": 6522,
+					"IfOutUcastPkts": 72,
+					"LastDownEventTime": "",
+					"LastUpEventTime": "",
+					"Name": "eth0",
+					"NumDownEvents": 0,
+					"NumUpEvents": 0,
+					"OperState": "UP",
+					"PortNum": 1,
+					"Pvid": 4095
+				},
+				"ObjectId": "046c51d1-29aa-41a8-47b0-ae81a5f55320"
+			},
+			{
+				"Object": {
+					"ErrDisableReason": "",
+					"IfInDiscards": 0,
+					"IfInErrors": 0,
+					"IfInOctets": 12588,
+					"IfInUcastPkts": 177,
+					"IfInUnknownProtos": 0,
+					"IfIndex": 2,
+					"IfOutDiscards": 0,
+					"IfOutErrors": 0,
+					"IfOutOctets": 4434,
+					"IfOutUcastPkts": 72,
+					"LastDownEventTime": "",
+					"LastUpEventTime": "",
+					"Name": "eth10",
+					"NumDownEvents": 0,
+					"NumUpEvents": 0,
+					"OperState": "UP",
+					"PortNum": 2,
+					"Pvid": 3050
+				},
+				"ObjectId": "7638f876-0956-45f2-47b7-5e485af1a64a"
+			}
+		]
+	}
 
-
-{
-
-"MoreExist": false,
-
-"ObjCount": 2,
-
-"CurrentMarker": 0,
-
-"NextMarker": 3,
-
-"Objects": [
-
-{
-
-"ObjectId": "0c3f2608-ed51-4d04-5d97-c18f7330c9ef",
-
-"Object": {
-
-"PortNum": 1,
-
-"IfIndex": 1,
-
-"Name": "eth0",
-
-"OperState": "UP",
-
-"NumUpEvents": 0,
-
-"LastUpEventTime": "",
-
-"NumDownEvents": 0,
-
-"LastDownEventTime": "",
-
-"Pvid": 4095,
-
-"IfInOctets": 13878,
-
-"IfInUcastPkts": 138,
-
-"IfInDiscards": 1,
-
-"IfInErrors": 0,
-
-"IfInUnknownProtos": 0,
-
-"IfOutOctets": 2744,
-
-"IfOutUcastPkts": 43,
-
-"IfOutDiscards": 0,
-
-"IfOutErrors": 0,
-
-"ErrDisableReason": ""
-
-}
-
-},
-
-{
-
-"ObjectId": "a7ab14fb-c50f-4842-6e23-4d68a711af2d",
-
-"Object": {
-
-"PortNum": 2,
-
-"IfIndex": 2,
-
-"Name": "eth10",
-
-"OperState": "UP",
-
-"NumUpEvents": 0,
-
-"LastUpEventTime": "",
-
-"NumDownEvents": 0,
-
-"LastDownEventTime": "",
-
-"Pvid": 4095,
-
-"IfInOctets": 2508,
-
-"IfInUcastPkts": 39,
-
-"IfInDiscards": 0,
-
-"IfInErrors": 0,
-
-"IfInUnknownProtos": 0,
-
-"IfOutOctets": 2508,
-
-"IfOutUcastPkts": 39,
-
-"IfOutDiscards": 0,
-
-"IfOutErrors": 0,
-"ErrDisableReason": ""
-
-}
-
-}
-
-]
-
-}    
 
 - Arp Entries
 
