@@ -3930,10 +3930,52 @@ Configuring with Python SDK
 
 ----------------------
 
+
+
+
+
+
+
+
+
+
+
 Configuring DHCP Relay
 -----------------------
+
+DHCP relay agent is a mechanism that acts as a proxy service for a DHCP server on a network. Since DHCP discover packets are broadcast, they can not reach a DHCP server, 
+that is off subnet. In order to get around this limitation DHCP relay, will ingest a DHCP DISCOVER broadcast frames and unicast forward them
+to a specified DHCP servers and relay the reply to the host attempting IP address assignment. 
+
+Below are the FlexSwitch DHCP Relay agent states for this transaction:
+
+	- Receive DISCOVER Packet
+	- Relay client Packet to all servers (configured) updating Relay Agent Information in Dhcp Options
+	- Receive OFFER Packet
+	- Send Unicast OFFER to Client (if configured) else Broadcast OFFER Packet
+	- Receive REQUEST Packet
+	- Relay REQUEST Packet to Server
+	- Receive ACK Packet
+	- Relay ACK Packet to Client
+
+
+Enabling DHCP relay
+^^^^^^^^^^^^^^^^^^^
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""
+
+**COMMAND**
+::
+	
+	curl -H "Content-Type: application/json" -d '{"DhcpRelay": "dr", "Enable": true }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayGlobal
+
+	curl -H "Content-Type: application/json" -d '{"IfIndex": 33554442 , "Enable": true , "ServerIp": ["90.0.1.2", "80.0.1.2"] }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayIntf
+
+**OPTIONS**
+
+**EXAMPLE**
+
+
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -4053,7 +4095,7 @@ Configuring Policy Condition with Rest API
        }
 	
 Configuring Policy Statement with Rest API
-------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **COMMAND:**
 ::
@@ -4110,7 +4152,7 @@ Configuring Policy Statement with Rest API
 
 	
 Configuring Policy Definition with Rest API
--------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **COMMAND:**
 ::
@@ -4176,11 +4218,11 @@ Configuring Routing
 
 Admin Distance
 ^^^^^^^^^^^^^^^
-Static
-^^^^^^^
+Static Routes
+^^^^^^^^^^^^^
 
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""
 
 **COMMAND:**
 ::
@@ -4246,9 +4288,10 @@ Configuring with Rest API
             }
         ]
     }
+
 	
-Configuring ECMP Route with Rest API
-------------------------------------
+Configuring Static ECMP Route
+*****************************
 
 **COMMAND:**
 ::
@@ -4337,11 +4380,7 @@ Configuring ECMP Route with Rest API
         ]
     }
 
-Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Configuring with Rest API 
-""""""""""""""""""""""""""""
 Configuring with Python SDK
 """"""""""""""""""""""""""""
 
@@ -4362,25 +4401,151 @@ Configuring VLANS
 
 
 Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**COMMAND**
+
+::
+	
+	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"VlanId":<*Vlan-ID*>,"IntfList":<*Tagged Interfaces*>,"UntagIntfList":<*Untagged Interfaces*>}' 'http://your-switchip:8080/public/v1/config/Vlan'
+
+**OPTIONS**
+
+**EXAMPLE**
+
+In this example, 2 new vlans will be created and front-panel ports will be assigned to them.
+
+
+These curl commands will create vlans 100 and 200 and assign ports 1-10 to vlan 100, ports 11-12 to vlan 200, and ports 13-15, and 17 to vlan 300:
+
+::
+
+	$ curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"VlanId":100,"IntfList":"","UntagIntfList":"1-10"}' 'http://10.1.10.43:8080/public/v1/config/Vlan'
+
+	{"ObjectId":"467f573f-a0d2-42dd-4fcb-181afbfb6624","Error":""}
+
+	$ curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"VlanId":200,"IntfList":"","UntagIntfList":"11,12"}' 'http://10.1.10.43:8080/public/v1/config/Vlan'
+
+	{"ObjectId":"e183a284-daf1-4397-77f3-c51f45ac5165","Error":""}
+
+
+**Validation:**
+
+Vlan State:
+
+::
+
+	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.43:8080/public/v1/state/Vlans' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100   502  100   502    0     0  96668      0 --:--:-- --:--:-- --:--:--  122k
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 4096,
+		"ObjCount": 3,
+		"Objects": [
+			{
+				"Object": {
+					"ConfigObj": null,
+					"IfIndex": 33554532,
+					"OperState": "UP",
+					"VlanId": 100,
+					"VlanName": "vlan100"
+				},
+				"ObjectId": "467f573f-a0d2-42dd-4fcb-181afbfb6624"
+			},
+			{
+				"Object": {
+					"ConfigObj": null,
+					"IfIndex": 33554632,
+					"OperState": "UP",
+					"VlanId": 200,
+					"VlanName": "vlan200"
+				},
+				"ObjectId": "e183a284-daf1-4397-77f3-c51f45ac5165"
+			},
+		]
+	}
+
+
+Vlan Configuration:
+
+::
+
+	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.43:8080/public/v1/config/Vlans' | python -m json.tool
+	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+									 Dload  Upload   Total   Spent    Left  Speed
+	100   329  100   329    0     0  23901      0 --:--:-- --:--:-- --:--:-- 25307
+	{
+		"CurrentMarker": 0,
+		"MoreExist": false,
+		"NextMarker": 0,
+		"ObjCount": 2,
+		"Objects": [
+			{
+				"Object": {
+					"ConfigObj": null,
+					"IntfList": "",
+					"UntagIntfList": "1-10",
+					"VlanId": 100
+				},
+				"ObjectId": "467f573f-a0d2-42dd-4fcb-181afbfb6624"
+			},
+			{
+				"Object": {
+					"ConfigObj": null,
+					"IntfList": "",
+					"UntagIntfList": "11,12",
+					"VlanId": 200
+				},
+				"ObjectId": "e183a284-daf1-4397-77f3-c51f45ac5165"
+			}
+		]
+	}
+
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
-Configuring VxLAN
---------------------
-
-Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Configuring VRRP
 -------------------
 
+VRRP (Virtual Router Redundancy Protocol) is an Internet protocol that provides a way to have one or more backup routers when using a statically configured router on a network segment. The most common arrangement is to specify a virtual IP/MAC address between a pair of switches devices to serve as the gateway for forwarding packets from a group of hosts, one switch is designated as a master device, while the other switch (or multiple switches), are designated as a backup device. 
+In case the master fails, the ownership of the virtual IP address is mapped to a backup switch's IP address, which has now taken the role of  master.   This action occurs transparently to the end-hosts, since the IP/MAC combination for their discovered gateway (Virtual IP/MAC), does not change. 
+
 Configuring with Rest API 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        curl -H "Content-Type: application/json" -d '{"IfIndex":<*Interface Unique Id*>, "VRID":<*Virtual Router ID*>, "Priority":<*Priority for the Vitrual Router*>, "VirtualIPv4Addr":<*Virtual Router Ip Address*>}' http://<*your-switchip*>:8080/public/v1/VrrpIntf
+
+**COMMAND:**
+::
+
+	curl -H "Content-Type: application/json" -d '{"IfIndex":<*Interface Unique Id*>, "VRID":<*Virtual Router ID*>, "Priority":<*Priority for the Vitrual Router*>, "VirtualIPv4Addr":<*Virtual Router Ip Address*>, "PreemptMode":<*true/false*>, "AdvertisementInterval":<*Advertisement time between VRRP frames*>, "AcceptMode":<*true/false*> }' http://<*your-switchip*>:8080/public/v1/VrrpIntf
+
+
+**OPTIONS:**
+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |
++======================+============+=============================================+==========+==========+
+| VRID                 | integer    | Default Virtual Router ID                   |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| IfIndex              | integer    | Intf where VRID will be configured          |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| VirtualIPv4Addr      | string     | Ip Address for Virtual Router               |    no    |  Port IP |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| PreemptMode          | boolean    | Preempt a lower-priority Master             |    no    |   True   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| Priority             | integer    | Specifiying priority of Virtual Router      |    no    |    100   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| AdvertisementInterval| integer    | Adverstise Time interval                    |    no    |     1    |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| AcceptMode           | boolean    | Accept Packets address to ifIndex           |    no    |   True   |
++----------------------+------------+---------------------------------------------+----------+----------+
+**EXAMPLE**
+
+
+
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 **COMMAND:**
@@ -4405,7 +4570,7 @@ Configuring with Python SDK
 |                      +----------------------+------------+---------------------------------------------+----------+----------+
 |                      | IfIndex              | integer    | Intf where VRID will be configured          |    Yes   |   None   |
 |                      +----------------------+------------+---------------------------------------------+----------+----------+
-|                      | VirtualIPv4Addr      | string     | Ip Address for Virtual Router               |    no    |  Port Ip |
+|                      | VirtualIPv4Addr      | string     | Ip Address for Virtual Router               |    no    |  Port IP |
 |                      +----------------------+------------+---------------------------------------------+----------+----------+
 |                      | PreemptMode          | boolean    | Preempt a lower-priority Master             |    no    |   True   |
 |                      +----------------------+------------+---------------------------------------------+----------+----------+

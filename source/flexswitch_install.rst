@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 FlexSwitch Package Installation
-==================================
+===============================
 
 The SnapRoute FlexSwitch network protocol stack and accompanying toolchain is provided as an installable Debian dpkg package.  The package and can be added to a local repo or installed manually (shown below).
 
