@@ -9,5 +9,6 @@
 White box netoworking in WAN
 ============================
 
-Avoy is going to explain this to kindergartners 
+
+.. image:: images/WAN_Topology.png
 
