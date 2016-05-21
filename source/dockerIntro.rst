@@ -20,7 +20,11 @@ All the tutorials following this section are intended for users who want to lear
 
 
 Go to next page to install docker image 
-- Install docker <install_docker>
+
+.. toctree::
+   :maxdepth: 1
+
+- Install docker <installDocker>
 
 Here are the docker tutorials
 
@@ -28,6 +32,6 @@ Here are the docker tutorials
    :maxdepth: 1
 
     Ping test <ping>
-    BGP with 2 nodes <bgp_docker>
-    OSPF with 2 nodes <ospf_docker>
-    ECMP <ecmp_docker>
+    BGP with 2 nodes <bgpDocker>
+    OSPF with 2 nodes <ospfDocker>
+    ECMP <ecmpDocker>

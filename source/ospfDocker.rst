@@ -1,7 +1,6 @@
 OSPF
 ===============
 This tutorial creates 2 docker containers with flexswitch - ospf1 and ospf2 
-<TODO add diagram here >
 
 Create OSPF containers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -12,16 +11,24 @@ Create OSPF containers
 ::
 
 
-    docker run -d --log-driver=syslog --cap-add=ALL --name ospf1 libero18/ubuntu-14.04:Flexv8
-    docker run -d --log-driver=syslog --cap-add=ALL --name ospf2 libero18/ubuntu-14.04:Flexv8
+   docker run -dt --privileged --log-driver=syslog --cap-add=ALL  --name ospf1 --ip 192.168.0.2 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
+    docker run -dt --privileged --log-driver=syslog --cap-add=ALL --name ospf2  --ip 192.168.0.4 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
+
  
-- Create interface eth1 on bgp_inst1 and bgp_inst2
+- Create interface eth10 on ospf1 and eth20 on ospf2 
  
 :: 
 
+    sudo ip link add eth10 type veth peer name eth20
 
-    sudo pipework docker0 -i eth1 ospf1 20.0.1.5/24
-    sudo pipework docker0 -i eth1 ospf2 20.0.1.6/24
+    sudo ip link set eth10 netns $ospf1_pid
+    sudo ip netns exec $ospf1_pid ip link set eth10 up
+
+    sudo ip link set eth20 netns $ospf2_pid
+    sudo ip netns exec $ospf2_pid ip link set eth20 up
+
+
+   
  
 -  Enter bash shell of ospf2
 
@@ -38,16 +45,13 @@ Configure ospf1 docker
 :: 
 
 
-    rsyslogd & 
-    redis-server &
-    /etc/init.d/flexswitch start
+       /etc/init.d/flexswitch start
  
     curl -X PATCH -H "Content-Type: application/json" -d '{"PortNum": 2, "AdminState":"UP", "Speed":1000, "Autoneg":"OFF"}'  http://localhost:8080/public/v1/config/Port
     (Above command sets the port speed with auto negotiation for the speed OFF)
  
-    curl -H "Content-Type: application/json" -d '{"VlanId":5,"IntfList":"","UntagIntfList":"2"}' http://localhost:8080/public/v1/config/Vlan
-    curl -H "Content-Type: application/json" -d '{"IpAddr": "51.1.1.5/24", "IntfRef":"33554437"}' http://localhost:8080/public/v1/config/IPv4Intf
- 
+    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth10"}' http://localhost:8080/public/v1/config/IPv4Intf
+
 - Below steps carry out OSPF specific configurations
 
 OspfAreaEntry
@@ -79,9 +83,9 @@ The default IfRtrDeadInterval is 40 s whereas HelloInterval is 10s.
 ::
 
 
-    configure Ospf Interface with ip address 51.1.1.5 and area id 0.0.0.2
+    configure Ospf Interface with ip address 40.1.1.1 and area id 0.0.0.2
 
-    curl -H "Content-Type: application/json" -d '{"IfIpAddress": "51.1.1.5", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":1, "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfMulticastForwarding":1, "IfDemand":false, "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
+    curl -H "Content-Type: application/json" -d '{"IfIpAddress": "40.1.1.1", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":1, "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfMulticastForwarding":1, "IfDemand":false, "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
 
 OspfGlobal
 ^^^^^^^^^^^^^^
@@ -102,7 +106,7 @@ This object will enable the global ospf feature. Unless ospf global is enabled  
  
 
 
-Configure ospf1 docker
+Configure ospf2 docker
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - enter bash shell for docker 
@@ -115,8 +119,7 @@ Configure ospf1 docker
 - Start flex package 
 
 ::
-    rsyslogd &
-    redis-server &
+    
     /etc/init.d/flexswitch start
 
 - Create Ipv4 interface and assign port speed 
@@ -126,8 +129,7 @@ Configure ospf1 docker
 
     curl -X PATCH -H "Content-Type: application/json" -d '{"PortNum": 2, "AdminState":"UP", "Speed":1000, "Autoneg":"OFF"}'  http://localhost:8080/public/v1/config/Port
 
-    curl -H "Content-Type: application/json" -d '{"VlanId":5,"IntfList":"","UntagIntfList":"2"}' http://localhost:8080/public/v1/config/Vlan
-    curl -H "Content-Type: application/json" -d '{"IpAddr": "51.1.1.6/24", "IntfRef":"33554437"}' http://localhost:8080/public/v1/config/IPv4Intf
+    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth20"}' http://localhost:8080/public/v1/config/IPv4Intf
  
 - Configure OSPF 
 
@@ -144,7 +146,7 @@ Configure ospf1 docker
 ::
 
 
-    curl -H "Content-Type: application/json" -d '{"IfIpAddress": "51.1.1.6", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":1, "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfMulticastForwarding":1, "IfDemand":false, "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
+    curl -H "Content-Type: application/json" -d '{"IfIpAddress": "40.1.1.2", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":1, "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfMulticastForwarding":1, "IfDemand":false, "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
 
 **Enable global OSPF parameters**
 
@@ -154,10 +156,10 @@ Configure ospf1 docker
     curl -H "Content-Type: application/json" -d '{"RouterId": "10.1.1.3", "AdminStat":1, "ASBdrRtrStatus":true, "TOSSupport":true, "ExtLsdbLimit":100, "MulticastExtensions":2, "ExitOverflowInterval":1000, "DemandExtensions":true, "RFC1583Compatibility":false, "ReferenceBandwidth":1000, "RestartSupport":1, "RestartInterval":10, "RestartStrictLsaChecking":true, "StubRouterAdvertisement":1}' http://localhost:8080/public/v1/config/OspfGlobal
 
  
-Debug commands 
+Show commands 
 ^^^^^^^^^^^^^^
 
-- Check neighbor states
+- Check Ospf Neighbors
 
 ::
 
@@ -193,4 +195,8 @@ Debug commands
     ]
  }
  
- <TODO add LSDB output and ospf routes output >
+- check LSA database
+
+::
+
+    curl -H "Accept: application/json" "http://localhost:8080/public/v1/state/OspfLsdbEntrys" | python -m json.tool

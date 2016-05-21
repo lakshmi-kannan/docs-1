@@ -7,16 +7,24 @@
 Detailed Architecture
 =====================
 
+FlexSwitch software is a collection of L2, L3 protocols and some infrastructure components.
+All FlexSwitch daemons are designed like micro servers. Each protocol/infrastructure daemon 
+provides APIs using RPC mechanism. Currently we use `ApacheThrift <https://thrift.apache.org/>`_ as RPC mechanism
+
+FlexSwitch software uses database to store configuration, state and events information. Currently we use 
+`Redis <http://redis.io/>`_ as our database. All components of FlexSwitch use `Nano Message <http://nanomsg.org/>`_ 
+for notifying various events.
+
+FlexSwitch also provides SDK for accessing all the REST APIs. The goal is to have SDK available in Java, Golang, Python
+Currently we support only `Python SDK <https://github.com/snaproute/flexsdk/>`_ 
+
+
 System Architecture
 ^^^^^^^^^^^^^^^^^^^
 .. image:: images/Software_Architecture.png
 
-
 System Components
 ^^^^^^^^^^^^^^^^^
-FlexSwitch software is a collection of L2, L3 protocols and some infrastructure components.
-All FlexSwitch daemons provide IPC based APIs
-
 
 Infrastructure Daemons
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -24,18 +32,49 @@ Infrastructure Daemons
 Configuration Manager
 """""""""""""""""""""
 
-The front-end to our RestBased API's.  Confd acts as a router to direct the API call to the correct Daemon or Database to the collect the appropriate information. 
+Config Daemon is the entity that acts as an entry point into the system. Confd provides REST interface to a pool of objects.
+These objects are defined in the `Model Repository <https://github.com/snaproute/models/>`_. Each object is owned by a single daemon 
+in the system. Confd connects to all the daemons via RPC and relays the configuration.
+
+Confd does not provide authentication by itself. Howevever Confd can be integrated with web servers like `Nginx <https://www.nginx.com/>`_ or `Apache Webserver <https://httpd.apache.org/>`_
+for authentication.
+
+Config daemon code can be found `here <https://github.com/snaproute/config>`_
+
+.. toctree::
+   :maxdepth: 1
+
+    Detailed Config Daemon design <confd>
+
 
 System Daemon 
 """""""""""""
 
-Monitors other system components and reports on their health. 
+System Daemon is responsible for monitoring the system health. It monitors all the protocol daemons and infrastructure daemons.
+In addition to monitoring the daemons SysD is also responsible for handing various global configuration parameters like system name,
+Router Id, Management IP etc.
+System daemon code can be found `here <https://github.com/snaproute/infra`_
+
+.. toctree::
+   :maxdepth: 1
+
+    Detailed System Daemon design <sysd>
+
+
 
 Routing Information Base
 """""""""""""""""""""""""
 
-This is FlexSwitch's central location for all route information and manipulation.  Any IPv4/IPv6 route that needs to be programmed into the underlying Merchant silicon is processed by the 
-RIB. 
+RIB daemon is responsible for storing all IPv4, IPV6 routes and Policies that manage these routes. In addition to managing the routes
+RIBd installs and unistalls routes into ASIC via ASICd
+
+RIBd code can be found `here <https://github.com/snaproute/l3`_
+
+.. toctree::
+   :maxdepth: 1
+
+    Detailed RIB Daemon design <ribd>
+
 
 .. image:: images/RIB_Architecture.png
 
