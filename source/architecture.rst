@@ -7,16 +7,24 @@
 Detailed Architecture
 =====================
 
+FlexSwitch software is a collection of L2, L3 protocols and some infrastructure components.
+All FlexSwitch daemons are designed like micro servers. Each protocol/infrastructure daemon 
+provides APIs using RPC mechanism. Currently we use `ApacheThrift <https://thrift.apache.org/>`_ as RPC mechanism
+
+FlexSwitch software uses database to store configuration, state and events information. Currently we use 
+`Redis <http://redis.io/>`_ as our database. All components of FlexSwitch use `Nano Message <http://nanomsg.org/>`_ 
+for notifying various events.
+
+FlexSwitch also provides SDK for accessing all the REST APIs. The goal is to have SDK available in Java, Golang, Python
+Currently we support only `Python SDK<https://github.com/snaproute/flexsdk>`
+
+
 System Architecture
 ^^^^^^^^^^^^^^^^^^^
 .. image:: images/Software_Architecture.png
 
-
 System Components
 ^^^^^^^^^^^^^^^^^
-FlexSwitch software is a collection of L2, L3 protocols and some infrastructure components.
-All FlexSwitch daemons provide IPC based APIs
-
 
 Infrastructure Daemons
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -24,7 +32,15 @@ Infrastructure Daemons
 Configuration Manager
 """""""""""""""""""""
 
-The front-end to our RestBased API's.  Confd acts as a router to direct the API call to the correct Daemon or Database to the collect the appropriate information. 
+Config Daemon is the entity that acts as an entry point into the system. Confd provides REST interface to a pool of objects.
+These objects are defined in the `Model Repository<https://github.com/snaproute/models>`. Each object is owned by a single daemon 
+in the system. Confd connects to all the daemons via RPC and relays the configuration.
+
+Confd does not provide authentication by itself. Howevever Confd can be integrated with web servers like `Nginx <https://www.nginx.com/>` or `Apache Webserver<https://httpd.apache.org/>`
+for authentication.
+
+More details about confd can be found `here<https://github.com/snaproute/config>`
+
 
 System Daemon 
 """""""""""""
