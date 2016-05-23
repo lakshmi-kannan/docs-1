@@ -16,7 +16,7 @@ FlexSwitch software uses database to store configuration, state and events infor
 for notifying various events.
 
 FlexSwitch also provides SDK for accessing all the REST APIs. The goal is to have SDK available in Java, Golang, Python
-Currently we support only `Python SDK <https://github.com/snaproute/flexsdk/>`_ 
+Currently we support only `Python SDK <https://github.com/opensnaproute/flexsdk/>`_
 
 
 System Architecture
@@ -33,13 +33,13 @@ Configuration Manager
 """""""""""""""""""""
 
 Config Daemon is the entity that acts as an entry point into the system. Confd provides REST interface to a pool of objects.
-These objects are defined in the `Model Repository <https://github.com/snaproute/models/>`_. Each object is owned by a single daemon 
+These objects are defined in the `Model Repository <https://github.com/opensnaproute/models/>`_. Each object is owned by a single daemon
 in the system. Confd connects to all the daemons via RPC and relays the configuration.
 
 Confd does not provide authentication by itself. Howevever Confd can be integrated with web servers like `Nginx <https://www.nginx.com/>`_ or `Apache Webserver <https://httpd.apache.org/>`_
 for authentication.
 
-Config daemon code can be found `here <https://github.com/snaproute/config>`_
+Config daemon code can be found `here <https://github.com/opensnaproute/config>`_
 
 .. toctree::
    :maxdepth: 1
@@ -53,7 +53,7 @@ System Daemon
 System Daemon is responsible for monitoring the system health. It monitors all the protocol daemons and infrastructure daemons.
 In addition to monitoring the daemons SysD is also responsible for handing various global configuration parameters like system name,
 Router Id, Management IP etc.
-System daemon code can be found `here <https://github.com/snaproute/infra`_
+System daemon code can be found `here <https://github.com/opensnaproute/infra>`_
 
 .. toctree::
    :maxdepth: 1
@@ -66,7 +66,9 @@ Routing Information Base
 """""""""""""""""""""""""
 
 RIB daemon is responsible for storing all IPv4, IPV6 routes and Policies that manage these routes. In addition to managing the routes
-RIBd code can be found `here <https://github.com/snaproute/l3`_
+RIBd installs and unistalls routes into ASIC via ASICd
+
+RIBd code can be found `here <https://github.com/opensnaproute/l3>`_
 
 .. toctree::
    :maxdepth: 1
@@ -76,37 +78,16 @@ RIBd code can be found `here <https://github.com/snaproute/l3`_
 
 ASIC Daemon
 """""""""""
-Snaproute's asic daemon serves as a hardware abstraction layer (HAL). A common northbound API interface is exposed to all protocol daemons. This interface allows provisioning a range of packet processing ASICs such as Broadcom, Mellanox, Cavium. Support for software simulation on a linux host OS is also provided.
+ASIC Daemon serves as a hardware abstraction layer (HAL). A common northbound API interface is exposed to all protocol daemons.
+This interface allows provisioning of a range of packet processing ASICs such as Broadcom, Mellanox, Cavium etc.
+Support for software simulation with docker instances is also provided.
 
-Architecture
-************
+ASICd binaries can be found `here <https://github.com/opensnaproute/asicd>`_
 
-..image:: images/Asic_daemon.jpg
+.. toctree::
+   :maxdepth: 1
 
-**Northbound interface:**
-
-The asic daemons northbound interface is implemented using thrift RPC. This is the interface that is used by users/protocols to apply configuration.
-
-**Core resource managers:**
-
-The core infrastructure within Asicd is distributed across multiple resource managers, e.x. portMgr.go, routeMgr.go, neighborMgr.go etc. Each of these individual resource managers support Create/Retrieve/Update and Delete operations on the corresponding resource. These resource managers also maintain any relevant state data for each corresponding resource.
-
-**Plugins:**
-
-The asic daemon uses a plugin based approach to effectively abstract differences between ASICs from multiple vendors. The following plugins and asic vendors are currently supported
-
- - OpenNsl (Broadcom)
- - SAI (Mellanox, Barefoot)
- - Softswitch (Linux host)
-
-**Events handling:**
-
-The asicd daemon supports signaling/notification of asynchronous events. The notification engine employs a nano message based publisher. Notifications for the following events are supported
-
- - Port operational state changes
- - Vlan/Lag interface creation/deletion
- - IP interface operational state changes
-
+   Detailed ASIC Daemon design <asicd>
 
 Protocol Daemons
 ^^^^^^^^^^^^^^^^
