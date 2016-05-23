@@ -3,11 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to FlexSwitch_Asicd's documentation!
+Welcome to FlexSwitch ASICd's documentation!
 ============================================
+.. image:: images/Asic_daemon.jpg
+
 Overview
 
-Snaproute's asic daemon serves as a hardware abstraction layer (HAL). A common northbound API interface is exposed to all protocol daemons. This interface allows provisioning a range of packet processing ASICs such as Broadcom, Mellanox, Cavium. Support for software simulation on a linux host OS is also provided.
+Snaproute's asic daemon serves as a hardware abstraction layer (HAL). A common northbound API interface is presented to all protocol daemons.
+This interface allows provisioning a range of packet processing ASICs such as Broadcom, Mellanox, Cavium. Support for software simulation with docker instances is also provided.
 
 Software Architecture
 
