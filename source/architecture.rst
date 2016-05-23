@@ -73,7 +73,7 @@ RIBd code can be found `here <https://github.com/opensnaproute/l3>`_
 .. toctree::
    :maxdepth: 1
 
-    Detailed RIB Daemon design <ribd>
+    Detailed RIB Daemon design <rib/rib>
 
 
 ASIC Daemon
