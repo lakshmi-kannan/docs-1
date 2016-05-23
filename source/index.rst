@@ -24,4 +24,6 @@ for accelerating development and deployment of whitebox networking gear
     Developer Home <developer>
     Network Engineer Home <nwengineer>
     Example Configurations <example>
+    Software Installation  <softwareflexswitch>
+    ONIE Installation <ONIE_install>
     API Reference         <apis>

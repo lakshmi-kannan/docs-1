@@ -39,14 +39,14 @@ FlexSwitch is built with the following design principles
 
 Open Source Components
 ^^^^^^^^^^^^^^^^^^^^^^
-
-.. toctree::
-   :maxdepth: 1
-
 FlexSwitch, being an opensource soultion, relies on several other opensource components.
 These OpenSource components are of great help in simplifying our implementation. 
 We acknowledge and are grateful to these developers for their contributions to open source.
 You can find the source code of their open source projects along with license information below. 
+
+
+.. toctree::
+   :maxdepth: 1
 
     Open Source components <opensources>
 
