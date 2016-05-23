@@ -1,5 +1,5 @@
-STP
-===================
+Spanning Tree Protocol
+======================
 
 Architecture
 ************

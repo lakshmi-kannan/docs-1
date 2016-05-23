@@ -118,7 +118,7 @@ Layer 3 Daemons
 """""""""""""""
 
 ARP Daemon
-"""""""""""""""
+************
 
 The address resolution protocol (arp) is a protocol used by the Internet Protocol (IP) [RFC826], specifically IPv4, to map IP network addresses to the hardware addresses used by a data link protocol. The protocol operates below the network layer as a part of the interface between the OSI network and OSI link layer.
 
@@ -147,32 +147,15 @@ Architecture
 
 DHCP Relay
 ++++++++++
-This module implements Dynamic Host Configuration Protocol Relay Agent. The protocol is standalone Process Daemon, with current dependencies with a configuration daemon CONFD and programability of HW Asic and/or Linux Kernel via ASICD
+This module implements Dynamic Host Configuration Protocol Relay Agent. `RFC-3046 <https://tools.ietf.org/html/rfc3046>`_ is used for implementation 
 
-The Relay Agent will have an instance running per interface.
+Relay Agent can be used in networks where a DHCP client is not directly connected to DHCP Server. On such networks relay agent will do the job for the client.
 
-Architecture
-************
-.. image:: images/Dhcp_Relay_Agent.png
+.. toctree::
+   :maxdepth: 1
+    
+   Detailed Architecture <dhcprelayd>
 
-**Dhcp Relay has following state:**
-
-Receive DISCOVER Packet
-Relay client Packet to all servers (configured) updating Relay Agent Information in Dhcp Options
-Receive OFFER Packet
-Send Unicast OFFER to Client (if configured) else Broadcast OFFER Packet
-Receive REQUEST Packet
-Relay REQUEST Packet to Server
-Receive ACK Packet
-Relay ACK Packet to Client
-
-**Configuration**
-
-Detailed information for the object can be found in models package The objects are created keeping in mind the basic Relay Agent Design.
-
-Global Config to enable/disable Relay Agent across all interfaces
-Create/Delete Relay Agent per interface
-Configure Server's for Relay Agent
 
 OSPF Daemon
 +++++++++++
@@ -234,11 +217,12 @@ Architecture
  - VRRP configuration is based of https://tools.ietf.org/html/rfc5798#section-5.2
  - Unless specified each instance of Virtual Router will use the default values specified in the RFC
 
+
 Layer 2 Daemons
 """""""""""""""
 
 STP Daemon
-"""""""""""""""
+**********
 Spanning Tree Protocol (STP) is a network protocol that builds a logical loop-free topology for Ethernet Networks. Basic functionality is to prevent bridge loops.
 This module supports the following spanning tree versions:
 
@@ -253,7 +237,7 @@ This module supports the following spanning tree versions:
 
 
 LACP Daemon
-"""""""""""""""
+***********
 Link Layer Aggregation Control Protocol (LACP)  is based of IEEE 802.1ax-2014 (which can be found at http://standards.ieee.org/getieee802/download/802.1AX-2014.pdf). This implemention currently only supports functionality related to version 1 of the protocol.
 
 LACP provides a method to control the bundling of several physical ports together to form a single logical channel. It allows a network device to negotiate an automatic bundling of links.
@@ -265,7 +249,8 @@ LACP provides a method to control the bundling of several physical ports togethe
 
 
 LLDP Daemon
-"""""""""""""""
+***********
+
 Module implements IEEE 802.1AB Link Layer Discovery Protocol. The protocol is a standalone Process Daemon. It will have an instance running per interface. Via this protocol, Flexswitch will advertise attached IEEE LAN major capabilites supported by local port.
 
 .. toctree::
@@ -275,7 +260,7 @@ Module implements IEEE 802.1AB Link Layer Discovery Protocol. The protocol is a 
 
 
 VXLAN Daemon
-"""""""""""""""
+************
 
 .. image:: images/VXLAN_Architecture.png
 
