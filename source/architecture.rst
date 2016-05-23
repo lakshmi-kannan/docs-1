@@ -181,22 +181,12 @@ Architecture
 
 VRRP Daemon
 +++++++++++
-This module implement Virtual Router Redundancy Protocol RFC 5798
+This module implement Virtual Router Redundancy Protocol (VRRP) `RFC 5798 <https://tools.ietf.org/html/rfc5798>`_ VRRP increases the availability and relability of routing paths. Protocol achieves this by creating virtual routers on top of IPv4 intefaces which acts as master and backup routers (a group). Host is assigned Virtual Router IP address instead of physical router, so that on failure backup can take over master.
 
-Architecture
-************
-
-.. image:: images/VRRP_Architecture.png
-
-**Interfaces**
-
- - Create/Delete Virtual Router
- - Change timers for VRRP packet, for e.g: Advertisement Timer
-
-**Configuration**
-
- - VRRP configuration is based of https://tools.ietf.org/html/rfc5798#section-5.2
- - Unless specified each instance of Virtual Router will use the default values specified in the RFC
+.. toctree::
+   :maxdepth: 1
+    
+   Detailed Architecture & Description <vrrpd>
 
 
 Layer 2 Daemons
