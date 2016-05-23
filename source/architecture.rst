@@ -66,26 +66,12 @@ Routing Information Base
 """""""""""""""""""""""""
 
 RIB daemon is responsible for storing all IPv4, IPV6 routes and Policies that manage these routes. In addition to managing the routes
-RIBd installs and unistalls routes into ASIC via ASICd
-This is a implementation of Routing Information Base (RIB) in Go. Summary of functionality implemented by this module is as follows:
-
-Handle all network route based configuration (route create, route delete, route update) from either users or other applications (e.g., BGP, OSPF)
-
-Handle all routing policy based configuration : a. policy conditions create/delete/updates b. policy statements create/delete/updates c. policy definitions create/delete/updates
-
-Implement policy engine a. Based on the policy objects configured and applied on the device, the policy engine filter will match on the conditions provisioned and implement actions based on the application location. For instance, the policy engine filter may result in redistributing certain (route type based/ network prefix based) routes into other applications (BGP,OSPF, etc.,)
-
-Responsible for calling ASICd thrift APIs to program the routes in the FIB.
-
 RIBd code can be found `here <https://github.com/snaproute/l3`_
 
 .. toctree::
    :maxdepth: 1
 
     Detailed RIB Daemon design <ribd>
-
-
-.. image:: images/RIB_Architecture.png
 
 ASIC Daemon
 """""""""""
@@ -252,29 +238,30 @@ Layer 2 Daemons
 
 STP Daemon
 ++++++++++
+
+Spanning Tree Protocol (STP) is a network protocol that builds a logical loop-free topology for Ethernet Networks. Basic functionality is to prevent bridge loops.
 This module supports the following spanning tree versions:
 
  - STP IEEE 802.1D
  - RSTP IEEE 802.1W
  - Rapid-PVST+
 
-Architecture
-************
-
-.. image:: images/STP_Architecture.png
+.. toctree::
+    :maxdepth: 1
+    
+    Detailed Architecture <stpd>
 
 LACP Daemon
 +++++++++++
-This code base is to handle the LACP protocol according to 802.1ax-2014. This implemention currently only supports functionality related to version 1 of the protocol.
 
-The protocol is a standalone Process Daemon, with current dependencies with a configuration daemon CONFD and programability of HW ASIC and/or Linux Kernel via ASICD.
+Link Layer Aggregation Control Protocol (LACP)  is based of IEEE 802.1ax-2014 (which can be found at http://standards.ieee.org/getieee802/download/802.1AX-2014.pdf). This implemention currently only supports functionality related to version 1 of the protocol.
 
-The LACP protocol will have an instance running per interface. Each LACP represented state machine represented as part of the protocol will be running as a seperate go routine.
+LACP provides a method to control the bundling of several physical ports together to form a single logical channel. It allows a network device to negotiate an automatic bundling of links.
 
-Architecture
-************
-
-.. image:: images/LACPArchitectureOverview.png
+.. toctree::
+    :maxdepth: 1
+    
+    Detailed Architecture <lacpd>
 
 LLDP Daemon
 +++++++++++
@@ -283,7 +270,7 @@ Module implements IEEE 802.1AB Link Layer Discovery Protocol. The protocol is a 
 .. toctree::
    :maxdepth: 1
     
-   Detailed Architecture <lldp>
+   Detailed Architecture <lldpd>
 
 VXLAN Daemon
 ++++++++++++
