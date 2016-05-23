@@ -16,23 +16,20 @@ This page describes how whitebox switch with Snaproute networking protocol suite
 .. image:: images/WAN_Topology.png
 
 
-As shown above, FlexSwitch can be deployed as a PE-Router, CE-Router as well as P-Router.
+As shown above, FlexSwitch can be deployed as a PE-Router and CE-Router.
 A CE-Router(Customer Edge Router) is a Router located on the customer premises (as shown in the above diagram) that provides an Ethernet interface between the customer's network and the provider's core network. PE(Provider Edge) and P(Provider) Routers are located in the core of the provider's network. PE routers sit at the edge of the network. CE Routers connect to PE Routers and PE Routers connect to other PE Routers as well as P Routers.
 Feature requirements in PE and CE Routers in SP network are most complex.
-These Routers need to perform intra- and inter-VPN routing of traffic originated from Customer sites. As carrier grade Routers, they need to support Redundancy, Resiliency, and Restartabality for every feature enabled. For P-Routers, even though requirement of features set is smaller compared to PE-Routers, scale and performance requirement is very high. Most of the Whitebox sulution available today (including FlexSwitch) are 1-RU switches with limited number of ports. Hence, deploying these devices as P-Router may not be feasible for Service Providers. Here we will focus on FlexSwitch deployment as PE and CE Routers.
+These Routers need to perform intra- and inter-VPN routing of traffic originated from Customer sites. As carrier grade Routers, they need to support Redundancy, Resiliency, and Restartabality for every feature enabled. For P-Routers, even though requirement of features set is smaller compared to PE-Routers, scale and performance requirements are very high. Most of the Whitebox solution available today (including FlexSwitch) are 1-RU switches with limited number of ports. Hence, deploying these devices as P-Router may not be feasible for Service Providers. Here we will focus on FlexSwitch deployment as PE and CE Routers. However, there is no technical reason for which FlexSwitch cannot be deployed as P-Routers.
 
 Capabilities Required
 _____________________
+VRF aware routing and switching supports are major requirements in CE and PE Routers.
+For that L2 and L3 VPN supports are required. Capabilities such as BGP-MPLS based L3VPN, EVPN, VPLS, VPWS etc are standard protocols and applications that enable a device to perform as PE or CE Router.
 
 
-
-Technologies Required
-_____________________
-
-
-Current Support and Plan
-________________________
-
+Existing Support and Future Plan
+________________________________
+Existing implementation of FlexSwitch does not support any capabilities, as mentioned above, to perform as PE or CE Router. Development of these capabilities are planned in subsequent FlexSwitch releases.
 
 
 
