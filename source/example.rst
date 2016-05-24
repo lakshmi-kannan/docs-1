@@ -3981,10 +3981,57 @@ Configuring with Python SDK
 
 Configuring LLDP
 -----------------
+Link Layer Discovery Protocol is a mechanism used by network devices for advertising their identity, capabilities and neighbors on a LAN. LLDP Information is send from each of the interfaces at fixed interval, in the form of Ethernet Frame. Each Frame contains below Information
+    - Mandatory TLV's
+    - Optional TLV's
+
+Mandatory TLV's include:
+    - Chassis ID
+    - Port ID
+    - TTL
+Optional TLV's include:
+    - Management Address
+    - System Description
+    - System Hostname
+    - System Version
+    - Capabilites
+
 Configuring with Rest API 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    LLDP by default according to IEEE documentation is enabled on all Interfaces which are in Admin UP state. However, lldp per port can be enabled/disabled using following command:
+ 
+**COMMAND:**
+::
+    curl -H "Content-Type: application/json" -d '{"IfIndex":46, "Enable": false }' -X POST http://<*your switch_ip*>:8080/public/v1/config/LLDPIntf
+    curl -X PATCH -H "Content-Type: application/json" -d '{"IfIndex":46, "Enable": true }'  http://<*your switch_ip*>/public/v1/config/LLDPIntf/<*uuid*>
+
+**OPTIONS:**
+
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method        | Variables            | Type       |  Description                                | Required |  Default |
++======================+======================+============+=============================================+==========+==========+
+| createLLDPIntf       | IfIndex              | integer    | Interface where LLDP needs to be changed    |    Yes   |   None   |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | Enable               | bool       | LLDP enabled/disabled                       |    Yes   |   None   |
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createLLDPIntf(IfIndex, Enable):
+
+**OPTIONS:**
+
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method        | Variables            | Type       |  Description                                | Required |  Default |
++======================+======================+============+=============================================+==========+==========+
+| createLLDPIntf       | IfIndex              | integer    | Interface where LLDP needs to be changed    |    Yes   |   None   |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | Enable               | bool       | LLDP enabled/disabled                       |    Yes   |   None   |
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE:**
+>>> from flexswitchV2 import FlexSwitch
+>>> FlexSwitch ("192.168.10.1", 8080).createLLDPIntf(IfIndex=355414, Enable=false):
 
 
 Configuring LoopBacks
