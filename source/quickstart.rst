@@ -4,7 +4,7 @@ QuickStart Guide
 .. toctree::
    :maxdepth: 1
 
-    Docker Tutorial <docker>
+    Docker Tutorial <dockerIntro>
     Hardware Tutorial <hardware>
     Hardware Support matrix <hwmatrix>
 
