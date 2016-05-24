@@ -9,7 +9,7 @@ Note: DHCP Daemon implementation is currently in progress.
 .. image:: images/DHCP.png
 
 DHCP Daemon Architecture
-------------------
+------------------------
 
 Introduction
 ^^^^^^^^^^^^^
