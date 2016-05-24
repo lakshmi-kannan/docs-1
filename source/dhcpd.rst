@@ -1,6 +1,9 @@
 Welcome to FlexSwitch DHCPd's documentation!
 ===================================================
 
+.. image:: images/under_construction.gif
+   :align: center
+
 Note: DHCP Daemon implementation is currently in progress.
 
 .. image:: images/DHCP.png
