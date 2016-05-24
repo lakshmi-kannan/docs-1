@@ -1,6 +1,6 @@
 Config Manager
 ===============
-onfigMgr module in SnapRoute network protocol suite is responsible for providing RESTful APIs service to manage different features and functionalities. It accepts the API calls and talks to backend servers to process the request.
+ConfigMgr module in SnapRoute network protocol suite is responsible for providing RESTful APIs service to manage different features and functionalities. It accepts the API calls and talks to backend servers to process the request.
 
 Architecture
 ============
