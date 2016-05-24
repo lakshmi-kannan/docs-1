@@ -89,6 +89,7 @@ ASICd binaries can be found `here <https://github.com/opensnaproute/asicd>`_
 
    Detailed ASIC Daemon design <asicd>
 
+
 Protocol Daemons
 ^^^^^^^^^^^^^^^^
 
@@ -106,9 +107,10 @@ The address resolution protocol (arp) is a protocol used by the Internet Protoco
 ARPd source code can be found `here <https://github.com/opensnaproute/l3>`_
 
 .. toctree::
-      :maxdepth: 1
+   :maxdepth: 1
 
    Detailed ARP Daemon design <arpd>
+
 
 
 BFD Daemon
