@@ -24,31 +24,23 @@ Global Config for BFD
 
 ::
 
-type BfdGlobal struct {
-        baseObj
         Vrf    string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"1", AUTOCREATE: "true", DEFAULT: "default", DESCRIPTION: "VRF id where BFD is globally enabled or disabled"`
         Enable bool   `DESCRIPTION: "Global BFD state in this VRF", DEFAULT: "true"`
-}
 
 Session config
 
 ::
 
-type BfdSession struct {
-        baseObj
         IpAddr    string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "BFD neighbor IP address"`
         ParamName string `DESCRIPTION: "Name of the session parameters object to be applied on this session", DEFAULT: "default"`
         Interface string `DESCRIPTION: "Name of the interface this session has to be established on", DEFAULT: "None"`
         PerLink   bool   `DESCRIPTION: "Run BFD sessions on individual link of a LAG if the neighbor is reachable through LAG", DEFAULT: "false"`
         Owner     string `DESCRIPTION: "Module requesting BFD session configuration", DEFAULT: "user"`}
-}
 
 Session parameters config
 
 ::
 
-type BfdSessionParam struct {
-        baseObj
         Name                      string `SNAPROUTE: "KEY", ACCESS:"w",  MULTIPLICITY:"*", DESCRIPTION: "Session parameters"`
         LocalMultiplier           uint32 `DESCRIPTION: "Detection multiplier", DEFAULT: "3"`
         DesiredMinTxInterval      uint32 `DESCRIPTION: "Desired minimum tx interval in ms", DEFAULT: "1000"`
@@ -59,8 +51,6 @@ type BfdSessionParam struct {
         AuthType                  string `DESCRIPTION: "Authentication type", SELECTION: "metmd5/keyedmd5/metsha1/keyedsha1/simple", DEFAULT: "simple"`
         AuthKeyId                 uint32 `DESCRIPTION: "Authentication key id", DEFAULT: "1"`
         AuthData                  string `DESCRIPTION: "Authentication password", DEFAULT: "snaproute"`
-}
-
 
 
 By default, BFD is enabled globally. Also, a default session param object is created with name "default" so that if any session configuration is received without a param object name, the default param will be applied.
@@ -120,6 +110,24 @@ func (mgr *FSBfdMgr) DeleteBfdSession(ipAddr string) (bool, error) {
 
 
 If an interface is provided while creating the session, if rechability to that remote IP address is through som other interface then the session will not be started.
+
+When session state changes a notification is published to
+
+::
+
+  PUB_SOCKET_ADDR = "ipc:///tmp/bfdd.ipc"
+
+
+Any application interested in listening to BFD session state changes should subscribe to this socket.
+
+BFD notification contains 
+
+::
+
+  DestIP string
+  State  bool
+
+if State == true then the session is declared as up otherwise down.
 
 
 Work In Progress
