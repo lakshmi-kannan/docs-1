@@ -3,9 +3,9 @@ Config Manager
 onfigMgr module in SnapRoute network protocol suite is responsible for providing RESTful APIs service to manage different features and functionalities. It accepts the API calls and talks to backend servers to process the request.
 
 Architecture
-************
+============
 
-.. image:: images/ConfigMgr.png 
+.. image:: images/ConfigMgr_Design.png
 
 Server package is responsible for initializing ConfigMgr and other sub-packages. It also serves API calls for SystemStatus and SystemSwVersion objects. Clients package is responsible for establishing thrift connections to all backend servers. It keeps on retrying for ever If connection to backend server can not be established. Objects package is responsible for initializing objects that Apis package uses to serve REST calls. Apis package processes the Create, Update, Delete, and Get calls for all the objects supported in SnapRoute network protocol suite.
 
