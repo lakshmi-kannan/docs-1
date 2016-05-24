@@ -121,6 +121,22 @@ BFD Daemon
     
    Detailed Architecture <bfd>
 
+
+
+DHCP Daemon
+************
+
+Dynamic Host Configuration Protocol (DHCP) is a client/server protocol that automatically provides an Internet Protocol (IP) host with its IP address and other related configuration information such as the subnet mask and default gateway. 
+
+DHCPd source code can be found `here <https://github.com/opensnaproute/l3>`_
+
+.. toctree::
+   :maxdepth: 1
+
+   Detailed DHCP Daemon design <dhcpd>
+
+
+
 DHCP Relay
 ++++++++++
 This module implements Dynamic Host Configuration Protocol Relay Agent. `RFC-3046 <https://tools.ietf.org/html/rfc3046>`_ is used for implementation 
