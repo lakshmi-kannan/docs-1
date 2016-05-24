@@ -3969,15 +3969,70 @@ Configuring with Rest API
 	
 	curl -H "Content-Type: application/json" -d '{"DhcpRelay": "dr", "Enable": true }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayGlobal
 
-	curl -H "Content-Type: application/json" -d '{"IfIndex": 33554442 , "Enable": true , "ServerIp": ["90.0.1.2", "80.0.1.2"] }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayIntf
 
 **OPTIONS**
 
-**EXAMPLE**
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |
++======================+============+=============================================+==========+==========+
+| DhcpRelay            | string     | Key used to enable dhcp relay on a switch   |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| Enable               | bool       | Dhcp Relay enabled/disabled globally        |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
 
+**COMMAND**
+::
+	curl -H "Content-Type: application/json" -d '{"IfIndex": 33554442 , "Enable": true , "ServerIp": ["90.0.1.2", "80.0.1.2"] }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayIntf
+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |
++======================+============+=============================================+==========+==========+
+| IfIndex              | integer    | Key used to enable dhcp relay on a intf     |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| Enable               | bool       | Dhcp Relay enabled/disabled on interface    |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| ServerIp             | list       | list of server ip which relay agent will use|    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
 
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**COMMAND**
+::
+
+>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createDhcpRelayGlobal(DhcpRelay, Enable)
+
+**OPTIONS**
+
++-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method         | Variables            | Type       |  Description                                | Required |  Default |
++=======================+======================+============+=============================================+==========+==========+
+| createDhcpRelayGlobal | DhcpRelay            | string     | Key used to enable dhcp relay on a switch   |    Yes   |   None   |
+|                       +----------------------+------------+---------------------------------------------+----------+----------+
+|                       | Enable               | bool       | Dhcp Relay enabled/disabled globally        |    Yes   |   None   |
++-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**COMMAND**
+::
+
+>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createDhcpRelayIntf(IfIndex, Enable, ServerIp):
+
+**OPTIONS**
+
++-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+|    Python Method      | Variables            | Type       |  Description                                | Required |  Default |
++-----------------------+======================+============+=============================================+==========+==========+
+|  createDhcpRelayIntf  | IfIndex              | integer    | Interface where dhcp relay needs config     |    Yes   |   None   |
+|                       +----------------------+------------+---------------------------------------------+----------+----------+
+|                       | Enable               | bool       | Dhcp Relay enabled/disabled on interface    |    Yes   |   None   |
+|                       +----------------------+------------+---------------------------------------------+----------+----------+
+|                       | ServerIp             | list       | list of server ip which relay agent will use|    Yes   |   None   |
++-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+>>> from flexswitchV2 import FlexSwitch
+>>> FlexSwitch ("192.168.10.1", 8080).createDhcpRelayGlobal(DhcpRelay="dr", Enable=true)
+>>> FlexSwitch ("192.168.10.1", 8080).createDhcpRelayIntf(IfIndex=355413, Enable=true, ServerIP=['90.0.1.2', '80.0.1.2'])
 
 Configuring LLDP
 -----------------
@@ -4007,16 +4062,20 @@ Configuring with Rest API
 
 **OPTIONS:**
 
-+----------------------+----------------------+------------+---------------------------------------------+----------+----------+
-| Python Method        | Variables            | Type       |  Description                                | Required |  Default |
-+======================+======================+============+=============================================+==========+==========+
-| createLLDPIntf       | IfIndex              | integer    | Interface where LLDP needs to be changed    |    Yes   |   None   |
-|                      +----------------------+------------+---------------------------------------------+----------+----------+
-|                      | Enable               | bool       | LLDP enabled/disabled                       |    Yes   |   None   |
-+----------------------+----------------------+------------+---------------------------------------------+----------+----------+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |
++======================+============+=============================================+==========+==========+
+| IfIndex              | integer    | Interface where LLDP needs to be changed    |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| Enable               | bool       | LLDP enabled/disabled                       |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
 
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**COMMAND**
+::
+
 >>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createLLDPIntf(IfIndex, Enable):
 
 **OPTIONS:**
@@ -4030,6 +4089,7 @@ Configuring with Python SDK
 +----------------------+----------------------+------------+---------------------------------------------+----------+----------+
 
 **EXAMPLE:**
+
 >>> from flexswitchV2 import FlexSwitch
 >>> FlexSwitch ("192.168.10.1", 8080).createLLDPIntf(IfIndex=355414, Enable=false):
 
