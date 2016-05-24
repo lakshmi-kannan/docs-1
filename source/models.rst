@@ -10,19 +10,21 @@ Exec operation can be performed on action objects. These APIs are send a command
 Model objects can be defined as go struct or in yang file. This document describes how to define a model object in go struct.
 There are various tags used to identify nature of the object or field in the object.
 
-ACCESS: "w"          ---- Object type - "w" means config, "r" means state and "x" means action
-MULTIPLICITY: "*"    ---- How many instances of this object can exist. "*" means multiple and "1" means singleton
-ACCELERATED: "true"  ---- If the object can be configured in asynchronous mode.
-USESTATEDB: "true"   ---- if true then this state object is stored in DB.
-AUTOCREATE: "true"   ---- If true then this object will be automatically created with default values when FlexSwitch come up.
-SNAPROUTE: "KEY"     ---- Identifies if this field is a key in this object. There can be more than one keys.
-DESCRIPTION: "<str>" ---- Description of the field.
-DEFAULT: <"value>"   ---- Default value of this field.
-LEN: "<length>"      ---- If the field is of type string then length of the string allowed.
-SELCTION: "<a>/<b>"  ---- List of possible values allowed for this field.
-MIN: "<value>"       ---- If the field is of type integer then minimum value allowed.
-MAX: "<value>"       ---- If the field is of type integer then maximum value allowed.
-RANGE: "<a>-<b>"     ---- If the field is of type integer then range of values allowed in the range.
+::
+
+  ACCESS: "w"          ---- Object type - "w" means config, "r" means state and "x" means action
+  MULTIPLICITY: "*"    ---- How many instances of this object can exist. "*" means multiple and "1" means singleton
+  ACCELERATED: "true"  ---- If the object can be configured in asynchronous mode.
+  USESTATEDB: "true"   ---- if true then this state object is stored in DB.
+  AUTOCREATE: "true"   ---- If true then this object will be automatically created with default values when FlexSwitch come up.
+  SNAPROUTE: "KEY"     ---- Identifies if this field is a key in this object. There can be more than one keys.
+  DESCRIPTION: "<str>" ---- Description of the field.
+  DEFAULT: <"value>"   ---- Default value of this field.
+  LEN: "<length>"      ---- If the field is of type string then length of the string allowed.
+  SELCTION: "<a>/<b>"  ---- List of possible values allowed for this field.
+  MIN: "<value>"       ---- If the field is of type integer then minimum value allowed.
+  MAX: "<value>"       ---- If the field is of type integer then maximum value allowed.
+  RANGE: "<a>-<b>"     ---- If the field is of type integer then range of values allowed in the range.
 
 
 Examples
