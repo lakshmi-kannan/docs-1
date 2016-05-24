@@ -212,5 +212,7 @@ Module implements IEEE 802.1AB Link Layer Discovery Protocol. The protocol is a 
 VXLAN Daemon
 ************
 
-.. image:: images/VXLAN_Architecture.png
-
+.. toctree::
+   :maxdepth: 1
+    
+   Detailed Architecture <vxland>
