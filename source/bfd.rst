@@ -20,6 +20,7 @@ Communications across go routines are achived by using channels.
 Configurations
 --------------
 There are three configuration objects managed by BFD - BfdGlobal, BfdSession, and BfdSessionParam.
+
 Global Config for BFD
 
 ::
@@ -89,7 +90,7 @@ BFD applications such as BGP can create or delete a session using the below RPC 
 
 ::
 
-func (mgr *FSBfdMgr) CreateBfdSession(ipAddr string, sessionParam string) (bool, error) {
+    func (mgr *FSBfdMgr) CreateBfdSession(ipAddr string, sessionParam string) (bool, error) {
         bfdSession := bfdd.NewBfdSession()
         bfdSession.IpAddr = ipAddr
         bfdSession.ParamName = sessionParam
@@ -97,16 +98,16 @@ func (mgr *FSBfdMgr) CreateBfdSession(ipAddr string, sessionParam string) (bool,
         mgr.logger.Info(fmt.Sprintln("Creating BFD Session: ", bfdSession))
         ret, err := mgr.bfddClient.CreateBfdSession(bfdSession)
         return ret, err
-}
+    }
 
-func (mgr *FSBfdMgr) DeleteBfdSession(ipAddr string) (bool, error) {
+    func (mgr *FSBfdMgr) DeleteBfdSession(ipAddr string) (bool, error) {
         bfdSession := bfdd.NewBfdSession()
         bfdSession.IpAddr = ipAddr
         bfdSession.Owner = "bgp"
         mgr.logger.Info(fmt.Sprintln("Deleting BFD Session: ", bfdSession))
         ret, err := mgr.bfddClient.DeleteBfdSession(bfdSession)
         return ret, err
-}
+    }
 
 
 If an interface is provided while creating the session, if rechability to that remote IP address is through som other interface then the session will not be started.
@@ -128,6 +129,72 @@ BFD notification contains
   State  bool
 
 if State == true then the session is declared as up otherwise down.
+
+Debugging
+---------
+Below BFD states can be queried
+
+BFD Global State
+
+::
+
+        Vrf                  string `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"1", DESCRIPTION:     "VRF id for which global BFD state is requested"`
+        Enable               bool   `DESCRIPTION: "Global BFD state in this VRF"`
+        NumTotalSessions     uint32 `DESCRIPTION: "Total number of BFD sessions"`
+        NumUpSessions        uint32 `DESCRIPTION: "Number of BFD sessions in up state"`
+        NumDownSessions      uint32 `DESCRIPTION: "Number of BFD sessions in down state"`
+        NumAdminDownSessions uint32 `DESCRIPTION: "Number of BFD sessions in admin down state"`
+
+
+BFD Session State
+
+::
+
+        IpAddr                    string `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*",DESCRIPT    ION: "Neighbor IP address"`
+        SessionId                 int32  `DESCRIPTION: "Session index"`
+        ParamName                 string `DESCRIPTION: "Session parameters config"`
+        IfIndex                   int32  `DESCRIPTION: "Interface index"`
+        InterfaceSpecific         bool   `DESCRIPTION: "This session is tied to an interface"`
+        IfName                    string `DESCRIPTION: "Interface to which this session is establi    shed on"`
+        PerLinkSession            bool   `DESCRIPTION: "This is a perlink session on LAG"`
+        LocalMacAddr              string `DESCRIPTION: "My MAC address"`
+        RemoteMacAddr             string `DESCRIPTION: "Neighbor MAC address"`
+        RegisteredProtocols       string `DESCRIPTION: "Registered owners"`
+        SessionState              string `DESCRIPTION: "My state"`
+        RemoteSessionState        string `DESCRIPTION: "Neighbor state"`
+        LocalDiscriminator        uint32 `DESCRIPTION: "My discriminator"`
+        RemoteDiscriminator       uint32 `DESCRIPTION: "Neighbor discriminator"`
+        LocalDiagType             string `DESCRIPTION: "My diagnostic"`
+        DesiredMinTxInterval      string `DESCRIPTION: "My desired minimum tx interval"`
+        RequiredMinRxInterval     string `DESCRIPTION: "My required minimum rx interval"`
+        RemoteMinRxInterval       string `DESCRIPTION: "Neighbor minimum rx interval"`
+        DetectionMultiplier       uint32 `DESCRIPTION: "My detection multiplier"`
+        RemoteDetectionMultiplier uint32 `DESCRIPTION: "Neighbor detection multiplier"`
+        DemandMode                bool   `DESCRIPTION: "My demand mode"`
+        RemoteDemandMode          bool   `DESCRIPTION: "Neighbor demand mode"`
+        AuthSeqKnown              bool   `DESCRIPTION: "Authentication sequence known"`
+        AuthType                  string `DESCRIPTION: "My Authentication type"`
+        ReceivedAuthSeq           uint32 `DESCRIPTION: "Received authentication sequence number"`
+        SentAuthSeq               uint32 `DESCRIPTION: "Sent authentication sequence number"`
+        NumTxPackets              uint32 `DESCRIPTION: "Number of control packets sent"`
+        NumRxPackets              uint32 `DESCRIPTION: "Number of control packets received"`
+
+
+BFD Session Params
+
+::
+
+        Name                      string `SNAPROUTE: "KEY", ACCESS:"r",  MULTIPLICITY:"*", DESCRIP    TION: "Session parameters"`
+        NumSessions               int32  `DESCRIPTION: "Number of sessions using these params"`
+        LocalMultiplier           int32  `DESCRIPTION: "Detection multiplier"`
+        DesiredMinTxInterval      string `DESCRIPTION: "Desired minimum tx interval"`
+        RequiredMinRxInterval     string `DESCRIPTION: "Required minimum rx interval"`
+        RequiredMinEchoRxInterval string `DESCRIPTION: "Required minimum echo rx interval"`
+        DemandEnabled             bool   `DESCRIPTION: "Demand mode enabled"`
+        AuthenticationEnabled     bool   `DESCRIPTION: "Authentication enabled"`
+        AuthenticationType        string `DESCRIPTION: "Authentication type"`
+        AuthenticationKeyId       int32  `DESCRIPTION: "Authentication key id"`
+        AuthenticationData        string `DESCRIPTION: "Authentication password"`
 
 
 Work In Progress
