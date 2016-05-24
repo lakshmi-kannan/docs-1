@@ -1,5 +1,6 @@
 Welcome to FlexSwitch ARPd's documentation!
-==============================================
+===================================================
+
 .. image:: images/ARP.png
 
 ARP Daemon Architecture
