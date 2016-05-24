@@ -25,7 +25,7 @@ As part of initialization of DHCP daemon following functionalities are performed
 
         - Connect to Asicd server
         - Subscribe to Asicd publisher
-        - Start ARP server 
+        - Start DHCP server 
 
 Dhcp daemon connects to Asicd (thrift) server for building internal infrasturcture for future operations. These infrastructure data is stored in maps indexed by IfIndex.
 
