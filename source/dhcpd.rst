@@ -1,12 +1,15 @@
 Welcome to FlexSwitch DHCPd's documentation!
 ===================================================
 
+.. image:: images/under_construction.gif
+   :align: center
+
 Note: DHCP Daemon implementation is currently in progress.
 
 .. image:: images/DHCP.png
 
 DHCP Daemon Architecture
-------------------
+------------------------
 
 Introduction
 ^^^^^^^^^^^^^
@@ -25,7 +28,7 @@ As part of initialization of DHCP daemon following functionalities are performed
 
         - Connect to Asicd server
         - Subscribe to Asicd publisher
-        - Start ARP server 
+        - Start DHCP server 
 
 Dhcp daemon connects to Asicd (thrift) server for building internal infrasturcture for future operations. These infrastructure data is stored in maps indexed by IfIndex.
 
