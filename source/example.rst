@@ -3561,6 +3561,7 @@ Enabled on BGP neighbor creation:
 .. Note:: This above example, is just a subset of the BGP Neighbor commands.  See :ref:`bgp-neighbor-python`
 
 **OPTIONS**
+
 +----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | Python Method        | Variables               | Type       |  Description                                                                            | Required |  Default | 
 +======================+=========================+============+=========================================================================================+==========+==========+
@@ -3947,6 +3948,9 @@ DHCP relay agent is a mechanism that acts as a proxy service for a DHCP server o
 that is off subnet. In order to get around this limitation DHCP relay, will ingest a DHCP DISCOVER broadcast frames and unicast forward them
 to a specified DHCP servers and relay the reply to the host attempting IP address assignment. 
 
+DHCP Relay Operation
+^^^^^^^^^^^^^^^^^^^^
+
 Below are the FlexSwitch DHCP Relay agent states for this transaction:
 
 	- Receive DISCOVER Packet
@@ -3964,6 +3968,9 @@ Enabling DHCP relay
 Configuring with Rest API 
 """""""""""""""""""""""""
 
+Enable Globally
+***************
+
 **COMMAND**
 ::
 	
@@ -3980,9 +3987,14 @@ Configuring with Rest API
 | Enable               | bool       | Dhcp Relay enabled/disabled globally        |    Yes   |   None   |
 +----------------------+------------+---------------------------------------------+----------+----------+
 
+Enable On Interface
+********************
+
 **COMMAND**
 ::
 	curl -H "Content-Type: application/json" -d '{"IfIndex": 33554442 , "Enable": true , "ServerIp": ["90.0.1.2", "80.0.1.2"] }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayIntf
+
+**OPTIONS**
 
 +----------------------+------------+---------------------------------------------+----------+----------+
 | Variables            | Type       |  Description                                | Required |  Default |
@@ -3994,8 +4006,16 @@ Configuring with Rest API
 | ServerIp             | list       | list of server ip which relay agent will use|    Yes   |   None   |
 +----------------------+------------+---------------------------------------------+----------+----------+
 
+
+**EXAMPLE**
+
+
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""
+
+Enable Globally
+***************
+
 **COMMAND**
 ::
 
@@ -4010,6 +4030,9 @@ Configuring with Python SDK
 |                       +----------------------+------------+---------------------------------------------+----------+----------+
 |                       | Enable               | bool       | Dhcp Relay enabled/disabled globally        |    Yes   |   None   |
 +-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+Enable On Interface
+********************
 
 **COMMAND**
 ::
@@ -4123,7 +4146,7 @@ Configuring OSPF
 
 
 OspfAreaEntry
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 It will configure OSPF area specific params.
 If ospfArea Entry is not added by default area 0.0.0.0 is created.
@@ -4136,7 +4159,7 @@ If ospfArea Entry is not added by default area 0.0.0.0 is created.
     curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":0, "AreaNssaTranslatorStabilityInterval":40}' http://localhost:8080/public/v1/config/OspfAreaEntry
 
 OspfIfEntry
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 IfEntry configures OSPF interface.
 
@@ -4155,7 +4178,7 @@ The default IfRtrDeadInterval is 40 s whereas HelloInterval is 10s.
    curl -H "Content-Type: application/json" -d '{"IfIpAddress": "40.1.1.1", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":1, "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfMulticastForwarding":1, "IfDemand":false, "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
 
 OspfGlobal
-^^^^^^^^^^^^^^
+^^^^^^^^^^
 This object will enable the global ospf feature. Unless ospf global is enabled  ,OspfAreaEntry wont take effect.
 
 **RouterId** = OSPF router id.
@@ -4174,7 +4197,7 @@ This object will enable the global ospf feature. Unless ospf global is enabled  
 
 
 Show commands 
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 - Check Ospf Neighbors
 
@@ -4416,6 +4439,9 @@ Static Routes
 Configuring with Rest API 
 """""""""""""""""""""""""
 
+Configuring Single Hop Route
+****************************
+
 **COMMAND:**
 ::
 	
@@ -4482,8 +4508,8 @@ Configuring with Rest API
     }
 
 	
-Configuring Static ECMP Route
-*****************************
+Configuring ECMP Routes
+************************
 
 **COMMAND:**
 ::
@@ -4602,6 +4628,17 @@ Configuring with Rest API
 	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"VlanId":<*Vlan-ID*>,"IntfList":<*Tagged Interfaces*>,"UntagIntfList":<*Untagged Interfaces*>}' 'http://your-switchip:8080/public/v1/config/Vlan'
 
 **OPTIONS**
+
++--------------+-------------+--------------------------------------------+----------+----------+
+| Variables    | Type        |  Description                               | Required |  Default |   
++==============+=============+============================================+==========+==========+ 
+| VlanId       | integer     | Vlan ID to be configured                   |   Yes    |    N/A   |          
++--------------+-------------+--------------------------------------------+----------+----------+
+| Intflist     | string      | comma separated list of tagged interfaces  |    No    |   None   |
++--------------+-------------+--------------------------------------------+----------+----------+
+| UntagIntfList| string      | comma separated list of unyagged interfaces|    No    |   None   |
++--------------+-------------+--------------------------------------------+----------+----------+ 
+
 
 **EXAMPLE**
 
