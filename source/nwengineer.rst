@@ -23,10 +23,7 @@ As we all as examples of initial configurations made on the device’s utilizing
 
 For more detail configuration examples can be viewed here:
 
-.. toctree::
-   :maxdepth: 1
-
-    Configuration Examples <example>
+    `Configuration Examples <example.html>`_
 
 
 Supporting Documentation
