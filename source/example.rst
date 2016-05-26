@@ -3561,6 +3561,7 @@ Enabled on BGP neighbor creation:
 .. Note:: This above example, is just a subset of the BGP Neighbor commands.  See :ref:`bgp-neighbor-python`
 
 **OPTIONS**
+
 +----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | Python Method        | Variables               | Type       |  Description                                                                            | Required |  Default | 
 +======================+=========================+============+=========================================================================================+==========+==========+
@@ -3947,6 +3948,9 @@ DHCP relay agent is a mechanism that acts as a proxy service for a DHCP server o
 that is off subnet. In order to get around this limitation DHCP relay, will ingest a DHCP DISCOVER broadcast frames and unicast forward them
 to a specified DHCP servers and relay the reply to the host attempting IP address assignment. 
 
+DHCP Relay Operation
+^^^^^^^^^^^^^^^^^^^^
+
 Below are the FlexSwitch DHCP Relay agent states for this transaction:
 
 	- Receive DISCOVER Packet
@@ -3964,27 +3968,153 @@ Enabling DHCP relay
 Configuring with Rest API 
 """""""""""""""""""""""""
 
+Enable Globally
+***************
+
 **COMMAND**
 ::
 	
 	curl -H "Content-Type: application/json" -d '{"DhcpRelay": "dr", "Enable": true }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayGlobal
 
+
+**OPTIONS**
+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |
++======================+============+=============================================+==========+==========+
+| DhcpRelay            | string     | Key used to enable dhcp relay on a switch   |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| Enable               | bool       | Dhcp Relay enabled/disabled globally        |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
+
+Enable On Interface
+********************
+
+**COMMAND**
+::
 	curl -H "Content-Type: application/json" -d '{"IfIndex": 33554442 , "Enable": true , "ServerIp": ["90.0.1.2", "80.0.1.2"] }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayIntf
 
 **OPTIONS**
+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |
++======================+============+=============================================+==========+==========+
+| IfIndex              | integer    | Key used to enable dhcp relay on a intf     |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| Enable               | bool       | Dhcp Relay enabled/disabled on interface    |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| ServerIp             | list       | list of server ip which relay agent will use|    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
+
 
 **EXAMPLE**
 
 
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""
+
+Enable Globally
+***************
+
+**COMMAND**
+::
+
+>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createDhcpRelayGlobal(DhcpRelay, Enable)
+
+**OPTIONS**
+
++-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method         | Variables            | Type       |  Description                                | Required |  Default |
++=======================+======================+============+=============================================+==========+==========+
+| createDhcpRelayGlobal | DhcpRelay            | string     | Key used to enable dhcp relay on a switch   |    Yes   |   None   |
+|                       +----------------------+------------+---------------------------------------------+----------+----------+
+|                       | Enable               | bool       | Dhcp Relay enabled/disabled globally        |    Yes   |   None   |
++-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+Enable On Interface
+********************
+
+**COMMAND**
+::
+
+>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createDhcpRelayIntf(IfIndex, Enable, ServerIp):
+
+**OPTIONS**
+
++-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+|    Python Method      | Variables            | Type       |  Description                                | Required |  Default |
++-----------------------+======================+============+=============================================+==========+==========+
+|  createDhcpRelayIntf  | IfIndex              | integer    | Interface where dhcp relay needs config     |    Yes   |   None   |
+|                       +----------------------+------------+---------------------------------------------+----------+----------+
+|                       | Enable               | bool       | Dhcp Relay enabled/disabled on interface    |    Yes   |   None   |
+|                       +----------------------+------------+---------------------------------------------+----------+----------+
+|                       | ServerIp             | list       | list of server ip which relay agent will use|    Yes   |   None   |
++-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+>>> from flexswitchV2 import FlexSwitch
+>>> FlexSwitch ("192.168.10.1", 8080).createDhcpRelayGlobal(DhcpRelay="dr", Enable=true)
+>>> FlexSwitch ("192.168.10.1", 8080).createDhcpRelayIntf(IfIndex=355413, Enable=true, ServerIP=['90.0.1.2', '80.0.1.2'])
 
 Configuring LLDP
 -----------------
+Link Layer Discovery Protocol is a mechanism used by network devices for advertising their identity, capabilities and neighbors on a LAN. LLDP Information is send from each of the interfaces at fixed interval, in the form of Ethernet Frame. Each Frame contains below Information
+    - Mandatory TLV's
+    - Optional TLV's
+
+Mandatory TLV's include:
+    - Chassis ID
+    - Port ID
+    - TTL
+Optional TLV's include:
+    - Management Address
+    - System Description
+    - System Hostname
+    - System Version
+    - Capabilites
+
 Configuring with Rest API 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    LLDP by default according to IEEE documentation is enabled on all Interfaces which are in Admin UP state. However, lldp per port can be enabled/disabled using following command:
+ 
+**COMMAND:**
+::
+    curl -H "Content-Type: application/json" -d '{"IfIndex":46, "Enable": false }' -X POST http://<*your switch_ip*>:8080/public/v1/config/LLDPIntf
+    curl -X PATCH -H "Content-Type: application/json" -d '{"IfIndex":46, "Enable": true }'  http://<*your switch_ip*>/public/v1/config/LLDPIntf/<*uuid*>
+
+**OPTIONS:**
+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |
++======================+============+=============================================+==========+==========+
+| IfIndex              | integer    | Interface where LLDP needs to be changed    |    Yes   |   None   |
+|----------------------+------------+---------------------------------------------+----------+----------+
+| Enable               | bool       | LLDP enabled/disabled                       |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
+
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**COMMAND**
+::
+
+>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createLLDPIntf(IfIndex, Enable):
+
+**OPTIONS:**
+
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method        | Variables            | Type       |  Description                                | Required |  Default |
++======================+======================+============+=============================================+==========+==========+
+| createLLDPIntf       | IfIndex              | integer    | Interface where LLDP needs to be changed    |    Yes   |   None   |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | Enable               | bool       | LLDP enabled/disabled                       |    Yes   |   None   |
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE:**
+
+>>> from flexswitchV2 import FlexSwitch
+>>> FlexSwitch ("192.168.10.1", 8080).createLLDPIntf(IfIndex=355414, Enable=false):
 
 
 Configuring LoopBacks
@@ -4014,18 +4144,103 @@ Configuring with Python SDK
 Configuring OSPF
 ------------------
 
-Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Configuring IP Addresses
---------------------------
+OspfAreaEntry
+^^^^^^^^^^^^^
 
-Configuring with Rest API 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+It will configure OSPF area specific params.
+If ospfArea Entry is not added by default area 0.0.0.0 is created.
+
+**AreaId** = Unique area id . Used as key.
+
+::
+
+
+    curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":0, "AreaNssaTranslatorStabilityInterval":40}' http://localhost:8080/public/v1/config/OspfAreaEntry
+
+OspfIfEntry
+^^^^^^^^^^^
+
+IfEntry configures OSPF interface.
+
+**IfIpAddress** = Ip address of the interface
+
+
+**AddressLessIf** = Ip index . Used to configure unnumbered P2P links.
+
+
+The default IfRtrDeadInterval is 40 s whereas HelloInterval is 10s.
+
+::
+
+
+    configure Ospf Interface with ip address 40.1.1.1 and area id 0.0.0.2
+   curl -H "Content-Type: application/json" -d '{"IfIpAddress": "40.1.1.1", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":1, "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfMulticastForwarding":1, "IfDemand":false, "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
+
+OspfGlobal
+^^^^^^^^^^
+This object will enable the global ospf feature. Unless ospf global is enabled  ,OspfAreaEntry wont take effect.
+
+**RouterId** = OSPF router id.
+
+**ASBdrRtrStatus** = set to true if router acts as ASBR.
+
+**TOSSupport** = OSPF TOS support. (Currently not supported.)
+
+**RestartSupport** = If the process restart is supported.
+
+::
+
+
+    curl -H "Content-Type: application/json" -d '{"RouterId": "10.1.1.2", "AdminStat":1, "ASBdrRtrStatus":true, "TOSSupport":true, "ExtLsdbLimit":100, "MulticastExtensions":2, "ExitOverflowInterval":1000, "DemandExtensions":true, "RFC1583Compatibility":false, "ReferenceBandwidth":1000, "RestartSupport":1, "RestartInterval":10, "RestartStrictLsaChecking":true, "StubRouterAdvertisement":1}' http://localhost:8080/public/v1/config/OspfGlobal
+
+
+
+Show commands 
+^^^^^^^^^^^^^
+
+- Check Ospf Neighbors
+
+::
+
+
+    curl -H "Accept: application/json" "http://localhost:8080/public/v1/state/OspfNbrEntrys?CurrentMarker=0&NextMarker=0&Count=10" | python -m json.tool
+
+    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+    100   367  100   367    0     0  58272      0 --:--:-- --:--:-- --:--:-- 61166
+   {
+    "CurrentMarker": 0,
+    "MoreExist": false,
+    "NextMarker": 0,
+    "ObjCount": 1,
+    "Objects": [
+        {
+            "Object": {
+                "NbmaNbrPermanence": 0,
+                "NbrAddressLessIndex": 0,
+                "NbrEvents": 4,
+                "NbrHelloSuppressed": false,
+                "NbrIpAddr": "51.1.1.6",
+                "NbrLsRetransQLen": 0,
+                "NbrOptions": 0,
+                "NbrRestartHelperAge": 0,
+                "NbrRestartHelperExitReason": 0,
+                "NbrRestartHelperStatus": 0,
+                "NbrRtrId": "10.1.1.3",
+                "NbrState": 7
+            },
+            "ObjectId": ""
+        }
+    ]
+ }
+
+- check LSA database
+
+::
+
+    curl -H "Accept: application/json" "http://localhost:8080/public/v1/state/OspfLsdbEntrys" | python -m json.tool
+
 
 Configuring Routing Policies
 ----------------------------
@@ -4224,6 +4439,9 @@ Static Routes
 Configuring with Rest API 
 """""""""""""""""""""""""
 
+Configuring Single Hop Route
+****************************
+
 **COMMAND:**
 ::
 	
@@ -4290,8 +4508,8 @@ Configuring with Rest API
     }
 
 	
-Configuring Static ECMP Route
-*****************************
+Configuring ECMP Routes
+************************
 
 **COMMAND:**
 ::
@@ -4410,6 +4628,17 @@ Configuring with Rest API
 	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"VlanId":<*Vlan-ID*>,"IntfList":<*Tagged Interfaces*>,"UntagIntfList":<*Untagged Interfaces*>}' 'http://your-switchip:8080/public/v1/config/Vlan'
 
 **OPTIONS**
+
++--------------+-------------+--------------------------------------------+----------+----------+
+| Variables    | Type        |  Description                               | Required |  Default |   
++==============+=============+============================================+==========+==========+ 
+| VlanId       | integer     | Vlan ID to be configured                   |   Yes    |    N/A   |          
++--------------+-------------+--------------------------------------------+----------+----------+
+| Intflist     | string      | comma separated list of tagged interfaces  |    No    |   None   |
++--------------+-------------+--------------------------------------------+----------+----------+
+| UntagIntfList| string      | comma separated list of unyagged interfaces|    No    |   None   |
++--------------+-------------+--------------------------------------------+----------+----------+ 
+
 
 **EXAMPLE**
 
