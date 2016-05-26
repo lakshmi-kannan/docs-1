@@ -17,7 +17,7 @@ Please follow the following instruction:
         - sudo apt-get update
         - sudo apt-get install build-essential fabric git
 
-- Clone Reltools from `OpenSnapRouter <http://www.github.com/Opensnaproute>`_
+- Clone Reltools from `OpenSnapRoute GitHub Repository <http://www.github.com/Opensnaproute>`_
 
         - Change directory to home directory
                 - cd /home/snaproute
