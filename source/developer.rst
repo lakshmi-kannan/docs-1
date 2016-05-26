@@ -11,6 +11,16 @@ How to contribute
 ^^^^^^^^^^^^^^^^^
 FlexSwitch is built with the following design principles
 
+Setting Up Development Environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SnapRoute provides a pre-configured Virtual Box image which can be used to setup Flexswitch development.
+Find more information in below link:
+
+.. toctree::
+   :maxdepth: 1
+
+   Setting Up Development Environment on Virtual Box  <vmDevEnv>
+
 
 Building FlexSwitch From Sources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
