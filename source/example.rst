@@ -4431,8 +4431,6 @@ Configuring Policy Definition with Rest API
 Configuring Routing 
 -------------------
 
-Admin Distance
-^^^^^^^^^^^^^^^
 Static Routes
 ^^^^^^^^^^^^^
 
@@ -4602,17 +4600,19 @@ Configuring ECMP Routes
 Configuring with Python SDK
 """"""""""""""""""""""""""""
 
-Configuring STP
-----------------
+.. 
 
-RSTP
-^^^^^
-RSTP-PVST+
-^^^^^^^^^^
-Configuring with Rest API 
-""""""""""""""""""""""""""""
-Configuring with Python SDK
-""""""""""""""""""""""""""""
+  Configuring STP
+  ----------------
+
+  RSTP
+  ^^^^^
+  RSTP-PVST+
+  ^^^^^^^^^^
+  Configuring with Rest API 
+  """"""""""""""""""""""""""""
+  Configuring with Python SDK
+  """"""""""""""""""""""""""""
 
 Configuring VLANS
 -------------------
