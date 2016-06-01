@@ -1,0 +1,392 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OSPF &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/>
+        <link rel="next" title="ECMP" href="ecmpDocker.html"/>
+        <link rel="prev" title="BGP with 2 nodes" href="bgpDocker.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ping.html"> Ping test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"> OSPF with 2 nodes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-ospf-containers">Create OSPF containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-ospf1-docker">Configure ospf1 docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ospfareaentry">OspfAreaEntry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ospfifentry">OspfIfEntry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ospfglobal">OspfGlobal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-ospf2-docker">Configure ospf2 docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#show-commands">Show commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html"> Hardware Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="quickstart.html">QuickStart Guide</a> &raquo;</li>
+      
+          <li><a href="dockerIntro.html">Getting started with flexswitch on Docker</a> &raquo;</li>
+      
+    <li>OSPF</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ospfDocker.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ospf">
+<h1>OSPF<a class="headerlink" href="#ospf" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial creates 2 docker containers with flexswitch - ospf1 and ospf2</p>
+<div class="section" id="create-ospf-containers">
+<h2>Create OSPF containers<a class="headerlink" href="#create-ospf-containers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Start 2 docker instances named ospf1 and ospf2</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">dt</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">syslog</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span>  <span class="o">--</span><span class="n">name</span> <span class="n">ospf1</span> <span class="o">--</span><span class="n">ip</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.2</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">clos</span><span class="o">-</span><span class="n">oob</span><span class="o">-</span><span class="n">network</span>  <span class="o">-</span><span class="n">P</span> <span class="n">libero18</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">14.04</span><span class="p">:</span><span class="n">Flexv43</span>
+ <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">dt</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">syslog</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span> <span class="o">--</span><span class="n">name</span> <span class="n">ospf2</span>  <span class="o">--</span><span class="n">ip</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.4</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">clos</span><span class="o">-</span><span class="n">oob</span><span class="o">-</span><span class="n">network</span>  <span class="o">-</span><span class="n">P</span> <span class="n">libero18</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">14.04</span><span class="p">:</span><span class="n">Flexv43</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Create interface eth10 on ospf1 and eth20 on ospf2</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>sudo ip link add eth10 type veth peer name eth20
+
+sudo ip link set eth10 netns $ospf1_pid
+sudo ip netns exec $ospf1_pid ip link set eth10 up
+
+sudo ip link set eth20 netns $ospf2_pid
+sudo ip netns exec $ospf2_pid ip link set eth20 up
+</pre></div>
+</div>
+<ul class="simple">
+<li>Enter bash shell of ospf2</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">ospf1</span> <span class="n">bash</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-ospf1-docker">
+<h2>Configure ospf1 docker<a class="headerlink" href="#configure-ospf1-docker" title="Permalink to this headline">¶</a></h2>
+<p>-Below commands start flexswitch , create SVI and create IPv4 Interface. ( These commands are similar to SVI creation and ping test)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>   <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="n">start</span>
+
+<span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PATCH</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;PortNum&quot;: 2, &quot;AdminState&quot;:&quot;UP&quot;, &quot;Speed&quot;:1000, &quot;Autoneg&quot;:&quot;OFF&quot;}&#39;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">Port</span>
+<span class="p">(</span><span class="n">Above</span> <span class="n">command</span> <span class="n">sets</span> <span class="n">the</span> <span class="n">port</span> <span class="n">speed</span> <span class="k">with</span> <span class="n">auto</span> <span class="n">negotiation</span> <span class="k">for</span> <span class="n">the</span> <span class="n">speed</span> <span class="n">OFF</span><span class="p">)</span>
+
+<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.1/24&quot;, &quot;IntfRef&quot;: &quot;eth10&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Below steps carry out OSPF specific configurations</li>
+</ul>
+</div>
+<div class="section" id="ospfareaentry">
+<h2>OspfAreaEntry<a class="headerlink" href="#ospfareaentry" title="Permalink to this headline">¶</a></h2>
+<p>It will configure OSPF area specific params.
+If ospfArea Entry is not added by default area 0.0.0.0 is created.</p>
+<p><strong>AreaId</strong> = Unique area id . Used as key.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;AreaId&quot;: &quot;0.0.0.2&quot;, &quot;AuthType&quot;:0, &quot;ImportAsExtern&quot;:1, &quot;AreaSummary&quot;:1, &quot;AreaNssaTranslatorRole&quot;:2, &quot;AreaNssaTranslatorStabilityInterval&quot;:40}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfAreaEntry</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ospfifentry">
+<h2>OspfIfEntry<a class="headerlink" href="#ospfifentry" title="Permalink to this headline">¶</a></h2>
+<p>IfEntry configures OSPF interface.</p>
+<p><strong>IfIpAddress</strong> = Ip address of the interface</p>
+<p><strong>AddressLessIf</strong> = Ip index . Used to configure unnumbered P2P links.</p>
+<p>The default IfRtrDeadInterval is 40 s whereas HelloInterval is 10s.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">configure</span> <span class="n">Ospf</span> <span class="n">Interface</span> <span class="k">with</span> <span class="n">ip</span> <span class="n">address</span> <span class="mf">40.1</span><span class="o">.</span><span class="mf">1.1</span> <span class="ow">and</span> <span class="n">area</span> <span class="nb">id</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.2</span>
+
+<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IfIpAddress&quot;: &quot;40.1.1.1&quot;, &quot;AddressLessIf&quot;:0, &quot;IfAreaId&quot;:&quot;0.0.0.2&quot;, &quot;IfType&quot;:1, &quot;IfAdminStat&quot;:1, &quot;IfRtrPriority&quot;:1, &quot;IfTransitDelay&quot;:1, &quot;IfRetransInterval&quot;:5, &quot;IfHelloInterval&quot;:10, &quot;IfRtrDeadInterval&quot;:40, &quot;IfPollInterval&quot;:120, &quot;IfAuthKey&quot;:&quot;0.0.0.0.0.0.0.0&quot;, &quot;IfMulticastForwarding&quot;:1, &quot;IfDemand&quot;:false, &quot;IfAuthType&quot;:0}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfIfEntry</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ospfglobal">
+<h2>OspfGlobal<a class="headerlink" href="#ospfglobal" title="Permalink to this headline">¶</a></h2>
+<p>This object will enable the global ospf feature. Unless ospf global is enabled  ,OspfAreaEntry wont take effect.</p>
+<p><strong>RouterId</strong> = OSPF router id.</p>
+<p><strong>ASBdrRtrStatus</strong> = set to true if router acts as ASBR.</p>
+<p><strong>TOSSupport</strong> = OSPF TOS support. (Currently not supported.)</p>
+<p><strong>RestartSupport</strong> = If the process restart is supported.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;RouterId&quot;: &quot;10.1.1.2&quot;, &quot;AdminStat&quot;:1, &quot;ASBdrRtrStatus&quot;:true, &quot;TOSSupport&quot;:true, &quot;ExtLsdbLimit&quot;:100, &quot;MulticastExtensions&quot;:2, &quot;ExitOverflowInterval&quot;:1000, &quot;DemandExtensions&quot;:true, &quot;RFC1583Compatibility&quot;:false, &quot;ReferenceBandwidth&quot;:1000, &quot;RestartSupport&quot;:1, &quot;RestartInterval&quot;:10, &quot;RestartStrictLsaChecking&quot;:true, &quot;StubRouterAdvertisement&quot;:1}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfGlobal</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-ospf2-docker">
+<h2>Configure ospf2 docker<a class="headerlink" href="#configure-ospf2-docker" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>enter bash shell for docker</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">ospf1</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Start flex package</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="n">start</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Create Ipv4 interface and assign port speed</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PATCH</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;PortNum&quot;: 2, &quot;AdminState&quot;:&quot;UP&quot;, &quot;Speed&quot;:1000, &quot;Autoneg&quot;:&quot;OFF&quot;}&#39;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">Port</span>
+
+<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.2/24&quot;, &quot;IntfRef&quot;: &quot;eth20&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Configure OSPF</li>
+</ul>
+<p><strong>Ospf Area config</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;AreaId&quot;: &quot;0.0.0.2&quot;, &quot;AuthType&quot;:0, &quot;ImportAsExtern&quot;:1, &quot;AreaSummary&quot;:1, &quot;AreaNssaTranslatorRole&quot;:2, &quot;AreaNssaTranslatorStabilityInterval&quot;:40}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfAreaEntry</span>
+</pre></div>
+</div>
+<p><strong>Ospf Interface config</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IfIpAddress&quot;: &quot;40.1.1.2&quot;, &quot;AddressLessIf&quot;:0, &quot;IfAreaId&quot;:&quot;0.0.0.2&quot;, &quot;IfType&quot;:1, &quot;IfAdminStat&quot;:1, &quot;IfRtrPriority&quot;:1, &quot;IfTransitDelay&quot;:1, &quot;IfRetransInterval&quot;:5, &quot;IfHelloInterval&quot;:10, &quot;IfRtrDeadInterval&quot;:40, &quot;IfPollInterval&quot;:120, &quot;IfAuthKey&quot;:&quot;0.0.0.0.0.0.0.0&quot;, &quot;IfMulticastForwarding&quot;:1, &quot;IfDemand&quot;:false, &quot;IfAuthType&quot;:0}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfIfEntry</span>
+</pre></div>
+</div>
+<p><strong>Enable global OSPF parameters</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;RouterId&quot;: &quot;10.1.1.3&quot;, &quot;AdminStat&quot;:1, &quot;ASBdrRtrStatus&quot;:true, &quot;TOSSupport&quot;:true, &quot;ExtLsdbLimit&quot;:100, &quot;MulticastExtensions&quot;:2, &quot;ExitOverflowInterval&quot;:1000, &quot;DemandExtensions&quot;:true, &quot;RFC1583Compatibility&quot;:false, &quot;ReferenceBandwidth&quot;:1000, &quot;RestartSupport&quot;:1, &quot;RestartInterval&quot;:10, &quot;RestartStrictLsaChecking&quot;:true, &quot;StubRouterAdvertisement&quot;:1}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfGlobal</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-commands">
+<h2>Show commands<a class="headerlink" href="#show-commands" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Check Ospf Neighbors</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>   <span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Accept: application/json&quot;</span> <span class="s2">&quot;http://localhost:8080/public/v1/state/OspfNbrEntrys?CurrentMarker=0&amp;NextMarker=0&amp;Count=10&quot;</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
+
+   <span class="o">%</span> <span class="n">Total</span>    <span class="o">%</span> <span class="n">Received</span> <span class="o">%</span> <span class="n">Xferd</span>  <span class="n">Average</span> <span class="n">Speed</span>   <span class="n">Time</span>    <span class="n">Time</span>     <span class="n">Time</span>  <span class="n">Current</span>
+                                <span class="n">Dload</span>  <span class="n">Upload</span>   <span class="n">Total</span>   <span class="n">Spent</span>    <span class="n">Left</span>  <span class="n">Speed</span>
+   <span class="mi">100</span>   <span class="mi">367</span>  <span class="mi">100</span>   <span class="mi">367</span>    <span class="mi">0</span>     <span class="mi">0</span>  <span class="mi">58272</span>      <span class="mi">0</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span> <span class="mi">61166</span>
+  <span class="p">{</span>
+   <span class="s2">&quot;CurrentMarker&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="s2">&quot;MoreExist&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+   <span class="s2">&quot;NextMarker&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+   <span class="s2">&quot;ObjCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="s2">&quot;Objects&quot;</span><span class="p">:</span> <span class="p">[</span>
+       <span class="p">{</span>
+           <span class="s2">&quot;Object&quot;</span><span class="p">:</span> <span class="p">{</span>
+               <span class="s2">&quot;NbmaNbrPermanence&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="s2">&quot;NbrAddressLessIndex&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="s2">&quot;NbrEvents&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+               <span class="s2">&quot;NbrHelloSuppressed&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+               <span class="s2">&quot;NbrIpAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;51.1.1.6&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;NbrLsRetransQLen&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="s2">&quot;NbrOptions&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="s2">&quot;NbrRestartHelperAge&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="s2">&quot;NbrRestartHelperExitReason&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="s2">&quot;NbrRestartHelperStatus&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+               <span class="s2">&quot;NbrRtrId&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.1.3&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;NbrState&quot;</span><span class="p">:</span> <span class="mi">7</span>
+           <span class="p">},</span>
+           <span class="s2">&quot;ObjectId&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+       <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>check LSA database</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Accept: application/json&quot;</span> <span class="s2">&quot;http://localhost:8080/public/v1/state/OspfLsdbEntrys&quot;</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ecmpDocker.html" class="btn btn-neutral float-right" title="ECMP" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bgpDocker.html" class="btn btn-neutral" title="BGP with 2 nodes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
