@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Ping Test &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/>
+        <link rel="next" title="BGP with 2 nodes" href="bgpDocker.html"/>
+        <link rel="prev" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"> Ping test</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-containers">Create containers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ospfDocker.html"> OSPF with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html"> Hardware Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="quickstart.html">QuickStart Guide</a> &raquo;</li>
+      
+          <li><a href="dockerIntro.html">Getting started with flexswitch on Docker</a> &raquo;</li>
+      
+    <li>Ping Test</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ping.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ping-test">
+<h1>Ping Test<a class="headerlink" href="#ping-test" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For this tutorial we assume that  you have docker image installed on you machine.</p>
+</div>
+<p>With this tutorial we are going to spawn 2 docker containers.
+And begin with pinging from interface on 1 docker to the other.</p>
+<div class="section" id="create-containers">
+<h2>Create containers<a class="headerlink" href="#create-containers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Start the docker with flexswitch image on it with below command</li>
+</ul>
+<p>Make sure to start the container in privileged mode and syslog options enabled.
+We have created docker containers with network option &#8220;clos-oob-network&#8221; .</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">dt</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">syslog</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span>  <span class="o">--</span><span class="n">name</span> <span class="n">docker_ping1</span> <span class="o">--</span><span class="n">ip</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.2</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">clos</span><span class="o">-</span><span class="n">oob</span><span class="o">-</span><span class="n">network</span>  <span class="o">-</span><span class="n">P</span> <span class="n">libero18</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">14.04</span><span class="p">:</span><span class="n">Flexv43</span>
+<span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">dt</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">syslog</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span> <span class="o">--</span><span class="n">name</span> <span class="n">docker_ping2</span>  <span class="o">--</span><span class="n">ip</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.4</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">clos</span><span class="o">-</span><span class="n">oob</span><span class="o">-</span><span class="n">network</span>  <span class="o">-</span><span class="n">P</span> <span class="n">libero18</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">14.04</span><span class="p">:</span><span class="n">Flexv43</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Create point-to-point link between docker_ping1 and docker_ping2</li>
+</ul>
+<p>We create eth10 on docker_ping1 connected to eth20 on docker_ping2
+(Note - Get PIDs of docker containers running
+<cite>docker inspect -f &#8216;{{.State.Pid}}&#8217; docker_ping1</cite></p>
+<p><cite>docker inspect -f &#8216;{{.State.Pid}}&#8217; docker_ping2</cite>
+)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>These commands create eth10 and eth20 interfaces on docker_ping1 and docker_ping2
+respectiviely.
+sudo ip link add eth10 type veth peer name eth20
+
+sudo ip link set eth10 netns $&lt;pid_docker_ping1&gt;
+sudo ip netns exec $&lt;pid_docker_ping1&gt; ip link set eth10 up
+
+sudo ip link set eth20 netns $&lt;pid_docker_ping2&gt;
+sudo ip netns exec $&lt;pid_docker_ping2&gt; ip link set eth20 up
+</pre></div>
+</div>
+<div class="section" id="configure-docker-ping1">
+<h3>Configure docker_ping1<a class="headerlink" href="#configure-docker-ping1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Enter into the docker shell for docker_ping1</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">docker_ping1</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>All below commands are executed on the docker shell.</dt>
+<dd><p class="first last">Flexswitch needs syslog and redis-server running before we start to configure. When you run the docker container syslog and redis-server is started at the bootup time.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">Following script is used to start/stop/restart flexswitch instance.</p>
+</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="n">start</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Lets start configuring interface with IP .</li>
+</ul>
+<p>While configuring &#8220;IPv4Intf&#8221; , &#8220;IntfRef&#8221; can either be port-name or ifindex.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.1/24&quot;, &quot;IntfRef&quot;: &quot;eth10&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-docker-ping2">
+<h3>Configure docker_ping2<a class="headerlink" href="#configure-docker-ping2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Run docker_ping2 and start the flexswitch</li>
+</ul>
+<p>Following commands are same above  to spawn the container and create an interface</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="n">start</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.2/24&quot;, &quot;IntfRef&quot;: &quot;eth20&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>We are ready to ping from docker_ping1</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ping</span> <span class="mf">40.1</span><span class="o">.</span><span class="mf">1.2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="show-commands">
+<h3>Show Commands<a class="headerlink" href="#show-commands" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Check system health</li>
+</ul>
+<p>It shows details if each daemon is up/down along and reason of failure if any.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://192.168.0.2:8080/public/v1/state/SystemStatus&#39; | python -m json.tool
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                                                 Dload  Upload   Total   Spent    Left  Speed
+100  2940    0  2940    0     0   232k      0 --:--:-- --:--:-- --:--:--  239k
+{
+        &quot;Object&quot;: {
+                &quot;FlexDaemons&quot;: [
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 5 keepalives&quot;,
+                                &quot;Name&quot;: &quot;ribd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:11:01.781882664 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 8 keepalives&quot;,
+                                &quot;Name&quot;: &quot;bgpd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:51.859376317 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;arpd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:54.183839599 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;vxland&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:52.01611385 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;dhcpd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:52.307373655 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 5 keepalives&quot;,
+                                &quot;Name&quot;: &quot;stpd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:53.812226563 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;lldpd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:54.02940049 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;bfdd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:11:02.116927367 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;confd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:52.074420955 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 5 keepalives&quot;,
+                                &quot;Name&quot;: &quot;asicd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:51.773346755 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;dhcprelayd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:52.248453375 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;vrrpd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:54.899584199 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        },
+                        {
+                                &quot;Enable&quot;: true,
+                                &quot;KeepAlive&quot;: &quot;Received 4 keepalives&quot;,
+                                &quot;Name&quot;: &quot;lacpd&quot;,
+                                &quot;Reason&quot;: &quot;None&quot;,
+                                &quot;RestartCount&quot;: 0,
+                                &quot;RestartReason&quot;: &quot;&quot;,
+                                &quot;RestartTime&quot;: &quot;&quot;,
+                                &quot;StartTime&quot;: &quot;2016-05-20 23:10:52.300769509 +0000 UTC&quot;,
+                                &quot;State&quot;: &quot;up&quot;
+                        }
+                ],
+                &quot;Name&quot;: &quot;2cffc37ad362&quot;,
+                &quot;NumActionCalls&quot;: &quot;Total 0 Success 0&quot;,
+                &quot;NumCreateCalls&quot;: &quot;Total 5 Success 3&quot;,
+                &quot;NumDeleteCalls&quot;: &quot;Total 0 Success 0&quot;,
+                &quot;NumGetCalls&quot;: &quot;Total 4 Success 3&quot;,
+                &quot;NumUpdateCalls&quot;: &quot;Total 1 Success 1&quot;,
+                &quot;Ready&quot;: true,
+                &quot;Reason&quot;: &quot;None&quot;,
+                &quot;UpTime&quot;: &quot;21m28.74429995s&quot;
+        },
+        &quot;ObjectId&quot;: &quot;&quot;
+}
+</pre></div>
+</div>
+<ul class="simple">
+<li>check ports populated by flexswitch (This will give you ifindex as well)</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://192.168.0.2:8080/public/v1/state/Ports&#39; | python -m json.tool
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                                                 Dload  Upload   Total   Spent    Left  Speed
+100   869  100   869    0     0   104k      0 --:--:-- --:--:-- --:--:--  121k
+{
+        &quot;CurrentMarker&quot;: 0,
+        &quot;MoreExist&quot;: false,
+        &quot;NextMarker&quot;: 3,
+        &quot;ObjCount&quot;: 2,
+        &quot;Objects&quot;: [
+                {
+                        &quot;Object&quot;: {
+                                &quot;ErrDisableReason&quot;: &quot;&quot;,
+                                &quot;IfInDiscards&quot;: 2,
+                                &quot;IfInErrors&quot;: 0,
+                                &quot;IfInOctets&quot;: 16759,
+                                &quot;IfInUcastPkts&quot;: 88,
+                                &quot;IfInUnknownProtos&quot;: 0,
+                                &quot;IfIndex&quot;: 1,
+                                &quot;IfOutDiscards&quot;: 0,
+                                &quot;IfOutErrors&quot;: 0,
+                                &quot;IfOutOctets&quot;: 6522,
+                                &quot;IfOutUcastPkts&quot;: 72,
+                                &quot;LastDownEventTime&quot;: &quot;&quot;,
+                                &quot;LastUpEventTime&quot;: &quot;&quot;,
+                                &quot;Name&quot;: &quot;eth0&quot;,
+                                &quot;NumDownEvents&quot;: 0,
+                                &quot;NumUpEvents&quot;: 0,
+                                &quot;OperState&quot;: &quot;UP&quot;,
+                                &quot;PortNum&quot;: 1,
+                                &quot;Pvid&quot;: 4095
+                        },
+                        &quot;ObjectId&quot;: &quot;046c51d1-29aa-41a8-47b0-ae81a5f55320&quot;
+                },
+                {
+                        &quot;Object&quot;: {
+                                &quot;ErrDisableReason&quot;: &quot;&quot;,
+                                &quot;IfInDiscards&quot;: 0,
+                                &quot;IfInErrors&quot;: 0,
+                                &quot;IfInOctets&quot;: 12588,
+                                &quot;IfInUcastPkts&quot;: 177,
+                                &quot;IfInUnknownProtos&quot;: 0,
+                                &quot;IfIndex&quot;: 2,
+                                &quot;IfOutDiscards&quot;: 0,
+                                &quot;IfOutErrors&quot;: 0,
+                                &quot;IfOutOctets&quot;: 4434,
+                                &quot;IfOutUcastPkts&quot;: 72,
+                                &quot;LastDownEventTime&quot;: &quot;&quot;,
+                                &quot;LastUpEventTime&quot;: &quot;&quot;,
+                                &quot;Name&quot;: &quot;eth10&quot;,
+                                &quot;NumDownEvents&quot;: 0,
+                                &quot;NumUpEvents&quot;: 0,
+                                &quot;OperState&quot;: &quot;UP&quot;,
+                                &quot;PortNum&quot;: 2,
+                                &quot;Pvid&quot;: 3050
+                        },
+                        &quot;ObjectId&quot;: &quot;7638f876-0956-45f2-47b7-5e485af1a64a&quot;
+                }
+        ]
+}
+</pre></div>
+</div>
+<ul class="simple">
+<li>Arp Entries</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://192.168.0.2:8080/public/v1/state/ArpEntrys&#39; | python -m json.tool
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                                                 Dload  Upload   Total   Spent    Left  Speed
+100   227  100   227    0     0  18210      0 --:--:-- --:--:-- --:--:-- 18916
+{
+        &quot;CurrentMarker&quot;: 0,
+        &quot;MoreExist&quot;: false,
+        &quot;NextMarker&quot;: 0,
+        &quot;ObjCount&quot;: 1,
+        &quot;Objects&quot;: [
+                {
+                        &quot;Object&quot;: {
+                                &quot;ExpiryTimeLeft&quot;: &quot;9m43.684650453s&quot;,
+                                &quot;Intf&quot;: &quot;eth10&quot;,
+                                &quot;IpAddr&quot;: &quot;40.1.1.2&quot;,
+                                &quot;MacAddr&quot;: &quot;3a:f8:c0:3b:39:d0&quot;,
+                                &quot;Vlan&quot;: &quot;Internal Vlan&quot;
+                        },
+                        &quot;ObjectId&quot;: &quot;&quot;
+                }
+        ]
+}
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bgpDocker.html" class="btn btn-neutral float-right" title="BGP with 2 nodes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dockerIntro.html" class="btn btn-neutral" title="Getting started with flexswitch on Docker" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
