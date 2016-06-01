@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Utilizing Ansible with FlexSwitch &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Network Engineer Guide" href="nwengineer.html"/>
+        <link rel="next" title="Utilizing RESTful API with FlexSwitch" href="rest_config.html"/>
+        <link rel="prev" title="Utilizing Snap CLI" href="cli_config.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="flexswitch_install.html"> FlexSwitch Package Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_config.html"> Configuring FlexSwitch via CLI</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">     Configuring FlexSwitch via Ansible</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-via-json-file">Configuration via JSON File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible-integration">Ansible Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rest_config.html">     Configuring FlexSwitch via REST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nwengineer.html#supporting-documentation">Supporting Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="nwengineer.html">Network Engineer Guide</a> &raquo;</li>
+      
+    <li>Utilizing Ansible with FlexSwitch</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ansible_config.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="utilizing-ansible-with-flexswitch">
+<h1>Utilizing Ansible with FlexSwitch<a class="headerlink" href="#utilizing-ansible-with-flexswitch" title="Permalink to this headline">¶</a></h1>
+<p>Utilizing the JSON file method, it is possible to utilize automation tools like Ansible to manage FlexSwitch configurations.  First we will go through how to manipulate configuration utilizing a JSON configuration file manually, then
+we will demonstrate how this can be done utilizing Ansible.</p>
+<div class="section" id="configuration-via-json-file">
+<h2>Configuration via JSON File<a class="headerlink" href="#configuration-via-json-file" title="Permalink to this headline">¶</a></h2>
+<p>In addition to configuring FlexSwitch via API calls – it is also possible to supply a configuration file formatted in JSON.</p>
+<p>For, example this JSON file will configure these parameters from the previous examples:</p>
+<dl class="docutils">
+<dt>3 Vlans are created:</dt>
+<dd><ul class="first last simple">
+<li>Vlan 100, ports 1-10 with IP address 10.10.100.1/24</li>
+<li>Vlan 200, ports 11,12 with IP address 10.10.101.1/24</li>
+<li>Vlan 300, ports 13-15, and 17 with IP address 10.10.102.1/24</li>
+<li>Speed is set to 1G for port 1</li>
+</ul>
+</dd>
+</dl>
+<p>Example desiredConfig.json:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;Vlan&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;UntagIntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;1-10&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;VlanId&quot;</span><span class="p">:</span> <span class="mi">100</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;UntagIntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;11,12&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;VlanId&quot;</span><span class="p">:</span> <span class="mi">200</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;UntagIntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;13-15,17&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;VlanId&quot;</span><span class="p">:</span> <span class="mi">300</span>
+                <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;IPv4Intf&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;IntfRef&quot;</span><span class="p">:</span> <span class="s2">&quot;vlan100&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IpAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;10.10.100.1/24&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;IntfRef&quot;</span><span class="p">:</span> <span class="s2">&quot;vlan200&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IpAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;10.10.101.1/24&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;IntfRef&quot;</span><span class="p">:</span> <span class="s2">&quot;vlan300&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IpAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;10.10.102.1/24&quot;</span>
+                <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;Port&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                        <span class="s2">&quot;PortNum&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                        <span class="s2">&quot;Speed&quot;</span><span class="p">:</span> <span class="mi">1000</span>
+                <span class="p">}</span>
+        <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>This JSON file is declarative and not order-dependent – all configurations are ingested at once and executed in the order required.</p>
+<p>Configuration files are parsed and executed using the “monitor.py” python app:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>Add JSON configuration to desiredConfig.json (creating the file, if necessary):</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ vi /opt/flexswitch/desiredConfig.json
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Apply the configuration using monitor.py in the /opt/flexswitch/apps/cfgmon directory:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ cd /opt/flexswitch/apps/cfgmon
+
+$ python monitor.py --applyConfig=True
+
+Namespace(applyConfig=True, cfgDir=&#39;/opt/flexswitch/&#39;, ip=&#39;localhost&#39;, poll=None, port=&#39;8080&#39;, saveConfig=True)
+System Is ready
+Configuration is saved to /opt/flexswitch//runningConfig.json
+Updating object Port
+Creating Object Vlan
+Creating Object Vlan
+Creating Object Vlan
+Creating Object IPv4Intf
+Creating Object IPv4Intf
+Creating Object IPv4Intf
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<p>Now that the configuration is applied, the operational state can be verified:</p>
+<p><a class="reference external" href="http://10.1.10.43:8080/public/v1/state/IPv4Intfs">http://10.1.10.43:8080/public/v1/state/IPv4Intfs</a></p>
+<img alt="_images/python_IPv4Intfs_config.png" src="_images/python_IPv4Intfs_config.png" />
+</div>
+<div class="section" id="ansible-integration">
+<h2>Ansible Integration<a class="headerlink" href="#ansible-integration" title="Permalink to this headline">¶</a></h2>
+<p>Prerequisites:</p>
+<p>Prior to utilizing Ansible to manage FlexSwitch, a working Ansible environment needs to be built.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>Follow the Operating System appropriate instructions to install Ansible on the desired host:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>http://docs.ansible.com/ansible/intro_installation.html
+
+For the purposes of this guide, these steps were performed on an Ubuntu Server running 14.04:
+
+$ sudo apt-get install software-properties-common
+$ sudo apt-add-repository ppa:ansible/ansible
+$ sudo apt-get update
+$ sudo apt-get install ansible
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Generate an SSH key for Ansible to use for managing devices:</dt>
+<dd><dl class="first last docutils">
+<dt>::</dt>
+<dd><p class="first">$ ssh-keygen</p>
+<p class="last">For the purposes of this guide a passphrase is not used and the key is stored in the default location: /home/ansible/.ssh/id_rsa.pub.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>This generated SSH key needs to be added to the root user of the device, enabling SSH management by Ansible:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>On the device to be managed by Ansible:
+
+$ sudo mkdir -p /root/.ssh/
+$ sudo vi /root/.ssh/authorized_keys
+
+Add the contents of id_rsa.pub from the user on the device running Ansible to this authorized_keys file.  The id_rsa.pub contents should be one line and follow this format:
+
+ssh-rsa &lt;snip&gt; ansible@ansible-server.snaproute.com
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Add target host to /etc/ansible/hosts:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ sudo vi /etc/ansible/hosts
+
+Add hosts as either IP or resolvable hostname, one on each line.  The /etc/ansible/hosts inventory file can be simply a list of hosts or it can be more complex and define groups – as outlined in the example.
+
+For this example, here is the contents of the Ansible inventory file:
+
+$ cat /etc/ansible/hosts
+10.1.10.43
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>The ssh key can be tested by issuing a “ping” from Ansible:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ ansible -u root -m ping all
+
+10.1.10.43 | SUCCESS =&gt; {
+        &quot;changed&quot;: false,
+        &quot;ping&quot;: &quot;pong&quot;
+}
+
+The above shows a successful ping response using the remote user of root, as that is the user that houses the SSH key on the target system.
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<p><strong>Managing FlexSwitch:</strong></p>
+<p>Now that Ansible is installed and working with the device – it is possible to manage FlexSwitch configurations.</p>
+<p>This example will deploy the JSON configuration filed referenced previously.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>Confirm target host is listed in the Ansible inventory file:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ cat /etc/ansible/hosts
+10.1.10.43
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Create directories for playbooks, templates, and host_vars:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span>$ sudo mkdir -p /etc/ansible/playbooks
+$ sudo mkdir -p /etc/ansible/templates
+$ sudo mkdir -p /etc/ansible/host_vars
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">Convert the previously deployed JSON configuration into a template:</p>
+<blockquote>
+<div><p>Ansible uses the Jinja2 Python templating language for building variable-based configuration files.</p>
+<p>Jinja2 uses this syntax for specifying a variable in a template file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{{</span> <span class="n">variable_name</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p>Using this method of templating – the JSON configuration from the previous example can be templatized:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="s2">&quot;Vlan&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;UntagIntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ vlan_1_port_range }}&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;VlanId&quot;</span><span class="p">:</span> <span class="p">{{</span> <span class="n">vlan_1</span> <span class="p">}}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;UntagIntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ vlan_2_port_range }}&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;VlanId&quot;</span><span class="p">:</span> <span class="p">{{</span> <span class="n">vlan_2</span> <span class="p">}}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;UntagIntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ vlan_3_port_range }}&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IntfList&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;VlanId&quot;</span><span class="p">:</span> <span class="p">{{</span> <span class="n">vlan_3</span> <span class="p">}}</span>
+                <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;IPv4Intf&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;IntfRef&quot;</span><span class="p">:</span> <span class="s2">&quot;vlan{{ vlan_1 }}&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IpAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ vlan_1_ip }}/{{ vlan_cidr_bits }}&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;IntfRef&quot;</span><span class="p">:</span> <span class="s2">&quot;vlan{{ vlan_2 }}&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IpAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ vlan_2_ip }}/{{ vlan_cidr_bits }}&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                        <span class="s2">&quot;IntfRef&quot;</span><span class="p">:</span> <span class="s2">&quot;vlan{{ vlan_3 }}&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;IpAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;{{ vlan_3_ip }}/{{ vlan_cidr_bits }}&quot;</span>
+                <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;Port&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                        <span class="s2">&quot;PortNum&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                        <span class="s2">&quot;Speed&quot;</span><span class="p">:</span> <span class="p">{{</span> <span class="n">port_1_speed</span> <span class="p">}}</span>
+                <span class="p">}</span>
+        <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Save the above template in this location:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ansible</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">flexswitch_example</span><span class="o">.</span><span class="n">j2</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Assign values to the variables used in the template:</p>
+<blockquote>
+<div><p>Ansible has a flexible structure for assigning variables to hosts and groups, allowing for a hierarchy to be built.</p>
+<p>For this example, variables will be defined for this specific target host:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vlan_1</span><span class="p">:</span> <span class="mi">100</span>
+<span class="n">vlan_2</span><span class="p">:</span> <span class="mi">200</span>
+<span class="n">vlan_3</span><span class="p">:</span> <span class="mi">300</span>
+<span class="n">vlan_1_port_range</span><span class="p">:</span> <span class="mi">1</span><span class="o">-</span><span class="mi">10</span>
+<span class="n">vlan_2_port_range</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span><span class="mi">12</span>
+<span class="n">vlan_3_port_range</span><span class="p">:</span> <span class="mi">13</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span><span class="mi">17</span>
+<span class="n">vlan_1_ip</span><span class="p">:</span> <span class="mf">10.10</span><span class="o">.</span><span class="mf">100.1</span>
+<span class="n">vlan_2_ip</span><span class="p">:</span> <span class="mf">10.10</span><span class="o">.</span><span class="mf">101.1</span>
+<span class="n">vlan_3_ip</span><span class="p">:</span> <span class="mf">10.10</span><span class="o">.</span><span class="mf">102.1</span>
+<span class="n">vlan_cidr_bits</span><span class="p">:</span> <span class="mi">24</span>
+<span class="n">port_1_speed</span><span class="p">:</span> <span class="mi">1000</span>
+</pre></div>
+</div>
+<p>Save the above lines to this file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ansible</span><span class="o">/</span><span class="n">host_vars</span><span class="o">/</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">10.43</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Build Ansible playbook:</p>
+<blockquote>
+<div><p>With the template and host_vars files in place, all that is required is an Ansible playbook that builds the FlexSwitch config file and deploys it to the target device.</p>
+<dl class="docutils">
+<dt>This playbook will do the following:</dt>
+<dd><ul class="first last simple">
+<li>Use apt-get to install FlexSwitch (if it is not already installed)</li>
+<li>Ensure that FlexSwitch is currently running</li>
+<li>Build the desiredConfig.json file based on the flexswitch_example.j2 template</li>
+<li>Whenever there is a change to desiredConfig.json (i.e. a variable or the template is updated) – the monitory.py application is run to apply the new configuration</li>
+</ul>
+</dd>
+</dl>
+<p>Example Ansible playbook:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="nb">all</span>
+  <span class="n">remote_user</span><span class="p">:</span> <span class="n">root</span>
+  <span class="n">tasks</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">ensure</span> <span class="n">flexswitch</span> <span class="ow">is</span> <span class="n">installed</span>
+        <span class="n">apt</span><span class="p">:</span>
+          <span class="n">name</span><span class="p">:</span> <span class="n">flexswitch</span><span class="o">=</span><span class="mf">0.0</span><span class="o">.</span><span class="mi">92</span>
+          <span class="n">state</span><span class="p">:</span> <span class="n">present</span>
+          <span class="n">update_cache</span><span class="p">:</span> <span class="n">yes</span>
+          <span class="n">force</span><span class="p">:</span> <span class="n">yes</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">ensure</span> <span class="n">flexswitch</span> <span class="ow">is</span> <span class="n">running</span>
+        <span class="n">service</span><span class="p">:</span>
+          <span class="n">name</span><span class="p">:</span> <span class="n">flexswitch</span>
+          <span class="n">state</span><span class="p">:</span> <span class="n">started</span>
+  <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">configure</span> <span class="n">flexswitch</span>
+        <span class="n">template</span><span class="p">:</span>
+          <span class="n">src</span><span class="p">:</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ansible</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">flexswitch_example</span><span class="o">.</span><span class="n">j2</span>
+          <span class="n">dest</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">flexswitch</span><span class="o">/</span><span class="n">desiredConfig</span><span class="o">.</span><span class="n">json</span>
+          <span class="n">force</span><span class="p">:</span> <span class="n">yes</span>
+        <span class="n">notify</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">load</span> <span class="n">flexswitch</span> <span class="n">config</span>
+  <span class="n">handlers</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">load</span> <span class="n">flexswitch</span> <span class="n">config</span>
+          <span class="n">command</span><span class="p">:</span> <span class="n">chdir</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">flexswitch</span><span class="o">/</span><span class="n">apps</span><span class="o">/</span><span class="n">cfgmon</span> <span class="n">python</span> <span class="n">monitor</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">applyConfig</span><span class="o">=</span><span class="kc">True</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>The above assumes that apt-get has been configured to point to a repo that contains the FlexSwitch package (in this case version 0.0.92) or that FlexSwitch has been manually installed.</p>
+<p>This playbook should be saved as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ansible</span><span class="o">/</span><span class="n">playbooks</span><span class="o">/</span><span class="n">flexswitch</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+<ol class="arabic" start="6">
+<li><p class="first">Run playbook to configure FlexSwitch:</p>
+<p>Using the ansible-playbook command – the previously configured playbook can be run to apply FlexSwitch configs to the target host:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ansible-playbook flexswitch.yml
+
+PLAY [all] *********************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.1.10.43]
+
+TASK [ensure flexswitch is installed] ******************************************
+ok: [10.1.10.43]
+
+TASK [ensure flexswitch is running] ********************************************
+changed: [10.1.10.43]
+
+TASK [configure flexswitch] ****************************************************
+changed: [10.1.10.43]
+
+RUNNING HANDLER [load flexswitch config] ***************************************
+changed: [10.1.10.43]
+
+PLAY RECAP *********************************************************************
+10.1.10.43                 : ok=5    changed=3    unreachable=0    failed=0
+</pre></div>
+</div>
+<p>This output shows that the playbook was successfully applied to 10.1.10.43, indicating which tasks caused changes to be applied.  Since this is the first run of the playbook and the target device had no configurations – the result is “changed” for each of the configuration tasks.</p>
+<p>A subsequent run – where neither the variables or the template is updated results in a playbook run where nothing is changed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ansible-playbook flexswitch.yml
+
+PLAY [all] *********************************************************************
+
+TASK [setup] *******************************************************************
+ok: [10.1.10.43]
+
+TASK [ensure flexswitch is installed] ******************************************
+ok: [10.1.10.43]
+
+TASK [ensure flexswitch is running] ********************************************
+changed: [10.1.10.43]
+
+TASK [configure flexswitch] ****************************************************
+ok: [10.1.10.43]
+
+PLAY RECAP *********************************************************************
+10.1.10.43                 : ok=4    changed=1    unreachable=0    failed=0
+
+Note: The “ensure flexswitch is running” task may show “changed” even if FlexSwitch is already running (it will not reload FlexSwitch).
+</pre></div>
+</div>
+<p>Now that the configuration is applied via Ansible, the operational state can be verified:</p>
+<p><a class="reference external" href="http://10.1.10.43:8080/public/v1/state/IPv4Intfs">http://10.1.10.43:8080/public/v1/state/IPv4Intfs</a></p>
+<img alt="_images/ansible_IPv4Intfs_state.png" src="_images/ansible_IPv4Intfs_state.png" />
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="rest_config.html" class="btn btn-neutral float-right" title="Utilizing RESTful API with FlexSwitch" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="cli_config.html" class="btn btn-neutral" title="Utilizing Snap CLI" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
