@@ -5,7 +5,7 @@ QuickStart Guide
    :maxdepth: 1
 
     Docker Tutorial <dockerIntro>
-    Hardware Tutorial <hardware>
+    Hardware Tutorial <ONIE_install>
     Hardware Support matrix <hwmatrix>
 
 
