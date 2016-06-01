@@ -1,2 +1,2 @@
-# docs
-All documentation would go here
+# FlexSwitch Product Documentation
+http://opensnaproute.github.io/docs/
