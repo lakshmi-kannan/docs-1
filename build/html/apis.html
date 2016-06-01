@@ -146,11 +146,6 @@
 <em class="property">class </em><code class="descclassname">flexswitchV2.</code><code class="descname">FlexSwitch</code><span class="sig-paren">(</span><em>ip</em>, <em>port</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <dl class="method">
-<dt id="flexswitchV2.FlexSwitch.createArpConfig">
-<code class="descname">createArpConfig</code><span class="sig-paren">(</span><em>Vrf</em>, <em>Timeout</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createArpConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createArpConfig" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="flexswitchV2.FlexSwitch.createArpGlobal">
 <code class="descname">createArpGlobal</code><span class="sig-paren">(</span><em>Timeout=600</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createArpGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createArpGlobal" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -222,7 +217,7 @@
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.createDhcpRelayGlobal">
-<code class="descname">createDhcpRelayGlobal</code><span class="sig-paren">(</span><em>DhcpRelay</em>, <em>Enable</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createDhcpRelayGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createDhcpRelayGlobal" title="Permalink to this definition">¶</a></dt>
+<code class="descname">createDhcpRelayGlobal</code><span class="sig-paren">(</span><em>DhcpRelay</em>, <em>Enable=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createDhcpRelayGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createDhcpRelayGlobal" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -257,7 +252,7 @@
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.createLogicalIntf">
-<code class="descname">createLogicalIntf</code><span class="sig-paren">(</span><em>Name</em>, <em>Type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createLogicalIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createLogicalIntf" title="Permalink to this definition">¶</a></dt>
+<code class="descname">createLogicalIntf</code><span class="sig-paren">(</span><em>Name</em>, <em>Type='Loopback'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createLogicalIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createLogicalIntf" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -337,7 +332,7 @@
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.createVlan">
-<code class="descname">createVlan</code><span class="sig-paren">(</span><em>VlanId</em>, <em>IntfList</em>, <em>UntagIntfList</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createVlan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createVlan" title="Permalink to this definition">¶</a></dt>
+<code class="descname">createVlan</code><span class="sig-paren">(</span><em>VlanId</em>, <em>IntfList=''</em>, <em>UntagIntfList=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createVlan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createVlan" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -353,16 +348,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.createVxlanVtepInstances">
 <code class="descname">createVxlanVtepInstances</code><span class="sig-paren">(</span><em>VtepId</em>, <em>VxlanId</em>, <em>VtepName</em>, <em>SrcIfIndex</em>, <em>TTL</em>, <em>TOS</em>, <em>Learning</em>, <em>Rsc</em>, <em>L2miss</em>, <em>L3miss</em>, <em>DstIp</em>, <em>DstMac</em>, <em>VlanId</em>, <em>UDP=4789</em>, <em>InnerVlanHandlingMode=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createVxlanVtepInstances"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createVxlanVtepInstances" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteArpConfig">
-<code class="descname">deleteArpConfig</code><span class="sig-paren">(</span><em>Vrf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteArpConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteArpConfig" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteArpConfigById">
-<code class="descname">deleteArpConfigById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteArpConfigById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteArpConfigById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -773,11 +758,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.deleteVxlanVtepInstancesById">
 <code class="descname">deleteVxlanVtepInstancesById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteVxlanVtepInstancesById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteVxlanVtepInstancesById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllArpConfigs">
-<code class="descname">getAllArpConfigs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllArpConfigs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllArpConfigs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1203,16 +1183,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getAllVxlanVtepInstancess">
 <code class="descname">getAllVxlanVtepInstancess</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllVxlanVtepInstancess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllVxlanVtepInstancess" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getArpConfig">
-<code class="descname">getArpConfig</code><span class="sig-paren">(</span><em>Vrf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getArpConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getArpConfig" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getArpConfigById">
-<code class="descname">getArpConfigById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getArpConfigById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getArpConfigById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2073,16 +2043,6 @@
 <dl class="attribute">
 <dt id="flexswitchV2.FlexSwitch.httpSuccessCodes">
 <code class="descname">httpSuccessCodes</code><em class="property"> = [200, 201, 202, 204]</em><a class="headerlink" href="#flexswitchV2.FlexSwitch.httpSuccessCodes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateArpConfig">
-<code class="descname">updateArpConfig</code><span class="sig-paren">(</span><em>Vrf</em>, <em>Timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateArpConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateArpConfig" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateArpConfigById">
-<code class="descname">updateArpConfigById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateArpConfigById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateArpConfigById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
