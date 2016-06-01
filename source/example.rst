@@ -4600,19 +4600,17 @@ Configuring ECMP Routes
 Configuring with Python SDK
 """"""""""""""""""""""""""""
 
-.. 
+.. Configuring STP
+   ----------------
 
-  Configuring STP
-  ----------------
-
-  RSTP
-  ^^^^^
-  RSTP-PVST+
-  ^^^^^^^^^^
-  Configuring with Rest API 
-  """"""""""""""""""""""""""""
-  Configuring with Python SDK
-  """"""""""""""""""""""""""""
+   RSTP
+   ^^^^^
+   RSTP-PVST+
+   ^^^^^^^^^^
+   Configuring with Rest API 
+   """"""""""""""""""""""""""""
+   Configuring with Python SDK
+   """"""""""""""""""""""""""""
 
 Configuring VLANS
 -------------------
