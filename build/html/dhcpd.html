@@ -1,0 +1,412 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Welcome to FlexSwitch DHCPd’s documentation! &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Detailed Architecture" href="architecture.html"/>
+        <link rel="next" title="Dynamic Host Configuration Relay Agent" href="dhcprelayd.html"/>
+        <link rel="prev" title="Bi-Directional Forwarding Detection(BFD)" href="bfd.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="developer.html"> Developer Home</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="developer.html#how-to-contribute">How to contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#setting-up-development-environment">Setting Up Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#building-flexswitch-from-sources">Building FlexSwitch From Sources</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="developer.html#system-architecture">System Architecture</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="architecture.html"> Architecture details</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#system-architecture">System Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#system-components">System Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#infrastructure-daemons">Infrastructure Daemons</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="architecture.html#protocol-daemons">Protocol Daemons</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#open-source-components">Open Source Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#design-decisions">Design Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="developer.html">Developers Home</a> &raquo;</li>
+      
+          <li><a href="architecture.html">Detailed Architecture</a> &raquo;</li>
+      
+    <li>Welcome to FlexSwitch DHCPd&#8217;s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/dhcpd.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="welcome-to-flexswitch-dhcpd-s-documentation">
+<h1>Welcome to FlexSwitch DHCPd&#8217;s documentation!<a class="headerlink" href="#welcome-to-flexswitch-dhcpd-s-documentation" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/under_construction.gif" class="align-center" src="_images/under_construction.gif" />
+<p>Note: DHCP Daemon implementation is currently in progress.</p>
+<img alt="_images/DHCP.png" src="_images/DHCP.png" />
+<div class="section" id="dhcp-daemon-architecture">
+<h2>DHCP Daemon Architecture<a class="headerlink" href="#dhcp-daemon-architecture" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>Dynamic Host Configuration Protocol (DHCP) is a client/server protocol that automatically provides an Internet Protocol (IP) host with its IP address and other related configuration information such as the subnet mask and default gateway.</p>
+</div>
+<div class="section" id="design">
+<h3>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h3>
+<p>DHCP module implements Dynamic Host Configuration Protocol. Core design is implemented in server package which has multiple Go routines for various functionality which will be explain in below sections. DHCP module interacts with other daemons via RPC using <a class="reference external" href="https://thrift.apache.org/">Thrift</a> and PUB/SUB using <a class="reference external" href="http://nanomsg.org/">nanomsg</a>.</p>
+<div class="section" id="core">
+<h4>Core<a class="headerlink" href="#core" title="Permalink to this headline">¶</a></h4>
+<p>As part of initialization of DHCP daemon following functionalities are performed:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Connect to Asicd server</li>
+<li>Subscribe to Asicd publisher</li>
+<li>Start DHCP server</li>
+</ul>
+</div></blockquote>
+<p>Dhcp daemon connects to Asicd (thrift) server for building internal infrasturcture for future operations. These infrastructure data is stored in maps indexed by IfIndex.</p>
+<ul class="simple">
+<li>L3 Interface Property Map (l3IntfPropMap): which is keyed by IfIndex and value is data of type L3IntfProperty Structure</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">L3Property</span> <span class="n">struct</span> <span class="p">{</span>
+        <span class="n">IpAddr</span>     <span class="n">uint32</span>       <span class="o">//</span> <span class="n">IPv4</span> <span class="n">Address</span>
+        <span class="n">Mask</span>       <span class="n">uint32</span>       <span class="o">//</span> <span class="n">Subnet</span> <span class="n">Mask</span>
+        <span class="n">DhcpIfKey</span>  <span class="n">DhcpIntfKey</span>  <span class="o">//</span> <span class="n">Key</span> <span class="n">to</span> <span class="n">DHCP</span> <span class="n">Interface</span> <span class="n">configuration</span> <span class="n">Map</span>
+        <span class="n">DhcpConfig</span> <span class="nb">bool</span>         <span class="o">//</span> <span class="kc">True</span><span class="p">:</span> <span class="n">DHCP</span> <span class="n">Server</span> <span class="ow">is</span> <span class="n">configured</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="n">No</span> <span class="n">DHCP</span> <span class="n">Server</span> <span class="n">configured</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Port Property Map (portPropertyMap): which is keyed by IfIndex and value is data of type PortProperty Structure</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">PortProperty</span> <span class="n">struct</span> <span class="p">{</span>
+        <span class="n">IfName</span>     <span class="n">string</span>         <span class="o">//</span> <span class="n">Phy</span> <span class="n">Port</span> <span class="n">Name</span>
+        <span class="n">MacAddr</span>    <span class="n">string</span>         <span class="o">//</span> <span class="n">MAC</span> <span class="n">Address</span>
+        <span class="n">IpAddr</span>     <span class="n">uint32</span>         <span class="o">//</span> <span class="n">IP</span> <span class="n">Addresss</span> <span class="n">of</span> <span class="n">the</span> <span class="n">L3</span> <span class="n">Interface</span> <span class="n">of</span> <span class="n">which</span> <span class="n">this</span> <span class="n">port</span> <span class="ow">is</span> <span class="n">member</span><span class="o">.</span>
+        <span class="n">Mask</span>       <span class="n">uint32</span>         <span class="o">//</span> <span class="n">Subnet</span> <span class="n">mask</span> <span class="n">Addresss</span> <span class="n">of</span> <span class="n">the</span> <span class="n">L3</span> <span class="n">Interface</span> <span class="n">of</span> <span class="n">which</span> <span class="n">this</span> <span class="n">port</span> <span class="ow">is</span> <span class="n">member</span><span class="o">.</span>
+        <span class="n">L3IfIndex</span>  <span class="n">int32</span>          <span class="o">//</span> <span class="n">L3</span> <span class="n">IfIndex</span> <span class="n">of</span> <span class="n">which</span> <span class="n">this</span> <span class="n">port</span> <span class="ow">is</span> <span class="n">member</span><span class="o">.</span>
+        <span class="n">CtrlCh</span>     <span class="n">chan</span> <span class="nb">bool</span>      <span class="o">//</span> <span class="n">Channel</span> <span class="k">for</span> <span class="n">controlling</span> <span class="n">Rx</span><span class="o">/</span><span class="n">Tx</span> <span class="n">on</span> <span class="n">this</span> <span class="n">port</span>
+        <span class="n">PcapHdl</span>    <span class="o">*</span><span class="n">pcap</span><span class="o">.</span><span class="n">Handle</span>   <span class="o">//</span> <span class="n">Pcap</span> <span class="n">Handle</span> <span class="k">for</span> <span class="n">Rx</span><span class="o">/</span><span class="n">Tx</span> <span class="n">DHCP</span> <span class="n">packets</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Vlan Property Map (vlanPropertyMap): which is keyed by IfIndex and value is data of type VlanProperty Structure</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">VlanProperty</span> <span class="n">struct</span> <span class="p">{</span>
+        <span class="n">UntagPortMap</span> <span class="nb">map</span><span class="p">[</span><span class="n">int32</span><span class="p">]</span><span class="nb">bool</span>       <span class="o">//</span> <span class="n">Map</span> <span class="n">containing</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">un</span><span class="o">-</span><span class="n">tagged</span> <span class="n">ports</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Lag Property Map (lagPropertyMap): which is keyed by IfIndex and value is data of type LagProperty Structure</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>       <span class="nb">type</span> <span class="n">LagProperty</span> <span class="n">struct</span> <span class="p">{</span>
+               <span class="n">PortMap</span> <span class="nb">map</span><span class="p">[</span><span class="n">int32</span><span class="p">]</span><span class="nb">bool</span>            <span class="o">//</span> <span class="n">Map</span> <span class="n">containing</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">member</span> <span class="n">ports</span>
+       <span class="p">}</span>
+
+
+
+<span class="n">When</span> <span class="n">Dhcp</span> <span class="n">daemon</span> <span class="n">comes</span> <span class="n">up</span> <span class="n">it</span> <span class="n">performs</span> <span class="n">following</span> <span class="n">calls</span> <span class="n">to</span> <span class="n">Asicd</span> <span class="k">for</span> <span class="n">building</span> <span class="n">internal</span> <span class="n">infrasturcture</span><span class="p">:</span>
+
+       <span class="o">-</span> <span class="n">GetBulkPort</span><span class="p">():</span> <span class="n">To</span> <span class="n">get</span> <span class="n">the</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">existing</span> <span class="n">port</span> <span class="n">configuration</span><span class="o">.</span>
+       <span class="o">-</span> <span class="n">GetBulkPortState</span><span class="p">():</span> <span class="n">To</span> <span class="n">get</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">existing</span> <span class="n">port</span> <span class="n">state</span><span class="o">.</span>
+       <span class="o">-</span> <span class="n">GetBulkVlan</span><span class="p">():</span> <span class="n">To</span> <span class="n">get</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">existing</span> <span class="n">Vlan</span> <span class="n">configuration</span><span class="o">.</span>
+       <span class="o">-</span> <span class="n">GetBulkVlanState</span><span class="p">():</span> <span class="n">To</span> <span class="n">get</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">existing</span> <span class="n">Vlan</span> <span class="n">states</span><span class="o">.</span>
+       <span class="o">-</span> <span class="n">GetBulkIPv4IntfState</span><span class="p">():</span> <span class="n">To</span> <span class="n">get</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">existing</span> <span class="n">L3</span> <span class="n">IPv4</span> <span class="n">interface</span> <span class="n">details</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>DHCP daemon subscribes to Asicd notification in order to maintain a syncronization of its infrastructure with the overall system state. As these infrastuctre will be used for Rx/Tx DHCP state machine. DHCP daemon listens to following notification from Asicd:</p>
+<blockquote>
+<div><ul class="simple">
+<li>L2IntfState Notification</li>
+<li>L3IntfState Notification</li>
+<li>Vlan Notification</li>
+<li>Lag Notification</li>
+<li>IPv4Intf Notification</li>
+</ul>
+</div></blockquote>
+<p>Once DHCP daemon is configured as DHCP server on a given L3 Interface. This daemon starts listening on given L3 Interface for various DHCP messages. And it internally maintains a map which is keyed by DhcpIntfKey and value is per L3 interface Dhcp Data (DhcpIntfData).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">DhcpIntfKey</span> <span class="n">struct</span> <span class="p">{</span>
+        <span class="n">subnet</span>     <span class="n">uint32</span>       <span class="o">//</span> <span class="n">Network</span> <span class="n">Address</span>
+        <span class="n">subnetMask</span> <span class="n">uint32</span>       <span class="o">//</span> <span class="n">Subnet</span> <span class="n">Mask</span>
+<span class="p">}</span>
+
+<span class="nb">type</span> <span class="n">DhcpOfferedData</span> <span class="n">struct</span> <span class="p">{</span>
+        <span class="n">LeaseTime</span>     <span class="n">uint32</span>            <span class="o">//</span> <span class="n">Lease</span> <span class="n">time</span> <span class="n">offered</span>
+        <span class="n">MacAddr</span>       <span class="n">string</span>            <span class="o">//</span> <span class="n">MAC</span> <span class="n">Address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">host</span> <span class="n">to</span> <span class="n">which</span> <span class="n">IP</span> <span class="n">Address</span> <span class="ow">is</span> <span class="n">offered</span>
+        <span class="n">TransactionId</span> <span class="n">uint32</span>            <span class="o">//</span> <span class="n">Transaction</span> <span class="n">ID</span> <span class="n">used</span> <span class="ow">in</span> <span class="n">DHCP</span> <span class="n">Messages</span>
+        <span class="n">RefreshTimer</span>  <span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">Timer</span>       <span class="o">//</span> <span class="n">Refresh</span> <span class="n">Timer</span>
+        <span class="n">StaleTimer</span>    <span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">Timer</span>       <span class="o">//</span> <span class="n">Stale</span> <span class="n">Timer</span> <span class="n">used</span> <span class="n">to</span> <span class="n">garbage</span> <span class="n">collection</span>
+        <span class="n">State</span>         <span class="n">uint8</span>             <span class="o">//</span> <span class="n">State</span><span class="p">:</span> <span class="n">OFFERED</span>
+<span class="p">}</span>
+
+<span class="nb">type</span> <span class="n">DhcpIntfData</span> <span class="n">struct</span> <span class="p">{</span>
+        <span class="n">enable</span>        <span class="nb">bool</span>              <span class="o">//</span> <span class="kc">True</span><span class="p">:</span> <span class="n">Enabled</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="n">disabled</span>
+        <span class="n">l3IfIdx</span>       <span class="n">int32</span>             <span class="o">//</span> <span class="n">L3</span> <span class="n">Interface</span> <span class="n">IfIndex</span>
+        <span class="n">lowerIPBound</span>  <span class="n">uint32</span>            <span class="o">//</span> <span class="n">Lower</span> <span class="n">bound</span> <span class="n">of</span> <span class="n">IP</span> <span class="n">Address</span> <span class="n">Range</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">offered</span>
+        <span class="n">higherIPBound</span> <span class="n">uint32</span>            <span class="o">//</span> <span class="n">Higher</span> <span class="n">bound</span> <span class="n">of</span> <span class="n">IP</span> <span class="n">Address</span> <span class="n">Range</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">offered</span>
+        <span class="n">rtrAddr</span>       <span class="n">uint32</span>            <span class="o">//</span> <span class="n">Configured</span> <span class="n">Default</span> <span class="n">Router</span> <span class="n">Address</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">offered</span>
+        <span class="n">dnsAddr</span>       <span class="n">uint32</span>            <span class="o">//</span> <span class="n">Configured</span> <span class="n">DNS</span> <span class="n">Address</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">offered</span>
+        <span class="n">domainName</span>    <span class="n">string</span>            <span class="o">//</span> <span class="n">Configured</span> <span class="n">Domain</span> <span class="n">Name</span> <span class="n">that</span> <span class="n">can</span> <span class="n">be</span> <span class="n">offered</span>
+        <span class="n">usedIpPool</span>    <span class="nb">map</span><span class="p">[</span><span class="n">uint32</span><span class="p">]</span><span class="n">DhcpOfferedData</span>        <span class="o">//</span> <span class="n">Map</span> <span class="n">of</span> <span class="n">already</span> <span class="n">offered</span> <span class="n">Data</span> <span class="n">keyed</span> <span class="n">by</span> <span class="n">offered</span> <span class="n">IP</span> <span class="n">Address</span>
+        <span class="n">usedIpToMac</span>   <span class="nb">map</span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="n">uint32</span>                 <span class="o">//</span> <span class="n">Map</span> <span class="n">of</span> <span class="n">offered</span> <span class="n">IP</span> <span class="n">Address</span> <span class="n">keyed</span> <span class="n">by</span> <span class="n">host</span><span class="s1">&#39;s MAC Address</span>
+        <span class="n">dhcpMsg</span>       <span class="p">[]</span><span class="n">byte</span>            <span class="o">//</span> <span class="n">DHCP</span> <span class="n">Packet</span> <span class="n">data</span> <span class="n">cached</span> <span class="k">for</span> <span class="n">refresh</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="apis-thrift-interface">
+<h4>APIs (Thrift Interface)<a class="headerlink" href="#apis-thrift-interface" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="configuration-object-name">
+<h5>Configuration Object Name:<a class="headerlink" href="#configuration-object-name" title="Permalink to this headline">¶</a></h5>
+<p><strong>DhcpGlobalConfig</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">struct</span> <span class="n">DhcpGlobalConfig</span> <span class="p">{</span>
+        <span class="mi">1</span> <span class="p">:</span> <span class="n">string</span> <span class="n">DhcpConfigKey</span>        <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Vrf</span> <span class="n">Name</span>
+        <span class="mi">2</span> <span class="p">:</span> <span class="nb">bool</span> <span class="n">Enable</span>                 <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="kc">True</span><span class="p">:</span> <span class="n">Enable</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="n">Disable</span>
+        <span class="mi">3</span> <span class="p">:</span> <span class="n">i32</span> <span class="n">DefaultLeaseTime</span>        <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Default</span> <span class="n">Lease</span> <span class="n">time</span>
+        <span class="mi">4</span> <span class="p">:</span> <span class="n">i32</span> <span class="n">MaxLeaseTime</span>            <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Max</span> <span class="n">Lease</span> <span class="n">time</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Create Dhcp Global Configuration:</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">bool</span> <span class="n">CreateDhcpGlobalConfig</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span> <span class="n">DhcpGlobalConfig</span> <span class="n">config</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Update Dhcp Global Configuration: (Not supported)</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">bool</span> <span class="n">UpdateDhcpGlobalConfig</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span> <span class="n">DhcpGlobalConfig</span> <span class="n">origconfig</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">DhcpGlobalConfig</span> <span class="n">newconfig</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="nb">list</span><span class="o">&lt;</span><span class="nb">bool</span><span class="o">&gt;</span> <span class="n">attrset</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Delete Dhcp Global Configuration: (Not supported)</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">bool</span> <span class="n">DeleteDhcpGlobalConfig</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span> <span class="n">DhcpGlobalConfig</span> <span class="n">config</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>DhcpIntfConfig</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">struct</span> <span class="n">DhcpIntfConfig</span> <span class="p">{</span>
+        <span class="mi">1</span> <span class="p">:</span> <span class="n">string</span> <span class="n">IntfRef</span>              <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Interface</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">ifindex</span> <span class="n">of</span> <span class="n">L3</span> <span class="n">interface</span>
+        <span class="mi">2</span> <span class="p">:</span> <span class="n">string</span> <span class="n">Subnet</span>               <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Network</span> <span class="n">Address</span>
+        <span class="mi">3</span> <span class="p">:</span> <span class="n">string</span> <span class="n">SubnetMask</span>           <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Subnet</span> <span class="n">Mask</span>
+        <span class="mi">4</span> <span class="p">:</span> <span class="n">string</span> <span class="n">IPAddrRange</span>          <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Range</span> <span class="n">of</span> <span class="n">IP</span> <span class="n">Addresses</span>
+        <span class="mi">5</span> <span class="p">:</span> <span class="n">string</span> <span class="n">BroadcastAddr</span>        <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Broadcast</span> <span class="n">Address</span>
+        <span class="mi">6</span> <span class="p">:</span> <span class="n">string</span> <span class="n">RouterAddr</span>           <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Router</span> <span class="n">Address</span>
+        <span class="mi">7</span> <span class="p">:</span> <span class="n">string</span> <span class="n">DNSServerAddr</span>        <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Comma</span> <span class="n">seperated</span> <span class="n">List</span> <span class="n">of</span> <span class="n">DNS</span> <span class="n">Server</span> <span class="n">Address</span>
+        <span class="mi">8</span> <span class="p">:</span> <span class="n">string</span> <span class="n">DomainName</span>           <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="n">Domain</span> <span class="n">Name</span> <span class="n">Address</span>
+        <span class="mi">9</span> <span class="p">:</span> <span class="nb">bool</span> <span class="n">Enable</span>                 <span class="o">//</span> <span class="p">[</span><span class="n">IN</span><span class="p">]</span> <span class="kc">True</span><span class="p">:</span> <span class="n">Enable</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="n">Disable</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Create Dhcp Interface Configuration:</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">bool</span> <span class="n">CreateDhcpIntfConfig</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span> <span class="n">DhcpIntfConfig</span> <span class="n">config</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Update Dhcp Interface Configuration: (Not supported)</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">bool</span> <span class="n">UpdateDhcpIntfConfig</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span> <span class="n">DhcpIntfConfig</span> <span class="n">origconfig</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">DhcpIntfConfig</span> <span class="n">newconfig</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="nb">list</span><span class="o">&lt;</span><span class="nb">bool</span><span class="o">&gt;</span> <span class="n">attrset</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Delete Dhcp Interface Configuration: (Not supported)</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">bool</span> <span class="n">DeleteDhcpIntfConfig</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span> <span class="n">DhcpIntfConfig</span> <span class="n">config</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dhcprelayd.html" class="btn btn-neutral float-right" title="Dynamic Host Configuration Relay Agent" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="bfd.html" class="btn btn-neutral" title="Bi-Directional Forwarding Detection(BFD)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
