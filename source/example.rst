@@ -4602,7 +4602,6 @@ Configuring with Python SDK
 
 .. Configuring STP
    ----------------
-
    RSTP
    ^^^^^
    RSTP-PVST+
