@@ -3894,52 +3894,34 @@ On BGP global creation:
 |                   | IBGPMaxPaths         | integer    | Max ECMP paths from Internal BGP neighbors  |    no    |     0    |
 +-------------------+----------------------+------------+---------------------------------------------+----------+----------+
 
-**EXAMPLE**
 
-
-
-Redistribution
-^^^^^^^^^^^^^^
-Configuring with Rest API 
-"""""""""""""""""""""""""
-Configuring with Python SDK
-"""""""""""""""""""""""""""
-
-Policies
-^^^^^^^^
-
-Configuring with Rest API 
-"""""""""""""""""""""""""""
-Configuring with Python SDK
-"""""""""""""""""""""""""""
-
-Route Reflectors
-^^^^^^^^^^^^^^^^
-
-Configuring with Rest API 
-"""""""""""""""""""""""""""
-Configuring with Python SDK
-"""""""""""""""""""""""""""
-
-Add Path
-^^^^^^^^
-
-Configuring with Rest API 
-""""""""""""""""""""""""""""
-Configuring with Python SDK
-""""""""""""""""""""""""""""
+.. **EXAMPLE**
+   Redistribution
+   ^^^^^^^^^^^^^^
+   Configuring with Rest API 
+   """""""""""""""""""""""""
+   Configuring with Python SDK
+   """""""""""""""""""""""""""
+   Policies
+   ^^^^^^^^
+   Configuring with Rest API 
+   """""""""""""""""""""""""""
+   Configuring with Python SDK
+   """""""""""""""""""""""""""
+   Route Reflectors
+   ^^^^^^^^^^^^^^^^
+   Configuring with Rest API 
+   """""""""""""""""""""""""""
+   Configuring with Python SDK
+   """""""""""""""""""""""""""
+   Add Path
+   ^^^^^^^^
+   Configuring with Rest API 
+   """"""""""""""""""""""""""""
+   Configuring with Python SDK
+   """"""""""""""""""""""""""""
 
 ----------------------
-
-
-
-
-
-
-
-
-
-
 
 Configuring DHCP Relay
 -----------------------
