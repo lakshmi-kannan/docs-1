@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ECMP &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/>
+        <link rel="next" title="Hardware Guide" href="hardware.html"/>
+        <link rel="prev" title="OSPF" href="ospfDocker.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ping.html"> Ping test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ospfDocker.html"> OSPF with 2 nodes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"> ECMP</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#static-route">Static Route</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bgp">BGP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ospf">OSPF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hardware.html"> Hardware Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="quickstart.html">QuickStart Guide</a> &raquo;</li>
+      
+          <li><a href="dockerIntro.html">Getting started with flexswitch on Docker</a> &raquo;</li>
+      
+    <li>ECMP</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ecmpDocker.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ecmp">
+<h1>ECMP<a class="headerlink" href="#ecmp" title="Permalink to this headline">¶</a></h1>
+<p>Flexswitch supports configuration of ECMP for different protocols.</p>
+<p>To configure the IPv4 Route following parameters would change based on protocol</p>
+<ul class="simple">
+<li><strong>Cost</strong> =  Protocol based cost for the  route.</li>
+<li><strong>Protocol</strong> = This could be STATIC/OSPF/BGP.</li>
+<li><strong>DestinationNw NetworkMask</strong> = Destination n/w id and mask.</li>
+</ul>
+<p>Here is the REST template for configuration</p>
+<div class="section" id="static-route">
+<h2>Static Route<a class="headerlink" href="#static-route" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="o">**</span><span class="n">Static</span> <span class="n">route</span><span class="o">**</span>
+
+<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="n">POST</span> <span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Accept: application/json&#39;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;DestinationNw&quot;:&quot;61.1.1.0&quot;,&quot;NetworkMask&quot;:&quot;255.255.255.0&quot;,&quot;NextHopIp&quot;:&quot;51.1.1.6&quot;,&quot;Cost&quot;:0,&quot;OutgoingIntfType&quot;:&quot;VLAN&quot;,&quot;OutgoingInterface&quot;:&quot;5&quot;,&quot;Protocol&quot;:&quot;STATIC&quot;}&#39;</span> <span class="s1">&#39;http://localhost:8080/public/v1/config/IPv4Route&#39;</span>
+
+ <span class="n">route</span> <span class="o">-</span><span class="n">n</span>
+
+ <span class="n">Kernel</span> <span class="n">IP</span> <span class="n">routing</span> <span class="n">table</span>
+
+ <span class="n">Destination</span>     <span class="n">Gateway</span>         <span class="n">Genmask</span>         <span class="n">Flags</span> <span class="n">Metric</span> <span class="n">Ref</span>    <span class="n">Use</span> <span class="n">Iface</span>
+
+ <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span>         <span class="mf">172.17</span><span class="o">.</span><span class="mf">42.1</span>     <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span>         <span class="n">UG</span>    <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">eth0</span>
+
+ <span class="mf">51.1</span><span class="o">.</span><span class="mf">1.0</span>        <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span>         <span class="mf">255.255</span><span class="o">.</span><span class="mf">255.0</span>   <span class="n">U</span>     <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">vlan5</span>
+
+ <span class="mf">61.1</span><span class="o">.</span><span class="mf">1.0</span>        <span class="mf">51.1</span><span class="o">.</span><span class="mf">1.6</span>        <span class="mf">255.255</span><span class="o">.</span><span class="mf">255.0</span>   <span class="n">UG</span>    <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">vlan5</span> <span class="o">&lt;--</span> <span class="n">ECMP</span> <span class="n">route</span>
+
+ <span class="mf">61.1</span><span class="o">.</span><span class="mf">1.0</span>        <span class="mf">71.1</span><span class="o">.</span><span class="mf">1.6</span>        <span class="mf">255.255</span><span class="o">.</span><span class="mf">255.0</span>   <span class="n">UG</span>    <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">vlan6</span> <span class="o">&lt;--</span> <span class="n">ECMP</span> <span class="n">route</span>
+
+<span class="mf">71.1</span><span class="o">.</span><span class="mf">1.0</span>        <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span>         <span class="mf">255.255</span><span class="o">.</span><span class="mf">255.0</span>   <span class="n">U</span>     <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">vlan6</span>
+
+<span class="mf">172.17</span><span class="o">.</span><span class="mf">0.0</span>      <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.0</span>         <span class="mf">255.255</span><span class="o">.</span><span class="mf">0.0</span>     <span class="n">U</span>     <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">eth0</span>
+
+<span class="n">root</span><span class="nd">@364c318a3017</span><span class="p">:</span><span class="o">/</span><span class="c1">#</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bgp">
+<h2>BGP<a class="headerlink" href="#bgp" title="Permalink to this headline">¶</a></h2>
+<p>BGP has different parameters in Global object to configure ECMP</p>
+<blockquote>
+<div><p>UseMultiplePath - to enable/disable ECMP</p>
+<p>EBGPMaxPaths - max number of ECMP to install from EBGP Peers</p>
+<p>IBGPMaxPaths - max number of ECMP to install from IBGP Peers</p>
+</div></blockquote>
+<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="o">**</span><span class="n">BGP</span> <span class="k">with</span> <span class="n">ECMP</span><span class="o">**</span>
+
+<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;ASNum&quot;: 500, &quot;RouterId&quot;: &quot;127.0.0.1&quot;, &quot;UseMultiplePaths&quot;: true, &quot;EBGPMaxPaths&quot;: 2, &quot;IBGPMaxPaths&quot;: 2}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.1</span><span class="o">.</span><span class="mf">10.243</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">BGPGlobalConfig</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ospf">
+<h2>OSPF<a class="headerlink" href="#ospf" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>With current implementation ECMP is enabled by default for the OSPF.</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hardware.html" class="btn btn-neutral float-right" title="Hardware Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ospfDocker.html" class="btn btn-neutral" title="OSPF" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

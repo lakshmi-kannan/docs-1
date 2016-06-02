@@ -3561,6 +3561,7 @@ Enabled on BGP neighbor creation:
 .. Note:: This above example, is just a subset of the BGP Neighbor commands.  See :ref:`bgp-neighbor-python`
 
 **OPTIONS**
+
 +----------------------+-------------------------+------------+-----------------------------------------------------------------------------------------+----------+----------+
 | Python Method        | Variables               | Type       |  Description                                                                            | Required |  Default | 
 +======================+=========================+============+=========================================================================================+==========+==========+
@@ -3893,52 +3894,150 @@ On BGP global creation:
 |                   | IBGPMaxPaths         | integer    | Max ECMP paths from Internal BGP neighbors  |    no    |     0    |
 +-------------------+----------------------+------------+---------------------------------------------+----------+----------+
 
-**EXAMPLE**
-
-
 
 Redistribution
 ^^^^^^^^^^^^^^
-Configuring with Rest API 
-"""""""""""""""""""""""""
-Configuring with Python SDK
-"""""""""""""""""""""""""""
+To redistribute routes to BGP neighbors, you must enable redistribution in BGP. You can redistribute connected, static and routes learned via other protocols to BGP neighbors. Redistribution is enabled by creating policies and setting the policy in the BGP Global object.
 
-Policies
-^^^^^^^^
+   Configuring with Rest API 
+   """""""""""""""""""""""""
+A policy has to be configured first to enable redistribution.
 
-Configuring with Rest API 
-"""""""""""""""""""""""""""
-Configuring with Python SDK
-"""""""""""""""""""""""""""
+.. Note:: See :ref:`routing-policies` to configure the policies.
 
-Route Reflectors
-^^^^^^^^^^^^^^^^
+Update BGP global
+::
 
-Configuring with Rest API 
-"""""""""""""""""""""""""""
-Configuring with Python SDK
-"""""""""""""""""""""""""""
+    curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":<*AS Number*>,"RouterId":"<*IP Addr*>","Redistribution":[{"Sources":"<*CONNECTED/STATIC/OSPF*>","Policy":"<*Policy Name*>"}]}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+    
+On BGP global creation
+::
 
-Add Path
-^^^^^^^^
+    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":<*AS Number*>,"RouterId":"<*IP Addr*>","Redistribution":[{"Sources":"<*CONNECTED/STATIC/OSPF*>","Policy":"<*Policy Name*>"}]}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+    
+.. Note:: This command is a variable being enabled part of BGPGlobal object. See :ref:`bgp-global-rest` for more details. 
 
-Configuring with Rest API 
-""""""""""""""""""""""""""""
-Configuring with Python SDK
-""""""""""""""""""""""""""""
+**OPTIONS:**
+
++----------------------+----------------------+---------------------------------------------+----------+----------+
+| Variables            | Type                 |  Description                                | Required |  Default |     
++======================+======================+=============================================+==========+==========+   
+| ASNum                | integer              | Local AS for BGP global config              |    Yes   |   None   |
++----------------------+----------------------+---------------------------------------------+----------+----------+
+| RouterId             | string               | Router id for BGP global config             |    Yes   |   None   |
++----------------------+----------------------+---------------------------------------------+----------+----------+
+| Redistribution       | [SourcePolicyList]   | Redistribution policies                     |    no    |    []    |
++----------------------+----------------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+Below is an example on how to enable BGP redistribution:
+
+1. Configure policies and enable redistribution:
+    a. Configure the policy
+.. Note:: See :ref:`routing-policies` to configure the policies.
+
+    b. Updating *Redistribution* to enable redistribution
+
+    ::
+    
+        curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":65535,"RouterId":"1.1.1.1","Redistribution":[{"Sources":"CONNECTED,STATIC","Policy":"Policy1"},{"Sources":"OSPF","Policy":"Policy2"}]}' 'http://10.1.10.243:8080/public/v1/config/BGPGlobal'
+        {"ObjectId":"7f2c589d-3dea-4356-75be-91c7c2de18cb","Error":""}
+
+2. Validate in configuration object that BGP Redistribution is enabled:
+
+    **Configuration:**
+    ::
+            
+        curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/config/BGPGlobals' | python -m json.tool
+          % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                         Dload  Upload   Total   Spent    Left  Speed
+        100   344  100   344    0     0  62228      0 --:--:-- --:--:-- --:--:-- 68800
+        {
+            "CurrentMarker": 0,
+            "MoreExist": false,
+            "NextMarker": 0,
+            "ObjCount": 1,
+            "Objects": [
+                {
+                    "Object": {
+                        "ASNum": 65535,
+                        "EBGPAllowMultipleAS": false,
+                        "EBGPMaxPaths": 0,
+                        "IBGPMaxPaths": 0,
+                        "RouterId": "1.1.1.1",
+                        "UseMultiplePaths": false,
+                        "Redistribution": [{"Sources":"CONNECTED,STATIC","Policy":"Policy1"},{"Sources":"OSPF","Policy":"Policy2"}]
+                    },
+                    "ObjectId": "7f2c589d-3dea-4356-75be-91c7c2de18cb"
+                }
+            ]
+        }       
+
+.. Note:: BGPGlobal has already been configured with AS number of 65535 and RouterId of 1.1.1.1
+
+   Configuring with Python SDK
+   """""""""""""""""""""""""""
+**COMMAND**
+
+Update BGP global:
+
+::
+
+    >>> FlexSwitch("<*Switch IP*>", <*TCP port*>).updateBGPGlobal(ASNum=<*AS Number*>,
+                                    RouterId=<*IP Addr*>,
+                                    Redistribution=[{"Sources":"<*CONNECTED/STATIC/OSPF*>","Policy":"<*Policy Name*>"}],)
+    
+On BGP global creation:
+
+::
+
+    >>> FlexSwitch("<*Switch IP*>", <*TCP port*>).createBGPGlobal(ASNum=<*AS Number*>,
+                                    RouterId=<*IP Addr*>,
+                                    Redistribution=[{"Sources":"<*CONNECTED/STATIC/OSPF*>","Policy":"<*Policy Name*>"}],)  
+    
+.. Note:: This command is a variable being enabled part of BGPGlobal object. See :ref:`bgp-global-python` for more details.
+ 
+**OPTIONS:**
+
++-------------------+----------------------+---------------------+---------------------------------------------+----------+----------+
+| Python Method     | Variables            | Type                |  Description                                | Required |  Default |     
++===================+======================+=====================+=============================================+==========+==========+   
+| createBGPGlobal   | ASNum                | integer             | Local AS for BGP global config              |    Yes   |   None   |
+|        OR         +----------------------+---------------------+---------------------------------------------+----------+----------+
+| updateBGPGlobal   | RouterId             | string              | Router id for BGP global config             |    Yes   |   None   |
+|                   +----------------------+---------------------+---------------------------------------------+----------+----------+
+|                   | Redistribution       | [SourcePolicyList]  | Redistribution policies                     |    no    |    []    |
++-------------------+----------------------+---------------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+Below is an example on how to enable BGP redistribution:
+
+1. Configure policies and enable redistribution:
+    a. Configure the policy
+.. Note:: See :ref:`routing-policies` to configure the policies.
+
+    b. Updating *Redistribution* to enable redistribution
+
+    ::
+    
+    >>> FlexSwitch("10.1.10.245", 8080).updateBGPGlobal(ASNum=65535, RouterId="1.1.1.1", Redistribution=[{'Sources':'','Policy':'Policy1'}],)  
+
+   Route Reflectors
+   ^^^^^^^^^^^^^^^^
+   Configuring with Rest API 
+   """""""""""""""""""""""""""
+   Configuring with Python SDK
+   """""""""""""""""""""""""""
+   Add Path
+   ^^^^^^^^
+   Configuring with Rest API 
+   """"""""""""""""""""""""""""
+   Configuring with Python SDK
+   """"""""""""""""""""""""""""
 
 ----------------------
-
-
-
-
-
-
-
-
-
-
 
 Configuring DHCP Relay
 -----------------------
@@ -3946,6 +4045,9 @@ Configuring DHCP Relay
 DHCP relay agent is a mechanism that acts as a proxy service for a DHCP server on a network. Since DHCP discover packets are broadcast, they can not reach a DHCP server, 
 that is off subnet. In order to get around this limitation DHCP relay, will ingest a DHCP DISCOVER broadcast frames and unicast forward them
 to a specified DHCP servers and relay the reply to the host attempting IP address assignment. 
+
+DHCP Relay Operation
+^^^^^^^^^^^^^^^^^^^^
 
 Below are the FlexSwitch DHCP Relay agent states for this transaction:
 
@@ -3964,6 +4066,9 @@ Enabling DHCP relay
 Configuring with Rest API 
 """""""""""""""""""""""""
 
+Enable Globally
+***************
+
 **COMMAND**
 ::
 	
@@ -3980,9 +4085,14 @@ Configuring with Rest API
 | Enable               | bool       | Dhcp Relay enabled/disabled globally        |    Yes   |   None   |
 +----------------------+------------+---------------------------------------------+----------+----------+
 
+Enable On Interface
+********************
+
 **COMMAND**
 ::
 	curl -H "Content-Type: application/json" -d '{"IfIndex": 33554442 , "Enable": true , "ServerIp": ["90.0.1.2", "80.0.1.2"] }' -X POST http://10.1.10.244:8080/public/v1/config/DhcpRelayIntf
+
+**OPTIONS**
 
 +----------------------+------------+---------------------------------------------+----------+----------+
 | Variables            | Type       |  Description                                | Required |  Default |
@@ -3994,8 +4104,16 @@ Configuring with Rest API
 | ServerIp             | list       | list of server ip which relay agent will use|    Yes   |   None   |
 +----------------------+------------+---------------------------------------------+----------+----------+
 
+
+**EXAMPLE**
+
+
 Configuring with Python SDK
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""
+
+Enable Globally
+***************
+
 **COMMAND**
 ::
 
@@ -4010,6 +4128,9 @@ Configuring with Python SDK
 |                       +----------------------+------------+---------------------------------------------+----------+----------+
 |                       | Enable               | bool       | Dhcp Relay enabled/disabled globally        |    Yes   |   None   |
 +-----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+Enable On Interface
+********************
 
 **COMMAND**
 ::
@@ -4162,7 +4283,7 @@ Configuring OSPF
 
 
 OspfAreaEntry
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 It will configure OSPF area specific params.
 If ospfArea Entry is not added by default area 0.0.0.0 is created.
@@ -4175,7 +4296,7 @@ If ospfArea Entry is not added by default area 0.0.0.0 is created.
     curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":0, "AreaNssaTranslatorStabilityInterval":40}' http://localhost:8080/public/v1/config/OspfAreaEntry
 
 OspfIfEntry
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
 IfEntry configures OSPF interface.
 
@@ -4194,7 +4315,7 @@ The default IfRtrDeadInterval is 40 s whereas HelloInterval is 10s.
    curl -H "Content-Type: application/json" -d '{"IfIpAddress": "40.1.1.1", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":1, "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfMulticastForwarding":1, "IfDemand":false, "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
 
 OspfGlobal
-^^^^^^^^^^^^^^
+^^^^^^^^^^
 This object will enable the global ospf feature. Unless ospf global is enabled  ,OspfAreaEntry wont take effect.
 
 **RouterId** = OSPF router id.
@@ -4213,7 +4334,7 @@ This object will enable the global ospf feature. Unless ospf global is enabled  
 
 
 Show commands 
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 - Check Ospf Neighbors
 
@@ -4261,7 +4382,7 @@ Show commands
 Configuring Routing Policies
 ----------------------------
 
-
+.. _routing-policies:
 Configuring Policy Condition with Rest API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -4447,13 +4568,14 @@ Configuring Policy Definition with Rest API
 Configuring Routing 
 -------------------
 
-Admin Distance
-^^^^^^^^^^^^^^^
 Static Routes
 ^^^^^^^^^^^^^
 
 Configuring with Rest API 
 """""""""""""""""""""""""
+
+Configuring Single Hop Route
+****************************
 
 **COMMAND:**
 ::
@@ -4521,8 +4643,8 @@ Configuring with Rest API
     }
 
 	
-Configuring Static ECMP Route
-*****************************
+Configuring ECMP Routes
+************************
 
 **COMMAND:**
 ::
@@ -4615,17 +4737,16 @@ Configuring Static ECMP Route
 Configuring with Python SDK
 """"""""""""""""""""""""""""
 
-Configuring STP
-----------------
-
-RSTP
-^^^^^
-RSTP-PVST+
-^^^^^^^^^^
-Configuring with Rest API 
-""""""""""""""""""""""""""""
-Configuring with Python SDK
-""""""""""""""""""""""""""""
+.. Configuring STP
+   ----------------
+   RSTP
+   ^^^^^
+   RSTP-PVST+
+   ^^^^^^^^^^
+   Configuring with Rest API 
+   """"""""""""""""""""""""""""
+   Configuring with Python SDK
+   """"""""""""""""""""""""""""
 
 Configuring VLANS
 -------------------
@@ -4641,6 +4762,17 @@ Configuring with Rest API
 	curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"VlanId":<*Vlan-ID*>,"IntfList":<*Tagged Interfaces*>,"UntagIntfList":<*Untagged Interfaces*>}' 'http://your-switchip:8080/public/v1/config/Vlan'
 
 **OPTIONS**
+
++--------------+-------------+--------------------------------------------+----------+----------+
+| Variables    | Type        |  Description                               | Required |  Default |   
++==============+=============+============================================+==========+==========+ 
+| VlanId       | integer     | Vlan ID to be configured                   |   Yes    |    N/A   |          
++--------------+-------------+--------------------------------------------+----------+----------+
+| Intflist     | string      | comma separated list of tagged interfaces  |    No    |   None   |
++--------------+-------------+--------------------------------------------+----------+----------+
+| UntagIntfList| string      | comma separated list of unyagged interfaces|    No    |   None   |
++--------------+-------------+--------------------------------------------+----------+----------+ 
+
 
 **EXAMPLE**
 
