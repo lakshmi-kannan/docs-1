@@ -24,7 +24,7 @@ Go to next page to install docker image
 .. toctree::
    :maxdepth: 1
 
-- Install docker <installDocker>
+   Install docker <installDocker>
 
 Here are the docker tutorials
 
