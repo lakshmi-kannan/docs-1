@@ -9,7 +9,16 @@ Developers Home
 
 How to contribute
 ^^^^^^^^^^^^^^^^^
-FlexSwitch is built with the following design principles
+You can help FlexSwitch in many ways. Some of the ways we can think of are:
+
+    - Provide feedback (constructive criticism appreciated)
+
+    - Use it and let us know whats not working
+
+    - Pick tasks from different protocols/components
+
+    - Spread the word
+
 
 Setting Up Development Environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -41,6 +50,8 @@ FlexSwitch is built with the following design principles
     - Model driven architecture, Each protcol/component has well defined model. 
     - Micro service architecture, Each protocols/component can function independently
     - Flexible and Modular architecture
+    - All protocol daemons are optional
+    - All Infrastructure components can be replaced with another similar component
 
 .. toctree::
    :maxdepth: 1
