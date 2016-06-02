@@ -4226,17 +4226,56 @@ Configuring Logging
 ---------------------
 System 
 ^^^^^^^
+System level logging is enabled by default. It can be disabled or re-enabled. Daemon level logging is set to "info" by default.
+
 Configuring with Rest API 
 """"""""""""""""""""""""""""
+**COMMAND:**
+::
+    curl -X PATCH -H "Content-Type: application/json" -d '{"Vrf":"default", "Logging": "off" }'  http://<*your switch_ip*>/public/v1/config/SystemLogging
+
 Configuring with Python SDK
 """"""""""""""""""""""""""""
+
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+| Python Method        | Variables            | Type       |  Description                                | Required |  Default |
++======================+======================+============+=============================================+==========+==========+
+| updateSystemLogging  | Vrf                  | string     | VRF name where logging will be changed      |    Yes   | None     |
+|                      +----------------------+------------+---------------------------------------------+----------+----------+
+|                      | Logging              | string     | Logging on/off                              |    no    |   on     |
++----------------------+----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE:**
+>>> from flexswitchV2 import FlexSwitch
+>>> FlexSwitch ("192.168.10.1", 8080).updateSystemLogging(Vrf="default", Logging="off"):
+
 
 Daemon
 ^^^^^^^
 Configuring with Rest API 
 """"""""""""""""""""""""""""
+**COMMAND:**
+::
+    curl -X PATCH -H "Content-Type: application/json" -d '{"Module":"bfdd", "Level": "debug" }'  http://<*your switch_ip*>/public/v1/config/ComponentLogging
+
 Configuring with Python SDK
 """"""""""""""""""""""""""""
+
++-------------------------+----------------------+------------+-----------------------+----------+----------+
+| Python Method           | Variables            | Type       |  Description          | Required |  Default |
++=========================+======================+============+=======================+==========+==========+
+| updateComponentLogging  | Module               | string     | Daemon name           |    Yes   | None     |
+|                         +----------------------+------------+-----------------------+----------+----------+
+|                         | Level                | string     | Logging level         |    no    |   info   |
++-------------------------+----------------------+------------+-----------------------+----------+----------+
+
+Logging level can be - crit/err/warn/alert/emerg/notice/info/debug/trace/off
+
+**EXAMPLE:**
+>>> from flexswitchV2 import FlexSwitch
+>>> FlexSwitch ("192.168.10.1", 8080).updateComponentLogging(Module="bfdd", Level="debug"):
+
+
 
 
 Configuring OSPF
