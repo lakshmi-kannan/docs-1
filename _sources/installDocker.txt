@@ -15,7 +15,10 @@ We have used ubuntu 14.04 base image to create this package.
  
 :: 
   
-   load < Flex43.tar
+   Snaproute flexswitch image is added in the docker hub 
+   https://hub.docker.com/r/snapos/flex/
+   
+   docker pull snapos/flex:Flexv46
    
    docker images
 

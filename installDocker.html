@@ -30,7 +30,10 @@
   
 
   
-    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/> 
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/>
+        <link rel="next" title="Ping Test" href="ping.html"/>
+        <link rel="prev" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -79,8 +82,26 @@
           
             
             
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Install docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#load-docker-image">Load docker image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start-the-container">Start the container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verify-flexswitch-installation">Verify Flexswitch installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-commands">Basic commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ping.html"> Ping test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ospfDocker.html"> OSPF with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ONIE_install.html"> Hardware Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
@@ -118,6 +139,10 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
+          <li><a href="quickstart.html">QuickStart Guide</a> &raquo;</li>
+      
+          <li><a href="dockerIntro.html">Getting started with flexswitch on Docker</a> &raquo;</li>
+      
     <li>Getting ready with flexswitch</li>
       <li class="wy-breadcrumbs-aside">
         
@@ -145,7 +170,10 @@ We have used ubuntu 14.04 base image to create this package.</p>
 <li>Download your .tar image</li>
 <li>Load the image</li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span>load &lt; Flex43.tar
+<div class="highlight-default"><div class="highlight"><pre><span></span>Snaproute flexswitch image is added in the docker hub
+https://hub.docker.com/r/snapos/flex/
+
+docker pull snapos/flex:Flexv46
 
 docker images
 
@@ -230,6 +258,15 @@ libero18/ubuntu-14.04         Flexv43             311d7db88fdf        5 hours ag
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ping.html" class="btn btn-neutral float-right" title="Ping Test" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dockerIntro.html" class="btn btn-neutral" title="Getting started with flexswitch on Docker" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
