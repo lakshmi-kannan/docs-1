@@ -3894,24 +3894,136 @@ On BGP global creation:
 |                   | IBGPMaxPaths         | integer    | Max ECMP paths from Internal BGP neighbors  |    no    |     0    |
 +-------------------+----------------------+------------+---------------------------------------------+----------+----------+
 
-**EXAMPLE**
-
-
 
 Redistribution
 ^^^^^^^^^^^^^^
+To redistribute routes to BGP neighbors, you must enable redistribution in BGP. You can redistribute connected, static and routes learned via other protocols to BGP neighbors. Redistribution is enabled by creating policies and setting the policy in the BGP Global object.
+
 Configuring with Rest API 
 """""""""""""""""""""""""
+A policy has to be configured first to enable redistribution.
+
+.. Note:: See :ref:`routing-policies` to configure the policies.
+
+Update BGP global
+::
+
+    curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":<*AS Number*>,"RouterId":"<*IP Addr*>","Redistribution":[{"Sources":"<*CONNECTED/STATIC/OSPF*>","Policy":"<*Policy Name*>"}]}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+    
+On BGP global creation
+::
+
+    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":<*AS Number*>,"RouterId":"<*IP Addr*>","Redistribution":[{"Sources":"<*CONNECTED/STATIC/OSPF*>","Policy":"<*Policy Name*>"}]}' 'http://<*your-switchip*>:8080/public/v1/config/BGPGlobal'
+    
+.. Note:: This command is a variable being enabled part of BGPGlobal object. See :ref:`bgp-global-rest` for more details. 
+
+**OPTIONS:**
+
++----------------------+----------------------+---------------------------------------------+----------+----------+
+| Variables            | Type                 |  Description                                | Required |  Default |     
++======================+======================+=============================================+==========+==========+   
+| ASNum                | integer              | Local AS for BGP global config              |    Yes   |   None   |
++----------------------+----------------------+---------------------------------------------+----------+----------+
+| RouterId             | string               | Router id for BGP global config             |    Yes   |   None   |
++----------------------+----------------------+---------------------------------------------+----------+----------+
+| Redistribution       | [SourcePolicyList]   | Redistribution policies                     |    no    |    []    |
++----------------------+----------------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+Below is an example on how to enable BGP redistribution:
+
+1. Configure policies and enable redistribution:
+    a. Configure the policy
+.. Note:: See :ref:`routing-policies` to configure the policies.
+
+    b. Updating *Redistribution* to enable redistribution
+
+    ::
+    
+        curl -X PATCH --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"ASNum":65535,"RouterId":"1.1.1.1","Redistribution":[{"Sources":"CONNECTED,STATIC","Policy":"Policy1"},{"Sources":"OSPF","Policy":"Policy2"}]}' 'http://10.1.10.243:8080/public/v1/config/BGPGlobal'
+        {"ObjectId":"7f2c589d-3dea-4356-75be-91c7c2de18cb","Error":""}
+
+2. Validate in configuration object that BGP Redistribution is enabled:
+
+    **Configuration:**
+    ::
+            
+        curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://10.1.10.243:8080/public/v1/config/BGPGlobals' | python -m json.tool
+          % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                         Dload  Upload   Total   Spent    Left  Speed
+        100   344  100   344    0     0  62228      0 --:--:-- --:--:-- --:--:-- 68800
+        {
+            "CurrentMarker": 0,
+            "MoreExist": false,
+            "NextMarker": 0,
+            "ObjCount": 1,
+            "Objects": [
+                {
+                    "Object": {
+                        "ASNum": 65535,
+                        "EBGPAllowMultipleAS": false,
+                        "EBGPMaxPaths": 0,
+                        "IBGPMaxPaths": 0,
+                        "RouterId": "1.1.1.1",
+                        "UseMultiplePaths": false,
+                        "Redistribution": [{"Sources":"CONNECTED,STATIC","Policy":"Policy1"},{"Sources":"OSPF","Policy":"Policy2"}]
+                    },
+                    "ObjectId": "7f2c589d-3dea-4356-75be-91c7c2de18cb"
+                }
+            ]
+        }       
+
+.. Note:: BGPGlobal has already been configured with AS number of 65535 and RouterId of 1.1.1.1
+
 Configuring with Python SDK
 """""""""""""""""""""""""""
+**COMMAND**
 
-Policies
-^^^^^^^^
+Update BGP global:
 
-Configuring with Rest API 
-"""""""""""""""""""""""""""
-Configuring with Python SDK
-"""""""""""""""""""""""""""
+::
+
+    >>> FlexSwitch("<*Switch IP*>", <*TCP port*>).updateBGPGlobal(ASNum=<*AS Number*>,
+                                    RouterId=<*IP Addr*>,
+                                    Redistribution=[{"Sources":"<*CONNECTED/STATIC/OSPF*>","Policy":"<*Policy Name*>"}],)
+    
+On BGP global creation:
+
+::
+
+    >>> FlexSwitch("<*Switch IP*>", <*TCP port*>).createBGPGlobal(ASNum=<*AS Number*>,
+                                    RouterId=<*IP Addr*>,
+                                    Redistribution=[{"Sources":"<*CONNECTED/STATIC/OSPF*>","Policy":"<*Policy Name*>"}],)  
+    
+.. Note:: This command is a variable being enabled part of BGPGlobal object. See :ref:`bgp-global-python` for more details.
+ 
+**OPTIONS:**
+
++-------------------+----------------------+---------------------+---------------------------------------------+----------+----------+
+| Python Method     | Variables            | Type                |  Description                                | Required |  Default |     
++===================+======================+=====================+=============================================+==========+==========+   
+| createBGPGlobal   | ASNum                | integer             | Local AS for BGP global config              |    Yes   |   None   |
+|        OR         +----------------------+---------------------+---------------------------------------------+----------+----------+
+| updateBGPGlobal   | RouterId             | string              | Router id for BGP global config             |    Yes   |   None   |
+|                   +----------------------+---------------------+---------------------------------------------+----------+----------+
+|                   | Redistribution       | [SourcePolicyList]  | Redistribution policies                     |    no    |    []    |
++-------------------+----------------------+---------------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+
+Below is an example on how to enable BGP redistribution:
+
+1. Configure policies and enable redistribution:
+    a. Configure the policy
+.. Note:: See :ref:`routing-policies` to configure the policies.
+
+    b. Updating *Redistribution* to enable redistribution
+
+    ::
+    
+    >>> FlexSwitch("10.1.10.245", 8080).updateBGPGlobal(ASNum=65535, RouterId="1.1.1.1", Redistribution=[{'Sources':'','Policy':'Policy1'}],)  
+
 
 Route Reflectors
 ^^^^^^^^^^^^^^^^
