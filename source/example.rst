@@ -3899,8 +3899,8 @@ Redistribution
 ^^^^^^^^^^^^^^
 To redistribute routes to BGP neighbors, you must enable redistribution in BGP. You can redistribute connected, static and routes learned via other protocols to BGP neighbors. Redistribution is enabled by creating policies and setting the policy in the BGP Global object.
 
-Configuring with Rest API 
-"""""""""""""""""""""""""
+   Configuring with Rest API 
+   """""""""""""""""""""""""
 A policy has to be configured first to enable redistribution.
 
 .. Note:: See :ref:`routing-policies` to configure the policies.
@@ -3976,8 +3976,8 @@ Below is an example on how to enable BGP redistribution:
 
 .. Note:: BGPGlobal has already been configured with AS number of 65535 and RouterId of 1.1.1.1
 
-Configuring with Python SDK
-"""""""""""""""""""""""""""
+   Configuring with Python SDK
+   """""""""""""""""""""""""""
 **COMMAND**
 
 Update BGP global:
@@ -4024,34 +4024,20 @@ Below is an example on how to enable BGP redistribution:
     
     >>> FlexSwitch("10.1.10.245", 8080).updateBGPGlobal(ASNum=65535, RouterId="1.1.1.1", Redistribution=[{'Sources':'','Policy':'Policy1'}],)  
 
-
-Route Reflectors
-^^^^^^^^^^^^^^^^
-
-Configuring with Rest API 
-"""""""""""""""""""""""""""
-Configuring with Python SDK
-"""""""""""""""""""""""""""
-
-Add Path
-^^^^^^^^
-
-Configuring with Rest API 
-""""""""""""""""""""""""""""
-Configuring with Python SDK
-""""""""""""""""""""""""""""
+   Route Reflectors
+   ^^^^^^^^^^^^^^^^
+   Configuring with Rest API 
+   """""""""""""""""""""""""""
+   Configuring with Python SDK
+   """""""""""""""""""""""""""
+   Add Path
+   ^^^^^^^^
+   Configuring with Rest API 
+   """"""""""""""""""""""""""""
+   Configuring with Python SDK
+   """"""""""""""""""""""""""""
 
 ----------------------
-
-
-
-
-
-
-
-
-
-
 
 Configuring DHCP Relay
 -----------------------
@@ -4543,8 +4529,6 @@ Configuring Policy Definition with Rest API
 Configuring Routing 
 -------------------
 
-Admin Distance
-^^^^^^^^^^^^^^^
 Static Routes
 ^^^^^^^^^^^^^
 
@@ -4714,17 +4698,16 @@ Configuring ECMP Routes
 Configuring with Python SDK
 """"""""""""""""""""""""""""
 
-Configuring STP
-----------------
-
-RSTP
-^^^^^
-RSTP-PVST+
-^^^^^^^^^^
-Configuring with Rest API 
-""""""""""""""""""""""""""""
-Configuring with Python SDK
-""""""""""""""""""""""""""""
+.. Configuring STP
+   ----------------
+   RSTP
+   ^^^^^
+   RSTP-PVST+
+   ^^^^^^^^^^
+   Configuring with Rest API 
+   """"""""""""""""""""""""""""
+   Configuring with Python SDK
+   """"""""""""""""""""""""""""
 
 Configuring VLANS
 -------------------
