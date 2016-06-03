@@ -3991,6 +3991,16 @@ Configuring LoopBacks
 ----------------------
 Configuring with Rest API 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**COMMAND**
+::
+
+    curl -H "Content-Type: application/json" -d '{"Name":"lo1", "Type":"Loopback"}' http://localhost:8080/public/v1/config/LogicalIntf
+
+**OPTIONS**
+
+**EXAMPLE**
+
+
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
