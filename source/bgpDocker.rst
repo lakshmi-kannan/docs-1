@@ -22,10 +22,10 @@ Router ids assigned to each bgp instance is 10.1.10.2 and 10.1.10.3 with Ips as
     
     sudo ip link add eth10 type veth peer name eth20
 
-    sudo ip link set eth10 netns $spine1_pid
+    sudo ip link set eth10 netns $<pid_of_bgp_inst1>
     sudo ip netns exec $<pid_of_bgp_inst1> ip link set eth10 up
 
-    sudo ip link set eth20 netns $leaf1_pid
+    sudo ip link set eth20 netns $<pid_of_bgp_inst2>
     sudo ip netns exec $<pid_of_bgp_inst2> ip link set eth20 up
  
 Configure bgp_inst1
@@ -85,7 +85,7 @@ Configure bgp_inst2
 ::
 
 
-    sudo docker exec -it bgp_inst1 bash
+    sudo docker exec -it bgp_inst2 bash
   
     /etc/init.d/flexswitch start
 
