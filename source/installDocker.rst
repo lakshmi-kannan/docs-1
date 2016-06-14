@@ -20,11 +20,15 @@ We have used ubuntu 14.04 base image to create this package.
    
    docker pull snapos/flex:Flexv46
    
-   docker images
+ 
 
-   @snaproute-lab-r710-1:~$ docker images
-   REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-   libero18/ubuntu-14.04         Flexv43             311d7db88fdf        5 hours ago         605.5 MB
+ hari@Shasta ~/tmp$ docker images 
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+snapos/flex             Flexv46             1abb0b971ce1        3 weeks ago         615.8 MB
+ubuntu-14.04            FlexSwitchV18       bf816ee3a586        7 weeks ago         682.3 MB
+ubuntu                  latest              b72889fa879c        8 weeks ago         188 MB
+libero18/ubuntu-14.04   Flexv6              50f1cfc73404        10 weeks ago        1.005 GB
+<none>                  <none>              97434d46f197        12 weeks ago        188 MB
 
 
 Start the container 
