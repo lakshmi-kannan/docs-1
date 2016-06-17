@@ -4,48 +4,42 @@ BGP with 2 nodes
 .. Note:: Make sure you go through ping and install docker tutorial in order to understand docker run commands below
 
 
-This tutorial will create 2 docker instances named bgp_inst1 and bgp_inst2.
+
+This tutorial will create 2 docker instances named d_inst1 and d_inst2
 Router ids assigned to each bgp instance is 10.1.10.2 and 10.1.10.3 with Ips as
 40.1.1.1/24 and 40.1.1.2/24 respectively.
- 
--  create 2 docker instances named bgp_inst1 and bgp_inst2 with given docker image .
+
+Run docker_startup script
+"""""""""""""""""""""""""""""
+-  create 2 docker instances named d_inst1 and d_inst2 with point to point 
+   interfaces eth25 and eth35 created on them respectively.
+
 
 :: 
 
 
-    docker run -dt --privileged --log-driver=syslog --cap-add=ALL  --name bgp_inst1 --ip 192.168.0.2 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
-    docker run -dt --privileged --log-driver=syslog --cap-add=ALL --name bgp_inst2  --ip 192.168.0.4 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
- 
--  Below statements create interface eth10 on bgp_inst1 and eth20 on bgp_inst2
-
-:: 
+   sh docker_startup.sh
     
-    sudo ip link add eth10 type veth peer name eth20
-
-    sudo ip link set eth10 netns $spine1_pid
-    sudo ip netns exec $<pid_of_bgp_inst1> ip link set eth10 up
-
-    sudo ip link set eth20 netns $leaf1_pid
-    sudo ip netns exec $<pid_of_bgp_inst2> ip link set eth20 up
  
-Configure bgp_inst1
+ 
+Configure d_inst1
 """""""""""""""""""""""""
--  Enter bash shell of bgp_inst1
+-  Enter bash shell of d_inst1
 
 ::
 
-    sudo docker exec -it bgp_inst1 bash
+    sudo docker exec -it d_inst1 bash
  
 
--Start the flexswitch . Assign IP address to eth10 
+-Start the flexswitch . Assign IP address to eth25 
  
 ::
 
-    /etc/init.d/flexswitch start
+  
     
     Once all daemons are up and running configure IP address.
     
-    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth10"}' http://localhost:8080/public/v1/config/IPv4Intf
+    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth25"}' http://localhost:8080/public/v1/config/IPv4Intf
  
 - configure BGP global and bgp neighbor
 
@@ -77,21 +71,21 @@ Configure bgp_inst1
  
     curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":500,"NeighborAddress":"40.1.1.2","IfIndex":0,"RouteReflectorClusterId":0,"MultiHopTTL":0,"ConnectRetryTime":60,"HoldTime":180,"KeepaliveTime":60,"AddPathsMaxTx":0}' 'http://localhost:8080/public/v1/config/BGPNeighbor'
  
-Configure bgp_inst2
+Configure d_inst2
 """""""""""""""""""""""""
--  Enter bgp_inst2 shell 
-   Below steps are similar to bgp_inst1 config 
+-  Enter d_inst2 shell 
+   Below steps are similar to d_inst2 config 
  
 ::
 
 
-    sudo docker exec -it bgp_inst1 bash
+    sudo docker exec -it d_inst2 bash
   
     /etc/init.d/flexswitch start
 
     once system is up and running. Configure with Vlan and IP.
 
-    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth20"}' http://localhost:8080/public/v1/config/IPv4Intf
+    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth35"}' http://localhost:8080/public/v1/config/IPv4Intf
  
 - configure BGP
  
