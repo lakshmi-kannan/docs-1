@@ -5,62 +5,35 @@ Ping Test
 
 
 
+
 With this tutorial we are going to spawn 2 docker containers. 
 And begin with pinging from interface on 1 docker to the other.
 
-Create containers
-**********************
+Run docker_startup script
+******************************
 
--  Start the docker with flexswitch image on it with below command
+create 2 docker instances named d_inst1 and d_inst2 with point to point interfaces eth25 and eth35 created on them respectively.
 
-Make sure to start the container in privileged mode and syslog options enabled.
-We have created docker containers with network option "clos-oob-network" . 
+
 
 ::
     
-    docker run -dt --privileged --log-driver=syslog --cap-add=ALL  --name docker_ping1 --ip 192.168.0.2 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
-    docker run -dt --privileged --log-driver=syslog --cap-add=ALL --name docker_ping2  --ip 192.168.0.4 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
-
--  Create point-to-point link between docker_ping1 and docker_ping2
-
-We create eth10 on docker_ping1 connected to eth20 on docker_ping2
-(Note - Get PIDs of docker containers running 
-`docker inspect -f '{{.State.Pid}}' docker_ping1`
-
-`docker inspect -f '{{.State.Pid}}' docker_ping2`
-)
-
-:: 
-    
-    These commands create eth10 and eth20 interfaces on docker_ping1 and docker_ping2 
-    respectiviely.
-    sudo ip link add eth10 type veth peer name eth20
- 
-    sudo ip link set eth10 netns $<pid_docker_ping1>
-    sudo ip netns exec $<pid_docker_ping1> ip link set eth10 up
-
-    sudo ip link set eth20 netns $<pid_docker_ping2>
-    sudo ip netns exec $<pid_docker_ping2> ip link set eth20 up
+    sh docker_startup.sh
 
 
-Configure docker_ping1 
+
+Configure d_inst1
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 -  Enter into the docker shell for docker_ping1
 
 ::
     
-    sudo docker exec -it docker_ping1 bash
+    sudo docker exec -it d_inst1 bash
 
 
 - All below commands are executed on the docker shell. 
    Flexswitch needs syslog and redis-server running before we start to configure. When you run the docker container syslog and redis-server is started at the bootup time. 
 
-
-- Following script is used to start/stop/restart flexswitch instance. 
-
-::
-
-     /etc/init.d/flexswitch start
 
 - Lets start configuring interface with IP . 
 
@@ -68,20 +41,18 @@ While configuring "IPv4Intf" , "IntfRef" can either be port-name or ifindex.
 
 ::
    
-   curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth10"}' http://localhost:8080/public/v1/config/IPv4Intf
+   curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth25"}' http://localhost:8080/public/v1/config/IPv4Intf
 
-Configure docker_ping2 
+Configure d_inst2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
--  Run docker_ping2 and start the flexswitch
 
-Following commands are same above  to spawn the container and create an interface 
+Login to d_inst2 and configure ipv4 interface
 
  
 ::
 
 
-    /etc/init.d/flexswitch start
-    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth20"}' http://localhost:8080/public/v1/config/IPv4Intf
+    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth35"}' http://localhost:8080/public/v1/config/IPv4Intf
  
 
  
