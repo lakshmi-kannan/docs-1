@@ -36,7 +36,7 @@ Configure d_inst1
 ::
 
   
-    
+   (To install curl on docker run - apt-get install curl)  
     Once all daemons are up and running configure IP address.
     
     curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth25"}' http://localhost:8080/public/v1/config/IPv4Intf
@@ -81,10 +81,7 @@ Configure d_inst2
 
     sudo docker exec -it d_inst2 bash
   
-    /etc/init.d/flexswitch start
-
-    once system is up and running. Configure with Vlan and IP.
-
+    (Install curl - apt-get install curl) 
     curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth35"}' http://localhost:8080/public/v1/config/IPv4Intf
  
 - configure BGP
