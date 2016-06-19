@@ -11,7 +11,7 @@ Router ids assigned to each bgp instance is 10.1.10.2 and 10.1.10.3 with Ips as
 
 Run docker_startup script
 """""""""""""""""""""""""""""
--  create 2 docker instances named d_inst1 and d_inst2 with point to point 
+-  Below script will create 2 docker instances named d_inst1 and d_inst2 with point to point 
    interfaces eth25 and eth35 created on them respectively.
 
 
