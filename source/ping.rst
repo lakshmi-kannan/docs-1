@@ -24,12 +24,12 @@ create 2 docker instances named d_inst1 and d_inst2 with point to point interfac
 
 Configure d_inst1
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
--  Enter into the docker shell for docker_ping1
+-  Enter into the docker shell for d_inst1
 
 ::
     
-    sudo docker exec -it d_inst1 bash
-
+    docker exec -it d_inst1 bash
+    (you can install curl using this command - apt-get install curl) 
 
 - All below commands are executed on the docker shell. 
    Flexswitch needs syslog and redis-server running before we start to configure. When you run the docker container syslog and redis-server is started at the bootup time. 
@@ -50,8 +50,9 @@ Login to d_inst2 and configure ipv4 interface
 
  
 ::
-
-
+    
+    docker exec -it d_inst2 bash
+    (get curl - apt-get install curl) 
     curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth35"}' http://localhost:8080/public/v1/config/IPv4Intf
  
 
@@ -71,7 +72,7 @@ It shows details if each daemon is up/down along and reason of failure if any.
 
 :: 
 
-	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://192.168.0.2:8080/public/v1/state/SystemStatus' | python -m json.tool
+	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/public/v1/state/SystemStatus' | python -m json.tool
 	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
 									 Dload  Upload   Total   Spent    Left  Speed
 	100  2940    0  2940    0     0   232k      0 --:--:-- --:--:-- --:--:--  239k
@@ -241,91 +242,95 @@ It shows details if each daemon is up/down along and reason of failure if any.
 
 ::
 
-	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://192.168.0.2:8080/public/v1/state/Ports' | python -m json.tool
+	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/public/v1/state/Ports' | python -m json.tool
 	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-									 Dload  Upload   Total   Spent    Left  Speed
-	100   869  100   869    0     0   104k      0 --:--:-- --:--:-- --:--:--  121k
+                                 Dload  Upload   Total   Spent    Left  Speed
+	100   926  100   926    0     0   201k      0 --:--:-- --:--:-- --:--:--  226k
 	{
-		"CurrentMarker": 0,
-		"MoreExist": false,
-		"NextMarker": 3,
-		"ObjCount": 2,
-		"Objects": [
-			{
-				"Object": {
-					"ErrDisableReason": "",
-					"IfInDiscards": 2,
-					"IfInErrors": 0,
-					"IfInOctets": 16759,
-					"IfInUcastPkts": 88,
-					"IfInUnknownProtos": 0,
-					"IfIndex": 1,
-					"IfOutDiscards": 0,
-					"IfOutErrors": 0,
-					"IfOutOctets": 6522,
-					"IfOutUcastPkts": 72,
-					"LastDownEventTime": "",
-					"LastUpEventTime": "",
-					"Name": "eth0",
-					"NumDownEvents": 0,
-					"NumUpEvents": 0,
-					"OperState": "UP",
-					"PortNum": 1,
-					"Pvid": 4095
-				},
-				"ObjectId": "046c51d1-29aa-41a8-47b0-ae81a5f55320"
-			},
-			{
-				"Object": {
-					"ErrDisableReason": "",
-					"IfInDiscards": 0,
-					"IfInErrors": 0,
-					"IfInOctets": 12588,
-					"IfInUcastPkts": 177,
-					"IfInUnknownProtos": 0,
-					"IfIndex": 2,
-					"IfOutDiscards": 0,
-					"IfOutErrors": 0,
-					"IfOutOctets": 4434,
-					"IfOutUcastPkts": 72,
-					"LastDownEventTime": "",
-					"LastUpEventTime": "",
-					"Name": "eth10",
-					"NumDownEvents": 0,
-					"NumUpEvents": 0,
-					"OperState": "UP",
-					"PortNum": 2,
-					"Pvid": 3050
-				},
-				"ObjectId": "7638f876-0956-45f2-47b7-5e485af1a64a"
-			}
-		]
+    	"CurrentMarker": 0,
+    	"MoreExist": false,
+    	"NextMarker": 2,
+    	"ObjCount": 2,
+    	"Objects": [
+        	{
+            	"Object": {
+                	"ErrDisableReason": "",
+        	 	"IfInDiscards": 0,
+                	"IfInErrors": 0,
+                	"IfInOctets": 90084,
+                	"IfInUcastPkts": 1123,
+                	"IfInUnknownProtos": 0,
+                	"IfIndex": 0,
+                	"IfOutDiscards": 0,
+                	"IfOutErrors": 0,
+                	"IfOutOctets": 92902,
+                	"IfOutUcastPkts": 1154,
+                	"IntfRef": "eth25",
+                	"LastDownEventTime": "",
+                	"LastUpEventTime": "",
+                	"Name": "eth25",
+                	"NumDownEvents": 0,
+                	"NumUpEvents": 0,
+                	"OperState": "UP",
+        	 	"PresentInHW": "NO",
+                	"Pvid": 3050
+            	},
+            	"ObjectId": "a3e970f1-b4eb-41dc-4e29-8e0eb9a0ed01"
+        	},
+        	{
+            	"Object": {
+                	"ErrDisableReason": "",
+                	"IfInDiscards": 0,
+        	 	"IfInErrors": 0,
+                	"IfInOctets": 0,
+                	"IfInUcastPkts": 0,
+        	 	"IfInUnknownProtos": 0,
+                	"IfIndex": 1,
+                	"IfOutDiscards": 0,
+                	"IfOutErrors": 0,
+                	"IfOutOctets": 0,
+                	"IfOutUcastPkts": 0,
+                	"IntfRef": "eth0",
+                	"LastDownEventTime": "",
+                	"LastUpEventTime": "",
+        		 "Name": "eth0",
+                	"NumDownEvents": 0,
+                	"NumUpEvents": 0,
+                	"OperState": "Port broken out",
+                	"PresentInHW": "NO",
+                	"Pvid": 4095
+            	},
+            	"ObjectId": "38224a9f-e5c0-4152-7945-45215ebeb94d"
+        	}
+    	]
 	}
-
+	root@d28c36ed59e5:/# 
 
 - Arp Entries
 
 ::
 
-	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://192.168.0.2:8080/public/v1/state/ArpEntrys' | python -m json.tool
-	  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-									 Dload  Upload   Total   Spent    Left  Speed
-	100   227  100   227    0     0  18210      0 --:--:-- --:--:-- --:--:-- 18916
+	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/public/v1/state/ArpEntrys' | python -m json.tool
+	root@d28c36ed59e5:/# curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/public/v1/state/ArpEntrys' | python -m json.tool
+  	% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+        	                         Dload  Upload   Total   Spent    Left  Speed
+	100   227  100   227    0     0  32922      0 --:--:-- --:--:-- --:--:-- 37833
 	{
-		"CurrentMarker": 0,
-		"MoreExist": false,
-		"NextMarker": 0,
-		"ObjCount": 1,
-		"Objects": [
-			{
-				"Object": {
-					"ExpiryTimeLeft": "9m43.684650453s",
-					"Intf": "eth10",
-					"IpAddr": "40.1.1.2",
-					"MacAddr": "3a:f8:c0:3b:39:d0",
-					"Vlan": "Internal Vlan"
-				},
-				"ObjectId": ""
-			}
-		]
+    	"CurrentMarker": 0,
+    	"MoreExist": false,
+    	"NextMarker": 0,
+    	"ObjCount": 1,
+    	"Objects": [
+        	{
+            	"Object": {
+                	"ExpiryTimeLeft": "6m30.741942761s",
+                	"Intf": "eth25",
+                	"IpAddr": "40.1.1.2",
+                	"MacAddr": "42:52:92:50:68:8e",
+                	"Vlan": "Internal Vlan"
+            	},
+            	"ObjectId": ""
+        	}
+    	]
 	}
+	root@d28c36ed59e5:/# 
