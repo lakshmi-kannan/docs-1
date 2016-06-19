@@ -31,7 +31,7 @@ Configure d_inst1
     sudo docker exec -it d_inst1 bash
  
 
--Start the flexswitch . Assign IP address to eth25 
+- Assign IP address to eth25 
  
 ::
 
@@ -74,8 +74,8 @@ Configure d_inst1
 Configure d_inst2
 """""""""""""""""""""""""
 -  Enter d_inst2 shell 
-   Below steps are similar to d_inst2 config 
- 
+   Configure IP address on eth35 
+   
 ::
 
 
