@@ -32,7 +32,7 @@ Configure d_inst1 docker
 
 ::
 
-
+    (Get curl - apt-get install curl)
     curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth25"}' http://localhost:8080/public/v1/config/IPv4Intf
 
 - Below steps carry out OSPF specific configurations
@@ -106,7 +106,7 @@ Create the layer3 interface.
 ::
 
 
-    
+    (Install curl - apt-get install curl) 
     curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth35"}' http://localhost:8080/public/v1/config/IPv4Intf
  
 - Configure OSPF 
@@ -116,7 +116,8 @@ Create the layer3 interface.
 ::
 
 
-    curl -H "Content-Type: application/json" -d '{"IfIpAddress": "40.1.1.2", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":"Broadcast", "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
+    curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":2, "AreaNssaTranslatorStabilityInterval":40}' http://localhost:8080/public/v1/config/OspfAreaEntry
+
 
 
 **Ospf Interface config** 
