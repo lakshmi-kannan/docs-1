@@ -12,7 +12,7 @@ And begin with pinging from interface on 1 docker to the other.
 Run docker_startup script
 ******************************
 
-create 2 docker instances named d_inst1 and d_inst2 with point to point interfaces eth25 and eth35 created on them respectively.
+This script will create 2 docker instances named d_inst1 and d_inst2 with point to point interfaces eth25 and eth35 created on them respectively.
 
 
 
@@ -43,6 +43,7 @@ While configuring "IPv4Intf" , "IntfRef" can either be port-name or ifindex.
    
    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth25"}' http://localhost:8080/public/v1/config/IPv4Intf
 
+
 Configure d_inst2
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -62,6 +63,7 @@ Login to d_inst2 and configure ipv4 interface
 ::
      
     ping 40.1.1.2
+
 
 Show Commands
 ^^^^^^^^^^^^^^^^^^^^^
