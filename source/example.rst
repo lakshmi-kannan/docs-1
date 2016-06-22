@@ -4197,7 +4197,7 @@ Configuring with Python SDK
 **COMMAND**
 ::
 
->>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createLLDPIntf(IfIndex, Enable):
+>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).updateLLDPIntf(IfIndex, Enable):
 
 **OPTIONS:**
 
