@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API reference! &mdash; FlexSwitch 1.0 documentation</title>
+  <title>Getting started with flexswitch on Docker &mdash; FlexSwitch 1.0 documentation</title>
   
 
   
@@ -31,7 +31,9 @@
 
   
     <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
-        <link rel="prev" title="FlexSwitch Package Installation" href="softwareflexswitch.html"/> 
+        <link rel="up" title="QuickStart Guide" href="quickstart.html"/>
+        <link rel="next" title="Installed FlexSwitch with ONIE" href="ONIE_install.html"/>
+        <link rel="prev" title="ECMP" href="ecmpDocker.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -81,16 +83,20 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Vagrant Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ONIE_install.html"> Hardware Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference!</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
 </ul>
 
             
@@ -121,11 +127,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>API reference!</li>
+          <li><a href="quickstart.html">QuickStart Guide</a> &raquo;</li>
+      
+    <li>Getting started with flexswitch on Docker</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/apis.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/vagrantIntro.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -135,20 +143,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="api-reference">
-<h1>API reference!<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
+  <div class="section" id="getting-started-with-flexswitch-on-docker">
+<h1>Getting started with flexswitch on Docker<a class="headerlink" href="#getting-started-with-flexswitch-on-docker" title="Permalink to this headline">¶</a></h1>
+<p>The below instructions describe how to use FlexSwitch on Vagrant.  This is just a ubuntu 14.04 image with FlexSwitch running on top</p>
+<p>Instructions on how to get Vagrant box up with FlexSwitch:</p>
+<p>Download this files &#8220;snaproute.box&#8221; and &#8220;VagrantFile&#8221; from</p>
+<p><a class="reference external" href="https://github.com/OpenSnaproute/binaries/tree/master/vagrant">https://github.com/OpenSnaproute/binaries/tree/master/vagrant</a></p>
+<dl class="docutils">
+<dt>1)Make folder to store images:</dt>
+<dd>mkdir srBox; cd srBox</dd>
+<dt>2)Copy files into srBox:</dt>
+<dd>cp snaproute.box VagrantFile srBox/</dd>
+</dl>
+<ol class="arabic" start="3">
+<li><p class="first">vagrant box add SnapRoute112 snaproute.box</p>
+</li>
+<li><p class="first">vagrant up</p>
+</li>
+<li><dl class="first docutils">
+<dt>vagrant ssh</dt>
+<dd><p class="first last">password is vagrant</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>This image is based on Ubuntu 14.04 and two ports are created within this image by default
+&#8220;Eth0&#8221; and &#8220;Eth1”.</p>
 </div>
 
 
@@ -158,8 +178,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="ONIE_install.html" class="btn btn-neutral float-right" title="Installed FlexSwitch with ONIE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="softwareflexswitch.html" class="btn btn-neutral" title="FlexSwitch Package Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="ecmpDocker.html" class="btn btn-neutral" title="ECMP" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
