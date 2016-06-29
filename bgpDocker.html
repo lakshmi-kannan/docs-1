@@ -88,8 +88,9 @@
 <li class="toctree-l3"><a class="reference internal" href="installDocker.html">Install docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ping.html"> Ping test</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#"> BGP with 2 nodes</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#configure-bgp-inst1">Configure bgp_inst1</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#configure-bgp-inst2">Configure bgp_inst2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-docker-startup-script">Run docker_startup script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-d-inst1">Configure d_inst1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configure-d-inst2">Configure d_inst2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#show-commands">Show commands</a></li>
 </ul>
 </li>
@@ -97,19 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Dooocker Tutorial</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="installDocker.html">Install docker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ping.html"> Ping test</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#"> BGP with 2 nodes</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#configure-bgp-inst1">Configure bgp_inst1</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#configure-bgp-inst2">Configure bgp_inst2</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#show-commands">Show commands</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="ospfDocker.html"> OSPF with 2 nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="vagrantIntro.html"> Vagrant Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ONIE_install.html"> Hardware Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
 </ul>
@@ -175,42 +164,34 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Make sure you go through ping and install docker tutorial in order to understand docker run commands below</p>
 </div>
-<p>This tutorial will create 2 docker instances named bgp_inst1 and bgp_inst2.
+<p>This tutorial will create 2 docker instances named d_inst1 and d_inst2
 Router ids assigned to each bgp instance is 10.1.10.2 and 10.1.10.3 with Ips as
 40.1.1.1/24 and 40.1.1.2/24 respectively.</p>
+<div class="section" id="run-docker-startup-script">
+<h2>Run docker_startup script<a class="headerlink" href="#run-docker-startup-script" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>create 2 docker instances named bgp_inst1 and bgp_inst2 with given docker image .</li>
+<li>Below script will create 2 docker instances named d_inst1 and d_inst2 with point to point
+interfaces eth25 and eth35 created on them respectively.</li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">dt</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">syslog</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span>  <span class="o">--</span><span class="n">name</span> <span class="n">bgp_inst1</span> <span class="o">--</span><span class="n">ip</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.2</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">clos</span><span class="o">-</span><span class="n">oob</span><span class="o">-</span><span class="n">network</span>  <span class="o">-</span><span class="n">P</span> <span class="n">libero18</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">14.04</span><span class="p">:</span><span class="n">Flexv43</span>
-<span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">dt</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">syslog</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span> <span class="o">--</span><span class="n">name</span> <span class="n">bgp_inst2</span>  <span class="o">--</span><span class="n">ip</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.4</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">clos</span><span class="o">-</span><span class="n">oob</span><span class="o">-</span><span class="n">network</span>  <span class="o">-</span><span class="n">P</span> <span class="n">libero18</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">14.04</span><span class="p">:</span><span class="n">Flexv43</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="n">docker_startup</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="configure-d-inst1">
+<h2>Configure d_inst1<a class="headerlink" href="#configure-d-inst1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Enter bash shell of d_inst1</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">d_inst1</span> <span class="n">bash</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li>Below statements create interface eth10 on bgp_inst1 and eth20 on bgp_inst2</li>
+<li>Assign IP address to eth25</li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span>sudo ip link add eth10 type veth peer name eth20
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">To</span> <span class="n">install</span> <span class="n">curl</span> <span class="n">on</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">-</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">curl</span><span class="p">)</span>
+ <span class="n">Once</span> <span class="nb">all</span> <span class="n">daemons</span> <span class="n">are</span> <span class="n">up</span> <span class="ow">and</span> <span class="n">running</span> <span class="n">configure</span> <span class="n">IP</span> <span class="n">address</span><span class="o">.</span>
 
-sudo ip link set eth10 netns $spine1_pid
-sudo ip netns exec $&lt;pid_of_bgp_inst1&gt; ip link set eth10 up
-
-sudo ip link set eth20 netns $leaf1_pid
-sudo ip netns exec $&lt;pid_of_bgp_inst2&gt; ip link set eth20 up
-</pre></div>
-</div>
-<div class="section" id="configure-bgp-inst1">
-<h2>Configure bgp_inst1<a class="headerlink" href="#configure-bgp-inst1" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Enter bash shell of bgp_inst1</li>
-</ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">bgp_inst1</span> <span class="n">bash</span>
-</pre></div>
-</div>
-<p>-Start the flexswitch . Assign IP address to eth10</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="n">start</span>
-
-<span class="n">Once</span> <span class="nb">all</span> <span class="n">daemons</span> <span class="n">are</span> <span class="n">up</span> <span class="ow">and</span> <span class="n">running</span> <span class="n">configure</span> <span class="n">IP</span> <span class="n">address</span><span class="o">.</span>
-
-<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.1/24&quot;, &quot;IntfRef&quot;: &quot;eth10&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
+ <span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.1/24&quot;, &quot;IntfRef&quot;: &quot;eth25&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -232,19 +213,16 @@ sudo ip netns exec $&lt;pid_of_bgp_inst2&gt; ip link set eth20 up
 </pre></div>
 </div>
 </div>
-<div class="section" id="configure-bgp-inst2">
-<h2>Configure bgp_inst2<a class="headerlink" href="#configure-bgp-inst2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-d-inst2">
+<h2>Configure d_inst2<a class="headerlink" href="#configure-d-inst2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Enter bgp_inst2 shell
-Below steps are similar to bgp_inst1 config</li>
+<li>Enter d_inst2 shell
+Configure IP address on eth35</li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">bgp_inst1</span> <span class="n">bash</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">d_inst2</span> <span class="n">bash</span>
 
-<span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="n">start</span>
-
-<span class="n">once</span> <span class="n">system</span> <span class="ow">is</span> <span class="n">up</span> <span class="ow">and</span> <span class="n">running</span><span class="o">.</span> <span class="n">Configure</span> <span class="k">with</span> <span class="n">Vlan</span> <span class="ow">and</span> <span class="n">IP</span><span class="o">.</span>
-
-<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.2/24&quot;, &quot;IntfRef&quot;: &quot;eth20&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
+<span class="p">(</span><span class="n">Install</span> <span class="n">curl</span> <span class="o">-</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">curl</span><span class="p">)</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.2/24&quot;, &quot;IntfRef&quot;: &quot;eth35&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
 </pre></div>
 </div>
 <ul class="simple">
