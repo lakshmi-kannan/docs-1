@@ -86,8 +86,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Install docker</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#load-docker-image">Load docker image</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#start-the-container">Start the container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-pull">docker pull</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#starting-the-container">Starting the container</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#verify-flexswitch-installation">Verify Flexswitch installation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#basic-commands">Basic commands</a></li>
 </ul>
@@ -98,20 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Dooocker Tutorial</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Install docker</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#load-docker-image">Load docker image</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#start-the-container">Start the container</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#verify-flexswitch-installation">Verify Flexswitch installation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#basic-commands">Basic commands</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="ping.html"> Ping test</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ospfDocker.html"> OSPF with 2 nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="vagrantIntro.html"> Vagrant Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ONIE_install.html"> Hardware Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
 </ul>
@@ -173,40 +160,49 @@
             
   <div class="section" id="getting-ready-with-flexswitch">
 <h1>Getting ready with flexswitch<a class="headerlink" href="#getting-ready-with-flexswitch" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="load-docker-image">
-<h2>Load docker image<a class="headerlink" href="#load-docker-image" title="Permalink to this headline">¶</a></h2>
-<p>Flexv43.tar is the docker image with flexswitch package infused with it.
-We have used ubuntu 14.04 base image to create this package.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Prerequisites</span> <span class="o">-</span> <span class="n">Preinstalled</span> <span class="n">Docker</span> <span class="n">on</span> <span class="n">the</span> <span class="n">host</span> <span class="n">machine</span><span class="o">.</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li>Download your .tar image</li>
-<li>Load the image</li>
-</ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span>Snaproute flexswitch image is added in the docker hub
-https://hub.docker.com/r/snapos/flex/
+<p>Please use below script to set up docker containers that can be
+used to experiment with flexswitch.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">run</span> <span class="n">the</span> <span class="n">script</span>
 
-docker pull snapos/flex:Flexv46
+<span class="n">sh</span> <span class="n">docker_startup</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>The script sets up the docker environment.</p>
+<ol class="arabic simple">
+<li>It creates 2 docker containers d_inst1 and d_inst2 .</li>
+<li>eth25 is created on d_inst1 and eth35 is created on d_inst2</li>
+</ol>
+<p>Here is the detailed explanation for each step in the script</p>
+<div class="section" id="docker-pull">
+<h2>docker pull<a class="headerlink" href="#docker-pull" title="Permalink to this headline">¶</a></h2>
+<p>This command will pull the latest image from docker hub.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Snaproute</span> <span class="n">flexswitch</span> <span class="n">image</span> <span class="ow">is</span> <span class="n">added</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">docker</span> <span class="n">hub</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">hub</span><span class="o">.</span><span class="n">docker</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">r</span><span class="o">/</span><span class="n">snapos</span><span class="o">/</span><span class="n">flex</span><span class="o">/</span>
 
-docker images
+<span class="n">docker</span> <span class="n">hub</span> <span class="n">has</span> <span class="mi">2</span> <span class="n">tags</span> <span class="k">for</span> <span class="n">images</span>
 
-@snaproute-lab-r710-1:~$ docker images
-REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
-libero18/ubuntu-14.04         Flexv43             311d7db88fdf        5 hours ago         605.5 MB
+<span class="n">auto</span> <span class="o">-</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">default</span> <span class="n">ubuntu</span> <span class="n">image</span> <span class="k">with</span> <span class="n">packages</span> <span class="n">installed</span> <span class="n">that</span> <span class="n">are</span> <span class="n">needed</span> <span class="k">for</span> <span class="n">flexswitch</span><span class="o">.</span>
+       <span class="n">Such</span> <span class="k">as</span> <span class="n">redis</span> <span class="p">,</span> <span class="n">syslog</span><span class="o">.</span> <span class="n">This</span> <span class="n">DOES</span> <span class="n">NOT</span> <span class="n">have</span> <span class="n">flexswitch</span> <span class="n">installed</span> <span class="n">on</span> <span class="n">it</span><span class="o">.</span>
+<span class="n">Flexv</span><span class="o">&lt;</span><span class="n">version_number</span><span class="o">&gt;</span> <span class="o">-</span> <span class="n">Latest</span> <span class="n">flexswitch</span> <span class="n">image</span> <span class="k">for</span> <span class="n">docker</span><span class="o">.</span> <span class="n">This</span> <span class="n">image</span> <span class="n">tag</span> <span class="n">will</span> <span class="n">be</span> <span class="n">used</span> <span class="k">for</span> <span class="nb">all</span>
+                        <span class="n">the</span> <span class="n">tutorials</span> <span class="nb">next</span><span class="o">.</span>
+
+<span class="n">Example</span> <span class="o">-</span>
+<span class="n">docker</span> <span class="n">pull</span> <span class="n">snapos</span><span class="o">/</span><span class="n">flex</span><span class="p">:</span><span class="n">Flexv46</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="start-the-container">
-<h2>Start the container<a class="headerlink" href="#start-the-container" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="starting-the-container">
+<h2>Starting the container<a class="headerlink" href="#starting-the-container" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Instantiate a container using command</li>
+<li>Instantiate docker container with different flags</li>
 </ul>
-<p>docker run -dt &#8211;privileged &#8211;log-driver=syslog &#8211;cap-add=ALL  &#8211;name Spine1 &#8211;ip 192.168.0.2 &#8211;net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43</p>
+<p>docker run -dt &#8211;privileged &#8211;log-driver=syslog &#8211;cap-add=ALL  &#8211;name d_inst1   -P libero18/ubuntu-14.04:flex1</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">**</span><span class="n">Note</span><span class="o">**</span>  <span class="n">The</span> <span class="n">flags</span> <span class="n">used</span> <span class="k">while</span> <span class="n">spawning</span> <span class="n">container</span> <span class="o">.</span> <span class="n">Which</span> <span class="n">are</span> <span class="n">necessary</span> <span class="k">for</span> <span class="n">proper</span> <span class="n">functioning</span> <span class="n">of</span> <span class="n">the</span> <span class="n">flexswitch</span>
    <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span>  <span class="n">This</span> <span class="n">will</span> <span class="n">enable</span> <span class="n">syslog</span> <span class="n">support</span> <span class="k">for</span> <span class="n">logging</span>
    <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span> <span class="n">In</span> <span class="n">order</span> <span class="n">to</span> <span class="n">create</span><span class="o">/</span><span class="n">get</span> <span class="n">on</span>  <span class="n">linux</span> <span class="n">interfaces</span> <span class="n">enable</span> <span class="nb">all</span> <span class="n">permissions</span><span class="o">.</span>
-   <span class="o">--</span><span class="n">net</span> <span class="o">-</span> <span class="n">To</span> <span class="n">create</span> <span class="n">docker</span> <span class="n">network</span> <span class="k">for</span> <span class="n">management</span> <span class="n">IPs</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>

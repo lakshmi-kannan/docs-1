@@ -87,7 +87,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="installDocker.html">Install docker</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#"> Ping test</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#create-containers">Create containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-docker-startup-script">Run docker_startup script</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
@@ -95,17 +95,7 @@
 <li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Dooocker Tutorial</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="installDocker.html">Install docker</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#"> Ping test</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#create-containers">Create containers</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ospfDocker.html"> OSPF with 2 nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="vagrantIntro.html"> Vagrant Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ONIE_install.html"> Hardware Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
 </ul>
@@ -173,42 +163,19 @@
 </div>
 <p>With this tutorial we are going to spawn 2 docker containers.
 And begin with pinging from interface on 1 docker to the other.</p>
-<div class="section" id="create-containers">
-<h2>Create containers<a class="headerlink" href="#create-containers" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Start the docker with flexswitch image on it with below command</li>
-</ul>
-<p>Make sure to start the container in privileged mode and syslog options enabled.
-We have created docker containers with network option &#8220;clos-oob-network&#8221; .</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">dt</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">syslog</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span>  <span class="o">--</span><span class="n">name</span> <span class="n">docker_ping1</span> <span class="o">--</span><span class="n">ip</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.2</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">clos</span><span class="o">-</span><span class="n">oob</span><span class="o">-</span><span class="n">network</span>  <span class="o">-</span><span class="n">P</span> <span class="n">libero18</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">14.04</span><span class="p">:</span><span class="n">Flexv43</span>
-<span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">dt</span> <span class="o">--</span><span class="n">privileged</span> <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">syslog</span> <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span> <span class="o">--</span><span class="n">name</span> <span class="n">docker_ping2</span>  <span class="o">--</span><span class="n">ip</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.4</span> <span class="o">--</span><span class="n">net</span><span class="o">=</span><span class="n">clos</span><span class="o">-</span><span class="n">oob</span><span class="o">-</span><span class="n">network</span>  <span class="o">-</span><span class="n">P</span> <span class="n">libero18</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">14.04</span><span class="p">:</span><span class="n">Flexv43</span>
+<div class="section" id="run-docker-startup-script">
+<h2>Run docker_startup script<a class="headerlink" href="#run-docker-startup-script" title="Permalink to this headline">¶</a></h2>
+<p>This script will create 2 docker instances named d_inst1 and d_inst2 with point to point interfaces eth25 and eth35 created on them respectively.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="n">docker_startup</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
+<div class="section" id="configure-d-inst1">
+<h3>Configure d_inst1<a class="headerlink" href="#configure-d-inst1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Create point-to-point link between docker_ping1 and docker_ping2</li>
+<li>Enter into the docker shell for d_inst1</li>
 </ul>
-<p>We create eth10 on docker_ping1 connected to eth20 on docker_ping2
-(Note - Get PIDs of docker containers running
-<cite>docker inspect -f &#8216;{{.State.Pid}}&#8217; docker_ping1</cite></p>
-<p><cite>docker inspect -f &#8216;{{.State.Pid}}&#8217; docker_ping2</cite>
-)</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>These commands create eth10 and eth20 interfaces on docker_ping1 and docker_ping2
-respectiviely.
-sudo ip link add eth10 type veth peer name eth20
-
-sudo ip link set eth10 netns $&lt;pid_docker_ping1&gt;
-sudo ip netns exec $&lt;pid_docker_ping1&gt; ip link set eth10 up
-
-sudo ip link set eth20 netns $&lt;pid_docker_ping2&gt;
-sudo ip netns exec $&lt;pid_docker_ping2&gt; ip link set eth20 up
-</pre></div>
-</div>
-<div class="section" id="configure-docker-ping1">
-<h3>Configure docker_ping1<a class="headerlink" href="#configure-docker-ping1" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Enter into the docker shell for docker_ping1</li>
-</ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">docker_ping1</span> <span class="n">bash</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">d_inst1</span> <span class="n">bash</span>
+<span class="p">(</span><span class="n">you</span> <span class="n">can</span> <span class="n">install</span> <span class="n">curl</span> <span class="n">using</span> <span class="n">this</span> <span class="n">command</span> <span class="o">-</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">curl</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul>
@@ -218,28 +185,20 @@ sudo ip netns exec $&lt;pid_docker_ping2&gt; ip link set eth20 up
 </dd>
 </dl>
 </li>
-<li><p class="first">Following script is used to start/stop/restart flexswitch instance.</p>
+<li><p class="first">Lets start configuring interface with IP .</p>
 </li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="n">start</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li>Lets start configuring interface with IP .</li>
-</ul>
 <p>While configuring &#8220;IPv4Intf&#8221; , &#8220;IntfRef&#8221; can either be port-name or ifindex.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.1/24&quot;, &quot;IntfRef&quot;: &quot;eth10&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.1/24&quot;, &quot;IntfRef&quot;: &quot;eth25&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="configure-docker-ping2">
-<h3>Configure docker_ping2<a class="headerlink" href="#configure-docker-ping2" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Run docker_ping2 and start the flexswitch</li>
-</ul>
-<p>Following commands are same above  to spawn the container and create an interface</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="n">start</span>
-<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.2/24&quot;, &quot;IntfRef&quot;: &quot;eth20&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
+<div class="section" id="configure-d-inst2">
+<h3>Configure d_inst2<a class="headerlink" href="#configure-d-inst2" title="Permalink to this headline">¶</a></h3>
+<p>Login to d_inst2 and configure ipv4 interface</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">d_inst2</span> <span class="n">bash</span>
+<span class="p">(</span><span class="n">get</span> <span class="n">curl</span> <span class="o">-</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">curl</span><span class="p">)</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddr&quot;: &quot;40.1.1.2/24&quot;, &quot;IntfRef&quot;: &quot;eth35&quot;}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">IPv4Intf</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -255,7 +214,7 @@ sudo ip netns exec $&lt;pid_docker_ping2&gt; ip link set eth20 up
 <li>Check system health</li>
 </ul>
 <p>It shows details if each daemon is up/down along and reason of failure if any.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://192.168.0.2:8080/public/v1/state/SystemStatus&#39; | python -m json.tool
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://localhost:8080/public/v1/state/SystemStatus&#39; | python -m json.tool
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                                                  Dload  Upload   Total   Spent    Left  Speed
 100  2940    0  2940    0     0   232k      0 --:--:-- --:--:-- --:--:--  239k
@@ -423,93 +382,98 @@ sudo ip netns exec $&lt;pid_docker_ping2&gt; ip link set eth20 up
 <ul class="simple">
 <li>check ports populated by flexswitch (This will give you ifindex as well)</li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://192.168.0.2:8080/public/v1/state/Ports&#39; | python -m json.tool
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://localhost:8080/public/v1/state/Ports&#39; | python -m json.tool
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                                                 Dload  Upload   Total   Spent    Left  Speed
-100   869  100   869    0     0   104k      0 --:--:-- --:--:-- --:--:--  121k
+                         Dload  Upload   Total   Spent    Left  Speed
+100   926  100   926    0     0   201k      0 --:--:-- --:--:-- --:--:--  226k
 {
-        &quot;CurrentMarker&quot;: 0,
-        &quot;MoreExist&quot;: false,
-        &quot;NextMarker&quot;: 3,
-        &quot;ObjCount&quot;: 2,
-        &quot;Objects&quot;: [
-                {
-                        &quot;Object&quot;: {
-                                &quot;ErrDisableReason&quot;: &quot;&quot;,
-                                &quot;IfInDiscards&quot;: 2,
-                                &quot;IfInErrors&quot;: 0,
-                                &quot;IfInOctets&quot;: 16759,
-                                &quot;IfInUcastPkts&quot;: 88,
-                                &quot;IfInUnknownProtos&quot;: 0,
-                                &quot;IfIndex&quot;: 1,
-                                &quot;IfOutDiscards&quot;: 0,
-                                &quot;IfOutErrors&quot;: 0,
-                                &quot;IfOutOctets&quot;: 6522,
-                                &quot;IfOutUcastPkts&quot;: 72,
-                                &quot;LastDownEventTime&quot;: &quot;&quot;,
-                                &quot;LastUpEventTime&quot;: &quot;&quot;,
-                                &quot;Name&quot;: &quot;eth0&quot;,
-                                &quot;NumDownEvents&quot;: 0,
-                                &quot;NumUpEvents&quot;: 0,
-                                &quot;OperState&quot;: &quot;UP&quot;,
-                                &quot;PortNum&quot;: 1,
-                                &quot;Pvid&quot;: 4095
-                        },
-                        &quot;ObjectId&quot;: &quot;046c51d1-29aa-41a8-47b0-ae81a5f55320&quot;
-                },
-                {
-                        &quot;Object&quot;: {
-                                &quot;ErrDisableReason&quot;: &quot;&quot;,
-                                &quot;IfInDiscards&quot;: 0,
-                                &quot;IfInErrors&quot;: 0,
-                                &quot;IfInOctets&quot;: 12588,
-                                &quot;IfInUcastPkts&quot;: 177,
-                                &quot;IfInUnknownProtos&quot;: 0,
-                                &quot;IfIndex&quot;: 2,
-                                &quot;IfOutDiscards&quot;: 0,
-                                &quot;IfOutErrors&quot;: 0,
-                                &quot;IfOutOctets&quot;: 4434,
-                                &quot;IfOutUcastPkts&quot;: 72,
-                                &quot;LastDownEventTime&quot;: &quot;&quot;,
-                                &quot;LastUpEventTime&quot;: &quot;&quot;,
-                                &quot;Name&quot;: &quot;eth10&quot;,
-                                &quot;NumDownEvents&quot;: 0,
-                                &quot;NumUpEvents&quot;: 0,
-                                &quot;OperState&quot;: &quot;UP&quot;,
-                                &quot;PortNum&quot;: 2,
-                                &quot;Pvid&quot;: 3050
-                        },
-                        &quot;ObjectId&quot;: &quot;7638f876-0956-45f2-47b7-5e485af1a64a&quot;
-                }
-        ]
+&quot;CurrentMarker&quot;: 0,
+&quot;MoreExist&quot;: false,
+&quot;NextMarker&quot;: 2,
+&quot;ObjCount&quot;: 2,
+&quot;Objects&quot;: [
+        {
+        &quot;Object&quot;: {
+                &quot;ErrDisableReason&quot;: &quot;&quot;,
+                &quot;IfInDiscards&quot;: 0,
+                &quot;IfInErrors&quot;: 0,
+                &quot;IfInOctets&quot;: 90084,
+                &quot;IfInUcastPkts&quot;: 1123,
+                &quot;IfInUnknownProtos&quot;: 0,
+                &quot;IfIndex&quot;: 0,
+                &quot;IfOutDiscards&quot;: 0,
+                &quot;IfOutErrors&quot;: 0,
+                &quot;IfOutOctets&quot;: 92902,
+                &quot;IfOutUcastPkts&quot;: 1154,
+                &quot;IntfRef&quot;: &quot;eth25&quot;,
+                &quot;LastDownEventTime&quot;: &quot;&quot;,
+                &quot;LastUpEventTime&quot;: &quot;&quot;,
+                &quot;Name&quot;: &quot;eth25&quot;,
+                &quot;NumDownEvents&quot;: 0,
+                &quot;NumUpEvents&quot;: 0,
+                &quot;OperState&quot;: &quot;UP&quot;,
+                &quot;PresentInHW&quot;: &quot;NO&quot;,
+                &quot;Pvid&quot;: 3050
+        },
+        &quot;ObjectId&quot;: &quot;a3e970f1-b4eb-41dc-4e29-8e0eb9a0ed01&quot;
+        },
+        {
+        &quot;Object&quot;: {
+                &quot;ErrDisableReason&quot;: &quot;&quot;,
+                &quot;IfInDiscards&quot;: 0,
+                &quot;IfInErrors&quot;: 0,
+                &quot;IfInOctets&quot;: 0,
+                &quot;IfInUcastPkts&quot;: 0,
+                &quot;IfInUnknownProtos&quot;: 0,
+                &quot;IfIndex&quot;: 1,
+                &quot;IfOutDiscards&quot;: 0,
+                &quot;IfOutErrors&quot;: 0,
+                &quot;IfOutOctets&quot;: 0,
+                &quot;IfOutUcastPkts&quot;: 0,
+                &quot;IntfRef&quot;: &quot;eth0&quot;,
+                &quot;LastDownEventTime&quot;: &quot;&quot;,
+                &quot;LastUpEventTime&quot;: &quot;&quot;,
+                 &quot;Name&quot;: &quot;eth0&quot;,
+                &quot;NumDownEvents&quot;: 0,
+                &quot;NumUpEvents&quot;: 0,
+                &quot;OperState&quot;: &quot;Port broken out&quot;,
+                &quot;PresentInHW&quot;: &quot;NO&quot;,
+                &quot;Pvid&quot;: 4095
+        },
+        &quot;ObjectId&quot;: &quot;38224a9f-e5c0-4152-7945-45215ebeb94d&quot;
+        }
+]
 }
+root@d28c36ed59e5:/#
 </pre></div>
 </div>
 <ul class="simple">
 <li>Arp Entries</li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://192.168.0.2:8080/public/v1/state/ArpEntrys&#39; | python -m json.tool
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                                                 Dload  Upload   Total   Spent    Left  Speed
-100   227  100   227    0     0  18210      0 --:--:-- --:--:-- --:--:-- 18916
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://localhost:8080/public/v1/state/ArpEntrys&#39; | python -m json.tool
+root@d28c36ed59e5:/# curl -X GET --header &#39;Content-Type: application/json&#39; --header &#39;Accept: application/json&#39; &#39;http://localhost:8080/public/v1/state/ArpEntrys&#39; | python -m json.tool
+% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   227  100   227    0     0  32922      0 --:--:-- --:--:-- --:--:-- 37833
 {
-        &quot;CurrentMarker&quot;: 0,
-        &quot;MoreExist&quot;: false,
-        &quot;NextMarker&quot;: 0,
-        &quot;ObjCount&quot;: 1,
-        &quot;Objects&quot;: [
-                {
-                        &quot;Object&quot;: {
-                                &quot;ExpiryTimeLeft&quot;: &quot;9m43.684650453s&quot;,
-                                &quot;Intf&quot;: &quot;eth10&quot;,
-                                &quot;IpAddr&quot;: &quot;40.1.1.2&quot;,
-                                &quot;MacAddr&quot;: &quot;3a:f8:c0:3b:39:d0&quot;,
-                                &quot;Vlan&quot;: &quot;Internal Vlan&quot;
-                        },
-                        &quot;ObjectId&quot;: &quot;&quot;
-                }
-        ]
+&quot;CurrentMarker&quot;: 0,
+&quot;MoreExist&quot;: false,
+&quot;NextMarker&quot;: 0,
+&quot;ObjCount&quot;: 1,
+&quot;Objects&quot;: [
+        {
+        &quot;Object&quot;: {
+                &quot;ExpiryTimeLeft&quot;: &quot;6m30.741942761s&quot;,
+                &quot;Intf&quot;: &quot;eth25&quot;,
+                &quot;IpAddr&quot;: &quot;40.1.1.2&quot;,
+                &quot;MacAddr&quot;: &quot;42:52:92:50:68:8e&quot;,
+                &quot;Vlan&quot;: &quot;Internal Vlan&quot;
+        },
+        &quot;ObjectId&quot;: &quot;&quot;
+        }
+]
 }
+root@d28c36ed59e5:/#
 </pre></div>
 </div>
 </div>
