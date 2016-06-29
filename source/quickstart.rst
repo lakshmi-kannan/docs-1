@@ -5,6 +5,7 @@ QuickStart Guide
    :maxdepth: 1
 
     Docker Tutorial <dockerIntro>
+    Vagrant Tutorial <vagrantIntro>
     Hardware Tutorial <ONIE_install>
     Hardware Support matrix <hwmatrix>
 
