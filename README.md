@@ -1,4 +1,4 @@
 # docs
-All documentation would go here
+All documentation is available at https://opensnaproute.github.io/docs/
 
 
