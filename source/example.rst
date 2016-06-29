@@ -4197,7 +4197,7 @@ Configuring with Python SDK
 **COMMAND**
 ::
 
->>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).createLLDPIntf(IfIndex, Enable):
+>>> FlexSwitch ("<*Switch Ip*>", <*TCP Port*>).updateLLDPIntf(IfIndex, Enable):
 
 **OPTIONS:**
 
@@ -4217,8 +4217,68 @@ Configuring with Python SDK
 
 Configuring LoopBacks
 ----------------------
+
+LoopBack is configured using the LogicalIntf object.
+
 Configuring with Rest API 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**COMMAND**
+::
+
+    curl -H "Content-Type: application/json" -d '{"Name":"lo1", "Type":"Loopback"}' http://localhost:8080/public/v1/config/LogicalIntf
+
+**OPTIONS:**
+
++----------------------+------------+---------------------------------------------+----------+----------+
+| Variables            | Type       |  Description                                | Required |  Default |     
++======================+============+=============================================+==========+==========+   
+| Name                 | string     | Name of the logical interface               |    Yes   |   None   |
++----------------------+------------+---------------------------------------------+----------+----------+
+| Type                 | string     | Type of the logical interface               |    Yes   | Loopback |
++----------------------+------------+---------------------------------------------+----------+----------+
+
+**EXAMPLE**
+::
+
+    curl -H "Content-Type: application/json" -d '{"Name":"lo1", "Type":"Loopback"}' http://localhost:8080/public/v1/config/LogicalIntf
+    curl -H "Content-Type: application/json" -d '{"Name":"lo2", "Type":"Loopback"}' http://localhost:8080/public/v1/config/LogicalIntf
+    curl -H "Content-Type: application/json" -d '{"Name":"lo3", "Type":"Loopback"}' http://localhost:8080/public/v1/config/LogicalIntf
+	
+    curl -H "Content-Type: application/json" 'http://localhost:8080/public/v1/config/LogicalIntfs' | python -m json.tool
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+    100   359  100   359    0     0  99528      0 --:--:-- --:--:-- --:--:--  116k
+    {
+        "CurrentMarker": 0,
+        "MoreExist": false,
+        "NextMarker": 0,
+        "ObjCount": 3,
+        "Objects": [
+            {
+                "Object": {
+                    "Name": "lo3",
+                    "Type": "Loopback"
+                },
+                "ObjectId": "4b0ce45d-455a-4767-6250-470339d3bb40"
+            },
+            {
+                "Object": {
+                    "Name": "lo2",
+                    "Type": "Loopback"
+                },
+                "ObjectId": "c154f5c2-d982-48f0-585b-edc346e74f54"
+            },
+            {
+                "Object": {
+                    "Name": "lo1",
+                    "Type": "Loopback"
+                },
+                "ObjectId": "777a93ee-f1f0-4117-48a3-678dfee2a194"
+            }
+        ]
+    }
+
+
 Configuring with Python SDK
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

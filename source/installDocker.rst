@@ -1,41 +1,61 @@
 Getting ready with flexswitch 
 ==========================================
 
-Load docker image
-^^^^^^^^^^^^^^^^^^^^^
-Flexv43.tar is the docker image with flexswitch package infused with it. 
-We have used ubuntu 14.04 base image to create this package. 
 ::
     
     Prerequisites - Preinstalled Docker on the host machine.
 
-- Download your .tar image 
 
-- Load the image   
+
+Please use below script to set up docker containers that can be
+used to experiment with flexswitch.
+
+:: 
+    
+    To run the script 
+
+    sh docker_startup.sh
+
+The script sets up the docker environment. 
+
+1) It creates 2 docker containers d_inst1 and d_inst2 .
+
+2) eth25 is created on d_inst1 and eth35 is created on d_inst2
+
+Here is the detailed explanation for each step in the script  
+
+docker pull 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This command will pull the latest image from docker hub.
+   
  
 :: 
   
    Snaproute flexswitch image is added in the docker hub 
    https://hub.docker.com/r/snapos/flex/
    
-   docker pull snapos/flex:Flexv46
-   
+   docker hub has 2 tags for images
+  
+   auto - This is the default ubuntu image with packages installed that are needed for flexswitch. 
+          Such as redis , syslog. This DOES NOT have flexswitch installed on it.
+   Flexv<version_number> - Latest flexswitch image for docker. This image tag will be used for all   
+                           the tutorials next.
  
-
- hari@Shasta ~/tmp$ docker images 
-REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
-snapos/flex             Flexv46             1abb0b971ce1        3 weeks ago         615.8 MB
+   Example - 
+   docker pull snapos/flex:Flexv46
 ubuntu-14.04            FlexSwitchV18       bf816ee3a586        7 weeks ago         682.3 MB
 ubuntu                  latest              b72889fa879c        8 weeks ago         188 MB
 libero18/ubuntu-14.04   Flexv6              50f1cfc73404        10 weeks ago        1.005 GB
 <none>                  <none>              97434d46f197        12 weeks ago        188 MB
+   
 
 
-Start the container 
-^^^^^^^^^^^^^^^^^^^^^
-- Instantiate a container using command  
+Starting the container 
+^^^^^^^^^^^^^^^^^^^^^^^^^
+- Instantiate docker container with different flags
 
-docker run -dt --privileged --log-driver=syslog --cap-add=ALL  --name Spine1 --ip 192.168.0.2 --net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43
+docker run -dt --privileged --log-driver=syslog --cap-add=ALL  --name d_inst1   -P libero18/ubuntu-14.04:flex1
 
 
 ::
@@ -43,7 +63,7 @@ docker run -dt --privileged --log-driver=syslog --cap-add=ALL  --name Spine1 --i
  **Note**  The flags used while spawning container . Which are necessary for proper functioning of the flexswitch
     --log-driver  This will enable syslog support for logging
     --cap-add=ALL In order to create/get on  linux interfaces enable all permissions.
-    --net - To create docker network for management IPs.
+   
 
 Verify Flexswitch installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -103,4 +123,3 @@ http://localhost:8080/api-docs/
 
 
 - Note that the successive tutorials will cover detailed illustrations about configuration and debugging.
-
