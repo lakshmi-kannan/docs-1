@@ -15,6 +15,7 @@ used to experiment with flexswitch.
     To run the script 
 
     sh docker_startup.sh
+    Get the script here  - https://github.com/OpenSnaproute/test
 
 The script sets up the docker environment. 
 
