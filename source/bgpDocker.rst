@@ -19,6 +19,7 @@ Run docker_startup script
 
 
    sh docker_startup.sh
+   Get the script here - https://github.com/OpenSnaproute/test
     
  
  
