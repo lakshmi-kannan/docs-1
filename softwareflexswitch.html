@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FlexSwitch Package Installation &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="next" title="API reference!" href="apis.html"/>
+        <link rel="prev" title="1   Configuration Examples" href="example.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>FlexSwitch Package Installation</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/softwareflexswitch.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flexswitch-package-installation">
+<h1>FlexSwitch Package Installation<a class="headerlink" href="#flexswitch-package-installation" title="Permalink to this headline">¶</a></h1>
+<p>The SnapRoute FlexSwitch network protocol stack and accompanying toolchain is provided as an installable Debian dpkg package.  The package and can be added to a local repo or installed manually (shown below).</p>
+<ol class="arabic">
+<li><p class="first">SCP flexswitch debian package to the whitebox switch:
+.. Note:: Default username: admin, default password: snaproute</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>$ scp flexswitch_0.0.80_amd64.deb admin@10.1.10.240:./
+admin@10.1.10.240&#39;s password:
+flexswitch_0.0.80_amd64.deb                                                                                                                                                    100%   59MB   9.9MB/s   00:06 ``
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Once complete login to the whitebox switch and utilize dpkg to install package on the system:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>admin@localhost:~$ sudo dpkg -i flexswitch_0.0.80_amd64.deb
+(Reading database ... 20599 files and directories currently installed.)
+Preparing to unpack flexswitch_0.0.80_amd64.deb ...
+Getting MAC address
+Stopping Daemon asicd
+Stopping Daemon sysd
+Stopping Daemon ribd
+Stopping Daemon bfdd
+Stopping Daemon arpd
+Stopping Daemon bgpd
+Stopping Daemon ospfd
+Stopping Daemon lacpd
+Stopping Daemon dhcprelayd
+Stopping Daemon stpd
+Stopping Daemon vrrpd
+Stopping Daemon lldpd
+Stopping Daemon vxland
+Stopping Daemon confd
+preinst INSTALL called with argument `upgrade&#39;
+Unpacking flexswitch (0.0.80) over (0.0.80) ...
+Setting up flexswitch (0.0.80) ...
+postinst Configure called with unknown argument `configure&#39;
+Getting MAC address
+Starting Daemon asicd Params: -params=/opt/flexswitch/params
+Starting Daemon sysd Params: -params=/opt/flexswitch/params
+Starting Daemon ribd Params: -params=/opt/flexswitch/params
+Starting Daemon bfdd Params: -params=/opt/flexswitch/params
+Starting Daemon arpd Params: -params=/opt/flexswitch/params
+Starting Daemon bgpd Params: -params=/opt/flexswitch/params
+Starting Daemon ospfd Params: -params=/opt/flexswitch/params
+Starting Daemon lacpd Params: -params=/opt/flexswitch/params
+Starting Daemon dhcprelayd Params: -params=/opt/flexswitch/params
+Starting Daemon stpd Params: -params=/opt/flexswitch/params
+Starting Daemon vrrpd Params: -params=/opt/flexswitch/params
+Starting Daemon lldpd Params: -params=/opt/flexswitch/params
+Starting Daemon vxland Params: -params=/opt/flexswitch/params
+Starting Daemon confd Params: -params=/opt/flexswitch/params
+Total time taken to start all 14 daemons is  0:00:28.025121
+Processing triggers for libc-bin (2.19-18+deb8u4) ...
+admin@localhost:~$``
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">Verify FlexSwitch is up and all daemons are running</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first docutils">
+<dt>curl -X GET &#8211;header &#8216;Content-Type: application/json&#8217; &#8211;header &#8216;Accept: application/json&#8217; &#8216;<a class="reference external" href="http://10.1.10.243:8080/public/v1/state/SystemStatus">http://10.1.10.243:8080/public/v1/state/SystemStatus</a>&#8216; | python -m json.tool</dt>
+<dd><dl class="first last docutils">
+<dt>% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</dt>
+<dd><p class="first last">Dload  Upload   Total   Spent    Left  Speed</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>100  2949    0  2949    0     0   330k      0 &#8211;:&#8211;:&#8211; &#8211;:&#8211;:&#8211; &#8211;:&#8211;:&#8211;  359k</p>
+<dl class="docutils">
+<dt>{</dt>
+<dd><dl class="first docutils">
+<dt>&#8220;Object&#8221;: {</dt>
+<dd><p class="first">&#8220;Name&#8221;: &#8220;rxp-tor-ru40&#8221;,
+&#8220;NumActionCalls&#8221;: &#8220;Total 0 Success 0&#8221;,
+&#8220;NumCreateCalls&#8221;: &#8220;Total 16 Success 14&#8221;,
+&#8220;NumDeleteCalls&#8221;: &#8220;Total 0 Success 0&#8221;,
+&#8220;NumGetCalls&#8221;: &#8220;Total 11 Success 10&#8221;,
+&#8220;NumUpdateCalls&#8221;: &#8220;Total 3 Success 2&#8221;,
+&#8220;Ready&#8221;: true,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;UpTime&#8221;: &#8220;15h34m45.905629054s&#8221;
+&#8220;FlexDaemons&#8221;: [</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>{</dt>
+<dd><p class="first last">&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 2 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;asicd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:42:13.021281962 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</dd>
+</dl>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;bfdd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:42:19.168999062 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;arpd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:42:15.169367385 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;dhcprelayd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:41:59.211601355 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 2 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;vxland&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:42:13.035179142 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 2 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;ribd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:42:18.729224609 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;vrrpd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:42:15.313853582 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 4 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;bgpd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:41:58.813972783 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;confd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:41:59.135234435 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;dhcpd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:41:59.207273785 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;stpd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:42:15.404720612 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;lldpd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:42:15.244707926 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>&#8220;Enable&#8221;: true,
+&#8220;KeepAlive&#8221;: &#8220;Received 1 keepalives&#8221;,
+&#8220;Name&#8221;: &#8220;lacpd&#8221;,
+&#8220;Reason&#8221;: &#8220;None&#8221;,
+&#8220;RestartCount&#8221;: 0,
+&#8220;RestartReason&#8221;: &#8220;&#8221;,
+&#8220;RestartTime&#8221;: &#8220;&#8221;,
+&#8220;StartTime&#8221;: &#8220;2016-05-17 18:41:59.36188443 -0700 PDT&#8221;,
+&#8220;State&#8221;: &#8220;up&#8221;</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p class="last">],</p>
+</dd>
+</dl>
+<p class="last">},
+&#8220;ObjectId&#8221;: &#8220;&#8221;</p>
+</dd>
+</dl>
+<p class="last">}</p>
+</dd>
+</dl>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="5">
+<li><p class="first">Verify the switch is running the correct version:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="o">--</span><span class="n">header</span> <span class="s1">&#39;Accept: application/json&#39;</span> <span class="s1">&#39;http://10.1.10.243:8080/public/v1/state/SystemSwVersion&#39;</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
+  <span class="o">%</span> <span class="n">Total</span>    <span class="o">%</span> <span class="n">Received</span> <span class="o">%</span> <span class="n">Xferd</span>  <span class="n">Average</span> <span class="n">Speed</span>   <span class="n">Time</span>    <span class="n">Time</span>     <span class="n">Time</span>  <span class="n">Current</span>
+                                                                 <span class="n">Dload</span>  <span class="n">Upload</span>   <span class="n">Total</span>   <span class="n">Spent</span>    <span class="n">Left</span>  <span class="n">Speed</span>
+<span class="mi">100</span>  <span class="mi">1283</span>  <span class="mi">100</span>  <span class="mi">1283</span>    <span class="mi">0</span>     <span class="mi">0</span>   <span class="mi">216</span><span class="n">k</span>      <span class="mi">0</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span>  <span class="mi">250</span><span class="n">k</span>
+<span class="p">{</span>
+        <span class="s2">&quot;Object&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;FlexswitchVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0.101&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Repos&quot;</span><span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;l2&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;5b86f674d3c72c8dd46bae393e17482b8c562b60&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue May 17 09:37:13 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;l3&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;c09d7cfaff49cfc9437c695f2f49bfca5b4468ba&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue May 17 09:37:46 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;utils&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;80108d345dcbd01a5ffc3af9c7a4322ba8e702c7&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue May 17 09:38:53 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;asicd&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;f03366887e07531a52ad8f25197466b9af7f169f&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue May 17 09:35:56 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;config&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;9813b1df844bbeaa40d4cdd69d1613a256deb370&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue May 17 09:36:24 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;models&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;46e3a29ffe9c07b2b7b6bdeefeb801dcb016d1e8&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue May 17 09:38:17 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;infra&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;271790a06452894aa9305fbbc842980a1a0961fd&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Tue May 17 09:36:51 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;vendors&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;commit&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Fri May 13 09:48:01 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;flexSdk&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;fcbf47f392b84dd050db4fd5fc2dc1b919c2a767&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Fri May 13 16:20:28 2016 -0700&quot;</span>
+                        <span class="p">},</span>
+                        <span class="p">{</span>
+                                <span class="s2">&quot;Branch&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;apps&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Sha1&quot;</span><span class="p">:</span> <span class="s2">&quot;6965c05b1be95e7ea4f7493a251637c21237867a&quot;</span><span class="p">,</span>
+                                <span class="s2">&quot;Time&quot;</span><span class="p">:</span> <span class="s2">&quot;Wed Apr 27 13:51:06 2016 -0700&quot;</span>
+                        <span class="p">}</span>
+                <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;ObjectId&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" start="4">
+<li><p class="first">Change the daemons that start and are running on the system.</p>
+<blockquote>
+<div><ol class="loweralpha">
+<li><dl class="first docutils">
+<dt>Start/Stop daemons via RestAPI:</dt>
+<dd><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="n">To</span> <span class="n">be</span> <span class="n">Filled</span> <span class="ow">in</span> <span class="k">with</span> <span class="n">example</span> <span class="n">to</span> <span class="n">start</span><span class="o">/</span><span class="n">stop</span> <span class="n">daemon</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">On Linux edit the file /opt/flexswitch/params/clients.json and remove or add daemon specific JSON, I.E. <em>{&#8220;Name&#8221;: &#8220;&lt;daemon&gt;&#8221;, &#8220;Port&#8221;: &lt;port-number&gt;}</em></p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;asicd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;bgpd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span> <span class="mi">10001</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;ribd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10002</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;arpd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10003</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;lacpd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10004</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;ospfd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10005</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;stpd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10006</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;dhcprelayd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span> <span class="mi">10007</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;bfdd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10008</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;vrrpd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10009</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;sysd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10010</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;lldpd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10011</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;vxland&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10012</span><span class="p">},</span>
+
+        <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;dhcpd&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10013</span><span class="p">},</span>
+
+   <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;local&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>If you wanted to remove BGPd or STPd from running on start, you would remove these JSON objects:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;bgpd&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Port&quot;</span><span class="p">:</span> <span class="mi">10001</span><span class="p">},</span>
+<span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;stpd&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10006</span><span class="p">},</span>
+</pre></div>
+</div>
+</div></blockquote>
+<dl class="docutils">
+<dt>Resulting in the following:</dt>
+<dd><div class="first highlight-default"><div class="highlight"><pre><span></span>     <span class="p">[</span>
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;asicd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;ribd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10002</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;arpd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10003</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;lacpd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10004</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;ospfd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10005</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;dhcprelayd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span> <span class="mi">10007</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;bfdd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10008</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;vrrpd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10009</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;sysd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10010</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;lldpd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10011</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;vxland&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10012</span><span class="p">},</span>
+
+     <span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;dhcpd&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10013</span><span class="p">},</span>
+
+<span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;local&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+</pre></div>
+</div>
+<p class="last">]</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">ASICD and SYSD is required for system function.  These daemons can not be removed from this file.  FlexSwitch will not function, if these daemons are not set to start.</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="apis.html" class="btn btn-neutral float-right" title="API reference!" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="example.html" class="btn btn-neutral" title="1   Configuration Examples" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

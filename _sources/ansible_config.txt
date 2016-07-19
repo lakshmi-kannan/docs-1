@@ -1,5 +1,11 @@
-Utilizing Ansible
-==================
+.. FlexSwitch documentation master file, created by
+   sphinx-quickstart on Mon Apr  4 12:27:04 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+
+Utilizing Ansible with FlexSwitch 
+=================================
 
 Utilizing the JSON file method, it is possible to utilize automation tools like Ansible to manage FlexSwitch configurations.  First we will go through how to manipulate configuration utilizing a JSON configuration file manually, then
 we will demonstrate how this can be done utilizing Ansible. 

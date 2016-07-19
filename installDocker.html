@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting ready with flexswitch &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/>
+        <link rel="next" title="Ping Test" href="ping.html"/>
+        <link rel="prev" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Install docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#load-docker-image">Load docker image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#start-the-container">Start the container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verify-flexswitch-installation">Verify Flexswitch installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-commands">Basic commands</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ping.html"> Ping test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ospfDocker.html"> OSPF with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ONIE_install.html"> Hardware Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="quickstart.html">QuickStart Guide</a> &raquo;</li>
+      
+          <li><a href="dockerIntro.html">Getting started with flexswitch on Docker</a> &raquo;</li>
+      
+    <li>Getting ready with flexswitch</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/installDocker.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-ready-with-flexswitch">
+<h1>Getting ready with flexswitch<a class="headerlink" href="#getting-ready-with-flexswitch" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="load-docker-image">
+<h2>Load docker image<a class="headerlink" href="#load-docker-image" title="Permalink to this headline">¶</a></h2>
+<p>Flexv43.tar is the docker image with flexswitch package infused with it.
+We have used ubuntu 14.04 base image to create this package.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Prerequisites</span> <span class="o">-</span> <span class="n">Preinstalled</span> <span class="n">Docker</span> <span class="n">on</span> <span class="n">the</span> <span class="n">host</span> <span class="n">machine</span><span class="o">.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Download your .tar image</li>
+<li>Load the image</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span>Snaproute flexswitch image is added in the docker hub
+https://hub.docker.com/r/snapos/flex/
+
+docker pull snapos/flex:Flexv46
+
+docker images
+
+@snaproute-lab-r710-1:~$ docker images
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+libero18/ubuntu-14.04         Flexv43             311d7db88fdf        5 hours ago         605.5 MB
+</pre></div>
+</div>
+</div>
+<div class="section" id="start-the-container">
+<h2>Start the container<a class="headerlink" href="#start-the-container" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Instantiate a container using command</li>
+</ul>
+<p>docker run -dt &#8211;privileged &#8211;log-driver=syslog &#8211;cap-add=ALL  &#8211;name Spine1 &#8211;ip 192.168.0.2 &#8211;net=clos-oob-network  -P libero18/ubuntu-14.04:Flexv43</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">**</span><span class="n">Note</span><span class="o">**</span>  <span class="n">The</span> <span class="n">flags</span> <span class="n">used</span> <span class="k">while</span> <span class="n">spawning</span> <span class="n">container</span> <span class="o">.</span> <span class="n">Which</span> <span class="n">are</span> <span class="n">necessary</span> <span class="k">for</span> <span class="n">proper</span> <span class="n">functioning</span> <span class="n">of</span> <span class="n">the</span> <span class="n">flexswitch</span>
+   <span class="o">--</span><span class="n">log</span><span class="o">-</span><span class="n">driver</span>  <span class="n">This</span> <span class="n">will</span> <span class="n">enable</span> <span class="n">syslog</span> <span class="n">support</span> <span class="k">for</span> <span class="n">logging</span>
+   <span class="o">--</span><span class="n">cap</span><span class="o">-</span><span class="n">add</span><span class="o">=</span><span class="n">ALL</span> <span class="n">In</span> <span class="n">order</span> <span class="n">to</span> <span class="n">create</span><span class="o">/</span><span class="n">get</span> <span class="n">on</span>  <span class="n">linux</span> <span class="n">interfaces</span> <span class="n">enable</span> <span class="nb">all</span> <span class="n">permissions</span><span class="o">.</span>
+   <span class="o">--</span><span class="n">net</span> <span class="o">-</span> <span class="n">To</span> <span class="n">create</span> <span class="n">docker</span> <span class="n">network</span> <span class="k">for</span> <span class="n">management</span> <span class="n">IPs</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="verify-flexswitch-installation">
+<h2>Verify Flexswitch installation<a class="headerlink" href="#verify-flexswitch-installation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>When docker container is spawned by default we start rsyslogd and redis-server.</li>
+<li>/etc/init.d/flexswitch is the script to start /stop the flexswitch daemons.</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">flexswitch</span> <span class="o">&lt;</span><span class="n">start</span><span class="o">/</span><span class="n">stop</span><span class="o">/</span><span class="n">restart</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="basic-commands">
+<h2>Basic commands<a class="headerlink" href="#basic-commands" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Start flexswitch</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">flexswitch</span> <span class="n">start</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>To access all REST APIs use swagger</li>
+</ul>
+<p><a class="reference external" href="http://localhost:8080/api-docs/">http://localhost:8080/api-docs/</a></p>
+<ul class="simple">
+<li>Check system health</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">host_ip</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">state</span><span class="o">/</span><span class="n">SystemStatus</span>
+
+<span class="p">{</span>
+<span class="s2">&quot;ObjectId&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Object&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="s2">&quot;ConfigObj&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+<span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;7abb27f0ad2a&quot;</span><span class="p">,</span>
+<span class="s2">&quot;SwVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="s2">&quot;Ready&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+<span class="s2">&quot;Reason&quot;</span><span class="p">:</span> <span class="s2">&quot;None&quot;</span><span class="p">,</span>
+<span class="s2">&quot;UpTime&quot;</span><span class="p">:</span> <span class="s2">&quot;19h54m58.355328307s&quot;</span><span class="p">,</span>
+<span class="s2">&quot;NumCreateCalls&quot;</span><span class="p">:</span> <span class="s2">&quot;Total 19 Success 15&quot;</span><span class="p">,</span>
+<span class="s2">&quot;NumDeleteCalls&quot;</span><span class="p">:</span> <span class="s2">&quot;Total 0 Success 0&quot;</span><span class="p">,</span>
+<span class="s2">&quot;NumUpdateCalls&quot;</span><span class="p">:</span> <span class="s2">&quot;Total 4 Success 4&quot;</span><span class="p">,</span>
+<span class="s2">&quot;NumGetCalls&quot;</span><span class="p">:</span> <span class="s2">&quot;Total 1 Success 0&quot;</span><span class="p">,</span>
+<span class="s2">&quot;NumActionCalls&quot;</span><span class="p">:</span> <span class="s2">&quot;Total 0 Success 0&quot;</span><span class="p">,</span>
+<span class="s2">&quot;FlexDaemons&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="p">{</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>In case you need to flush all database and restart all daemons</li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">redis</span><span class="o">-</span><span class="n">cli</span>
+ <span class="n">run</span> <span class="n">command</span> <span class="s2">&quot;flushdb&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Note that the successive tutorials will cover detailed illustrations about configuration and debugging.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ping.html" class="btn btn-neutral float-right" title="Ping Test" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dockerIntro.html" class="btn btn-neutral" title="Getting started with flexswitch on Docker" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
