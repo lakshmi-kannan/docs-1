@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Network Engineer Guide &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="next" title="FlexSwitch Package Installation" href="flexswitch_install.html"/>
+        <link rel="prev" title="Design decisions" href="decisions.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> Network Engineer Home</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flexswitch_install.html"> FlexSwitch Package Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli_config.html"> Configuring FlexSwitch via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ansible_config.html">     Configuring FlexSwitch via Ansible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rest_config.html">     Configuring FlexSwitch via REST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supporting-documentation">Supporting Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Network Engineer Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/nwengineer.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="network-engineer-guide">
+<h1>Network Engineer Guide<a class="headerlink" href="#network-engineer-guide" title="Permalink to this headline">¶</a></h1>
+<p>The scope of this page is to detail the steps required to configure SnapRoute FlexSwitch networking stack on a white box switch running ONIE (Open Network Install Environment) Or Standalone package.
+As we all as examples of initial configurations made on the device’s utilizing console port or with the management port used for the ONIE kick process and an understanding of how to interact with the system.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flexswitch_install.html"> FlexSwitch Package Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_config.html"> Configuring FlexSwitch via CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ansible_config.html">     Configuring FlexSwitch via Ansible</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest_config.html">     Configuring FlexSwitch via REST</a></li>
+</ul>
+</div>
+<p>For more detail configuration examples can be viewed here:</p>
+<blockquote>
+<div><a class="reference external" href="example.html">Configuration Examples</a></div></blockquote>
+<div class="section" id="supporting-documentation">
+<h2>Supporting Documentation<a class="headerlink" href="#supporting-documentation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/opencomputeproject/onie/wiki">ONIE</a></li>
+<li><a class="reference external" href="http://swagger.io">Swagger</a></li>
+<li><a class="reference external" href="https://chrome.google.com/webstore/detail/chklaanhfefbnpoihckbnefhakgolnmc">JSONView for Chrome</a></li>
+<li><a class="reference external" href="https://www.ansible.com">Ansible</a></li>
+<li><a class="reference external" href="http://jinja.pocoo.org/docs/dev/">Jinja2</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flexswitch_install.html" class="btn btn-neutral float-right" title="FlexSwitch Package Installation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="decisions.html" class="btn btn-neutral" title="Design decisions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

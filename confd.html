@@ -1,0 +1,352 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Config Manager &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Detailed Architecture" href="architecture.html"/>
+        <link rel="next" title="System Daemon" href="sysd.html"/>
+        <link rel="prev" title="Detailed Architecture" href="architecture.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="developer.html"> Developer Home</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="developer.html#how-to-contribute">How to contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#setting-up-development-environment">Setting Up Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#building-flexswitch-from-sources">Building FlexSwitch From Sources</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="developer.html#system-architecture">System Architecture</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="architecture.html"> Architecture details</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#system-architecture">System Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#system-components">System Components</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="architecture.html#infrastructure-daemons">Infrastructure Daemons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="architecture.html#protocol-daemons">Protocol Daemons</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#open-source-components">Open Source Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#design-decisions">Design Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="developer.html">Developers Home</a> &raquo;</li>
+      
+          <li><a href="architecture.html">Detailed Architecture</a> &raquo;</li>
+      
+    <li>Config Manager</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/confd.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="config-manager">
+<h1>Config Manager<a class="headerlink" href="#config-manager" title="Permalink to this headline">¶</a></h1>
+<p>ConfigMgr module in SnapRoute network protocol suite is responsible for providing RESTful APIs service to manage different features and functionalities. It accepts the API calls and talks to backend servers to process the request.</p>
+</div>
+<div class="section" id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h1>
+<img alt="_images/ConfigMgr_Design.png" src="_images/ConfigMgr_Design.png" />
+<p>Server package is responsible for initializing ConfigMgr and other sub-packages. It also serves API calls for SystemStatus and SystemSwVersion objects. Clients package is responsible for establishing thrift connections to all backend servers. It keeps on retrying for ever If connection to backend server can not be established. Objects package is responsible for initializing objects that Apis package uses to serve REST calls. Apis package processes the Create, Update, Delete, and Get calls for all the objects supported in SnapRoute network protocol suite.</p>
+</div>
+<div class="section" id="configmgr-design">
+<h1>ConfigMgr Design<a class="headerlink" href="#configmgr-design" title="Permalink to this headline">¶</a></h1>
+<p>ConfigMgr runs as confd daemon. main() function initializes logging level for confd and then initializes server sub-package by calling NewConfigMgr method.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">configMgr</span> <span class="p">:</span><span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">NewConfigMgr</span><span class="p">(</span><span class="n">paramsDirName</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>paramsDirName is the path where json configuration files are present. logger is the logging handles that was returned when NewLogger() function was invoked to initialize logging.
+main() function initializes KeepAlive sub-module for confd. KeepAlive runs as a go routine which periodically sends out keepalive message to system daemon. After server sub-package initialization is done, main function gets the http port and REST routes to serve and waits for http request for REST APIs by calling ListenAndServe method from http package.</p>
+<div class="section" id="server-sub-package">
+<h2>Server Sub-Package<a class="headerlink" href="#server-sub-package" title="Permalink to this headline">¶</a></h2>
+<p>Server sub-package operates on ConfigMgr object -</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ConfigMgr</span> <span class="n">struct</span> <span class="p">{</span>
+      <span class="n">logger</span>      <span class="o">*</span><span class="n">logging</span><span class="o">.</span><span class="n">Writer</span>       <span class="o">//</span> <span class="n">Logger</span> <span class="n">handle</span>
+      <span class="n">dbHdl</span>       <span class="o">*</span><span class="n">objects</span><span class="o">.</span><span class="n">DbHandler</span>    <span class="o">//</span> <span class="n">Handle</span> <span class="k">for</span> <span class="n">DB</span> <span class="n">operations</span>
+      <span class="n">bringUpTime</span> <span class="n">time</span><span class="o">.</span><span class="n">Time</span>             <span class="o">//</span> <span class="n">When</span> <span class="n">confd</span> <span class="n">came</span> <span class="n">up</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">used</span> <span class="k">for</span> <span class="n">system</span> <span class="n">up</span> <span class="n">time</span>
+      <span class="n">swVersion</span>   <span class="n">SwVersion</span>             <span class="o">//</span> <span class="n">Software</span> <span class="n">version</span> <span class="n">running</span>
+      <span class="n">ApiMgr</span>      <span class="o">*</span><span class="n">apis</span><span class="o">.</span><span class="n">ApiMgr</span>          <span class="o">//</span> <span class="n">Handle</span> <span class="k">for</span> <span class="n">apis</span> <span class="n">sub</span><span class="o">-</span><span class="n">package</span> <span class="nb">object</span>
+      <span class="n">clientMgr</span>   <span class="o">*</span><span class="n">clients</span><span class="o">.</span><span class="n">ClientMgr</span>    <span class="o">//</span> <span class="n">Handle</span> <span class="k">for</span> <span class="n">clients</span> <span class="n">sub</span><span class="o">-</span><span class="n">package</span> <span class="nb">object</span>
+      <span class="n">objectMgr</span>   <span class="o">*</span><span class="n">objects</span><span class="o">.</span><span class="n">ObjectMgr</span>    <span class="o">//</span> <span class="n">Handle</span> <span class="k">for</span> <span class="n">objects</span> <span class="n">sub</span><span class="o">-</span><span class="n">package</span> <span class="nb">object</span>
+      <span class="n">cltNameCh</span>   <span class="n">chan</span> <span class="n">string</span>           <span class="o">//</span> <span class="n">Channel</span> <span class="n">to</span> <span class="n">receive</span> <span class="n">name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">connected</span> <span class="n">backend</span> <span class="n">server</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>ConfigMgr object is initialized in NewConfigMgr function.</p>
+<p>Other functions implemented in server sub-package are -</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="n">GetSystemStatus</span><span class="p">()</span> <span class="n">models</span><span class="o">.</span><span class="n">SystemStatusState</span>
+</pre></div>
+</div>
+<p>This function handles SystemStatus Get call.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="n">GetSystemSwVersion</span><span class="p">()</span> <span class="n">models</span><span class="o">.</span><span class="n">SystemSwVersionState</span>
+</pre></div>
+</div>
+<p>This function handles SystemSwVersion Get call.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="p">(</span><span class="n">mgr</span> <span class="o">*</span><span class="n">ConfigMgr</span><span class="p">)</span> <span class="n">SigHandler</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This function waits for OS signal. Right now, if SIGHUP is received then confd daemon is brought down.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="p">(</span><span class="n">mgr</span> <span class="o">*</span><span class="n">ConfigMgr</span><span class="p">)</span> <span class="n">DiscoverPorts</span><span class="p">()</span> <span class="n">error</span>
+</pre></div>
+</div>
+<p>This function queries asicd to get all the ports present. Then it stores the Port objects in DB that can be updated by calling Port API. When ConfigMgr comes up and connects to asicd, this function is called.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="p">(</span><span class="n">mgr</span> <span class="o">*</span><span class="n">ConfigMgr</span><span class="p">)</span> <span class="n">InitalizeGlobalConfig</span><span class="p">(</span><span class="n">paramsDir</span> <span class="n">string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This function initializes global configuration objects of all modules and stores in DB with default values set. Global config objects can only be updated.</p>
+</div>
+<div class="section" id="clients-sub-package">
+<h2>Clients Sub-Package<a class="headerlink" href="#clients-sub-package" title="Permalink to this headline">¶</a></h2>
+<p>Clients sub-package operates on ClientMgr object -</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">ClientMgr</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">logger</span>            <span class="o">*</span><span class="n">logging</span><span class="o">.</span><span class="n">Writer</span>       <span class="o">//</span> <span class="n">Logger</span> <span class="n">handle</span>
+    <span class="n">Clients</span>           <span class="nb">map</span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="n">ClientIf</span>   <span class="o">//</span> <span class="n">Handles</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">backend</span> <span class="n">servers</span>
+    <span class="n">reconncetTimer</span>    <span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">Ticker</span>          <span class="o">//</span> <span class="n">Timer</span> <span class="n">to</span> <span class="n">retry</span> <span class="n">connection</span> <span class="n">to</span> <span class="n">backend</span> <span class="n">server</span> <span class="k">if</span> <span class="n">failed</span>
+    <span class="n">systemReady</span>       <span class="nb">bool</span>                  <span class="o">//</span> <span class="n">A</span> <span class="n">flag</span> <span class="n">saying</span> <span class="k">if</span> <span class="n">system</span> <span class="ow">is</span> <span class="n">ready</span>
+    <span class="n">systemStatusCB</span>    <span class="n">SystemStatusCB</span>        <span class="o">//</span> <span class="n">Call</span> <span class="n">back</span> <span class="n">function</span> <span class="n">to</span> <span class="n">get</span> <span class="n">SystemStatus</span>
+    <span class="n">systemSwVersionCB</span> <span class="n">SystemSwVersionCB</span>     <span class="o">//</span> <span class="n">Call</span> <span class="n">back</span> <span class="n">function</span> <span class="n">to</span> <span class="n">get</span> <span class="n">SystemSwVersion</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Any backend server that wants to connect to ConfigMgr should implement ClientIf interface.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">ClientIf</span> <span class="n">interface</span> <span class="p">{</span>
+    <span class="n">Initialize</span><span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">address</span> <span class="n">string</span><span class="p">)</span>
+    <span class="n">ConnectToServer</span><span class="p">()</span> <span class="nb">bool</span>
+    <span class="n">IsConnectedToServer</span><span class="p">()</span> <span class="nb">bool</span>
+    <span class="n">CreateObject</span><span class="p">(</span><span class="n">obj</span> <span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">,</span> <span class="n">dbHdl</span> <span class="o">*</span><span class="n">dbutils</span><span class="o">.</span><span class="n">DBUtil</span><span class="p">)</span> <span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="n">DeleteObject</span><span class="p">(</span><span class="n">obj</span> <span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">,</span> <span class="n">objKey</span> <span class="n">string</span><span class="p">,</span> <span class="n">dbHdl</span> <span class="o">*</span><span class="n">dbutils</span><span class="o">.</span><span class="n">DBUtil</span><span class="p">)</span> <span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="n">GetBulkObject</span><span class="p">(</span><span class="n">obj</span> <span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">,</span> <span class="n">dbHdl</span> <span class="o">*</span><span class="n">dbutils</span><span class="o">.</span><span class="n">DBUtil</span><span class="p">,</span> <span class="n">currMarker</span> <span class="n">int64</span><span class="p">,</span> <span class="n">count</span> <span class="n">int64</span><span class="p">)</span> <span class="p">(</span><span class="n">err</span> <span class="n">error</span><span class="p">,</span> <span class="n">objcount</span> <span class="n">int64</span><span class="p">,</span> <span class="n">nextMarker</span> <span class="n">int64</span><span class="p">,</span> <span class="n">more</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">objs</span> <span class="p">[]</span><span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">)</span>
+    <span class="n">UpdateObject</span><span class="p">(</span><span class="n">dbObj</span> <span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">,</span> <span class="n">obj</span> <span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">,</span> <span class="n">attrSet</span> <span class="p">[]</span><span class="nb">bool</span><span class="p">,</span> <span class="n">op</span> <span class="n">string</span><span class="p">,</span> <span class="n">objKey</span> <span class="n">string</span><span class="p">,</span> <span class="n">dbHdl</span> <span class="o">*</span><span class="n">dbutils</span><span class="o">.</span><span class="n">DBUtil</span><span class="p">)</span> <span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+    <span class="n">GetObject</span><span class="p">(</span><span class="n">obj</span> <span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">,</span> <span class="n">dbHdl</span> <span class="o">*</span><span class="n">dbutils</span><span class="o">.</span><span class="n">DBUtil</span><span class="p">)</span> <span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">)</span>
+    <span class="n">ExecuteAction</span><span class="p">(</span><span class="n">obj</span> <span class="n">models</span><span class="o">.</span><span class="n">ConfigObj</span><span class="p">)</span> <span class="n">error</span>
+    <span class="n">GetServerName</span><span class="p">()</span> <span class="n">string</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>All these interface methods can be auto generated using codegen tools described in reltools repository.</p>
+</div>
+<div class="section" id="apis-sub-package">
+<h2>Apis Sub-Package<a class="headerlink" href="#apis-sub-package" title="Permalink to this headline">¶</a></h2>
+<p>Apis sub-package initializes the REST routes for APIs supported on all the objects and serves all REST API requests. It operates on ApiMgr object -</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">ApiMgr</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">logger</span>        <span class="o">*</span><span class="n">logging</span><span class="o">.</span><span class="n">Writer</span>      <span class="o">//</span> <span class="n">Logger</span> <span class="n">handle</span>
+    <span class="n">objectMgr</span>     <span class="o">*</span><span class="n">objects</span><span class="o">.</span><span class="n">ObjectMgr</span>   <span class="o">//</span> <span class="n">Handle</span> <span class="n">to</span> <span class="n">objects</span> <span class="n">sub</span><span class="o">-</span><span class="n">package</span> <span class="n">manager</span>
+    <span class="n">dbHdl</span>         <span class="o">*</span><span class="n">objects</span><span class="o">.</span><span class="n">DbHandler</span>   <span class="o">//</span> <span class="n">Handle</span> <span class="k">for</span> <span class="n">DB</span>
+    <span class="n">apiVer</span>        <span class="n">string</span>               <span class="o">//</span> <span class="n">API</span> <span class="n">version</span> <span class="n">string</span>
+    <span class="n">apiBase</span>       <span class="n">string</span>               <span class="o">//</span> <span class="n">Common</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">REST</span> <span class="n">call</span>
+    <span class="n">apiBaseConfig</span> <span class="n">string</span>               <span class="o">//</span> <span class="n">Config</span> <span class="n">API</span> <span class="n">base</span> <span class="n">string</span>
+    <span class="n">apiBaseState</span>  <span class="n">string</span>               <span class="o">//</span> <span class="n">State</span> <span class="n">API</span> <span class="n">base</span> <span class="n">string</span>
+    <span class="n">apiBaseAction</span> <span class="n">string</span>               <span class="o">//</span> <span class="n">Action</span> <span class="n">API</span> <span class="n">base</span> <span class="n">string</span>
+    <span class="n">pRestRtr</span>      <span class="o">*</span><span class="n">mux</span><span class="o">.</span><span class="n">Router</span>          <span class="o">//</span> <span class="n">REST</span> <span class="n">router</span>
+    <span class="n">restRoutes</span>    <span class="p">[]</span><span class="n">ApiRoute</span>           <span class="o">//</span> <span class="n">REST</span> <span class="n">routes</span>
+    <span class="n">ApiCallStats</span>  <span class="n">ApiCallStats</span>         <span class="o">//</span> <span class="n">Stats</span> <span class="k">for</span> <span class="n">API</span> <span class="n">calls</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Create, Update, and Delete APIs are supported for configuration objects. Get APIs are supported for status objects. Type of the object, whether configuration or status, is identified by ACCESS tag in object model.</p>
+<p>Every object model should define which element(s) is(are) key by adding a KEY tag. Delete, Update, or Get calls should provide the key element(s) in the REST API call.
+When a Create call is made for a configuration object, response includes an object identifier. That object identifier can be used to make Delete, Update, or Get calls without providing key element(s).</p>
+</div>
+<div class="section" id="objects-sub-package">
+<h2>Objects Sub-Package<a class="headerlink" href="#objects-sub-package" title="Permalink to this headline">¶</a></h2>
+<p>Objects sub-package initializes objects for which REST APIs are supported. It operates on ObjectMgr object.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">ObjectMgr</span> <span class="n">struct</span> <span class="p">{</span>
+    <span class="n">logger</span>    <span class="o">*</span><span class="n">logging</span><span class="o">.</span><span class="n">Writer</span>            <span class="o">//</span> <span class="n">Logger</span> <span class="n">handle</span>
+    <span class="n">ObjHdlMap</span> <span class="nb">map</span><span class="p">[</span><span class="n">string</span><span class="p">]</span><span class="n">ConfigObjInfo</span>   <span class="o">//</span> <span class="n">All</span> <span class="n">the</span> <span class="n">objects</span>
+    <span class="n">clientMgr</span> <span class="o">*</span><span class="n">clients</span><span class="o">.</span><span class="n">ClientMgr</span>         <span class="o">//</span> <span class="n">Handle</span> <span class="n">to</span> <span class="n">clients</span> <span class="n">sub</span><span class="o">-</span><span class="n">package</span> <span class="n">manager</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="authentication-and-encryption">
+<h1>Authentication and Encryption<a class="headerlink" href="#authentication-and-encryption" title="Permalink to this headline">¶</a></h1>
+<p>ConfigMgr listen to only http requests. For user authentication and TLS/SSL encryption of REST APIs request and response, an http proxy server can be enabled on the switch that will pass through all http calls to the port on which ConfigMgr is serving.</p>
+<p>NGINX as proxy server is recommended.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sysd.html" class="btn btn-neutral float-right" title="System Daemon" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="architecture.html" class="btn btn-neutral" title="Detailed Architecture" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

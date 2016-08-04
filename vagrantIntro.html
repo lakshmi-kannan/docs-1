@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Getting started with flexswitch on Docker &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="QuickStart Guide" href="quickstart.html"/>
+        <link rel="next" title="Installed FlexSwitch with ONIE" href="ONIE_install.html"/>
+        <link rel="prev" title="ECMP" href="ecmpDocker.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#"> Vagrant Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ONIE_install.html"> Hardware Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="quickstart.html">QuickStart Guide</a> &raquo;</li>
+      
+    <li>Getting started with flexswitch on Docker</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/vagrantIntro.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started-with-flexswitch-on-docker">
+<h1>Getting started with flexswitch on Docker<a class="headerlink" href="#getting-started-with-flexswitch-on-docker" title="Permalink to this headline">¶</a></h1>
+<p>The below instructions describe how to use FlexSwitch on Vagrant.  This is just a ubuntu 14.04 image with FlexSwitch running on top</p>
+<p>Instructions on how to get Vagrant box up with FlexSwitch:</p>
+<p>Download this files &#8220;snaproute.box&#8221; and &#8220;VagrantFile&#8221; from</p>
+<p><a class="reference external" href="https://github.com/OpenSnaproute/binaries/tree/master/vagrant">https://github.com/OpenSnaproute/binaries/tree/master/vagrant</a></p>
+<dl class="docutils">
+<dt>1)Make folder to store images:</dt>
+<dd>mkdir srBox; cd srBox</dd>
+<dt>2)Copy files into srBox:</dt>
+<dd>cp snaproute.box VagrantFile srBox/</dd>
+</dl>
+<ol class="arabic" start="3">
+<li><p class="first">vagrant box add SnapRoute112 snaproute.box</p>
+</li>
+<li><p class="first">vagrant up</p>
+</li>
+<li><dl class="first docutils">
+<dt>vagrant ssh</dt>
+<dd><p class="first last">password is vagrant</p>
+</dd>
+</dl>
+</li>
+</ol>
+<p>This image is based on Ubuntu 14.04 and two ports are created within this image by default
+&#8220;Eth0&#8221; and &#8220;Eth1”.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ONIE_install.html" class="btn btn-neutral float-right" title="Installed FlexSwitch with ONIE" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ecmpDocker.html" class="btn btn-neutral" title="ECMP" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
