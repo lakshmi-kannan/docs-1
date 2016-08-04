@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Create Daemon Detailed Guide &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Create Daemon Detailed Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/daemon.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="create-daemon-detailed-guide">
+<h1>Create Daemon Detailed Guide<a class="headerlink" href="#create-daemon-detailed-guide" title="Permalink to this headline">¶</a></h1>
+<p>Detailed guide to create a new daemon within flexswitch</p>
+<div class="section" id="system-archetecture-overview">
+<h2>System Archetecture Overview<a class="headerlink" href="#system-archetecture-overview" title="Permalink to this headline">¶</a></h2>
+<p>When creating a daemon it is important to know some of the details.
+Most if not all of the confuration backend is auto-generated based
+on the configuration objects in the models repo.  Some of the
+design decisions regarding basic Daemon implementation revolve
+around the following key areas:</p>
+<ul class="simple">
+<li>Centralized DB: Redis DB</li>
+<li>Events / Notifications: Redis DB</li>
+<li>RPC: Thrift</li>
+<li>Linux OS: Don&#8217;t are as all Daemons run in User Space</li>
+<li>Object Modeling (Config/State/Actions): Written as GO structures
+with different TAG&#8217;s which help describe the struct member.</li>
+<li>Logging: stdout to Syslog</li>
+</ul>
+<img alt="_images/daemon.png" src="_images/daemon.png" />
+<p>The following Repos are supported by flexswitch so first choose
+where your daemon code should be implemented:</p>
+<ul class="simple">
+<li>apps</li>
+<li>asicd *</li>
+<li>config *</li>
+<li>docs</li>
+<li>flexSdk</li>
+<li>infra</li>
+<li>l2</li>
+<li>l3</li>
+<li>models *</li>
+<li>test</li>
+<li>utils</li>
+<li>reltools *</li>
+</ul>
+<blockquote>
+<div><span class="red">* You will need to edit these repos as part of your work with a new daemon</span>.</div></blockquote>
+<p>Within the utils repo there are some utilities to help in aiding code re-use among
+Daemons.  For example dmnBase provides a base class for your daemon to allow for
+it to connect to ASICD, as well as L2 and L3 Daemons.   There is a common HAL
+implemented as part of asicdClient, which provides an interface class and the
+client implementations for the various interfaces.</p>
+</div>
+<div class="section" id="directory-structure">
+<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Permalink to this headline">¶</a></h2>
+<p>The following directories should be created within one of the above repos, all
+directories may not be necessary user discression is advised when deciding which you
+will be needing.  The reason for the separation is to make your module more modular
+which will also make it easier to test.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>&lt;module&gt;/rpc</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">Contains the Thrift Server implemention for your module for external</span><dd><p class="first last">config / state /actions based on the model objects you create</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&lt;module&gt;/client</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">Contains external communcation with other Daemons and/or other</span><dd><p class="first last">components which may be needed by your module that are not related
+to the HAL.  For example RX/TX</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>&lt;module&gt;/hal</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">Contains your modules interface to the HAL, this is important cause you</span><dd><p class="first last">may want a HAL implementation that will not be included in
+utils/asicdClient</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">&lt;module&gt;/server : Contains the interface to your module for configuration.</p>
+</li>
+<li><p class="first">&lt;module&gt;/protocol : Contains the bulk of your modules implementation</p>
+</li>
+<li><p class="first">&lt;module&gt;/main.go : Main routine for your module</p>
+</li>
+<li><p class="first">&lt;module&gt;/Makefile : Makefile to build your module, and rpc</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
