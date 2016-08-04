@@ -80,7 +80,6 @@ the basics started users should know what utilities have been written in aiding 
    :maxdepth: 1
 
    Daemon Creation Quick Start Example <daemon_quick_start>
-   Daemon Creation Details <daemon>
 
 
 Design Decisions 
