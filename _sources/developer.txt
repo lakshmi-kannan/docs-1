@@ -71,6 +71,17 @@ You can find the source code of their open source projects along with license in
 
     Open Source components <opensources>
 
+Creating New Component
+^^^^^^^^^^^^^^^^^^^^^^
+Adding a new component to the FlexSwitch Software requires a few steps to get started.  In addition to getting
+the basics started users should know what utilities have been written in aiding the creation of new modules.
+
+.. toctree::
+   :maxdepth: 1
+
+   Daemon Creation Quick Start Example <daemon_quick_start>
+
+
 Design Decisions 
 ^^^^^^^^^^^^^^^^^
 
