@@ -20,7 +20,7 @@ Please follow the following instruction:
 - Clone Reltools from `OpenSnapRoute GitHub Repository <http://www.github.com/Opensnaproute>`_
 
         - Change directory to home directory
-                - cd /home/snaproute
+                - cd ~
                 - mkdir git
                 - cd git
                 - git clone https://github.com/OpenSnaproute/reltools.git
