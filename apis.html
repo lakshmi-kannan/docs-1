@@ -157,12 +157,7 @@
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.createBGPGlobal">
-<code class="descname">createBGPGlobal</code><span class="sig-paren">(</span><em>ASNum</em>, <em>RouterId</em>, <em>UseMultiplePaths=False</em>, <em>EBGPMaxPaths=0</em>, <em>EBGPAllowMultipleAS=False</em>, <em>IBGPMaxPaths=0</em>, <em>Redistribution=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createBGPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createBGPGlobal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.createBGPIPv6Aggregate">
-<code class="descname">createBGPIPv6Aggregate</code><span class="sig-paren">(</span><em>IpPrefix</em>, <em>SendSummaryOnly=False</em>, <em>GenerateASSet=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createBGPIPv6Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createBGPIPv6Aggregate" title="Permalink to this definition">¶</a></dt>
+<code class="descname">createBGPGlobal</code><span class="sig-paren">(</span><em>RouterId</em>, <em>ASNum</em>, <em>UseMultiplePaths=False</em>, <em>EBGPMaxPaths=0</em>, <em>EBGPAllowMultipleAS=False</em>, <em>IBGPMaxPaths=0</em>, <em>Redistribution=[]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createBGPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createBGPGlobal" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -216,21 +211,6 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="flexswitchV2.FlexSwitch.createDWDMModule">
-<code class="descname">createDWDMModule</code><span class="sig-paren">(</span><em>ModuleId</em>, <em>ModuleReset=False</em>, <em>IndependentLaneMode=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createDWDMModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createDWDMModule" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.createDWDMModuleClntIntf">
-<code class="descname">createDWDMModuleClntIntf</code><span class="sig-paren">(</span><em>ClntIntfId</em>, <em>ModuleId</em>, <em>HostTxEqDfe=0</em>, <em>HostRxSerializerTap1Gain=7</em>, <em>HostRxSerializerTap2Delay=5</em>, <em>HostRxSerializerTap2Gain=15</em>, <em>HostRxSerializerTap0Delay=7</em>, <em>HostTxEqCtle=18</em>, <em>HostTxEqLfCtle=0</em>, <em>TXFECDecDisable=False</em>, <em>RXFECDecDisable=False</em>, <em>HostRxSerializerTap0Gain=7</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createDWDMModuleClntIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createDWDMModuleClntIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.createDWDMModuleNwIntf">
-<code class="descname">createDWDMModuleNwIntf</code><span class="sig-paren">(</span><em>NwIntfId</em>, <em>ModuleId</em>, <em>WaveLength</em>, <em>FECMode</em>, <em>TxPulseShapeFltrRollOff='0.301'</em>, <em>DiffEncoding=True</em>, <em>TxPulseShapeFltrType='RootRaisedCos'</em>, <em>TxPower='0'</em>, <em>ModulationFmt='16QAM'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createDWDMModuleNwIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createDWDMModuleNwIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="flexswitchV2.FlexSwitch.createDhcpGlobalConfig">
 <code class="descname">createDhcpGlobalConfig</code><span class="sig-paren">(</span><em>DhcpConfigKey</em>, <em>Enable</em>, <em>DefaultLeaseTime</em>, <em>MaxLeaseTime</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createDhcpGlobalConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createDhcpGlobalConfig" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -248,11 +228,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.createDhcpRelayIntf">
 <code class="descname">createDhcpRelayIntf</code><span class="sig-paren">(</span><em>IfIndex</em>, <em>Enable</em>, <em>ServerIp</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createDhcpRelayIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createDhcpRelayIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.createDistributedRelay">
-<code class="descname">createDistributedRelay</code><span class="sig-paren">(</span><em>Name</em>, <em>PortalSystemNumber</em>, <em>IntraPortalLinkList</em>, <em>LagId</em>, <em>ConvAdminGateway</em>, <em>NeighborAdminConvGatewayListDigest</em>, <em>NeighborAdminConvPortListDigest</em>, <em>IPLEncapMap</em>, <em>NetEncapMap</em>, <em>PortalPriority=32768</em>, <em>NeighborPortAlgorithm='00'</em>, <em>PortalAddress='00'</em>, <em>IntraPortalPortProtocolDA='01'</em>, <em>NeighborAdminDRCPState='00000000'</em>, <em>NeighborGatewayAlgorithm='00'</em>, <em>PortConversationControl=False</em>, <em>GatewayAlgorithm='00'</em>, <em>ThreePortalSystem=False</em>, <em>EncapMethod='00'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.createDistributedRelay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.createDistributedRelay" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -447,22 +422,12 @@
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.deleteBGPGlobal">
-<code class="descname">deleteBGPGlobal</code><span class="sig-paren">(</span><em>Vrf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteBGPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteBGPGlobal" title="Permalink to this definition">¶</a></dt>
+<code class="descname">deleteBGPGlobal</code><span class="sig-paren">(</span><em>RouterId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteBGPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteBGPGlobal" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.deleteBGPGlobalById">
 <code class="descname">deleteBGPGlobalById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteBGPGlobalById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteBGPGlobalById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteBGPIPv6Aggregate">
-<code class="descname">deleteBGPIPv6Aggregate</code><span class="sig-paren">(</span><em>IpPrefix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteBGPIPv6Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteBGPIPv6Aggregate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteBGPIPv6AggregateById">
-<code class="descname">deleteBGPIPv6AggregateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteBGPIPv6AggregateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteBGPIPv6AggregateById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -566,36 +531,6 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteDWDMModule">
-<code class="descname">deleteDWDMModule</code><span class="sig-paren">(</span><em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDWDMModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDWDMModule" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteDWDMModuleById">
-<code class="descname">deleteDWDMModuleById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDWDMModuleById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDWDMModuleById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteDWDMModuleClntIntf">
-<code class="descname">deleteDWDMModuleClntIntf</code><span class="sig-paren">(</span><em>ClntIntfId</em>, <em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDWDMModuleClntIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDWDMModuleClntIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteDWDMModuleClntIntfById">
-<code class="descname">deleteDWDMModuleClntIntfById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDWDMModuleClntIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDWDMModuleClntIntfById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteDWDMModuleNwIntf">
-<code class="descname">deleteDWDMModuleNwIntf</code><span class="sig-paren">(</span><em>NwIntfId</em>, <em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDWDMModuleNwIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDWDMModuleNwIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteDWDMModuleNwIntfById">
-<code class="descname">deleteDWDMModuleNwIntfById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDWDMModuleNwIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDWDMModuleNwIntfById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="flexswitchV2.FlexSwitch.deleteDhcpGlobalConfig">
 <code class="descname">deleteDhcpGlobalConfig</code><span class="sig-paren">(</span><em>DhcpConfigKey</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDhcpGlobalConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDhcpGlobalConfig" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -633,16 +568,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.deleteDhcpRelayIntfById">
 <code class="descname">deleteDhcpRelayIntfById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDhcpRelayIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDhcpRelayIntfById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteDistributedRelay">
-<code class="descname">deleteDistributedRelay</code><span class="sig-paren">(</span><em>Name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDistributedRelay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDistributedRelay" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.deleteDistributedRelayById">
-<code class="descname">deleteDistributedRelayById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.deleteDistributedRelayById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.deleteDistributedRelayById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -986,21 +911,6 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAlarmState">
-<code class="descname">getAlarmState</code><span class="sig-paren">(</span><em>EventId</em>, <em>EventName</em>, <em>SrcObjName</em>, <em>OwnerName</em>, <em>OwnerId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAlarmState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAlarmState" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAlarmStateById">
-<code class="descname">getAlarmStateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAlarmStateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAlarmStateById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllAlarmStates">
-<code class="descname">getAllAlarmStates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllAlarmStates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllAlarmStates" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getAllArpEntryHwStates">
 <code class="descname">getAllArpEntryHwStates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllArpEntryHwStates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllArpEntryHwStates" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1033,11 +943,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getAllBGPGlobals">
 <code class="descname">getAllBGPGlobals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllBGPGlobals"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllBGPGlobals" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllBGPIPv6Aggregates">
-<code class="descname">getAllBGPIPv6Aggregates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllBGPIPv6Aggregates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllBGPIPv6Aggregates" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1146,36 +1051,6 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllDWDMModuleClntIntfStates">
-<code class="descname">getAllDWDMModuleClntIntfStates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDWDMModuleClntIntfStates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDWDMModuleClntIntfStates" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllDWDMModuleClntIntfs">
-<code class="descname">getAllDWDMModuleClntIntfs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDWDMModuleClntIntfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDWDMModuleClntIntfs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllDWDMModuleNwIntfStates">
-<code class="descname">getAllDWDMModuleNwIntfStates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDWDMModuleNwIntfStates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDWDMModuleNwIntfStates" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllDWDMModuleNwIntfs">
-<code class="descname">getAllDWDMModuleNwIntfs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDWDMModuleNwIntfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDWDMModuleNwIntfs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllDWDMModuleStates">
-<code class="descname">getAllDWDMModuleStates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDWDMModuleStates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDWDMModuleStates" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllDWDMModules">
-<code class="descname">getAllDWDMModules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDWDMModules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDWDMModules" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getAllDaemonStates">
 <code class="descname">getAllDaemonStates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDaemonStates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDaemonStates" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -1213,16 +1088,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getAllDhcpRelayIntfs">
 <code class="descname">getAllDhcpRelayIntfs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDhcpRelayIntfs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDhcpRelayIntfs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllDistributedRelayStates">
-<code class="descname">getAllDistributedRelayStates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDistributedRelayStates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDistributedRelayStates" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllDistributedRelays">
-<code class="descname">getAllDistributedRelays</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllDistributedRelays"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllDistributedRelays" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1298,11 +1163,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getAllIpTableAcls">
 <code class="descname">getAllIpTableAcls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllIpTableAcls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllIpTableAcls" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getAllIppLinkStates">
-<code class="descname">getAllIppLinkStates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getAllIppLinkStates"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getAllIppLinkStates" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1652,7 +1512,7 @@
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getBGPGlobal">
-<code class="descname">getBGPGlobal</code><span class="sig-paren">(</span><em>Vrf</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getBGPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getBGPGlobal" title="Permalink to this definition">¶</a></dt>
+<code class="descname">getBGPGlobal</code><span class="sig-paren">(</span><em>RouterId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getBGPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getBGPGlobal" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1668,16 +1528,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getBGPGlobalStateById">
 <code class="descname">getBGPGlobalStateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getBGPGlobalStateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getBGPGlobalStateById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getBGPIPv6Aggregate">
-<code class="descname">getBGPIPv6Aggregate</code><span class="sig-paren">(</span><em>IpPrefix</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getBGPIPv6Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getBGPIPv6Aggregate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getBGPIPv6AggregateById">
-<code class="descname">getBGPIPv6AggregateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getBGPIPv6AggregateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getBGPIPv6AggregateById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -1891,66 +1741,6 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModule">
-<code class="descname">getDWDMModule</code><span class="sig-paren">(</span><em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModule" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleById">
-<code class="descname">getDWDMModuleById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleClntIntf">
-<code class="descname">getDWDMModuleClntIntf</code><span class="sig-paren">(</span><em>ClntIntfId</em>, <em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleClntIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleClntIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleClntIntfById">
-<code class="descname">getDWDMModuleClntIntfById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleClntIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleClntIntfById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleClntIntfState">
-<code class="descname">getDWDMModuleClntIntfState</code><span class="sig-paren">(</span><em>ClntIntfId</em>, <em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleClntIntfState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleClntIntfState" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleClntIntfStateById">
-<code class="descname">getDWDMModuleClntIntfStateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleClntIntfStateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleClntIntfStateById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleNwIntf">
-<code class="descname">getDWDMModuleNwIntf</code><span class="sig-paren">(</span><em>NwIntfId</em>, <em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleNwIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleNwIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleNwIntfById">
-<code class="descname">getDWDMModuleNwIntfById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleNwIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleNwIntfById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleNwIntfState">
-<code class="descname">getDWDMModuleNwIntfState</code><span class="sig-paren">(</span><em>NwIntfId</em>, <em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleNwIntfState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleNwIntfState" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleNwIntfStateById">
-<code class="descname">getDWDMModuleNwIntfStateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleNwIntfStateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleNwIntfStateById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleState">
-<code class="descname">getDWDMModuleState</code><span class="sig-paren">(</span><em>ModuleId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleState" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDWDMModuleStateById">
-<code class="descname">getDWDMModuleStateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDWDMModuleStateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDWDMModuleStateById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getDaemonState">
 <code class="descname">getDaemonState</code><span class="sig-paren">(</span><em>Name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDaemonState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDaemonState" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -2028,26 +1818,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getDhcpRelayIntfStateById">
 <code class="descname">getDhcpRelayIntfStateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDhcpRelayIntfStateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDhcpRelayIntfStateById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDistributedRelay">
-<code class="descname">getDistributedRelay</code><span class="sig-paren">(</span><em>Name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDistributedRelay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDistributedRelay" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDistributedRelayById">
-<code class="descname">getDistributedRelayById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDistributedRelayById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDistributedRelayById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDistributedRelayState">
-<code class="descname">getDistributedRelayState</code><span class="sig-paren">(</span><em>Name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDistributedRelayState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDistributedRelayState" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getDistributedRelayStateById">
-<code class="descname">getDistributedRelayStateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getDistributedRelayStateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getDistributedRelayStateById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2198,16 +1968,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.getIpTableAclById">
 <code class="descname">getIpTableAclById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getIpTableAclById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getIpTableAclById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getIppLinkState">
-<code class="descname">getIppLinkState</code><span class="sig-paren">(</span><em>IntfRef</em>, <em>DrNameRef</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getIppLinkState"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getIppLinkState" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.getIppLinkStateById">
-<code class="descname">getIppLinkStateById</code><span class="sig-paren">(</span><em>objectId</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.getIppLinkStateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.getIppLinkStateById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2832,22 +2592,12 @@
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.updateBGPGlobal">
-<code class="descname">updateBGPGlobal</code><span class="sig-paren">(</span><em>Vrf</em>, <em>ASNum=None</em>, <em>RouterId=None</em>, <em>UseMultiplePaths=None</em>, <em>EBGPMaxPaths=None</em>, <em>EBGPAllowMultipleAS=None</em>, <em>IBGPMaxPaths=None</em>, <em>Redistribution=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateBGPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateBGPGlobal" title="Permalink to this definition">¶</a></dt>
+<code class="descname">updateBGPGlobal</code><span class="sig-paren">(</span><em>RouterId</em>, <em>ASNum=None</em>, <em>UseMultiplePaths=None</em>, <em>EBGPMaxPaths=None</em>, <em>EBGPAllowMultipleAS=None</em>, <em>IBGPMaxPaths=None</em>, <em>Redistribution=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateBGPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateBGPGlobal" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.updateBGPGlobalById">
-<code class="descname">updateBGPGlobalById</code><span class="sig-paren">(</span><em>objectId</em>, <em>ASNum=None</em>, <em>RouterId=None</em>, <em>UseMultiplePaths=None</em>, <em>EBGPMaxPaths=None</em>, <em>EBGPAllowMultipleAS=None</em>, <em>IBGPMaxPaths=None</em>, <em>Redistribution=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateBGPGlobalById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateBGPGlobalById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateBGPIPv6Aggregate">
-<code class="descname">updateBGPIPv6Aggregate</code><span class="sig-paren">(</span><em>IpPrefix</em>, <em>SendSummaryOnly=None</em>, <em>GenerateASSet=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateBGPIPv6Aggregate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateBGPIPv6Aggregate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateBGPIPv6AggregateById">
-<code class="descname">updateBGPIPv6AggregateById</code><span class="sig-paren">(</span><em>objectId</em>, <em>SendSummaryOnly=None</em>, <em>GenerateASSet=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateBGPIPv6AggregateById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateBGPIPv6AggregateById" title="Permalink to this definition">¶</a></dt>
+<code class="descname">updateBGPGlobalById</code><span class="sig-paren">(</span><em>objectId</em>, <em>ASNum=None</em>, <em>UseMultiplePaths=None</em>, <em>EBGPMaxPaths=None</em>, <em>EBGPAllowMultipleAS=None</em>, <em>IBGPMaxPaths=None</em>, <em>Redistribution=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateBGPGlobalById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateBGPGlobalById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -2951,36 +2701,6 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateDWDMModule">
-<code class="descname">updateDWDMModule</code><span class="sig-paren">(</span><em>ModuleId</em>, <em>ModuleReset=None</em>, <em>IndependentLaneMode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDWDMModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDWDMModule" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateDWDMModuleById">
-<code class="descname">updateDWDMModuleById</code><span class="sig-paren">(</span><em>objectId</em>, <em>ModuleReset=None</em>, <em>IndependentLaneMode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDWDMModuleById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDWDMModuleById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateDWDMModuleClntIntf">
-<code class="descname">updateDWDMModuleClntIntf</code><span class="sig-paren">(</span><em>ClntIntfId</em>, <em>ModuleId</em>, <em>HostTxEqDfe=None</em>, <em>HostRxSerializerTap1Gain=None</em>, <em>HostRxSerializerTap2Delay=None</em>, <em>HostRxSerializerTap2Gain=None</em>, <em>HostRxSerializerTap0Delay=None</em>, <em>HostTxEqCtle=None</em>, <em>HostTxEqLfCtle=None</em>, <em>TXFECDecDisable=None</em>, <em>RXFECDecDisable=None</em>, <em>HostRxSerializerTap0Gain=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDWDMModuleClntIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDWDMModuleClntIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateDWDMModuleClntIntfById">
-<code class="descname">updateDWDMModuleClntIntfById</code><span class="sig-paren">(</span><em>objectId</em>, <em>HostTxEqDfe=None</em>, <em>HostRxSerializerTap1Gain=None</em>, <em>HostRxSerializerTap2Delay=None</em>, <em>HostRxSerializerTap2Gain=None</em>, <em>HostRxSerializerTap0Delay=None</em>, <em>HostTxEqCtle=None</em>, <em>HostTxEqLfCtle=None</em>, <em>TXFECDecDisable=None</em>, <em>RXFECDecDisable=None</em>, <em>HostRxSerializerTap0Gain=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDWDMModuleClntIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDWDMModuleClntIntfById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateDWDMModuleNwIntf">
-<code class="descname">updateDWDMModuleNwIntf</code><span class="sig-paren">(</span><em>NwIntfId</em>, <em>ModuleId</em>, <em>WaveLength=None</em>, <em>FECMode=None</em>, <em>TxPulseShapeFltrRollOff=None</em>, <em>DiffEncoding=None</em>, <em>TxPulseShapeFltrType=None</em>, <em>TxPower=None</em>, <em>ModulationFmt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDWDMModuleNwIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDWDMModuleNwIntf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateDWDMModuleNwIntfById">
-<code class="descname">updateDWDMModuleNwIntfById</code><span class="sig-paren">(</span><em>objectId</em>, <em>WaveLength=None</em>, <em>FECMode=None</em>, <em>TxPulseShapeFltrRollOff=None</em>, <em>DiffEncoding=None</em>, <em>TxPulseShapeFltrType=None</em>, <em>TxPower=None</em>, <em>ModulationFmt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDWDMModuleNwIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDWDMModuleNwIntfById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="flexswitchV2.FlexSwitch.updateDhcpGlobalConfig">
 <code class="descname">updateDhcpGlobalConfig</code><span class="sig-paren">(</span><em>DhcpConfigKey</em>, <em>Enable=None</em>, <em>DefaultLeaseTime=None</em>, <em>MaxLeaseTime=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDhcpGlobalConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDhcpGlobalConfig" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -3018,16 +2738,6 @@
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.updateDhcpRelayIntfById">
 <code class="descname">updateDhcpRelayIntfById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Enable=None</em>, <em>ServerIp=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDhcpRelayIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDhcpRelayIntfById" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateDistributedRelay">
-<code class="descname">updateDistributedRelay</code><span class="sig-paren">(</span><em>Name</em>, <em>PortalSystemNumber=None</em>, <em>IntraPortalLinkList=None</em>, <em>LagId=None</em>, <em>ConvAdminGateway=None</em>, <em>NeighborAdminConvGatewayListDigest=None</em>, <em>NeighborAdminConvPortListDigest=None</em>, <em>IPLEncapMap=None</em>, <em>NetEncapMap=None</em>, <em>PortalPriority=None</em>, <em>NeighborPortAlgorithm=None</em>, <em>PortalAddress=None</em>, <em>IntraPortalPortProtocolDA=None</em>, <em>NeighborAdminDRCPState=None</em>, <em>NeighborGatewayAlgorithm=None</em>, <em>PortConversationControl=None</em>, <em>GatewayAlgorithm=None</em>, <em>ThreePortalSystem=None</em>, <em>EncapMethod=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDistributedRelay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDistributedRelay" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="flexswitchV2.FlexSwitch.updateDistributedRelayById">
-<code class="descname">updateDistributedRelayById</code><span class="sig-paren">(</span><em>objectId</em>, <em>PortalSystemNumber=None</em>, <em>IntraPortalLinkList=None</em>, <em>LagId=None</em>, <em>ConvAdminGateway=None</em>, <em>NeighborAdminConvGatewayListDigest=None</em>, <em>NeighborAdminConvPortListDigest=None</em>, <em>IPLEncapMap=None</em>, <em>NetEncapMap=None</em>, <em>PortalPriority=None</em>, <em>NeighborPortAlgorithm=None</em>, <em>PortalAddress=None</em>, <em>IntraPortalPortProtocolDA=None</em>, <em>NeighborAdminDRCPState=None</em>, <em>NeighborGatewayAlgorithm=None</em>, <em>PortConversationControl=None</em>, <em>GatewayAlgorithm=None</em>, <em>ThreePortalSystem=None</em>, <em>EncapMethod=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateDistributedRelayById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateDistributedRelayById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -3087,6 +2797,296 @@
 
 <dl class="method">
 <dt id="flexswitchV2.FlexSwitch.updateIPv6RouteById">
+<code class="descname">updateIPv6RouteById</code><span class="sig-paren">(</span><em>objectId</em>, <em>NextHop=None</em>, <em>Protocol=None</em>, <em>NullRoute=None</em>, <em>Cost=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateIPv6RouteById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateIPv6RouteById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateIpTableAcl">
+<code class="descname">updateIpTableAcl</code><span class="sig-paren">(</span><em>Name</em>, <em>Action=None</em>, <em>IpAddr=None</em>, <em>Protocol=None</em>, <em>Port=None</em>, <em>PhysicalPort=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateIpTableAcl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateIpTableAcl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateIpTableAclById">
+<code class="descname">updateIpTableAclById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Action=None</em>, <em>IpAddr=None</em>, <em>Protocol=None</em>, <em>Port=None</em>, <em>PhysicalPort=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateIpTableAclById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateIpTableAclById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLLDPGlobal">
+<code class="descname">updateLLDPGlobal</code><span class="sig-paren">(</span><em>Vrf</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLLDPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLLDPGlobal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLLDPGlobalById">
+<code class="descname">updateLLDPGlobalById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLLDPGlobalById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLLDPGlobalById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLLDPIntf">
+<code class="descname">updateLLDPIntf</code><span class="sig-paren">(</span><em>IfIndex</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLLDPIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLLDPIntf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLLDPIntfById">
+<code class="descname">updateLLDPIntfById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLLDPIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLLDPIntfById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLaPortChannel">
+<code class="descname">updateLaPortChannel</code><span class="sig-paren">(</span><em>LagId</em>, <em>Members=None</em>, <em>SystemIdMac=None</em>, <em>MinLinks=None</em>, <em>SystemPriority=None</em>, <em>Interval=None</em>, <em>LagHash=None</em>, <em>AdminState=None</em>, <em>LagType=None</em>, <em>LacpMode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLaPortChannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLaPortChannel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLaPortChannelById">
+<code class="descname">updateLaPortChannelById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Members=None</em>, <em>SystemIdMac=None</em>, <em>MinLinks=None</em>, <em>SystemPriority=None</em>, <em>Interval=None</em>, <em>LagHash=None</em>, <em>AdminState=None</em>, <em>LagType=None</em>, <em>LacpMode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLaPortChannelById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLaPortChannelById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLed">
+<code class="descname">updateLed</code><span class="sig-paren">(</span><em>LedId</em>, <em>LedAdmin=None</em>, <em>LedSetColor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLedById">
+<code class="descname">updateLedById</code><span class="sig-paren">(</span><em>objectId</em>, <em>LedAdmin=None</em>, <em>LedSetColor=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLedById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLedById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLogicalIntf">
+<code class="descname">updateLogicalIntf</code><span class="sig-paren">(</span><em>Name</em>, <em>Type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLogicalIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLogicalIntf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateLogicalIntfById">
+<code class="descname">updateLogicalIntfById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Type=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateLogicalIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateLogicalIntfById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateNDPGlobal">
+<code class="descname">updateNDPGlobal</code><span class="sig-paren">(</span><em>Vrf</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateNDPGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateNDPGlobal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateNDPGlobalById">
+<code class="descname">updateNDPGlobalById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateNDPGlobalById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateNDPGlobalById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfAreaEntry">
+<code class="descname">updateOspfAreaEntry</code><span class="sig-paren">(</span><em>AreaId</em>, <em>AuthType=None</em>, <em>ImportAsExtern=None</em>, <em>AreaSummary=None</em>, <em>AreaNssaTranslatorRole=None</em>, <em>StubDefaultCost=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfAreaEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfAreaEntry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfAreaEntryById">
+<code class="descname">updateOspfAreaEntryById</code><span class="sig-paren">(</span><em>objectId</em>, <em>AuthType=None</em>, <em>ImportAsExtern=None</em>, <em>AreaSummary=None</em>, <em>AreaNssaTranslatorRole=None</em>, <em>StubDefaultCost=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfAreaEntryById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfAreaEntryById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfGlobal">
+<code class="descname">updateOspfGlobal</code><span class="sig-paren">(</span><em>RouterId</em>, <em>AdminStat=None</em>, <em>ASBdrRtrStatus=None</em>, <em>RestartSupport=None</em>, <em>RestartInterval=None</em>, <em>TOSSupport=None</em>, <em>ReferenceBandwidth=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfGlobal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfGlobal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfGlobalById">
+<code class="descname">updateOspfGlobalById</code><span class="sig-paren">(</span><em>objectId</em>, <em>AdminStat=None</em>, <em>ASBdrRtrStatus=None</em>, <em>RestartSupport=None</em>, <em>RestartInterval=None</em>, <em>TOSSupport=None</em>, <em>ReferenceBandwidth=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfGlobalById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfGlobalById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfIfEntry">
+<code class="descname">updateOspfIfEntry</code><span class="sig-paren">(</span><em>IfIpAddress</em>, <em>AddressLessIf</em>, <em>IfAdminStat=None</em>, <em>IfAreaId=None</em>, <em>IfType=None</em>, <em>IfRtrPriority=None</em>, <em>IfTransitDelay=None</em>, <em>IfRetransInterval=None</em>, <em>IfPollInterval=None</em>, <em>IfAuthKey=None</em>, <em>IfAuthType=None</em>, <em>IfHelloInterval=None</em>, <em>IfRtrDeadInterval=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfIfEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfIfEntry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfIfEntryById">
+<code class="descname">updateOspfIfEntryById</code><span class="sig-paren">(</span><em>objectId</em>, <em>IfAdminStat=None</em>, <em>IfAreaId=None</em>, <em>IfType=None</em>, <em>IfRtrPriority=None</em>, <em>IfTransitDelay=None</em>, <em>IfRetransInterval=None</em>, <em>IfPollInterval=None</em>, <em>IfAuthKey=None</em>, <em>IfAuthType=None</em>, <em>IfHelloInterval=None</em>, <em>IfRtrDeadInterval=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfIfEntryById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfIfEntryById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfIfMetricEntry">
+<code class="descname">updateOspfIfMetricEntry</code><span class="sig-paren">(</span><em>IfMetricAddressLessIf</em>, <em>IfMetricTOS</em>, <em>IfMetricIpAddress</em>, <em>IfMetricValue=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfIfMetricEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfIfMetricEntry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfIfMetricEntryById">
+<code class="descname">updateOspfIfMetricEntryById</code><span class="sig-paren">(</span><em>objectId</em>, <em>IfMetricValue=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfIfMetricEntryById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfIfMetricEntryById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfVirtIfEntry">
+<code class="descname">updateOspfVirtIfEntry</code><span class="sig-paren">(</span><em>VirtIfNeighbor</em>, <em>VirtIfAreaId</em>, <em>VirtIfTransitDelay=None</em>, <em>VirtIfRetransInterval=None</em>, <em>VirtIfHelloInterval=None</em>, <em>VirtIfRtrDeadInterval=None</em>, <em>VirtIfAuthKey=None</em>, <em>VirtIfAuthType=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfVirtIfEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfVirtIfEntry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateOspfVirtIfEntryById">
+<code class="descname">updateOspfVirtIfEntryById</code><span class="sig-paren">(</span><em>objectId</em>, <em>VirtIfTransitDelay=None</em>, <em>VirtIfRetransInterval=None</em>, <em>VirtIfHelloInterval=None</em>, <em>VirtIfRtrDeadInterval=None</em>, <em>VirtIfAuthKey=None</em>, <em>VirtIfAuthType=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateOspfVirtIfEntryById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateOspfVirtIfEntryById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePolicyCondition">
+<code class="descname">updatePolicyCondition</code><span class="sig-paren">(</span><em>Name</em>, <em>ConditionType=None</em>, <em>Protocol=None</em>, <em>IpPrefix=None</em>, <em>MaskLengthRange=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePolicyCondition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePolicyCondition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePolicyConditionById">
+<code class="descname">updatePolicyConditionById</code><span class="sig-paren">(</span><em>objectId</em>, <em>ConditionType=None</em>, <em>Protocol=None</em>, <em>IpPrefix=None</em>, <em>MaskLengthRange=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePolicyConditionById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePolicyConditionById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePolicyDefinition">
+<code class="descname">updatePolicyDefinition</code><span class="sig-paren">(</span><em>Name</em>, <em>Priority=None</em>, <em>StatementList=None</em>, <em>MatchType=None</em>, <em>PolicyType=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePolicyDefinition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePolicyDefinition" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePolicyDefinitionById">
+<code class="descname">updatePolicyDefinitionById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Priority=None</em>, <em>StatementList=None</em>, <em>MatchType=None</em>, <em>PolicyType=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePolicyDefinitionById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePolicyDefinitionById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePolicyStmt">
+<code class="descname">updatePolicyStmt</code><span class="sig-paren">(</span><em>Name</em>, <em>Conditions=None</em>, <em>Action=None</em>, <em>MatchConditions=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePolicyStmt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePolicyStmt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePolicyStmtById">
+<code class="descname">updatePolicyStmtById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Conditions=None</em>, <em>Action=None</em>, <em>MatchConditions=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePolicyStmtById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePolicyStmtById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePort">
+<code class="descname">updatePort</code><span class="sig-paren">(</span><em>IntfRef</em>, <em>IfIndex=None</em>, <em>PhyIntfType=None</em>, <em>MacAddr=None</em>, <em>Speed=None</em>, <em>Duplex=None</em>, <em>MediaType=None</em>, <em>Mtu=None</em>, <em>BreakOutMode=None</em>, <em>Description=None</em>, <em>AdminState=None</em>, <em>Autoneg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePortById">
+<code class="descname">updatePortById</code><span class="sig-paren">(</span><em>objectId</em>, <em>IfIndex=None</em>, <em>PhyIntfType=None</em>, <em>MacAddr=None</em>, <em>Speed=None</em>, <em>Duplex=None</em>, <em>MediaType=None</em>, <em>Mtu=None</em>, <em>BreakOutMode=None</em>, <em>Description=None</em>, <em>AdminState=None</em>, <em>Autoneg=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePortById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePortById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePsu">
+<code class="descname">updatePsu</code><span class="sig-paren">(</span><em>PsuId</em>, <em>AdminState=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePsu"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePsu" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updatePsuById">
+<code class="descname">updatePsuById</code><span class="sig-paren">(</span><em>objectId</em>, <em>AdminState=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updatePsuById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updatePsuById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSfp">
+<code class="descname">updateSfp</code><span class="sig-paren">(</span><em>SfpId</em>, <em>AdminState=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSfp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSfp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSfpById">
+<code class="descname">updateSfpById</code><span class="sig-paren">(</span><em>objectId</em>, <em>AdminState=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSfpById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSfpById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateStpBridgeInstance">
+<code class="descname">updateStpBridgeInstance</code><span class="sig-paren">(</span><em>Vlan</em>, <em>HelloTime=None</em>, <em>ForwardDelay=None</em>, <em>MaxAge=None</em>, <em>TxHoldCount=None</em>, <em>Priority=None</em>, <em>ForceVersion=None</em>, <em>Address=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateStpBridgeInstance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateStpBridgeInstance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateStpBridgeInstanceById">
+<code class="descname">updateStpBridgeInstanceById</code><span class="sig-paren">(</span><em>objectId</em>, <em>HelloTime=None</em>, <em>ForwardDelay=None</em>, <em>MaxAge=None</em>, <em>TxHoldCount=None</em>, <em>Priority=None</em>, <em>ForceVersion=None</em>, <em>Address=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateStpBridgeInstanceById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateStpBridgeInstanceById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateStpPort">
+<code class="descname">updateStpPort</code><span class="sig-paren">(</span><em>BrgIfIndex</em>, <em>IfIndex</em>, <em>BpduGuardInterval=None</em>, <em>PathCost=None</em>, <em>Priority=None</em>, <em>AdminEdgePort=None</em>, <em>Enable=None</em>, <em>ProtocolMigration=None</em>, <em>BridgeAssurance=None</em>, <em>BpduGuard=None</em>, <em>AdminPointToPoint=None</em>, <em>AdminPathCost=None</em>, <em>PathCost32=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateStpPort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateStpPort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateStpPortById">
+<code class="descname">updateStpPortById</code><span class="sig-paren">(</span><em>objectId</em>, <em>BpduGuardInterval=None</em>, <em>PathCost=None</em>, <em>Priority=None</em>, <em>AdminEdgePort=None</em>, <em>Enable=None</em>, <em>ProtocolMigration=None</em>, <em>BridgeAssurance=None</em>, <em>BpduGuard=None</em>, <em>AdminPointToPoint=None</em>, <em>AdminPathCost=None</em>, <em>PathCost32=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateStpPortById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateStpPortById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSubIPv4Intf">
+<code class="descname">updateSubIPv4Intf</code><span class="sig-paren">(</span><em>IntfRef</em>, <em>IpAddr</em>, <em>Type=None</em>, <em>MacAddr=None</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSubIPv4Intf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSubIPv4Intf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSubIPv4IntfById">
+<code class="descname">updateSubIPv4IntfById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Type=None</em>, <em>MacAddr=None</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSubIPv4IntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSubIPv4IntfById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSubIPv6Intf">
+<code class="descname">updateSubIPv6Intf</code><span class="sig-paren">(</span><em>IntfRef</em>, <em>IpAddr</em>, <em>Type=None</em>, <em>MacAddr=None</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSubIPv6Intf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSubIPv6Intf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSubIPv6IntfById">
+<code class="descname">updateSubIPv6IntfById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Type=None</em>, <em>MacAddr=None</em>, <em>Enable=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSubIPv6IntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSubIPv6IntfById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSystemLogging">
+<code class="descname">updateSystemLogging</code><span class="sig-paren">(</span><em>Vrf</em>, <em>Logging=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSystemLogging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSystemLogging" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSystemLoggingById">
+<code class="descname">updateSystemLoggingById</code><span class="sig-paren">(</span><em>objectId</em>, <em>Logging=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSystemLoggingById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSystemLoggingById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSystemParam">
+<code class="descname">updateSystemParam</code><span class="sig-paren">(</span><em>Vrf</em>, <em>MgmtIp=None</em>, <em>Hostname=None</em>, <em>Version=None</em>, <em>SwitchMac=None</em>, <em>Description=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSystemParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSystemParam" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateSystemParamById">
+<code class="descname">updateSystemParamById</code><span class="sig-paren">(</span><em>objectId</em>, <em>MgmtIp=None</em>, <em>Hostname=None</em>, <em>Version=None</em>, <em>SwitchMac=None</em>, <em>Description=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateSystemParamById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateSystemParamById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateVlan">
+<code class="descname">updateVlan</code><span class="sig-paren">(</span><em>VlanId</em>, <em>IntfList=None</em>, <em>UntagIntfList=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateVlan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateVlan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateVlanById">
+<code class="descname">updateVlanById</code><span class="sig-paren">(</span><em>objectId</em>, <em>IntfList=None</em>, <em>UntagIntfList=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateVlanById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateVlanById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateVrrpIntf">
+<code class="descname">updateVrrpIntf</code><span class="sig-paren">(</span><em>VRID</em>, <em>IfIndex</em>, <em>VirtualIPv4Addr=None</em>, <em>PreemptMode=None</em>, <em>Priority=None</em>, <em>AdvertisementInterval=None</em>, <em>AcceptMode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateVrrpIntf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateVrrpIntf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateVrrpIntfById">
+<code class="descname">updateVrrpIntfById</code><span class="sig-paren">(</span><em>objectId</em>, <em>VirtualIPv4Addr=None</em>, <em>PreemptMode=None</em>, <em>Priority=None</em>, <em>AdvertisementInterval=None</em>, <em>AcceptMode=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateVrrpIntfById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateVrrpIntfById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateVxlanInstance">
+<code class="descname">updateVxlanInstance</code><span class="sig-paren">(</span><em>Vni</em>, <em>VlanId=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateVxlanInstance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateVxlanInstance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateVxlanInstanceById">
+<code class="descname">updateVxlanInstanceById</code><span class="sig-paren">(</span><em>objectId</em>, <em>VlanId=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateVxlanInstanceById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateVxlanInstanceById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateVxlanVtepInstance">
+<code class="descname">updateVxlanVtepInstance</code><span class="sig-paren">(</span><em>Intf</em>, <em>IntfRef=None</em>, <em>Vni=None</em>, <em>DstIp=None</em>, <em>VlanId=None</em>, <em>TOS=None</em>, <em>Mtu=None</em>, <em>InnerVlanHandlingMode=None</em>, <em>TTL=None</em>, <em>SrcIp=None</em>, <em>DstUDP=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateVxlanVtepInstance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateVxlanVtepInstance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="flexswitchV2.FlexSwitch.updateVxlanVtepInstanceById">
+<code class="descname">updateVxlanVtepInstanceById</code><span class="sig-paren">(</span><em>objectId</em>, <em>IntfRef=None</em>, <em>Vni=None</em>, <em>DstIp=None</em>, <em>VlanId=None</em>, <em>TOS=None</em>, <em>Mtu=None</em>, <em>InnerVlanHandlingMode=None</em>, <em>TTL=None</em>, <em>SrcIp=None</em>, <em>DstUDP=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateVxlanVtepInstanceById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateVxlanVtepInstanceById" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">flexswitchV2.</code><code class="descname">FlexSwitch</code><span class="sig-paren">(</span><em>ip</em>, <em>port</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch"><span class="viewcode-link">[source]</span></a></dt>
+<dd></dd></dl>
+
 <code class="descname">updateIPv6RouteById</code><span class="sig-paren">(</span><em>objectId</em>, <em>NextHop=None</em>, <em>Protocol=None</em>, <em>NullRoute=None</em>, <em>Cost=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/flexswitchV2.html#FlexSwitch.updateIPv6RouteById"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flexswitchV2.FlexSwitch.updateIPv6RouteById" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
