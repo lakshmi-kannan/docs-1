@@ -2,7 +2,7 @@ Quick Start Guide
 =================
 Quick start guide to create a new daemon within flexswitch
 
-.. image:: daemon.png
+.. image:: images/daemon.png
 
 Lets show by an example of creating a EXAMPLE Daemon in the l2 repo.  Each section assumes that you start
 from snaproute/src directory
