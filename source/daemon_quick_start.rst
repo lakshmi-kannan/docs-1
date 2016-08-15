@@ -133,12 +133,13 @@ Example
     import (
             "l2/example/rpc"
             "l2/example/server"
+            "strconv"
             "strings"
             "utils/dmnBase"
     )
 
     const (
-            EXAMPLED_DMN_NAME = "exampled"
+            EXAMPLE_DMN_NAME = "exampled"
     )
 
     type exampleDaemon struct {
@@ -158,18 +159,18 @@ Example
             }
 
             serverInitParams := &server.ServerInitParams{
-                    DmnName:   EXAMPLED_DMN_NAME,
+                    DmnName:   EXAMPLE_DMN_NAME,
                     ParamsDir: dmn.ParamsDir,
                     DbHdl:     dmn.DbHdl,
                     Logger:    dmn.FSBaseDmn.Logger,
             }
         
-            dmn.server = server.NewExampledServer(serverInitParams)
+            dmn.exampledServer = server.NewExampledServer(serverInitParams)
             go dmn.exampledServer.Serve()
 
             var rpcServerAddr string
             for _, value := range dmn.FSBaseDmn.ClientsList {
-                    if value.Name == strings.ToLower(EXAMPLED_DMN_NAME) {
+                    if value.Name == strings.ToLower(EXAMPLE_DMN_NAME) {
                             rpcServerAddr = "localhost:" + strconv.Itoa(value.Port)
                             break
                     }
@@ -182,7 +183,7 @@ Example
             dmn.StartKeepAlive()
 
             // Wait for server started msg before opening up RPC port to accept calls
-            _ = <-dmn.server.InitCompleteCh
+            _ = <-dmn.exampledServer.InitCompleteCh
 
             //Start RPC server
             dmn.FSBaseDmn.Logger.Info("Example Daemon Server started")
@@ -223,7 +224,7 @@ Example
         *thrift.TSimpleServer
     }
 
-    func NewRPCServer(rpcAddr string, logger logging.LoggerIntf) RPCServer {
+    func NewRPCServer(rpcAddr string, logger logging.LoggerIntf) *RPCServer {
         transport, err := thrift.NewTServerSocket(rpcAddr)
         if err != nil {
                 panic(err)
@@ -252,36 +253,36 @@ Example
 
     import (
         "exampled"
-        "fmt"
     )
 
     func (rpcHdl *rpcServiceHandler) CreateExample(cfg *exampled.Example) (bool, error) {
-        rpcHdl.logger(fmt.Println("Calling CreateExample", cfg))
+        rpcHdl.logger.Info("Calling CreateExample", cfg)
         return true, nil
     }
 
     func (rpcHdl *rpcServiceHandler) UpdateExample(oldCfg, newCfg *exampled.Example, attrset []bool, op []*exampled.PatchOpInfo) (bool, error) {
-        rpcHdl.logger(fmt.Println("Calling UpdateExample", oldCfg, newCfg))
+        rpcHdl.logger.Info("Calling UpdateExample", oldCfg, newCfg)
         return true, nil
     }
 
     func (rpcHdl rpcServiceHandler) DeleteExample(cfg *exampled.Example) (bool, error) {
-        rpcHdl.logger(fmt.Println("Calling DeleteExample", cfg))
+        rpcHdl.logger.Info("Calling DeleteExample", cfg)
         return true, nil
     }
 
-    func (rpcHdl *rpcServiceHandler) GetExampleState(key int32) (obj *exampled.Example, err error) {
-        rpcHdl.logger(fmt.Println("Calling GetExampleState", key))
+    func (rpcHdl *rpcServiceHandler) GetExampleState(key int32) (obj *exampled.ExampleState, err error) {
+        rpcHdl.logger.Info("Calling GetExampleState", key)
         return obj, err
     }
 
-    func (rpcHdl *rpcServiceHandler) GetBulkExampleState(fromIdx, count exampled.Int) (*exampled.Example, error) {
-        var getBulkInfo exampled.ExampleGetInfo
+    func (rpcHdl *rpcServiceHandler) GetBulkExampleState(fromIdx, count exampled.Int) (*exampled.ExampleStateGetInfo, error) {
+        var getBulkInfo exampled.ExampleStateGetInfo
+        var err error
         //info, err := api.GetBulkExample(int(fromIdx), int(count))
-        getBulkInfo.StartIdx = fromIdx
-        getBulkInfo.EndIdx = exampled.Int(info.EndIdx)
-        getBulkInfo.More = info.More
-        getBulkInfo.Count = exampled.Int(len(info.List))
+        //getBulkInfo.StartIdx = fromIdx
+        //getBulkInfo.EndIdx = exampled.Int(info.EndIdx)
+        //getBulkInfo.More = info.More
+        //getBulkInfo.Count = exampled.Int(len(info.List))
         // Fill in data, remember to convert back to thrift format
         //for idx := 0; idx < len(info.List); idx++ {
         //    getBulkInfo.ExampleList = append(getBulkInfo.ExampleList,
@@ -300,9 +301,17 @@ Example
 ::
 
     package server
+    
+    import (
+    	"utils/dbutils"
+    	"utils/logging"
+    )
 
     type ExampledServer struct {
         // store info related to server
+        Logger		dbutils.DBIntf
+        Logger		logging.LoggerIntf
+        InitCompleteCh	chan bool
     }   
     
     type ServerInitParams struct {
@@ -314,16 +323,42 @@ Example
     }
 
     func NewExampledServer(initParams *ServerInitParams) *ExampledServer {
-        svr := ExampledServer{}
+        srvr := ExampledServer{}
+        
+        srvr.DbHdl = initParams.DbHdl
+        srvr.Logger = initParams.Logger
+        srvr.InitCompleteCh = make(chan bool)
 
         // setup whatever you need for your server
 
-        return &svr
+        return &srvr
+    }
+    
+    func (srvr *ExampledServer) Serve() {
+        srvr.Logger.Info("Server initialization started")
+        //err := srvr.initServer()
+        //if err != nil {
+        //      panic(err)
+        //} 
+        srvr.InitCompleteCh <- true
+        srvr.Logger.Info("Server initialization complete, starting cfg/state listerner")
+        for {
+                //select {
+                //case req := <-srvr.ReqChan:
+                //      srvr.Logger.Info("Server request received - ", *req)
+                //      srvr.handleRPCRequest(req)
+
+                //}
+        }
     }
     
 
 Create Makefile for your module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Create a Makefile under l2/example/ directory.
+
+Example
 
 ::
 
@@ -359,6 +394,8 @@ Create Makefile for your module
 Add Module to Top Level Repo Makefile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Edit Makefile under l2/ directory.
+
 Add the following line to COMPS
 
 	example
@@ -367,3 +404,36 @@ Add the following lines to IPCS
 
 	example
 	
+
+
+Package module to FlexSwitch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Edit Makefile.
+
+Add an entry for examplsd to be packaged in flexswitch.
+
+::
+
+    install $(SRCDIR)/$(BUILD_DIR)/exampled $(DESTDIR)/$(EXT_INSTALL_PATH)/bin
+    
+    
+ Package module to FlexSwitch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Edit flexswitch script under reltools/ directory to add an entry for exampled. This is needed to unpackage exampled on system when flexswitch package is loaded. Make sure to change runlevel to avoid conflict.
+    
+ ::
+       {'name': 'fMgrd',
+        'runlevel' : 17, 
+        'params': '-params=' + baseDir + '/params'},
+
+       {'name': 'exampled',
+        'runlevel' : 18, 
+        'params': '-params=' + baseDir + '/params'},
+
+       {'name': 'confd',
+        'runlevel' : 19, 
+        'params': '-params=' + baseDir + '/params'},
+
+  
