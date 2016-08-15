@@ -20,6 +20,7 @@ Example
     /*
      * Config object of exampled
      */
+     
     type Example struct {                                                                                                                                            
         baseObj                                                                                                                                                      
         VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`  
@@ -30,6 +31,7 @@ Example
     /*
      * State object of exampled
      */
+     
      type ExampleState struct {
      
         baseObj
@@ -133,10 +135,15 @@ Example
 package main
 
 import (
+
         "l2/example/rpc"
+        
         "l2/example/server"
+        
         "strings"
+        
         "utils/dmnBase"
+        
 )
 
 const (
@@ -144,14 +151,19 @@ const (
 )
 
 type exampleDaemon struct {
+
         *dmnBase.FSBaseDmn
+        
         exampledServer *server.ExampledServer
+        
         rpcServer      *rpc.RPCServer
+        
 }
 
 var dmn exampleDaemon
 
 func main() {
+
         dmn.FSBaseDmn = dmnBase.NewBaseDmn(EXAMPLE_DMN_NAME, EXAMPLE_DMN_NAME)
         
         ok := dmn.Init()
@@ -161,10 +173,15 @@ func main() {
         }
 
         serverInitParams := &server.ServerInitParams{
+        
                 DmnName:   EXAMPLED_DMN_NAME,
+                
                 ParamsDir: dmn.ParamsDir,
+                
                 DbHdl:     dmn.DbHdl,
+                
                 Logger:    dmn.FSBaseDmn.Logger,
+                
         }
         
        
@@ -175,14 +192,21 @@ func main() {
         var rpcServerAddr string
         
         for _, value := range dmn.FSBaseDmn.ClientsList {
+        
                 if value.Name == strings.ToLower(EXAMPLED_DMN_NAME) {
+                
                         rpcServerAddr = "localhost:" + strconv.Itoa(value.Port)
+                        
                         break
+                        
                 }
+                
         }
         
         if rpcServerAddr == "" {
+        
                 panic("Platform Daemon is not part of the system profile")
+                
         }
         
         dmn.rpcServer = rpc.NewRPCServer(rpcServerAddr, dmn.FSBaseDmn.Logger)
@@ -190,12 +214,17 @@ func main() {
         dmn.StartKeepAlive()
 
         // Wait for server started msg before opening up RPC port to accept calls
+        
         _ = <-dmn.server.InitCompleteCh
 
         //Start RPC server
+        
         dmn.FSBaseDmn.Logger.Info("Example Daemon Server started")
+        
         dmn.rpcServer.Serve()
+        
         panic("Example Daemon RPC Server terminated")
+        
 }
                                                                              
 
