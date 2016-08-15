@@ -15,6 +15,7 @@ File name for the below example **exampledObjects.go**
 Example
 
 ::
+
  package objects
  
     /*
