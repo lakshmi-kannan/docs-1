@@ -260,8 +260,7 @@ Example
         return true, nil
     }
 
-    func (rpcHdl *rpcServiceHandler) UpdateExample(oldCfg, newCfg *exampled.Example, attrset []bool, op []*examplee
-d.PatchOpInfo) (bool, error) {
+    func (rpcHdl *rpcServiceHandler) UpdateExample(oldCfg, newCfg *exampled.Example, attrset []bool, op []*exampled.PatchOpInfo) (bool, error) {
         rpcHdl.logger(fmt.Println("Calling UpdateExample", oldCfg, newCfg))
         return true, nil
     }
@@ -289,7 +288,8 @@ d.PatchOpInfo) (bool, error) {
         //    convertToRPCFmtExample(info.List[idx]))
         //}
         return &getBulkInfo, err
-    }                                       
+    }
+    
 
 Create Module Server
 ^^^^^^^^^^^^^^^^^^^^
