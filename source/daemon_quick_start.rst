@@ -138,100 +138,100 @@ Example
 
 ::
     
-package main
+    package main
 
-import (
+    import (
 
-        "l2/example/rpc"
+            "l2/example/rpc"
         
-        "l2/example/server"
+            "l2/example/server"
         
-        "strings"
+            "strings"
         
-        "utils/dmnBase"
+            "utils/dmnBase"
         
-)
+    )
 
-const (
-        EXAMPLED_DMN_NAME = "exampled"
-)
+    const (
+            EXAMPLED_DMN_NAME = "exampled"
+    )
 
-type exampleDaemon struct {
+    type exampleDaemon struct {
 
-        *dmnBase.FSBaseDmn
+            *dmnBase.FSBaseDmn
         
-        exampledServer *server.ExampledServer
+            exampledServer *server.ExampledServer
         
-        rpcServer      *rpc.RPCServer
+            rpcServer      *rpc.RPCServer
         
-}
+    }
 
-var dmn exampleDaemon
+    var dmn exampleDaemon
 
-func main() {
+    func main() {
 
-        dmn.FSBaseDmn = dmnBase.NewBaseDmn(EXAMPLE_DMN_NAME, EXAMPLE_DMN_NAME)
+            dmn.FSBaseDmn = dmnBase.NewBaseDmn(EXAMPLE_DMN_NAME, EXAMPLE_DMN_NAME)
         
-        ok := dmn.Init()
+            ok := dmn.Init()
         
-        if !ok {
-                panic("Example Daemon Base initialization failed")
-        }
+            if !ok {
+                    panic("Example Daemon Base initialization failed")
+            }
 
-        serverInitParams := &server.ServerInitParams{
-        
-                DmnName:   EXAMPLED_DMN_NAME,
+            serverInitParams := &server.ServerInitParams{
+            
+                    DmnName:   EXAMPLED_DMN_NAME,
                 
-                ParamsDir: dmn.ParamsDir,
+                    ParamsDir: dmn.ParamsDir,
                 
-                DbHdl:     dmn.DbHdl,
+                    DbHdl:     dmn.DbHdl,
                 
-                Logger:    dmn.FSBaseDmn.Logger,
+                    Logger:    dmn.FSBaseDmn.Logger,
                 
-        }
+            }
         
        
-        dmn.server = server.NewExampleServer(serverInitParams)
+            dmn.server = server.NewExampleServer(serverInitParams)
         
-        go dmn.exampleServer.Serve()
+            go dmn.exampleServer.Serve()
 
-        var rpcServerAddr string
+            var rpcServerAddr string
         
-        for _, value := range dmn.FSBaseDmn.ClientsList {
+            for _, value := range dmn.FSBaseDmn.ClientsList {
         
-                if value.Name == strings.ToLower(EXAMPLED_DMN_NAME) {
+                    if value.Name == strings.ToLower(EXAMPLED_DMN_NAME) {
                 
-                        rpcServerAddr = "localhost:" + strconv.Itoa(value.Port)
+                            rpcServerAddr = "localhost:" + strconv.Itoa(value.Port)
                         
-                        break
+                            break
                         
-                }
+                    }
                 
-        }
+            }
         
-        if rpcServerAddr == "" {
+            if rpcServerAddr == "" {
         
-                panic("Platform Daemon is not part of the system profile")
+                    panic("Platform Daemon is not part of the system profile")
                 
-        }
+            }
         
-        dmn.rpcServer = rpc.NewRPCServer(rpcServerAddr, dmn.FSBaseDmn.Logger)
+            dmn.rpcServer = rpc.NewRPCServer(rpcServerAddr, dmn.FSBaseDmn.Logger)
 
-        dmn.StartKeepAlive()
+            dmn.StartKeepAlive()
 
-        // Wait for server started msg before opening up RPC port to accept calls
+            // Wait for server started msg before opening up RPC port to accept calls
         
-        _ = <-dmn.server.InitCompleteCh
+            _ = <-dmn.server.InitCompleteCh
 
-        //Start RPC server
+            //Start RPC server
         
-        dmn.FSBaseDmn.Logger.Info("Example Daemon Server started")
+            dmn.FSBaseDmn.Logger.Info("Example Daemon Server started")
         
-        dmn.rpcServer.Serve()
+            dmn.rpcServer.Serve()
         
-        panic("Example Daemon RPC Server terminated")
+            panic("Example Daemon RPC Server terminated")
         
-}
+    }
                                                                              
 
 Create RPC Server
