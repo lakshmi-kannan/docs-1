@@ -333,7 +333,7 @@ Create Makefile for your module
 	GENERATED_IPC=$(SR_CODE_BASE)/generated/src
 	IPC_GEN_CMD=thrift
 	SRCS=main.go
-	#IPC_SRCS=rpc/exampled.thrift
+	IPC_SRCS=rpc/exampled.thrift
 	COMP_NAME=exampled
 	GOLDFLAGS=-r /opt/flexswitch/sharedlib
 	all:exe 
