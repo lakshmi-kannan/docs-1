@@ -31,11 +31,14 @@ Example
      * State object of exampled
      */
      type ExampleState struct {
+     
         baseObj
+        
         VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
         IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
         UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
     }
+    
 
 Look at the "ACCESS" tag in above objects. An access type of "w" is considered as a configuration object and "r" as a state object. Configuration objects can be created/updated/deleted, where as state objects can be only queried. An object can have access type as "rw" as well. Objects with access type as "rw" are considered as configuration as well as state objects.
 State objects should have "State" appended to the object name. E.g. ExampleState.
@@ -150,7 +153,9 @@ var dmn exampleDaemon
 
 func main() {
         dmn.FSBaseDmn = dmnBase.NewBaseDmn(EXAMPLE_DMN_NAME, EXAMPLE_DMN_NAME)
+        
         ok := dmn.Init()
+        
         if !ok {
                 panic("Example Daemon Base initialization failed")
         }
@@ -161,19 +166,25 @@ func main() {
                 DbHdl:     dmn.DbHdl,
                 Logger:    dmn.FSBaseDmn.Logger,
         }
+        
+       
         dmn.server = server.NewExampleServer(serverInitParams)
+        
         go dmn.exampleServer.Serve()
 
         var rpcServerAddr string
+        
         for _, value := range dmn.FSBaseDmn.ClientsList {
                 if value.Name == strings.ToLower(EXAMPLED_DMN_NAME) {
                         rpcServerAddr = "localhost:" + strconv.Itoa(value.Port)
                         break
                 }
         }
+        
         if rpcServerAddr == "" {
                 panic("Platform Daemon is not part of the system profile")
         }
+        
         dmn.rpcServer = rpc.NewRPCServer(rpcServerAddr, dmn.FSBaseDmn.Logger)
 
         dmn.StartKeepAlive()
