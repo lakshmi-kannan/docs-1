@@ -138,7 +138,6 @@ Example
 
 ::
     
-
 package main
 
 import (
