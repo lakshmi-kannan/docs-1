@@ -21,31 +21,21 @@ Example
     /*
      * Config object of exampled
      */
-     
-    type Example struct {                                                                                                                                            
-        baseObj                                                                                                                                                      
+    type Example struct {
+        baseObj
         VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
-        
         IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
-        
-        UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`  
-        
+        UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
     }
     
     /*
      * State object of exampled
      */
-     
      type ExampleState struct {
-     
         baseObj
-        
         VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
-        
         IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
-        
         UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
-        
     }
     
 
@@ -141,15 +131,10 @@ Example
     package main
 
     import (
-
             "l2/example/rpc"
-        
             "l2/example/server"
-        
             "strings"
-        
             "utils/dmnBase"
-        
     )
 
     const (
@@ -157,82 +142,54 @@ Example
     )
 
     type exampleDaemon struct {
-
             *dmnBase.FSBaseDmn
-        
             exampledServer *server.ExampledServer
-        
             rpcServer      *rpc.RPCServer
-        
     }
 
     var dmn exampleDaemon
 
     func main() {
-
             dmn.FSBaseDmn = dmnBase.NewBaseDmn(EXAMPLE_DMN_NAME, EXAMPLE_DMN_NAME)
-        
+            
             ok := dmn.Init()
-        
             if !ok {
                     panic("Example Daemon Base initialization failed")
             }
 
             serverInitParams := &server.ServerInitParams{
-            
                     DmnName:   EXAMPLED_DMN_NAME,
-                
                     ParamsDir: dmn.ParamsDir,
-                
                     DbHdl:     dmn.DbHdl,
-                
                     Logger:    dmn.FSBaseDmn.Logger,
-                
             }
         
-       
             dmn.server = server.NewExampleServer(serverInitParams)
-        
             go dmn.exampleServer.Serve()
 
             var rpcServerAddr string
-        
             for _, value := range dmn.FSBaseDmn.ClientsList {
-        
                     if value.Name == strings.ToLower(EXAMPLED_DMN_NAME) {
-                
                             rpcServerAddr = "localhost:" + strconv.Itoa(value.Port)
-                        
                             break
-                        
                     }
-                
             }
-        
             if rpcServerAddr == "" {
-        
                     panic("Platform Daemon is not part of the system profile")
-                
             }
         
             dmn.rpcServer = rpc.NewRPCServer(rpcServerAddr, dmn.FSBaseDmn.Logger)
-
             dmn.StartKeepAlive()
 
             // Wait for server started msg before opening up RPC port to accept calls
-        
             _ = <-dmn.server.InitCompleteCh
 
             //Start RPC server
-        
             dmn.FSBaseDmn.Logger.Info("Example Daemon Server started")
-        
             dmn.rpcServer.Serve()
-        
             panic("Example Daemon RPC Server terminated")
-        
     }
-                                                                             
+                    
 
 Create RPC Server
 ^^^^^^^^^^^^^^^^^
