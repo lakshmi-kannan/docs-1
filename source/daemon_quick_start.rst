@@ -193,103 +193,103 @@ Example
 
 Create RPC Server
 ^^^^^^^^^^^^^^^^^
-Create RPC Server to intercept RPC calls from Client
+Create RPC Server to intercept RPC calls from Client.
 
-Filename **example/rpc/rpc.go**
+Filename **l2/example/rpc/rpc.go**
 
 Example
 
 ::
     
-    package rpc                                                                                    
-                                                                                                    
-    import (                                                                                        
-        "git.apache.org/thrift.git/lib/go/thrift"                                                   
-        "exampledServices"                                                                          
-        "utils/logging"                                                                             
-    )                                                                                               
-                                                                                                     
-    type rpcServiceHandler struct {                                                                 
-        logger logging.LoggerIntf                                                                   
-    }                                                                                               
-                                                                                                    
-    func newRPCServiceHandler(logger logging.LoggerIntf) *rpcServiceHandler {                      
-        return &rpcServiceHandler{                                                                  
-             logger: logger,                                                                         
-        }                                                                                           
-    }                                                                                               
-                                                                                                     
-    type RPCServer struct {                                                                         
-        *thrift.TSimpleServer                                                                      
-    }                                                                                               
-                                                                                                    
-    func NewRPCServer(rpcAddr string, logger logging.LoggerIntf) \*RPCServer {                      
-        transport, err := thrift.NewTServerSocket(rpcAddr)                                          
-        if err != nil {                                                                             
-            panic(err)                                                                              
-        }                                                                                           
-        handler := newRPCServiceHandler(logger)                                                     
-        processor := opticdServices.NewOPTICDServicesProcessor(handler)                             
-        transportFactory := thrift.NewTBufferedTransportFactory(8192)                               
-        protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()                                
-        server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory) 
-        return &RPCServer{                                                                          
-            TSimpleServer: server,                                                                  
-        }                                                                                           
-    }                                                                                               
+    package rpc
+
+    import (
+        "exampled"
+        "git.apache.org/thrift.git/lib/go/thrift"
+        "utils/logging"
+    )   
+
+    type rpcServiceHandler struct {
+        logger logging.LoggerIntf
+    }   
+
+    func newRPCServiceHandler(logger logging.LoggerIntf) *rpcServiceHandler {
+        return &rpcServiceHandler{
+                logger: logger,
+        }
+    }   
+
+    type RPCServer struct {
+        *thrift.TSimpleServer
+    }
+
+    func NewRPCServer(rpcAddr string, logger logging.LoggerIntf) RPCServer {
+        transport, err := thrift.NewTServerSocket(rpcAddr)
+        if err != nil {
+                panic(err)
+        }
+        handler := newRPCServiceHandler(logger)
+        processor := exampled.NewEXAMPLEDServicesProcessor(handler)
+        transportFactory := thrift.NewTBufferedTransportFactory(8192)
+        protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
+        server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory)
+        return &RPCServer{ 
+                TSimpleServer: server,
+        }
+    }
 
 Create RPC Service Handler for Example Object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Create the Create / Delete / Update / Get / GetBulk methods for the handler
+Create the Create / Delete / Update / Get / GetBulk methods for the handler.
 
-Filename **example/rpc/rpcExampleHdl.go**
+Filename **l2/example/rpc/rpcExampleHdl.go**
 
 Example
 
 ::
 
-    package rpc                                                                                                                                                    
-                                                                                                                                                                   
-    import (                                                                                                                                                       
-        "errors"                                                                                                                                                   
-        "example"                                                                                                                                                  
-        "exampledServices"                                                                                                                                         
-        "fmt"                                                                                                                                                      
-    )                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl *rpcServiceHandler) CreateExample(cfg *exampledServices.Example) (bool, error) {                                                                
-        rpcHdl.logger(fmt.Println("Calling CreateExample", cfg))                                                                                                   
-        return true, nil                                                                                                                                           
-    }                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl *rpcServiceHandler) UpdateExample(oldCfg, newCfg *exampledServices.Example, attrset []bool, op []*exampledServices.PatchOpInfo) (bool, error) {
-        rpcHdl.logger(fmt.Println("Calling UpdateExample", oldCfg, newCfg))                                                                                        
-        return true, nil                                                                                                                                           
-    }                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl \*rpcServiceHandler) DeleteExample(cfg *exampledServices.Example) (bool, error) {                                                                
-        rpcHdl.logger(fmt.Println("Calling DeleteExample", cfg))                                                                                                   
-        return true, nil                                                                                                                                           
-    }                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl *rpcServiceHandler) GetExample(moduleId, nwIntfId int8) (obj *exampledServices.Example, err error) {                                            
-        return obj, err                                                                                                                                            
-    }                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl *rpcServiceHandler) GetBulkExample(fromIdx, count exampledServices.Int) (*exampledServices.Example, error) {                                    
-        var getBulkInfo exampledServices.ExampleGetInfo                                                                                                            
-        //info, err := api.GetBulkExample(int(fromIdx), int(count))                                                                                                
-        getBulkInfo.StartIdx = fromIdx                                                                                                                             
-        getBulkInfo.EndIdx = exampledServices.Int(info.EndIdx)                                                                                                     
-        getBulkInfo.More = info.More                                                                                                                               
-        getBulkInfo.Count = exampledServices.Int(len(info.List))                                                                                                   
-        // Fill in data, remember to convert back to thrift format                                                                                                 
-        //for idx := 0; idx < len(info.List); idx++ {                                                                                                              
-        //    getBulkInfo.ExampleList = append(getBulkInfo.ExampleList,                                                                                            
-        //    convertToRPCFmtExample(info.List[idx]))                                                                                                              
-        //}                                                                                                                                                        
-        return &getBulkInfo, err                                                                                                                                   
-    }                                                                                                                                                              
+    package rpc
+
+    import (
+        "exampled"
+        "fmt"
+    )
+
+    func (rpcHdl *rpcServiceHandler) CreateExample(cfg *exampled.Example) (bool, error) {
+        rpcHdl.logger(fmt.Println("Calling CreateExample", cfg))
+        return true, nil
+    }
+
+    func (rpcHdl *rpcServiceHandler) UpdateExample(oldCfg, newCfg *exampled.Example, attrset []bool, op []*examplee
+d.PatchOpInfo) (bool, error) {
+        rpcHdl.logger(fmt.Println("Calling UpdateExample", oldCfg, newCfg))
+        return true, nil
+    }
+
+    func (rpcHdl rpcServiceHandler) DeleteExample(cfg *exampled.Example) (bool, error) {
+        rpcHdl.logger(fmt.Println("Calling DeleteExample", cfg))
+        return true, nil
+    }
+
+    func (rpcHdl *rpcServiceHandler) GetExampleState(key int32) (obj *exampled.Example, err error) {
+        rpcHdl.logger(fmt.Println("Calling GetExampleState", key))
+        return obj, err
+    }
+
+    func (rpcHdl *rpcServiceHandler) GetBulkExampleState(fromIdx, count exampled.Int) (*exampled.Example, error) {
+        var getBulkInfo exampled.ExampleGetInfo
+        //info, err := api.GetBulkExample(int(fromIdx), int(count))
+        getBulkInfo.StartIdx = fromIdx
+        getBulkInfo.EndIdx = exampled.Int(info.EndIdx)
+        getBulkInfo.More = info.More
+        getBulkInfo.Count = exampled.Int(len(info.List))
+        // Fill in data, remember to convert back to thrift format
+        //for idx := 0; idx < len(info.List); idx++ {
+        //    getBulkInfo.ExampleList = append(getBulkInfo.ExampleList,
+        //    convertToRPCFmtExample(info.List[idx]))
+        //}
+        return &getBulkInfo, err
+    }                                       
 
 Create Module Server
 ^^^^^^^^^^^^^^^^^^^^
