@@ -64,8 +64,8 @@ Example in L2 Repo
 
 ::
 
-    mkdir l2/exampled
-    cd l2/exampld 
+    mkdir l2/example
+    cd l2/example 
     mkdir rpc
     mkdir client
     mkdir hal
@@ -164,8 +164,8 @@ Example
                     Logger:    dmn.FSBaseDmn.Logger,
             }
         
-            dmn.server = server.NewExampleServer(serverInitParams)
-            go dmn.exampleServer.Serve()
+            dmn.server = server.NewExampledServer(serverInitParams)
+            go dmn.exampledServer.Serve()
 
             var rpcServerAddr string
             for _, value := range dmn.FSBaseDmn.ClientsList {
@@ -299,12 +299,12 @@ Example
 
 ::
 
-    package example
+    package server
 
-    type ExampleSvr struct {
+    type ExampledServer struct {
         // store info related to server
-    }
-
+    }   
+    
     type ServerInitParams struct {
         DmnName     string
         ParamsDir   string
@@ -313,13 +313,14 @@ Example
         Logger      logging.LoggerIntf
     }
 
-    func NewExampleServer(initParams *ServerInitParams) *OpticdServer {
-        svr := ExampleSvr{}
+    func NewExampledServer(initParams *ServerInitParams) *ExampledServer {
+        svr := ExampledServer{}
 
         // setup whatever you need for your server
 
         return &svr
     }
+    
 
 Create Makefile for your module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -332,27 +333,28 @@ Create Makefile for your module
 	GENERATED_IPC=$(SR_CODE_BASE)/generated/src
 	IPC_GEN_CMD=thrift
 	SRCS=main.go
-	#IPC_SRCS=rpc/opticd.thrift
+	#IPC_SRCS=rpc/exampled.thrift
 	COMP_NAME=exampled
 	GOLDFLAGS=-r /opt/flexswitch/sharedlib
-	all:exe
+	all:exe 
 	all:ipc exe
 	ipc:
-		$(IPC_GEN_CMD) -r --gen go -out $(GENERATED_IPC) $(IPC_SRCS)
+            $(IPC_GEN_CMD) -r --gen go -out $(GENERATED_IPC) $(IPC_SRCS)
 
-	exe: $(SRCS)
-		go build -o $(DESTDIR)/$(COMP_NAME) -ldflags="$(GOLDFLAGS)" $(SRCS)
+	exe: $(SRCS) 
+            go build -o $(DESTDIR)/$(COMP_NAME) -ldflags="$(GOLDFLAGS)" $(SRCS)
 
-	guard:
+	guard:  
 	ifndef SR_CODE_BASE
-		$(error SR_CODE_BASE is not set)
-	endif
+            $(error SR_CODE_BASE is not set)
+	endif   
 
 	install:
-		@echo "OpticD has no files to install"
+            @echo "OpticD has no files to install"
 	clean:guard
-		$(RM) $(DESTDIR)/$(COMP_NAME) 
-		$(RMFORCE) $(GENERATED_IPC)/$(COMP_NAME)
+            $(RM) $(DESTDIR)/$(COMP_NAME) 
+            $(RMFORCE) $(GENERATED_IPC)/$(COMP_NAME)
+
 
 Add Module to Top Level Repo Makefile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
