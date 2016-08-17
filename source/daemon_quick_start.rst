@@ -4,30 +4,62 @@ Quick start guide to create a new daemon within flexswitch
 
 .. image:: images/daemon.png
 
-Lets show by an example of creating a EXAMPLE Daemon in the l2 repo.  Each section assumes that you start
-from snaproute/src directory
+This guide helps you to create a small daemon skeleton which would run as part of FlexSwitch.
+The daemon is named as Example Daemon.  This daemon is assumed to belong to layer 2
+of the networking stack, so we make this daemon under $SR_CODE_BASE/src/l2
 
 Create Model Objects
 ^^^^^^^^^^^^^^^^^^^^
-Create a model object in the following repo models/objects
+First step in writing a daemon is to define the data model.
+
+Our datamodel would consist of the objects that represent state and configuration of the daemon. 
+
+Here we would create our model in a golang source file in $SR_CODE_BASE/models repo under objects directory.
 
 File name for the below example **exampleObjects.go**
 
 Example
 
 ::
- 
-    type Example struct {                                                                                                                                            
-        baseObj                                                                                                                                                      
-        VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`  
-        IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`                                 
-        UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`                               
-    }                                                                                                                                                                
 
+ package objects
+ 
+    /*
+     * Config object of exampled
+     */
+    type Example struct {
+        baseObj
+        VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"w", MULTIPLICITY: "*", MIN:"1", MAX: "4094", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
+        IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
+        UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
+    }
+    
+    /*
+     * State object of exampled
+     */
+     type ExampleState struct {
+        baseObj
+        VlanId        int32    `SNAPROUTE: "KEY", ACCESS:"r", MULTIPLICITY: "*", DESCRIPTION: "802.1Q tag/Vlan ID for vlan being provisioned"`
+        IntfList      []string `DESCRIPTION: "List of interface names or ifindex values to  be added as tagged members of the vlan"`
+        UntagIntfList []string `DESCRIPTION: "List of interface names or ifindex values to  be added as untagged members of the vlan"`
+    }
+    
+
+Look at the "ACCESS" tag in above objects. 
+
+An access type of "w" is considered as a configuration object and "r" as a state object.
+
+Configuration objects can be created/updated/deleted, where as state objects can be only queried.
+
+An object can have access type as "rw" as well. Objects with access type as "rw" are considered as configuration as well as state objects.
+
+State objects should have "State" appended to the object name. E.g. ExampleState.
 
 Add Model Object to Daemon Map
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Ensure that this object has an owner and path to store the thrift generated file.
+Now that we have defined the model, we need to let the system know that the 'Example Daemon' is responsible for the functionality.
+So we specify that these objects have an owner. As mentioned in the 'Architecture' section we use thrift as our RPC. So we need to specify
+path to a generated thrift file.
 
 Add the following lines to **models/objects/goObjinfo.json** before localObjects entry
 
@@ -39,26 +71,12 @@ Example
                            "location" : "l2/example/rpc",
                            "svcName"  : "nil"},           
 
-Create Module and subdirectories 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Setup the directories for use by you module
 
-Example in L2 Repo
-
-::
-
-    cd l2/example 
-    mkdir rpc
-    mkdir client
-    mkdir hal
-    mkdir server
-    mkdir protocol
-    
 Add module to thirft client handle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Add the following lines to **config/clientmap/clientmap.go**
+ConfigManager in FlexSwitch needs to delegate the REST APIs to the new daemon. So we need to update the clients of ConfigManager
 
-Example
+Add the following lines to **config/cliens/clientmap.go**
 
 ::
 
@@ -66,275 +84,129 @@ Example
 
 Add module to client port list
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Add the module to the json containing the client port list used for RPC 
-**config/params/clients.json**
+In addition to the ConfigManager there would be other modules like system daemon that would communicate with the new daemon.
+To let the other daemons know the existance of 'Example Daemon' we need to update  
+**config/params/clients.json** 
 
-Number should not conflict with any other port within the json.
+Pick a port number that does not conflict with any other port within the json. Make sure the port is not used by any other client or any service in your system.
 
 Example
 
 ::
 
     {"Name":"exampled",
-     "Port":10017},
+     "Port":10018},
 
-Build Vlan Daemon Autogenerated Code
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Build Example Daemon Code for ConfigMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Example
+To generate code used by ConfigMgr, execute below commands:
 
 ::
-    
+
     make codegen                                                      
     make ipc                                                          
 
-Verify Components build properly
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- Verify that within your module rpc directory that there is a thrift file **exampled.thrift** that is created
+
+- Verify that within l2/exampled/rpc directory that there is a thrift file **exampled.thrift** created.
+      - For each object with access type as "w", there should be CreateXXX, UpdateXXX, and DeleteXXX APIs in EXAMPLEDServices thrift service.
+      - For each object with access type as "r", there should be GetBulkYYY and GetYYY APIs in EXAMPLEDServices thrift service.
 - Verify in models/objects that you see something similar to the following
     - gen_Exampledbif.go
+    - gen_ExampleStatedbif.go
     - gen_exampledObjects_serializer.go
     - gen_exampledthriftutil.go
-- Verify FlexSdk repo to see if api was generated for the above Objects in **flexprintV2.py** and **flexSwitchV2.py**
+- Verify FlexSdk repo to see if APIs are generated for the above Objects in **flexSdk/py/flexprintV2.py** and **flexSdk/py/flexSwitchV2.py**
 
 
-Create Main
-^^^^^^^^^^^
+Build Example Daemon Skeleton Back-End Code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Filename **example/main.go**
-
-Example
-
-::
-    
-
-    package main                                                                    
-                                                                                    
-    import (                                                                        
-       "l2/example/server"                                                          
-       "l2/rpc"                                                                     
-       "utils/dmnBase"                                                              
-    )                                                                               
-                                                                                    
-    const (                                                                         
-      EXAMPLED_DMN_NAME = "EXAMPLED"                                                
-      EXAMPLED_CFG_FILE = "example.conf"                                            
-      EXAMPLED_DEFAULT_RPC_SERVER_ADDR = "loaclhost:10017"                          
-    )                                                                               
-                                                                                    
-    type opticDaemon struct {                                                       
-       *dmnBase.FSBaseDmn                                                          
-       exampleServer *server.ExampleDServer                                        
-       rpcServer *rpc.RPCServer                                                    
-     }                                                                               
-                                                                                    
-    var dmn exampleDaemon                                                           
-                                                                                    
-    func main() {                                                                   
-       dmn.FSBaseDmn = dmnBase.NewBaseDmn(EXAMPLE_DMN_NAME, EXAMPLE_DMN_NAME)       
-       ok := dmn.Init()                                                             
-       if !ok {                                                                     
-           panic("Example Daemon Base initialization failed")                       
-       }                                                                            
-                                                                                     
-       cfgFileName := dmn.ParamsDir + EXAMPLE_CFG_FILE                              
-       serverInitParams := &server.ServerInitParams{                                
-           DmnName:   EXAMPLED_DMN_NAME,                                            
-           ParamsDir: dmn.ParamsDir,                                                
-           DbHdl:     dmn.DbHdl,                                                    
-           Logger:    dmn.FSBaseDmn.Logger,                                         
-       }                                                                            
-       dmn.server = server.NewExampleServer(serverInitParams)                       
-       go dmn.exampleServer.Serve()                                                 
-                                                                                    
-       var rpcServerAddr string = EXAMPLED_DEFAULT_RPC_SERVER_ADDR                  
-       for _, value := range dmn.FSBaseDmn.ClientsList {                            
-           if value.Name == strings.ToLower(EXAMPLED_DMN_NAME) {                    
-               rpcServerAddr = "localhost:" + strconv.Itoa(value.Port)              
-               break                                                                
-           }                                                                        
-       }                                                                            
-                                                                                    
-       dmn.StartKeepAlive()                                                         
-                                                                                     
-       //Start RPC server                                                           
-       dmn.FSBaseDmn.Logger.Info("Example Daemon Server started")                   
-       dmn.rpcServer.Serve()                                                         
-       panic("Example Daemon RPC Server terminated")                                
-    }                                                                               
-
-
-Create RPC Server
-^^^^^^^^^^^^^^^^^
-Create RPC Server to intercept RPC calls from Client
-
-Filename **example/rpc/rpc.go**
-
-Example
-
-::
-    
-    package rpc                                                                                    
-                                                                                                    
-    import (                                                                                        
-        "git.apache.org/thrift.git/lib/go/thrift"                                                   
-        "exampledServices"                                                                          
-        "utils/logging"                                                                             
-    )                                                                                               
-                                                                                                     
-    type rpcServiceHandler struct {                                                                 
-        logger logging.LoggerIntf                                                                   
-    }                                                                                               
-                                                                                                    
-    func newRPCServiceHandler(logger logging.LoggerIntf) *rpcServiceHandler {                      
-        return &rpcServiceHandler{                                                                  
-             logger: logger,                                                                         
-        }                                                                                           
-    }                                                                                               
-                                                                                                     
-    type RPCServer struct {                                                                         
-        *thrift.TSimpleServer                                                                      
-    }                                                                                               
-                                                                                                    
-    func NewRPCServer(rpcAddr string, logger logging.LoggerIntf) \*RPCServer {                      
-        transport, err := thrift.NewTServerSocket(rpcAddr)                                          
-        if err != nil {                                                                             
-            panic(err)                                                                              
-        }                                                                                           
-        handler := newRPCServiceHandler(logger)                                                     
-        processor := opticdServices.NewOPTICDServicesProcessor(handler)                             
-        transportFactory := thrift.NewTBufferedTransportFactory(8192)                               
-        protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()                                
-        server := thrift.NewTSimpleServer4(processor, transport, transportFactory, protocolFactory) 
-        return &RPCServer{                                                                          
-            TSimpleServer: server,                                                                  
-        }                                                                                           
-    }                                                                                               
-
-Create RPC Service Handler for Example Object
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Create the Create / Delete / Update / Get / GetBulk methods for the handler
-
-Filename **example/rpc/rpcExampleHdl.go**
-
-Example
+Skeleton daemon code can be autogenerated by executing below command:
 
 ::
 
-    package rpc                                                                                                                                                    
-                                                                                                                                                                   
-    import (                                                                                                                                                       
-        "errors"                                                                                                                                                   
-        "example"                                                                                                                                                  
-        "exampledServices"                                                                                                                                         
-        "fmt"                                                                                                                                                      
-    )                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl *rpcServiceHandler) CreateExample(cfg *exampledServices.Example) (bool, error) {                                                                
-        rpcHdl.logger(fmt.Println("Calling CreateExample", cfg))                                                                                                   
-        return true, nil                                                                                                                                           
-    }                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl *rpcServiceHandler) UpdateExample(oldCfg, newCfg *exampledServices.Example, attrset []bool, op []*exampledServices.PatchOpInfo) (bool, error) {
-        rpcHdl.logger(fmt.Println("Calling UpdateExample", oldCfg, newCfg))                                                                                        
-        return true, nil                                                                                                                                           
-    }                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl \*rpcServiceHandler) DeleteExample(cfg *exampledServices.Example) (bool, error) {                                                                
-        rpcHdl.logger(fmt.Println("Calling DeleteExample", cfg))                                                                                                   
-        return true, nil                                                                                                                                           
-    }                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl *rpcServiceHandler) GetExample(moduleId, nwIntfId int8) (obj *exampledServices.Example, err error) {                                            
-        return obj, err                                                                                                                                            
-    }                                                                                                                                                              
-                                                                                                                                                                   
-    func (rpcHdl *rpcServiceHandler) GetBulkExample(fromIdx, count exampledServices.Int) (*exampledServices.Example, error) {                                    
-        var getBulkInfo exampledServices.ExampleGetInfo                                                                                                            
-        //info, err := api.GetBulkExample(int(fromIdx), int(count))                                                                                                
-        getBulkInfo.StartIdx = fromIdx                                                                                                                             
-        getBulkInfo.EndIdx = exampledServices.Int(info.EndIdx)                                                                                                     
-        getBulkInfo.More = info.More                                                                                                                               
-        getBulkInfo.Count = exampledServices.Int(len(info.List))                                                                                                   
-        // Fill in data, remember to convert back to thrift format                                                                                                 
-        //for idx := 0; idx < len(info.List); idx++ {                                                                                                              
-        //    getBulkInfo.ExampleList = append(getBulkInfo.ExampleList,                                                                                            
-        //    convertToRPCFmtExample(info.List[idx]))                                                                                                              
-        //}                                                                                                                                                        
-        return &getBulkInfo, err                                                                                                                                   
-    }                                                                                                                                                              
+    cd $SR_CODE_BASE/relctools
+    python codegentools/daemon/daemon.py -d exampled -r l2 -o exampleObjects.go
 
-Create Module Server
-^^^^^^^^^^^^^^^^^^^^
-Create server file within ***l2/example/server/server.go***
 
-Example
+Usage of daemon.py is as shown below
 
 ::
 
-    package example
+    Usage: daemon.py [options]
 
-    type ExampleSvr struct {
-        // store info related to server
-    }
+    Options:
+      -h, --help            show this help message and exit
+      -d DAEMON, --daemon=DAEMON
+                            Name of the daemon
+      -m MODULE, --module=MODULE
+                            Name of the module
+      -r REPO, --repo=REPO  Name of the repo this demon belongs to
+      -o OBJECTS, --objects=OBJECTS
+                            Name of the file containing config objects for this
+                            daemon
 
-    type ServerInitParams struct {
-        DmnName     string
-        ParamsDir   string
-        CfgFileName string
-        DbHdl       dbutils.DBIntf
-        Logger      logging.LoggerIntf
-    }
 
-    func NewExampleServer(initParams *ServerInitParams) *OpticdServer {
-        svr := ExampleSvr{}
+Daemon name is mandatory parameter in daemon.py script.
+If the daemon is part of any particular repo, e.g. as described above exampled is part of l2,
+then repo name should be provided.
+If we want to have different name for the module than the daemon name then module name should be provided.
+By default, module name is derevived from daemon name by dropping last character 'd'. For example, if daemon name is "exampled" the module name will be "exampl"
+If the daemon has config objects defined in a file then that can be passed to the script as objects.
+Here we are passing exampleObjects.go.
 
-        // setup whatever you need for your server
+- Verify directory structure is created for this daemon. Directories created are -
+    - $SR_CODE_BASE/snaproute/src/repo/module
+        - Verify main.go and Makefile are created
+    - $SR_CODE_BASE/snaproute/src/repo/module/server
+        - Verify server.go file created
+    - $SR_CODE_BASE/snaproute/src/repo/module/rpc
+        - Verify rpc.go and rpcHdl.go files are created 
 
-        return &svr
-    }
-
-Create Makefile for your module
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-::
-
-	RM=rm -f
-	RMFORCE=rm -rf
-	DESTDIR=$(SR_CODE_BASE)/snaproute/src/out/bin
-	GENERATED_IPC=$(SR_CODE_BASE)/generated/src
-	IPC_GEN_CMD=thrift
-	SRCS=main.go
-	#IPC_SRCS=rpc/opticd.thrift
-	COMP_NAME=exampled
-	GOLDFLAGS=-r /opt/flexswitch/sharedlib
-	all:exe
-	all:ipc exe
-	ipc:
-		$(IPC_GEN_CMD) -r --gen go -out $(GENERATED_IPC) $(IPC_SRCS)
-
-	exe: $(SRCS)
-		go build -o $(DESTDIR)/$(COMP_NAME) -ldflags="$(GOLDFLAGS)" $(SRCS)
-
-	guard:
-	ifndef SR_CODE_BASE
-		$(error SR_CODE_BASE is not set)
-	endif
-
-	install:
-		@echo "OpticD has no files to install"
-	clean:guard
-		$(RM) $(DESTDIR)/$(COMP_NAME) 
-		$(RMFORCE) $(GENERATED_IPC)/$(COMP_NAME)
 
 Add Module to Top Level Repo Makefile
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+We want this module to be part of other l2 components. So edit Makefile under l2/ directory as follows.
 
 Add the following line to COMPS
 
-	example
+        example
 
 Add the following lines to IPCS
 
-	example
-	
+        example
+        
+
+
+Package module into FlexSwitch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+We need to add ExampleDaemon to the top level Makefile so that it can be picked up for packaging
+Make these changes on the top level Makefile as follows.
+
+::
+
+    install $(SRCDIR)/$(BUILD_DIR)/exampled $(DESTDIR)/$(EXT_INSTALL_PATH)/bin
+    
+    
+Loading module to FlexSwitch
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Now we need to make the ExampleDaemon start on every FlexSwitch instantiation. 
+This can be done by editing flexswitch script under $SR_CODE_BASE/reltools/ directory
+as  follows. Make sure to change runlevel to avoid conflict.
+    
+ ::
+       {'name': 'fMgrd',
+        'runlevel' : 17, 
+        'params': '-params=' + baseDir + '/params'},
+
+       {'name': 'exampled',
+        'runlevel' : 18, 
+        'params': '-params=' + baseDir + '/params'},
+
+       {'name': 'confd',
+        'runlevel' : 19, 
+        'params': '-params=' + baseDir + '/params'},
+
+Now you should be able to see your daemon running as part of the FlexSwitch along with the other daemons.
+
