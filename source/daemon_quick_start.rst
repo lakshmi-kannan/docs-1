@@ -97,27 +97,6 @@ Example
     {"Name":"exampled",
      "Port":10018},
 
-Build Example Daemon Code for ConfigMgr
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-To generate code used by ConfigMgr, execute below commands:
-
-::
-
-    make codegen                                                      
-    make ipc                                                          
-
-
-- Verify that within l2/exampled/rpc directory that there is a thrift file **exampled.thrift** created.
-      - For each object with access type as "w", there should be CreateXXX, UpdateXXX, and DeleteXXX APIs in EXAMPLEDServices thrift service.
-      - For each object with access type as "r", there should be GetBulkYYY and GetYYY APIs in EXAMPLEDServices thrift service.
-- Verify in models/objects that you see something similar to the following
-    - gen_Exampledbif.go
-    - gen_ExampleStatedbif.go
-    - gen_exampledObjects_serializer.go
-    - gen_exampledthriftutil.go
-- Verify FlexSdk repo to see if APIs are generated for the above Objects in **flexSdk/py/flexprintV2.py** and **flexSdk/py/flexSwitchV2.py**
-
 
 Build Example Daemon Skeleton Back-End Code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -163,6 +142,30 @@ Here we are passing exampleObjects.go.
         - Verify server.go file created
     - $SR_CODE_BASE/snaproute/src/repo/module/rpc
         - Verify rpc.go and rpcHdl.go files are created 
+
+
+Build Example Daemon Code for ConfigMgr
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To generate code used by ConfigMgr, execute below commands:
+
+::
+
+    make codegen                                                      
+    make ipc                                                          
+
+
+- Verify that within l2/exampled/rpc directory that there is a thrift file **exampled.thrift** created.
+      - For each object with access type as "w", there should be CreateXXX, UpdateXXX, and DeleteXXX APIs in EXAMPLEDServices thrift service.
+      - For each object with access type as "r", there should be GetBulkYYY and GetYYY APIs in EXAMPLEDServices thrift service.
+- Verify in models/objects that you see something similar to the following
+    - gen_Exampledbif.go
+    - gen_ExampleStatedbif.go
+    - gen_exampledObjects_serializer.go
+    - gen_exampledthriftutil.go
+- Verify FlexSdk repo to see if APIs are generated for the above Objects in **flexSdk/py/flexprintV2.py** and **flexSdk/py/flexSwitchV2.py**
+
+
 
 
 Add Module to Top Level Repo Makefile
