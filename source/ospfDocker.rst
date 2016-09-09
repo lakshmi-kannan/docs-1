@@ -30,7 +30,11 @@ Run the docker_startup script
 Configure d_inst1 docker
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-
+::
+      
+      Configure IPv4 intf
+      curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth25"}' http://localhost:8080/public/v1/config/IPv4Intf
+   
 - Below steps carry out OSPF specific configurations
 
 OspfAreaEntry
@@ -97,6 +101,10 @@ Configure d_inst2 docker
     sudo docker exec -it d_inst2 bash
 
 
+::
+      
+      Configure IPv4 intf
+      curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth35"}' http://localhost:8080/public/v1/config/IPv4Intf
 
 - Configure OSPF 
 
