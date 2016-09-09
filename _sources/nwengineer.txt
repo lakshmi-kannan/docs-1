@@ -15,7 +15,6 @@ As we all as examples of initial configurations made on the device’s utilizing
 
     ONIE Installation instructions <ONIE_Install>
     FlexSwitch Package Installation <flexswitch_install>
-    Configuring FlexSwitch via CLI <cli_config>
 	Configuring FlexSwitch via Ansible <ansible_config>
 	Configuring FlexSwitch via REST <rest_config>
 	Configuring FlexSwitch via Python SDK <python_config>
