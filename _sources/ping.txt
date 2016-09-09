@@ -19,7 +19,6 @@ This script will create 2 docker instances named d_inst1 and d_inst2 with point 
 ::
     
     sh docker_startup.sh
-    Get the script here - https://github.com/OpenSnaproute/test
 
 
 

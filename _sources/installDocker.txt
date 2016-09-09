@@ -15,7 +15,6 @@ used to experiment with flexswitch.
     To run the script 
 
     sh docker_startup.sh
-    Get the script here  - https://github.com/OpenSnaproute/test
 
 The script sets up the docker environment. 
 
@@ -42,13 +41,9 @@ This command will pull the latest image from docker hub.
           Such as redis , syslog. This DOES NOT have flexswitch installed on it.
    Flexv<version_number> - Latest flexswitch image for docker. This image tag will be used for all   
                            the tutorials next.
- 
+
    Example - 
    docker pull snapos/flex:Flexv46
-ubuntu-14.04            FlexSwitchV18       bf816ee3a586        7 weeks ago         682.3 MB
-ubuntu                  latest              b72889fa879c        8 weeks ago         188 MB
-libero18/ubuntu-14.04   Flexv6              50f1cfc73404        10 weeks ago        1.005 GB
-<none>                  <none>              97434d46f197        12 weeks ago        188 MB
    
 
 
