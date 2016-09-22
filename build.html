@@ -88,7 +88,10 @@
 <li class="toctree-l2"><a class="reference internal" href="developer.html#how-to-contribute">How to contribute</a></li>
 <li class="toctree-l2"><a class="reference internal" href="developer.html#setting-up-development-environment">Setting Up Development Environment</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="developer.html#building-flexswitch-from-sources">Building FlexSwitch From Sources</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#"> Build instructions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"> Build instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="developer.html#system-architecture">System Architecture</a></li>
@@ -151,7 +154,35 @@
             
   <div class="section" id="building-flexswitch-from-source">
 <h1>Building FlexSwitch from source<a class="headerlink" href="#building-flexswitch-from-source" title="Permalink to this headline">¶</a></h1>
-<p>Pre-requisites</p>
+<div class="section" id="pre-requisites">
+<h2>Pre-requisites:<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">Development environment has been setup using <a class="reference external" href="https://github.com/OpenSnaproute/vagrantFlexSwitchDev">https://github.com/OpenSnaproute/vagrantFlexSwitchDev</a></p>
+</li>
+<li><p class="first">~/.bash.rc contains</p>
+<blockquote>
+<div><p>export SR_CODE_BASE=$HOME/git</p>
+<p>export GOPATH=$SR_CODE_BASE/snaproute/:$SR_CODE_BASE/external/:$SR_CODE_BASE/generated/</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<div class="section" id="instructions-to-build-package">
+<h3>Instructions to build package:<a class="headerlink" href="#instructions-to-build-package" title="Permalink to this headline">¶</a></h3>
+<p>All the platforms supported by FlexSwitch are listed in</p>
+<p>$SR_CODE_BASE/reltools/pkgInfo.json</p>
+<p>Edit the above file to remove the platforms that are not needed FlexSwitch is built for all the platforms listed in the above file Run the below commands to generate packages</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>cd   $SR_CODE_BASE/reltools
+
+python makePkg.py
+</pre></div>
+</div>
+</div></blockquote>
+<p>The build may take around 15 min for the first package</p>
+</div>
+</div>
 </div>
 
 
