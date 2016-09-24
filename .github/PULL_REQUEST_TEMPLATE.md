@@ -10,8 +10,7 @@ List of bugs fixed
 ## Reviewer
 
 ## Check list
-- [ ] Code Review
-- [ ] Unit Test
+- [ ] Document Review
+- [ ] HTML Generation 
 
-## Unit test output
 
