@@ -4353,7 +4353,8 @@ If ospfArea Entry is not added by default area 0.0.0.0 is created.
 ::
 
 
-    curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":0, "AreaNssaTranslatorStabilityInterval":40}' http://localhost:8080/public/v1/config/OspfAreaEntry
+    curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":2}' http://localhost:8080/public/v1/config/OspfAreaEntry
+
 
 OspfIfEntry
 ^^^^^^^^^^^
@@ -4370,9 +4371,8 @@ The default IfRtrDeadInterval is 40 s whereas HelloInterval is 10s.
 
 ::
 
-
-    configure Ospf Interface with ip address 40.1.1.1 and area id 0.0.0.2
-   curl -H "Content-Type: application/json" -d '{"IfIpAddress": "40.1.1.1", "AddressLessIf":0, "IfAreaId":"0.0.0.2", "IfType":1, "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfMulticastForwarding":1, "IfDemand":false, "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
+ 
+     curl -H "Content-Type: application/json" -d '{"IfIpAddress": "41.0.0.5", "AddressLessIf":0, "IfAreaId":"0.0.0.0", "IfType":"Broadcast", "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
 
 OspfGlobal
 ^^^^^^^^^^
@@ -4389,7 +4389,7 @@ This object will enable the global ospf feature. Unless ospf global is enabled  
 ::
 
 
-    curl -H "Content-Type: application/json" -d '{"RouterId": "10.1.1.2", "AdminStat":1, "ASBdrRtrStatus":true, "TOSSupport":true, "ExtLsdbLimit":100, "MulticastExtensions":2, "ExitOverflowInterval":1000, "DemandExtensions":true, "RFC1583Compatibility":false, "ReferenceBandwidth":1000, "RestartSupport":1, "RestartInterval":10, "RestartStrictLsaChecking":true, "StubRouterAdvertisement":1}' http://localhost:8080/public/v1/config/OspfGlobal
+    curl -H "Content-Type: application/json" -d '{"RouterId": "10.1.1.1", "AdminStat":1, "ASBdrRtrStatus":true, "TOSSupport":true,  "RestartSupport":1, "RestartInterval":10}' http://localhost:8080/public/v1/config/OspfGlobal
 
 
 
