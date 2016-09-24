@@ -4353,7 +4353,7 @@ If ospfArea Entry is not added by default area 0.0.0.0 is created.
 ::
 
 
-    curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":2}' http://10.1.10.242:8080/public/v1/config/OspfAreaEntry
+    curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":2}' http://localhost:8080/public/v1/config/OspfAreaEntry
 
 
 OspfIfEntry
