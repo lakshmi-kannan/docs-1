@@ -67,9 +67,9 @@ Configure d_inst1
 ::
 
 
-    curl -H "Content-Type: application/json" -d '{"ASNum":500,"RouterId":"10.1.10.2"}' http://localhost:8080/public/v1/config/BGPGlobal
+    curl -H "Content-Type: application/json" -d '{"ASNum":"500","RouterId":"10.1.10.2"}' http://localhost:8080/public/v1/config/BGPGlobal
  
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":500,"NeighborAddress":"40.1.1.2","IfIndex":0,"RouteReflectorClusterId":0,"MultiHopTTL":0,"ConnectRetryTime":60,"HoldTime":180,"KeepaliveTime":60,"AddPathsMaxTx":0}' 'http://localhost:8080/public/v1/config/BGPNeighbor'
+    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":"500","NeighborAddress":"40.1.1.2","IfIndex":0,"RouteReflectorClusterId":0,"MultiHopTTL":0,"ConnectRetryTime":60,"HoldTime":180,"KeepaliveTime":60,"AddPathsMaxTx":0}' 'http://localhost:8080/public/v1/config/BGPv4Neighbor'
  
 Configure d_inst2
 """""""""""""""""""""""""
@@ -89,8 +89,8 @@ Configure d_inst2
 ::
 
 
-    curl -H "Content-Type: application/json" -d '{"ASNum":500,"RouterId":"10.1.10.3"}' http://localhost:8080/public/v1/config/BGPGlobal
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":500,"NeighborAddress":"40.1.1.1","IfIndex":0,"RouteReflectorClusterId":0,"MultiHopTTL":0,"ConnectRetryTime":60,"HoldTime":180,"KeepaliveTime":60,"AddPathsMaxTx":0}' 'http://localhost:8080/public/v1/config/BGPNeighbor'
+    curl -H "Content-Type: application/json" -d '{"ASNum":"500","RouterId":"10.1.10.3"}' http://localhost:8080/public/v1/config/BGPGlobal
+    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":"500","NeighborAddress":"40.1.1.1","IfIndex":0,"RouteReflectorClusterId":0,"MultiHopTTL":0,"ConnectRetryTime":60,"HoldTime":180,"KeepaliveTime":60,"AddPathsMaxTx":0}' 'http://localhost:8080/public/v1/config/BGPv4Neighbor'
  
 
 Show commands
@@ -101,9 +101,9 @@ Show commands
 :: 
 
 
-    curl -H "Accept: application/json" "http://localhost:8080/public/v1/state/BGPNeighbors" | python -m json.tool
+    curl -H "Accept: application/json" "http://localhost:8080/public/v1/state/BGPv4Neighbors" | python -m json.tool
 
-   root@a7c16d650d9d:/# curl -H "Accept: application/json" "http://localhost:8080/public/v1/state/BGPNeighbors" | python -m json.tool                                                                             
+   root@a7c16d650d9d:/# curl -H "Accept: application/json" "http://localhost:8080/public/v1/state/BGPv4Neighbors" | python -m json.tool                                                                             
    % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
    100   761  100   761    0     0   263k      0 --:--:-- --:--:-- --:--:--  371k
@@ -171,4 +171,4 @@ Show commands
 
 ::
 
-    curl -i -H "Content-Type: application/json" "http://localhost:8080/public/v1/state/BGPRoutes"
+    curl -i -H "Content-Type: application/json" "http://localhost:8080/public/v1/state/BGPv4Routes"
