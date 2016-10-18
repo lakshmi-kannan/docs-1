@@ -26,7 +26,7 @@ These resource managers also maintain any relevant state data for each correspon
 
 Plugins :
 ---------
-ASICd uses a plugin based approach to effectively abstract away differences between ASICs from multiple vendors. The following plugins are currently supported
+ASICd uses a plugin based approach to effectively abstract away differences between ASICs. The following plugins are currently supported
 
 OpenNsl 
 
