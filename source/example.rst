@@ -4353,7 +4353,7 @@ If ospfArea Entry is not added by default area 0.0.0.0 is created.
 ::
 
 
-        curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":2}' http://localhost:8080/public/v1/config/OspfAreaEntry
+    curl -H "Content-Type: application/json" -d '{"AreaId": "0.0.0.2", "AuthType":0, "ImportAsExtern":1, "AreaSummary":1, "AreaNssaTranslatorRole":2}' http://localhost:8080/public/v1/config/OspfAreaEntry
 
 
 OspfIfEntry
@@ -4371,9 +4371,8 @@ The default IfRtrDeadInterval is 40 s whereas HelloInterval is 10s.
 
 ::
 
-
-    configure Ospf Interface with ip address 40.1.1.1 and area id 0.0.0.2
-    curl -H "Content-Type: application/json" -d '{"IfIpAddress": "41.0.0.5", "AddressLessIf":0, "IfAreaId":"0.0.0.0", "IfType":"Broadcast", "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
+ 
+     curl -H "Content-Type: application/json" -d '{"IfIpAddress": "41.0.0.5", "AddressLessIf":0, "IfAreaId":"0.0.0.0", "IfType":"Broadcast", "IfAdminStat":1, "IfRtrPriority":1, "IfTransitDelay":1, "IfRetransInterval":5, "IfHelloInterval":10, "IfRtrDeadInterval":40, "IfPollInterval":120, "IfAuthKey":"0.0.0.0.0.0.0.0", "IfAuthType":0}' http://localhost:8080/public/v1/config/OspfIfEntry
 
 OspfGlobal
 ^^^^^^^^^^
