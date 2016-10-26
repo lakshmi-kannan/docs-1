@@ -1,0 +1,276 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FAQs &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Getting started with flexswitch on Docker" href="dockerIntro.html"/>
+        <link rel="next" title="Getting started with flexswitch on Vagrant" href="vagrantIntro.html"/>
+        <link rel="prev" title="ECMP" href="ecmpDocker.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="dockerIntro.html"> Docker Tutorial</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="installDocker.html">Install docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ping.html"> Ping test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bgpDocker.html"> BGP with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ospfDocker.html"> OSPF with 2 nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ecmpDocker.html"> ECMP</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"> FAQs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vagrantIntro.html"> Vagrant Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ONIE_install.html"> Hardware Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#how-to-use-it">How to use it?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="quickstart.html">QuickStart Guide</a> &raquo;</li>
+      
+          <li><a href="dockerIntro.html">Getting started with flexswitch on Docker</a> &raquo;</li>
+      
+    <li>FAQs</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/dockerFaq.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="faqs">
+<h1>FAQs<a class="headerlink" href="#faqs" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li><strong>how to test whether syslog and redis-server are running</strong> ?</li>
+</ol>
+<p>As a part of docker_startup.sh script , syslog and redis will be runnning in your docker container. if you want to verify</p>
+<p>ps -aux | grep redis
+ps -aux | grep rsyslog</p>
+<ol class="arabic simple" start="2">
+<li><strong>How to assign the ip address to each of the containers ?</strong></li>
+</ol>
+<p>When the containers are spawned IP address is already assigned to them .For example</p>
+<dl class="docutils">
+<dt>eth0      Link encap:Ethernet  HWaddr 02:42:ac:11:00:04</dt>
+<dd>inet addr:172.17.0.4  Bcast:0.0.0.0  Mask:255.255.0.0
+inet6 addr: fe80::42:acff:fe11:4/64 Scope:Link
+UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+RX packets:38 errors:0 dropped:0 overruns:0 frame:0
+TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
+collisions:0 txqueuelen:0
+RX bytes:5339 (5.3 KB)  TX bytes:648 (648.0 B)</dd>
+</dl>
+<p>To assign the IP address to the interface that are created by the script , you need to run curl command for IPv4Intf .</p>
+<ol class="arabic simple" start="3">
+<li>How to log-in to the switch ?</li>
+</ol>
+<p>There is no explicit login for the switch. Once you are inside the docker container its a running switch itself. You can check state or config using REST commands.</p>
+<p><strong>Frequently seen error messages and their causes</strong></p>
+<ol class="arabic simple">
+<li>When running docker_startup.sh</li>
+</ol>
+<p>See &#8216;docker run &#8211;help&#8217;.
+Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+ln: failed to create symbolic link ‘/var/run/netns/net’: Permission denied
+ln: failed to create symbolic link ‘/var/run/netns/net’: Permission denied
+-e done!</p>
+<p>Solution - Run the script in sudo mode.</p>
+<ol class="arabic simple" start="2">
+<li></li>
+</ol>
+<p><a class="reference external" href="mailto:root&#37;&#52;&#48;0f5d1d2455fc">root<span>&#64;</span>0f5d1d2455fc</a>:/# curl -H &#8220;Content-Type: application/json&#8221; -d &#8216;{&#8220;IpAddr&#8221;: &#8220;40.1.1.2/24&#8221;, &#8220;IntfRef&#8221;: &#8220;eth35&#8221;}&#8217;<a class="reference external" href="http://localhost:8080/public/v1/config/IPv4Intf">http://localhost:8080/public/v1/config/IPv4Intf</a>
+curl: (7) Failed to connect to localhost port 8080: Connection refused</p>
+<p>This most of the times mean flexswitch didnt start correctly. You can check if there is any daemon running using</p>
+<p>ps -aux | grep flex</p>
+<p>Start flexswitch using</p>
+<p>/etc/init.d/flexswitch start</p>
+<p>Note :
+Current docker_startup script located below is provided for ubuntu platform
+<a class="reference external" href="https://github.com/OpenSnaproute/test">https://github.com/OpenSnaproute/test</a></p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vagrantIntro.html" class="btn btn-neutral float-right" title="Getting started with flexswitch on Vagrant" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ecmpDocker.html" class="btn btn-neutral" title="ECMP" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

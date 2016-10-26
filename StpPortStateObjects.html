@@ -1,0 +1,1002 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>StpPortState Object &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="FlexSwitch L2 Objects" href="L2Objects.html"/>
+        <link rel="next" title="StpPort Object" href="StpPortObjects.html"/>
+        <link rel="prev" title="LLDPIntfState Object" href="LLDPIntfStateObjects.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="apis.html">API reference!</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="PhysicalObjects.html">Physical Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PlatformObjects.html">Platform Objects</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="L2Objects.html">L2 Objects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="LacpGlobalStateObjects.html">LacpGlobalState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DistributedRelayStateObjects.html">DistributedRelayState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IppLinkStateObjects.html">IppLinkState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LaPortChannelStateObjects.html">LaPortChannelState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LaPortChannelObjects.html">LaPortChannel Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LacpGlobalObjects.html">LacpGlobal Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DistributedRelayObjects.html">DistributedRelay Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LaPortChannelIntfRefListStateObjects.html">LaPortChannelIntfRefListState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPGlobalStateObjects.html">LLDPGlobalState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPGlobalObjects.html">LLDPGlobal Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPIntfObjects.html">LLDPIntf Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPIntfStateObjects.html">LLDPIntfState Objects</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">StpPortState Objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state-stpport"><em>state/StpPort</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="StpPortObjects.html">StpPort Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpBridgeInstanceObjects.html">StpBridgeInstance Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpBridgeInstanceStateObjects.html">StpBridgeInstanceState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpGlobalObjects.html">StpGlobal Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VlanObjects.html">Vlan Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MacTableEntryStateObjects.html">MacTableEntryState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VlanStateObjects.html">VlanState Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SystemObjects.html">System Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Faults and AlarmsObjects.html">Faults and Alarms Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="apis.html">API reference!</a> &raquo;</li>
+      
+          <li><a href="L2Objects.html">FlexSwitch L2 Objects</a> &raquo;</li>
+      
+    <li>StpPortState Object</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/StpPortStateObjects.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="stpportstate-object">
+<h1>StpPortState Object<a class="headerlink" href="#stpportstate-object" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="state-stpport">
+<h2><em>state/StpPort</em><a class="headerlink" href="#state-stpport" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Multiple objects of this type can exist in a system.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="12%" />
+<col width="26%" />
+<col width="11%" />
+<col width="26%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>PARAMETER NAME</strong></td>
+<td><strong>DATA TYPE</strong></td>
+<td><strong>DESCRIPTION</strong></td>
+<td><strong>DEFAULT</strong></td>
+<td><strong>VALID VALUES</strong></td>
+</tr>
+<tr class="row-even"><td>IntfRef <strong>[KEY]</strong></td>
+<td>string</td>
+<td>The port number of the port
+for which this entry contains
+Spanning Tree Protocol
+management information.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>Vlan <strong>[KEY]</strong></td>
+<td>int32</td>
+<td>The value of instance of the
+vlan object</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>StpInPkts</td>
+<td>uint64</td>
+<td>Number of STP PDUs received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>TcInPkts</td>
+<td>uint64</td>
+<td>Number of TC BPDUs received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>BdmPrevState</td>
+<td>string</td>
+<td>BDM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>BpduGuardDetected</td>
+<td>int32</td>
+<td>Indicates whether a BPDU frame
+was received on this STP port
+if the port  is and Edge Port
+and BPDU Guard is enabled</td>
+<td>N/A</td>
+<td>false(2), true(1)</td>
+</tr>
+<tr class="row-even"><td>PrtmCurrState</td>
+<td>string</td>
+<td>PRTM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PstmPrevState</td>
+<td>string</td>
+<td>PSTM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>BaWhile</td>
+<td>int32</td>
+<td>Bridge Assurance timer 3 *
+Hello Timer</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>BdmCurrState</td>
+<td>string</td>
+<td>BDM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>BridgeAssurance</td>
+<td>int32</td>
+<td><p class="first">Used to make sure that a
+neighboring switch does
+not malfunction  and begin
+forwarding frames when it
+should not.  It does this by
+monitoring receipt of BPDUs
+on point-to-point links.
+When the  BPDUs stop being
+received the port is put into
+blocking state  (actually
+a port inconsistent state
+which stops forwarding).</p>
+<blockquote>
+<div>When BPDUs restart the</div></blockquote>
+<p class="last">port resumes normal RSTP or
+MST modes.   This handles
+unidirectional links as well
+as the malfunction of a
+neighboring switch where STP
+stops sending BPDUs but the
+switch  continues to forward
+frames.</p>
+</td>
+<td>N/A</td>
+<td>false(2), true(1)</td>
+</tr>
+<tr class="row-odd"><td>PrtmPrevState</td>
+<td>string</td>
+<td>PRTM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>DesignatedBridge</td>
+<td>string</td>
+<td>The Bridge Identifier of
+the bridge that this port
+considers to be the Designated
+Bridge for this port&#8217;s
+segment.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PpmPrevState</td>
+<td>string</td>
+<td>PPM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>RcvdInfoWhile</td>
+<td>int32</td>
+<td>The Received Info timer. The
+time remaining before the
+spanning tree information
+received by this Port
+[portPriority (17.19.21)
+and portTimes (17.19.22)]
+is aged out if not refreshed
+by the receipt of a further
+Configuration Message.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>TcWhile</td>
+<td>int32</td>
+<td>The Topology Change timer. TCN
+Messages are sent while this
+timer is running</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>AdminPathCost</td>
+<td>int32</td>
+<td>The administratively assigned
+value for the contribution
+of this port to the path cost
+of paths toward the spanning
+tree root.  Writing a value of
+&#8216;0&#8217; assigns the automatically
+calculated default Path Cost
+value to the port.  If the
+default Path Cost is being
+used this object returns &#8216;0&#8217;
+when read.  This complements
+the object PathCost or
+PathCost32 which returns the
+operational value of the path
+cost.    The value of this
+object MUST be retained across
+reinitializations of the
+management system.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>ForwardTransitions</td>
+<td>uint32</td>
+<td>The number of times this
+port has transitioned from
+the Learning state to the
+Forwarding state.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PimCurrState</td>
+<td>string</td>
+<td>PIM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>BridgeAssuranceInconsistant</td>
+<td>int32</td>
+<td>When port stops receiving BPDU
+on a Bridge Assurance enabled
+port then this will be set.</td>
+<td>N/A</td>
+<td>false(2), true(1)</td>
+</tr>
+<tr class="row-even"><td>Enable</td>
+<td>int32</td>
+<td>The enabled/disabled status of
+the port.</td>
+<td>1</td>
+<td>disabled(2), enabled(1)</td>
+</tr>
+<tr class="row-odd"><td>FdWhile</td>
+<td>int32</td>
+<td>The Forward Delay timer.
+Used to delay Port State
+transitions until other
+Bridges have received spanning
+tree information</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>MdelayWhile</td>
+<td>int32</td>
+<td>The Migration Delay timer.
+Used by the Port Protocol
+Migration state machine to
+allow time for another RSTP
+Bridge on the same LAN to
+synchronize its migration
+state with this Port before
+the receipt of a BPDU can
+cause this Port to change
+the BPDU types it transmits.
+Initialized to MigrateTime
+(17.13.9).</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>Priority</td>
+<td>int32</td>
+<td>The value of the priority
+field that is contained in the
+first in network byte order
+octet of the 2 octet long
+Port ID.  The other octet of
+the Port ID is given by the
+value of StpPort. On bridges
+supporting IEEE 802.1t or IEEE
+802.1w permissible values are
+0-240 in steps of 16.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>DesignatedPort</td>
+<td>string</td>
+<td>The Port Identifier of the
+port on the Designated Bridge
+for this port&#8217;s segment.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>HelloWhen</td>
+<td>int32</td>
+<td>The Hello timer. Used to
+ensure that at least one BPDU
+is transmitted by a Designated
+Port in each HelloTime period.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PathCost32</td>
+<td>int32</td>
+<td>The contribution of this
+port to the path cost of
+paths towards the spanning
+tree root which include this
+port.  802.1D-1998 recommends
+that the default value of
+this parameter be in inverse
+proportion to the speed of
+the attached LAN.  This object
+replaces PathCost to support
+IEEE 802.1t.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>TcAckOutPkts</td>
+<td>uint64</td>
+<td>Number of TC Ack BPDUs
+transmitted</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PrxmPrevState</td>
+<td>string</td>
+<td>PRXM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PtimPrevState</td>
+<td>string</td>
+<td>PTIM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>State</td>
+<td>int32</td>
+<td>The port&#8217;s current state as
+defined by application of the
+Spanning Tree Protocol.  This
+state controls what action
+a port takes on reception
+of a frame.  If the bridge
+has detected a port that is
+malfunctioning it will place
+that port into the broken(6)
+state.  For ports that are
+disabled (see Enable) this
+object will have a value of
+disabled(1).</td>
+<td>N/A</td>
+<td>listening(3), disabled(1),
+broken(6), learning(4),
+forwarding(5), blocking(2)</td>
+</tr>
+<tr class="row-odd"><td>AdminEdgePort</td>
+<td>int32</td>
+<td><p class="first">The administrative value of
+the Edge Port parameter.  A
+value of true(1) indicates
+that this port should be
+assumed as an edge-port and
+a value of false(2) indicates
+that this port should be
+assumed as a non-edge-port.</p>
+<blockquote>
+<div>Setting this object will</div></blockquote>
+<p>also cause the corresponding
+instance of OperEdgePort to
+change to the same value.</p>
+<blockquote>
+<div>Note that even when this</div></blockquote>
+<p class="last">object&#8217;s value is true the
+value of the corresponding
+instance of OperEdgePort can
+be false if a BPDU has been
+received.  The value of this
+object MUST be retained across
+reinitializations of the
+management system.</p>
+</td>
+<td>N/A</td>
+<td>false(2), true(1)</td>
+</tr>
+<tr class="row-even"><td>MaxAge</td>
+<td>int32</td>
+<td>The value that all bridges
+use for MaxAge as advertised
+by the root bridge.  Note
+that 802.1D-1998 specifies
+that the range for this
+parameter is related to the
+value of BridgeHelloTime.  The
+granularity of this timer is
+specified by 802.1D-1998 to be
+1 second.  An agent may return
+a badValue error if a set is
+attempted to a value that is
+not a whole number of seconds.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PathCost</td>
+<td>int32</td>
+<td><p class="first">The contribution of this
+port to the path cost of
+paths towards the spanning
+tree root which include this
+port.  802.1D-1998 recommends
+that the default value of
+this parameter be in inverse
+proportion to    the speed
+of the attached LAN.  New
+implementations should support
+PathCost32. If the port path
+costs exceeds the maximum
+value of this object then
+this object should report the
+maximum value namely 65535.</p>
+<blockquote>
+<div>Applications should try to</div></blockquote>
+<p class="last">read the PathCost32 object
+if this object reports the
+maximum value.</p>
+</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PrxmCurrState</td>
+<td>string</td>
+<td>PRXM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>HelloTime</td>
+<td>int32</td>
+<td>The value that all bridges use
+for HelloTime as advertised
+by the root bridge.  The
+granularity of this timer is
+specified by 802.1D-1998 to
+be 1 second.  An agent may
+return a badValue error if a
+set is attempted    to a value
+that is not a whole number of
+seconds.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>TcmCurrState</td>
+<td>string</td>
+<td>TCM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PtxmPrevState</td>
+<td>string</td>
+<td>PTXM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>TcOutPkts</td>
+<td>uint64</td>
+<td>Number of TC BPDUs transmitted</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>TcmPrevState</td>
+<td>string</td>
+<td>TCM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>BpduGuardInterval</td>
+<td>int32</td>
+<td>The interval time to which
+a port will try to recover
+from BPDU Guard err-disable
+state.  If no BPDU frames are
+detected after this timeout
+plus 3 Times Hello Time then
+the port will transition back
+to Up state.  If condition
+is cleared manually then this
+operation is ignored.  If set
+to zero then timer is inactive
+and recovery is based on
+manual intervention.</td>
+<td>30</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>DesignatedRoot</td>
+<td>string</td>
+<td>The unique Bridge Identifier
+of the Bridge recorded as
+the Root in the Configuration
+BPDUs transmitted by the
+Designated Bridge for the
+segment to which the port is
+attached.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>EdgeDelayWhile</td>
+<td>int32</td>
+<td>The Edge Delay timer. The
+time remaining in the absence
+of a received BPDU before
+this port is identified as an
+operEdgePort.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PstmCurrState</td>
+<td>string</td>
+<td>PSTM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>OperPointToPoint</td>
+<td>int32</td>
+<td>The operational point-to-point
+status of the LAN segment
+attached to this port.  It
+indicates whether a port
+is considered to have a
+point-to-point connection.
+If adminPointToPointMAC
+is set to auto(2) then the
+value of operPointToPointMAC
+is determined in accordance
+with the specific procedures
+defined for the MAC entity
+concerned as defined in IEEE
+802.1w clause 6.5.  The value
+is determined dynamically;
+that is it is re-evaluated
+whenever the value of
+adminPointToPointMAC changes
+and whenever the specific
+procedures defined for the MAC
+entity evaluate a change in
+its point-to-point status.</td>
+<td>N/A</td>
+<td>false(2), true(1)</td>
+</tr>
+<tr class="row-odd"><td>PvstInPkts</td>
+<td>uint64</td>
+<td>Number of PVST BPDUs received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>BpduGuard</td>
+<td>int32</td>
+<td>Used in conjuction with
+AdminEdge to shutdown a port
+when a BPDU is received.
+Protects against loops in the
+network</td>
+<td>N/A</td>
+<td>false(2), true(1)</td>
+</tr>
+<tr class="row-odd"><td>BpduOutPkts</td>
+<td>uint64</td>
+<td>Number of BPDUs transmitted</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PvstOutPkts</td>
+<td>uint64</td>
+<td>Number of PVST BPDUs
+transmitted</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>StpOutPkts</td>
+<td>uint64</td>
+<td>Number of STP BPDUs
+transmitted</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>OperEdgePort</td>
+<td>int32</td>
+<td><p class="first">The operational value of the
+Edge Port parameter.  The
+object is initialized to the
+value of the corresponding
+instance of AdminEdgePort.</p>
+<blockquote>
+<div>When the corresponding</div></blockquote>
+<p class="last">instance of AdminEdgePort
+is set this object will be
+changed as well.  This object
+will also be changed to false
+on reception of a BPDU.</p>
+</td>
+<td>N/A</td>
+<td>false(2), true(1)</td>
+</tr>
+<tr class="row-odd"><td>PimPrevState</td>
+<td>string</td>
+<td>PIM previous fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>RrWhile</td>
+<td>int32</td>
+<td>The Recent Root timer.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PtimCurrState</td>
+<td>string</td>
+<td>PTIM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PtxmCurrState</td>
+<td>string</td>
+<td>PTXM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>RstpOutPkts</td>
+<td>uint64</td>
+<td>Number of RSTP BPDUs
+transmitted</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>TcAckInPkts</td>
+<td>uint64</td>
+<td>Number of TC Ack BPDUs
+received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>BpduInPkts</td>
+<td>uint64</td>
+<td>Number of BPDUs received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>DesignatedCost</td>
+<td>int32</td>
+<td>The path cost of the
+Designated Port of the segment
+connected to this port.  This
+value is compared to the Root
+Path Cost field in received
+bridge PDUs.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>ForwardDelay</td>
+<td>int32</td>
+<td>The value that all bridges use
+for ForwardDelay as advertised
+by the root bridge.  Note that
+802.1D-1998 specifies that
+the range for this parameter
+is related to the value of
+dot1dStpBridgeMaxAge.  The
+granularity of this timer is
+specified by 802.1D-1998 to be
+1 second.  An agent may return
+a badValue error if a set is
+attempted to a value that is
+not a whole number of seconds.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PpmCurrState</td>
+<td>string</td>
+<td>PPM current fsm state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>RbWhile</td>
+<td>int32</td>
+<td>The Recent Backup timer.
+Maintained at its initial
+value twice HelloTime while
+the Port is a Backup Port.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>RstpInPkts</td>
+<td>uint64</td>
+<td>Number of RSTP BPDUs received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="flexswitch-curl-api-supported">
+<h2><em>FlexSwitch CURL API Supported</em><a class="headerlink" href="#flexswitch-curl-api-supported" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>GET By Key</dt>
+<dd><p class="first last">curl -X GET -H &#8216;Content-Type: application/json&#8217; &#8211;header &#8216;Accept: application/json&#8217; -d &#8216;{&lt;Model Object as json-Data&gt;}&#8217; <a class="reference external" href="http://device-management-IP:8080/public/v1/state/StpPort">http://device-management-IP:8080/public/v1/state/StpPort</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET ALL</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/StpPorts">http://device-management-IP:8080/public/v1/state/StpPorts</a>?CurrentMarker=&lt;x&gt;&amp;Count=&lt;y&gt;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET By ID</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/StpPortState">http://device-management-IP:8080/public/v1/config/StpPortState</a>/&lt;uuid&gt;</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="flexswitch-sdk-api-supported">
+<h2><em>FlexSwitch SDK API Supported:</em><a class="headerlink" href="#flexswitch-sdk-api-supported" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>GET</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getStpPortState</span><span class="p">(</span><span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">Vlan</span><span class="o">=</span><span class="n">vlan</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET By ID</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getStpPortStateById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET ALL</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getAllStpPortStates</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="StpPortObjects.html" class="btn btn-neutral float-right" title="StpPort Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="LLDPIntfStateObjects.html" class="btn btn-neutral" title="LLDPIntfState Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
