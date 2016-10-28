@@ -36,14 +36,6 @@ IppLinkState Object
 |                              |               | DRCPDU was received by this    |             |                                |
 |                              |               | IPP                            |             |                                |
 +------------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IPPID                        | uint32        | The unique identifier          | N/A         | N/A                            |
-|                              |               | allocated to this IPP by the   |             |                                |
-|                              |               | local Portal System. This      |             |                                |
-|                              |               | attribute identifies an IPP    |             |                                |
-|                              |               | instance among the subordinate |             |                                |
-|                              |               | managed objects of the         |             |                                |
-|                              |               | containing object.             |             |                                |
-+------------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | PortConversationPasses       | uint8         | A read-only current            | N/A         | N/A                            |
 |                              |               | operational vector of Boolean  |             |                                |
 |                              |               | values                         |             |                                |
@@ -59,6 +51,14 @@ IppLinkState Object
 |                              |               | state machine for the IPP is   |             | REPORT_TO_MANAGEMENT(4)        |
 |                              |               | in the CURRENT state           |             |                                |
 +------------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| IPPID                        | uint32        | The unique identifier          | N/A         | N/A                            |
+|                              |               | allocated to this IPP by the   |             |                                |
+|                              |               | local Portal System. This      |             |                                |
+|                              |               | attribute identifies an IPP    |             |                                |
+|                              |               | instance among the subordinate |             |                                |
+|                              |               | managed objects of the         |             |                                |
+|                              |               | containing object.             |             |                                |
++------------------------------+---------------+--------------------------------+-------------+--------------------------------+
 
 
 
@@ -68,7 +68,7 @@ IppLinkState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/IppLink
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/IppLinks?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/IppLinks?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IppLinkState/<uuid>
 

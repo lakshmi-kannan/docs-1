@@ -11,13 +11,13 @@ DhcpGlobalConfig Object
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 | DhcpConfigKey **[KEY]** | string        | DHCP global config             | default     | N/A              |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
-| DefaultLeaseTime        | uint32        | Default Lease Time in seconds  | N/A         | N/A              |
-|                         |               | DEFAULT                        |             |                  |
-+-------------------------+---------------+--------------------------------+-------------+------------------+
 | Enable                  | bool          | DHCP Server enable/disable     | N/A         | N/A              |
 |                         |               | control DEFAULT                |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 | MaxLeaseTime            | uint32        | Max Lease Time in seconds      | N/A         | N/A              |
+|                         |               | DEFAULT                        |             |                  |
++-------------------------+---------------+--------------------------------+-------------+------------------+
+| DefaultLeaseTime        | uint32        | Default Lease Time in seconds  | N/A         | N/A              |
 |                         |               | DEFAULT                        |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 
@@ -120,7 +120,7 @@ DhcpGlobalConfig Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createDhcpGlobalConfig(DhcpConfigKey=dhcpconfigkey, DefaultLeaseTime=defaultleasetime, Enable=enable, MaxLeaseTime=maxleasetime)
+		response, error = swtch.createDhcpGlobalConfig(DhcpConfigKey=dhcpconfigkey, Enable=enable, MaxLeaseTime=maxleasetime, DefaultLeaseTime=defaultleasetime)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -177,7 +177,7 @@ DhcpGlobalConfig Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateDhcpGlobalConfig(DhcpConfigKey=dhcpconfigkey, DefaultLeaseTime=defaultleasetime, Enable=enable, MaxLeaseTime=maxleasetime)
+		response, error = swtch.updateDhcpGlobalConfig(DhcpConfigKey=dhcpconfigkey, Enable=enable, MaxLeaseTime=maxleasetime, DefaultLeaseTime=defaultleasetime)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -196,7 +196,7 @@ DhcpGlobalConfig Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateDhcpGlobalConfigById(ObjectId=objectidDefaultLeaseTime=defaultleasetime, Enable=enable, MaxLeaseTime=maxleasetime)
+		response, error = swtch.updateDhcpGlobalConfigById(ObjectId=objectidEnable=enable, MaxLeaseTime=maxleasetime, DefaultLeaseTime=defaultleasetime)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

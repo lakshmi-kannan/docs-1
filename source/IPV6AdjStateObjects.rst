@@ -12,11 +12,6 @@ IPV6AdjState Object
 | IntfRef **[KEY]**  | string        | Port where neighbor ip's are   | N/A         | N/A              |
 |                    |               | learned                        |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| LinkScopeIp        | string        | Local Port link scope ip       | N/A         | N/A              |
-|                    |               | address                        |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| Neighbors          | NeighborEntry |                                | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | ReceivedPackets    | int64         | Total Packets received by      | N/A         | N/A              |
 |                    |               | local port                     |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
@@ -29,6 +24,11 @@ IPV6AdjState Object
 | IfIndex            | int32         | System generated unique id for | N/A         | N/A              |
 |                    |               | local port                     |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| LinkScopeIp        | string        | Local Port link scope ip       | N/A         | N/A              |
+|                    |               | address                        |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| Neighbors          | NeighborEntry |                                | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
 
 
 
@@ -38,7 +38,7 @@ IPV6AdjState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/IPV6Adj
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/IPV6Adjs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/IPV6Adjs?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IPV6AdjState/<uuid>
 

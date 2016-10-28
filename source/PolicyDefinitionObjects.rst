@@ -11,6 +11,10 @@ PolicyDefinition Object
 +--------------------+------------------------------+--------------------------------+-------------+------------------+
 | Name **[KEY]**     | string                       | Policy Name                    | N/A         | N/A              |
 +--------------------+------------------------------+--------------------------------+-------------+------------------+
+| MatchType          | string                       | Specifies whether to match     | all         | all, any         |
+|                    |                              | all/any of the statements      |             |                  |
+|                    |                              | within this policy             |             |                  |
++--------------------+------------------------------+--------------------------------+-------------+------------------+
 | PolicyType         | string                       | Specifies the intended         | ALL         | BGP, OSPF, ALL   |
 |                    |                              | protocol application for the   |             |                  |
 |                    |                              | policy                         |             |                  |
@@ -21,10 +25,6 @@ PolicyDefinition Object
 | StatementList      | PolicyDefinitionStmtPriority | Specifies list of statements   | N/A         | N/A              |
 |                    |                              | along with their precedence    |             |                  |
 |                    |                              | order.                         |             |                  |
-+--------------------+------------------------------+--------------------------------+-------------+------------------+
-| MatchType          | string                       | Specifies whether to match     | all         | all, any         |
-|                    |                              | all/any of the statements      |             |                  |
-|                    |                              | within this policy             |             |                  |
 +--------------------+------------------------------+--------------------------------+-------------+------------------+
 
 
@@ -37,7 +37,7 @@ PolicyDefinition Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyDefinition/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyDefinitions?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyDefinitions?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/PolicyDefinition
 	- DELETE By Key
@@ -128,7 +128,7 @@ PolicyDefinition Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createPolicyDefinition(Name=name, PolicyType=policytype, Priority=priority, StatementList=statementlist, MatchType=matchtype)
+		response, error = swtch.createPolicyDefinition(Name=name, MatchType=matchtype, PolicyType=policytype, Priority=priority, StatementList=statementlist)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -185,7 +185,7 @@ PolicyDefinition Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updatePolicyDefinition(Name=name, PolicyType=policytype, Priority=priority, StatementList=statementlist, MatchType=matchtype)
+		response, error = swtch.updatePolicyDefinition(Name=name, MatchType=matchtype, PolicyType=policytype, Priority=priority, StatementList=statementlist)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -204,7 +204,7 @@ PolicyDefinition Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updatePolicyDefinitionById(ObjectId=objectidPolicyType=policytype, Priority=priority, StatementList=statementlist, MatchType=matchtype)
+		response, error = swtch.updatePolicyDefinitionById(ObjectId=objectidMatchType=matchtype, PolicyType=policytype, Priority=priority, StatementList=statementlist)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

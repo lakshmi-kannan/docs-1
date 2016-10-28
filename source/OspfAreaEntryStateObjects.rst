@@ -14,13 +14,6 @@ OspfAreaEntryState Object
 |                    |               | 0.0.0.0 is used for the OSPF   |             |                  |
 |                    |               | backbone.                      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| AreaBdrRtrCount    | uint32        | The total number of Area       | N/A         | N/A              |
-|                    |               | Border Routers reachable       |             |                  |
-|                    |               | within this area.  This        |             |                  |
-|                    |               | is initially zero and is       |             |                  |
-|                    |               | calculated in each Shortest    |             |                  |
-|                    |               | Path First (SPF) pass.         |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | AreaLsaCount       | uint32        | The total number of link state | N/A         | N/A              |
 |                    |               | advertisements in this area's  |             |                  |
 |                    |               | link state database            |             |                  |
@@ -42,6 +35,13 @@ OspfAreaEntryState Object
 |                    |               | at re-initialization of the    |             |                  |
 |                    |               | management system              |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| AreaBdrRtrCount    | uint32        | The total number of Area       | N/A         | N/A              |
+|                    |               | Border Routers reachable       |             |                  |
+|                    |               | within this area.  This        |             |                  |
+|                    |               | is initially zero and is       |             |                  |
+|                    |               | calculated in each Shortest    |             |                  |
+|                    |               | Path First (SPF) pass.         |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 
 
 
@@ -51,7 +51,7 @@ OspfAreaEntryState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/OspfAreaEntry
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/OspfAreaEntrys?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/OspfAreaEntrys?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/OspfAreaEntryState/<uuid>
 

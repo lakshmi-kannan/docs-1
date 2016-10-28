@@ -11,16 +11,16 @@ NdpEntryHwState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | IpAddr **[KEY]**   | string        | Neighbor's IP Address          | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| Vlan               | string        | Vlan ID of the Router          | N/A         | N/A              |
-|                    |               | Interface to which neighbor is |             |                  |
-|                    |               | attached to                    |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | MacAddr            | string        | MAC address of the neighbor    | N/A         | N/A              |
 |                    |               | machine with corresponding IP  |             |                  |
 |                    |               | Address                        |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Port               | string        | Router Interface to which      | N/A         | N/A              |
 |                    |               | neighbor is attached to        |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| Vlan               | string        | Vlan ID of the Router          | N/A         | N/A              |
+|                    |               | Interface to which neighbor is |             |                  |
+|                    |               | attached to                    |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -31,7 +31,7 @@ NdpEntryHwState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/NdpEntryHw
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/NdpEntryHws?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/NdpEntryHws?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/NdpEntryHwState/<uuid>
 

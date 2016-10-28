@@ -11,49 +11,49 @@ LogicalIntfState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Name **[KEY]**     | string        | Name of logical interface      | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| IfInOctets         | int64         | RFC2233 Total number of octets | N/A         | N/A              |
-|                    |               | received on this port          |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| IfInUcastPkts      | int64         | RFC2233 Total number of        | N/A         | N/A              |
-|                    |               | unicast packets received on    |             |                  |
-|                    |               | this port                      |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | IfOutErrors        | int64         | RFC2233 Total number of        | N/A         | N/A              |
 |                    |               | packets discarded and not      |             |                  |
 |                    |               | transmitted due to packet      |             |                  |
 |                    |               | errors                         |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| IfOutUcastPkts     | int64         | RFC2233 Total number of        | N/A         | N/A              |
-|                    |               | unicast packets transmitted on |             |                  |
-|                    |               | this port                      |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| SrcMac             | string        | Source Mac assigned to the     | N/A         | N/A              |
-|                    |               | interface                      |             |                  |
+| IfOutOctets        | int64         | RFC2233 Total number of octets | N/A         | N/A              |
+|                    |               | transmitted on this port       |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | OperState          | string        | Operational state of logical   | N/A         | N/A              |
+|                    |               | interface                      |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| SrcMac             | string        | Source Mac assigned to the     | N/A         | N/A              |
 |                    |               | interface                      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | IfInDiscards       | int64         | RFC2233 Total number of        | N/A         | N/A              |
 |                    |               | inbound packets that were      |             |                  |
 |                    |               | discarded                      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| IfInErrors         | int64         | RFC2233 Total number of        | N/A         | N/A              |
-|                    |               | inbound packets that contained |             |                  |
-|                    |               | an error                       |             |                  |
+| IfInOctets         | int64         | RFC2233 Total number of octets | N/A         | N/A              |
+|                    |               | received on this port          |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | IfInUnknownProtos  | int64         | RFC2233 Total number of        | N/A         | N/A              |
 |                    |               | inbound packets discarded due  |             |                  |
 |                    |               | to unknown protocol            |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| IfIndex            | int32         | System assigned interface id   | N/A         | N/A              |
-|                    |               | for this logical interface     |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | IfOutDiscards      | int64         | RFC2233 Total number of error  | N/A         | N/A              |
 |                    |               | free packets discarded and not |             |                  |
 |                    |               | transmitted                    |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| IfOutOctets        | int64         | RFC2233 Total number of octets | N/A         | N/A              |
-|                    |               | transmitted on this port       |             |                  |
+| IfOutUcastPkts     | int64         | RFC2233 Total number of        | N/A         | N/A              |
+|                    |               | unicast packets transmitted on |             |                  |
+|                    |               | this port                      |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| IfInErrors         | int64         | RFC2233 Total number of        | N/A         | N/A              |
+|                    |               | inbound packets that contained |             |                  |
+|                    |               | an error                       |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| IfInUcastPkts      | int64         | RFC2233 Total number of        | N/A         | N/A              |
+|                    |               | unicast packets received on    |             |                  |
+|                    |               | this port                      |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| IfIndex            | int32         | System assigned interface id   | N/A         | N/A              |
+|                    |               | for this logical interface     |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -64,7 +64,7 @@ LogicalIntfState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/LogicalIntf
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/LogicalIntfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/LogicalIntfs?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/LogicalIntfState/<uuid>
 

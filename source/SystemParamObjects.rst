@@ -11,6 +11,8 @@ SystemParam Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Vrf **[KEY]**      | string        | System Vrf                     | default     | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| SwitchMac          | string        | Switch Mac Address             | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | Description        | string        | System Description             | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Hostname           | string        | System Host Name               | N/A         | N/A              |
@@ -18,8 +20,6 @@ SystemParam Object
 | MgmtIp             | string        | Management Ip of System        | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | SwVersion          | string        | FlexSwitch Version Information | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| SwitchMac          | string        | Switch Mac Address             | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -32,7 +32,7 @@ SystemParam Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/SystemParam/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/SystemParams?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/SystemParams?CurrentMarker=<x>\\&Count=<y>
 	- UPDATE(PATCH) By Key
 		 curl -X PATCH -H 'Content-Type: application/json' -d '{<Model Object as json data>}'  http://device-management-IP:8080/public/v1/config/SystemParam
 	- UPDATE(PATCH) By ID
@@ -119,7 +119,7 @@ SystemParam Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateSystemParam(Vrf=vrf, Description=description, Hostname=hostname, MgmtIp=mgmtip, SwVersion=swversion, SwitchMac=switchmac)
+		response, error = swtch.updateSystemParam(Vrf=vrf, SwitchMac=switchmac, Description=description, Hostname=hostname, MgmtIp=mgmtip, SwVersion=swversion)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -138,7 +138,7 @@ SystemParam Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateSystemParamById(ObjectId=objectidDescription=description, Hostname=hostname, MgmtIp=mgmtip, SwVersion=swversion, SwitchMac=switchmac)
+		response, error = swtch.updateSystemParamById(ObjectId=objectidSwitchMac=switchmac, Description=description, Hostname=hostname, MgmtIp=mgmtip, SwVersion=swversion)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

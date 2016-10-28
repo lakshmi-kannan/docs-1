@@ -13,10 +13,6 @@ DHCPv6RelayIntf Object
 |                    |               | reference for which Relay      |             |                  |
 |                    |               | Agent needs to be configured   |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| UpstreamIntfs      | string        | DHCP Server facing interfaces  | N/A         | N/A              |
-|                    |               | where Relay Forward messages   |             |                  |
-|                    |               | are multicasted                |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | Enable             | bool          | Interface level config for     | N/A         | N/A              |
 |                    |               | enabling/disabling the relay   |             |                  |
 |                    |               | agent                          |             |                  |
@@ -24,6 +20,10 @@ DHCPv6RelayIntf Object
 | ServerIp           | string        | DHCP Server(s) where relay     | N/A         | N/A              |
 |                    |               | agent can relay client dhcp    |             |                  |
 |                    |               | requests                       |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| UpstreamIntfs      | string        | DHCP Server facing interfaces  | N/A         | N/A              |
+|                    |               | where Relay Forward messages   |             |                  |
+|                    |               | are multicasted                |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -36,7 +36,7 @@ DHCPv6RelayIntf Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/DHCPv6RelayIntf/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/DHCPv6RelayIntfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/DHCPv6RelayIntfs?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/DHCPv6RelayIntf
 	- DELETE By Key
@@ -127,7 +127,7 @@ DHCPv6RelayIntf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createDHCPv6RelayIntf(IntfRef=intfref, UpstreamIntfs=upstreamintfs, Enable=enable, ServerIp=serverip)
+		response, error = swtch.createDHCPv6RelayIntf(IntfRef=intfref, Enable=enable, ServerIp=serverip, UpstreamIntfs=upstreamintfs)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -184,7 +184,7 @@ DHCPv6RelayIntf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateDHCPv6RelayIntf(IntfRef=intfref, UpstreamIntfs=upstreamintfs, Enable=enable, ServerIp=serverip)
+		response, error = swtch.updateDHCPv6RelayIntf(IntfRef=intfref, Enable=enable, ServerIp=serverip, UpstreamIntfs=upstreamintfs)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -203,7 +203,7 @@ DHCPv6RelayIntf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateDHCPv6RelayIntfById(ObjectId=objectidUpstreamIntfs=upstreamintfs, Enable=enable, ServerIp=serverip)
+		response, error = swtch.updateDHCPv6RelayIntfById(ObjectId=objectidEnable=enable, ServerIp=serverip, UpstreamIntfs=upstreamintfs)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

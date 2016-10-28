@@ -33,7 +33,7 @@
     <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
         <link rel="up" title="FlexSwitch System Objects" href="SystemObjects.html"/>
         <link rel="next" title="AclRule Object" href="AclRuleObjects.html"/>
-        <link rel="prev" title="AclState Object" href="AclStateObjects.html"/> 
+        <link rel="prev" title="BufferGlobalStatState Object" href="BufferGlobalStatStateObjects.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -96,30 +96,30 @@
 <li class="toctree-l2"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="SystemObjects.html">System Objects</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="SystemParamObjects.html">SystemParam Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SystemParamStateObjects.html">SystemParamState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="DaemonStateObjects.html">DaemonState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="IpTableAclObjects.html">IpTableAcl Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ComponentLoggingObjects.html">ComponentLogging Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AclStateObjects.html">AclState Objects</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">BufferPortStatState Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SystemParamObjects.html">SystemParam Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ComponentLoggingObjects.html">ComponentLogging Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IpTableAclObjects.html">IpTableAcl Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DaemonStateObjects.html">DaemonState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemParamStateObjects.html">SystemParamState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BufferGlobalStatStateObjects.html">BufferGlobalStatState Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">BufferPortStatState Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#state-bufferportstat"><em>state/BufferPortStat</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="AclRuleObjects.html">AclRule Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AsicGlobalStateObjects.html">AsicGlobalState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AsicSummaryStateObjects.html">AsicSummaryState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="BufferGlobalStatStateObjects.html">BufferGlobalStatState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AclObjects.html">Acl Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="NotifierEnableObjects.html">NotifierEnable Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SystemSwVersionStateObjects.html">SystemSwVersionState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="XponderGlobalStateObjects.html">XponderGlobalState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="XponderGlobalObjects.html">XponderGlobal Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ConfigLogStateObjects.html">ConfigLogState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SystemStatusStateObjects.html">SystemStatusState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ApiInfoStateObjects.html">ApiInfoState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclRuleObjects.html">AclRule Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclStateObjects.html">AclState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AsicSummaryStateObjects.html">AsicSummaryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AsicGlobalStateObjects.html">AsicGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclObjects.html">Acl Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemSwVersionStateObjects.html">SystemSwVersionState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemStatusStateObjects.html">SystemStatusState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XponderGlobalObjects.html">XponderGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ApiInfoStateObjects.html">ApiInfoState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XponderGlobalStateObjects.html">XponderGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConfigLogStateObjects.html">ConfigLogState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NotifierEnableObjects.html">NotifierEnable Object</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
@@ -204,13 +204,19 @@ interface id</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>EgressPort</td>
+<tr class="row-odd"><td>PortBufferStat</td>
+<td>uint64</td>
+<td>Per port buffer stats</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>EgressPort</td>
 <td>uint64</td>
 <td>Egress port buffer stats</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>IfIndex</td>
+<tr class="row-odd"><td>IfIndex</td>
 <td>int32</td>
 <td>System assigned interface
 id for this port. Read only
@@ -218,15 +224,9 @@ attribute</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>IngressPort</td>
+<tr class="row-even"><td>IngressPort</td>
 <td>uint64</td>
 <td>Ingress port buffer stats</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>PortBufferStat</td>
-<td>uint64</td>
-<td>Per port buffer stats</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
@@ -245,7 +245,7 @@ attribute</td>
 </li>
 <li><dl class="first docutils">
 <dt>GET ALL</dt>
-<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/BufferPortStats">http://device-management-IP:8080/public/v1/state/BufferPortStats</a>?CurrentMarker=&lt;x&gt;&amp;Count=&lt;y&gt;</p>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/BufferPortStats">http://device-management-IP:8080/public/v1/state/BufferPortStats</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
 </dd>
 </dl>
 </li>
@@ -327,7 +327,7 @@ attribute</td>
         <a href="AclRuleObjects.html" class="btn btn-neutral float-right" title="AclRule Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="AclStateObjects.html" class="btn btn-neutral" title="AclState Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="BufferGlobalStatStateObjects.html" class="btn btn-neutral" title="BufferGlobalStatState Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

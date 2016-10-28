@@ -25,7 +25,7 @@ PolicyPrefixSet Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyPrefixSet/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyPrefixSets?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyPrefixSets?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/PolicyPrefixSet
 	- DELETE By Key

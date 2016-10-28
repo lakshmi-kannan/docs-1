@@ -13,23 +13,23 @@ AsicGlobalPM Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Resource **[KEY]** | string        | Resource identifier            | N/A         | Temperature      |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| LowWarnThreshold   | float64       | Low warning threshold value    |     -100000 | N/A              |
+|                    |               | for this PM                    |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| PMClassAEnable     | bool          | Enable/Disable control for     | true        | N/A              |
+|                    |               | CLASS-A PM                     |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | HighAlarmThreshold | float64       | High alarm threshold value for |      100000 | N/A              |
 |                    |               | this PM                        |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| LowAlarmThreshold  | float64       | Low alarm threshold value for  |     -100000 | N/A              |
-|                    |               | this PM                        |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| LowWarnThreshold   | float64       | Low warning threshold value    |     -100000 | N/A              |
+| HighWarnThreshold  | float64       | High warning threshold value   |      100000 | N/A              |
 |                    |               | for this PM                    |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | PMClassCEnable     | bool          | Enable/Disable control for     | true        | N/A              |
 |                    |               | CLASS-C PM                     |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| HighWarnThreshold  | float64       | High warning threshold value   |      100000 | N/A              |
-|                    |               | for this PM                    |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| PMClassAEnable     | bool          | Enable/Disable control for     | true        | N/A              |
-|                    |               | CLASS-A PM                     |             |                  |
+| LowAlarmThreshold  | float64       | Low alarm threshold value for  |     -100000 | N/A              |
+|                    |               | this PM                        |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | PMClassBEnable     | bool          | Enable/Disable control for     | true        | N/A              |
 |                    |               | CLASS-B PM                     |             |                  |
@@ -130,7 +130,7 @@ AsicGlobalPM Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateAsicGlobalPM(ModuleId=moduleid, Resource=resource, HighAlarmThreshold=highalarmthreshold, LowAlarmThreshold=lowalarmthreshold, LowWarnThreshold=lowwarnthreshold, PMClassCEnable=pmclasscenable, HighWarnThreshold=highwarnthreshold, PMClassAEnable=pmclassaenable, PMClassBEnable=pmclassbenable)
+		response, error = swtch.updateAsicGlobalPM(ModuleId=moduleid, Resource=resource, LowWarnThreshold=lowwarnthreshold, PMClassAEnable=pmclassaenable, HighAlarmThreshold=highalarmthreshold, HighWarnThreshold=highwarnthreshold, PMClassCEnable=pmclasscenable, LowAlarmThreshold=lowalarmthreshold, PMClassBEnable=pmclassbenable)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -149,7 +149,7 @@ AsicGlobalPM Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateAsicGlobalPMById(ObjectId=objectidHighAlarmThreshold=highalarmthreshold, LowAlarmThreshold=lowalarmthreshold, LowWarnThreshold=lowwarnthreshold, PMClassCEnable=pmclasscenable, HighWarnThreshold=highwarnthreshold, PMClassAEnable=pmclassaenable, PMClassBEnable=pmclassbenable)
+		response, error = swtch.updateAsicGlobalPMById(ObjectId=objectidLowWarnThreshold=lowwarnthreshold, PMClassAEnable=pmclassaenable, HighAlarmThreshold=highalarmthreshold, HighWarnThreshold=highwarnthreshold, PMClassCEnable=pmclasscenable, LowAlarmThreshold=lowalarmthreshold, PMClassBEnable=pmclassbenable)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

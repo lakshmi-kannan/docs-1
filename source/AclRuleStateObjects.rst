@@ -32,7 +32,7 @@ AclRuleState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/AclRule
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/AclRules?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/AclRules?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/AclRuleState/<uuid>
 

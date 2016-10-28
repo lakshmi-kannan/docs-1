@@ -14,12 +14,12 @@ AclState Object
 +---------------------+---------------+--------------------------------+-------------+------------------+
 | Direction **[KEY]** | string        |                                | N/A         | N/A              |
 +---------------------+---------------+--------------------------------+-------------+------------------+
-| IntfList            | string        | list of IntfRef can be         | N/A         | N/A              |
-|                     |               | port/lag object                |             |                  |
-+---------------------+---------------+--------------------------------+-------------+------------------+
 | RuleNameList        | string        | List of acl rules  to be       | N/A         | N/A              |
 |                     |               | applied to this ACL. This      |             |                  |
 |                     |               | should match with Acl rule key |             |                  |
++---------------------+---------------+--------------------------------+-------------+------------------+
+| IntfList            | string        | list of IntfRef can be         | N/A         | N/A              |
+|                     |               | port/lag object                |             |                  |
 +---------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -30,7 +30,7 @@ AclState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/Acl
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/Acls?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/Acls?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/AclState/<uuid>
 

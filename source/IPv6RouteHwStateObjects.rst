@@ -12,12 +12,12 @@ IPv6RouteHwState Object
 | DestinationNw **[KEY]** | string        | IP address of the route in     | N/A         | N/A              |
 |                         |               | CIDR format                    |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
+| RouteUpdatedTime        | string        | Time when the route was last   | N/A         | N/A              |
+|                         |               | updated                        |             |                  |
++-------------------------+---------------+--------------------------------+-------------+------------------+
 | NextHopIps              | string        | next hop ip list for the route | N/A         | N/A              |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 | RouteCreatedTime        | string        | Time when the route was added  | N/A         | N/A              |
-+-------------------------+---------------+--------------------------------+-------------+------------------+
-| RouteUpdatedTime        | string        | Time when the route was last   | N/A         | N/A              |
-|                         |               | updated                        |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -28,7 +28,7 @@ IPv6RouteHwState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/IPv6RouteHw
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv6RouteHws?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv6RouteHws?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv6RouteHwState/<uuid>
 

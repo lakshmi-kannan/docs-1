@@ -11,12 +11,12 @@ LedState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | LedId **[KEY]**    | int32         | LED id                         |           0 | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| LedColor           | string        | LED Color                      | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | LedIdentify        | string        | LED represents FAN/PSU/RESET   | N/A         | N/A              |
 |                    |               | etc                            |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | LedState           | string        | LED State ON/OFF               | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| LedColor           | string        | LED Color                      | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -27,7 +27,7 @@ LedState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/Led
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/Leds?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/Leds?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/LedState/<uuid>
 

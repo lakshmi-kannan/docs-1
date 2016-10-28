@@ -14,7 +14,8 @@ DhcpIntfConfig Object
 |                    |               | which Dhcp Server need to be   |             |                  |
 |                    |               | configured                     |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| DomainName         | string        | Domain Name Address DEFAULT    | N/A         | N/A              |
+| DNSServerAddr      | string        | Comma seperated List of DNS    | N/A         | N/A              |
+|                    |               | Server Address DEFAULT         |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Enable             | bool          | Enable and Disable Control     | N/A         | N/A              |
 |                    |               | DEFAULT                        |             |                  |
@@ -23,14 +24,13 @@ DhcpIntfConfig Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Subnet             | string        | Subnet                         | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| DNSServerAddr      | string        | Comma seperated List of DNS    | N/A         | N/A              |
-|                    |               | Server Address DEFAULT         |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| RouterAddr         | string        | Router Address DEFAULT         | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | SubnetMask         | string        | Subnet Mask                    | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | BroadcastAddr      | string        | Broadcast Address DEFAULT      | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| DomainName         | string        | Domain Name Address DEFAULT    | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| RouterAddr         | string        | Router Address DEFAULT         | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -43,7 +43,7 @@ DhcpIntfConfig Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/DhcpIntfConfig/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/DhcpIntfConfigs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/DhcpIntfConfigs?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/DhcpIntfConfig
 	- DELETE By Key
@@ -134,7 +134,7 @@ DhcpIntfConfig Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createDhcpIntfConfig(IntfRef=intfref, DomainName=domainname, Enable=enable, IPAddrRange=ipaddrrange, Subnet=subnet, DNSServerAddr=dnsserveraddr, RouterAddr=routeraddr, SubnetMask=subnetmask, BroadcastAddr=broadcastaddr)
+		response, error = swtch.createDhcpIntfConfig(IntfRef=intfref, DNSServerAddr=dnsserveraddr, Enable=enable, IPAddrRange=ipaddrrange, Subnet=subnet, SubnetMask=subnetmask, BroadcastAddr=broadcastaddr, DomainName=domainname, RouterAddr=routeraddr)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -191,7 +191,7 @@ DhcpIntfConfig Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateDhcpIntfConfig(IntfRef=intfref, DomainName=domainname, Enable=enable, IPAddrRange=ipaddrrange, Subnet=subnet, DNSServerAddr=dnsserveraddr, RouterAddr=routeraddr, SubnetMask=subnetmask, BroadcastAddr=broadcastaddr)
+		response, error = swtch.updateDhcpIntfConfig(IntfRef=intfref, DNSServerAddr=dnsserveraddr, Enable=enable, IPAddrRange=ipaddrrange, Subnet=subnet, SubnetMask=subnetmask, BroadcastAddr=broadcastaddr, DomainName=domainname, RouterAddr=routeraddr)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -210,7 +210,7 @@ DhcpIntfConfig Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateDhcpIntfConfigById(ObjectId=objectidDomainName=domainname, Enable=enable, IPAddrRange=ipaddrrange, Subnet=subnet, DNSServerAddr=dnsserveraddr, RouterAddr=routeraddr, SubnetMask=subnetmask, BroadcastAddr=broadcastaddr)
+		response, error = swtch.updateDhcpIntfConfigById(ObjectId=objectidDNSServerAddr=dnsserveraddr, Enable=enable, IPAddrRange=ipaddrrange, Subnet=subnet, SubnetMask=subnetmask, BroadcastAddr=broadcastaddr, DomainName=domainname, RouterAddr=routeraddr)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

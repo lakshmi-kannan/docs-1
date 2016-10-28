@@ -98,14 +98,14 @@
 <li class="toctree-l2"><a class="reference internal" href="SystemObjects.html">System Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="Faults and AlarmsObjects.html">Faults and Alarms Objects</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="FMgrGlobalObjects.html">FMgrGlobal Objects</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">FaultState Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="FMgrGlobalObjects.html">FMgrGlobal Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FaultState Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#state-fault"><em>state/Fault</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="AlarmStateObjects.html">AlarmState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AlarmStateObjects.html">AlarmState Object</a></li>
 </ul>
 </li>
 </ul>
@@ -181,21 +181,21 @@
 <td><strong>DEFAULT</strong></td>
 <td><strong>VALID VALUES</strong></td>
 </tr>
-<tr class="row-even"><td>OwnerId <strong>[KEY]</strong></td>
+<tr class="row-even"><td>EventName <strong>[KEY]</strong></td>
+<td>string</td>
+<td>Fault event name picked up
+from events.json</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>OwnerId <strong>[KEY]</strong></td>
 <td>int32</td>
 <td>Fault owner daemon Id picked
 up from events.json</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>EventId <strong>[KEY]</strong></td>
-<td>int32</td>
-<td>Fault event id picked up from
-events.json</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>EventName <strong>[KEY]</strong></td>
+<tr class="row-even"><td>SrcObjName <strong>[KEY]</strong></td>
 <td>string</td>
 <td>Fault event name picked up
 from events.json</td>
@@ -209,35 +209,22 @@ up from events.json</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>SrcObjName <strong>[KEY]</strong></td>
-<td>string</td>
-<td>Fault event name picked up
-from events.json</td>
+<tr class="row-even"><td>EventId <strong>[KEY]</strong></td>
+<td>int32</td>
+<td>Fault event id picked up from
+events.json</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>OccuranceTime</td>
+<tr class="row-odd"><td>ResolutionTime</td>
 <td>string</td>
-<td>Timestamp at which fault
-occured</td>
+<td>Resolution Time stamp</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>ResolutionReason</td>
-<td>string</td>
-<td>Cleared/Disabled</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>SrcObjKey</td>
+<tr class="row-even"><td>SrcObjKey</td>
 <td>string</td>
 <td>Fault Object Key</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>SrcObjUUID</td>
-<td>string</td>
-<td>Fault Object UUID</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
@@ -248,9 +235,22 @@ fault</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>ResolutionTime</td>
+<tr class="row-even"><td>OccuranceTime</td>
 <td>string</td>
-<td>Resolution Time stamp</td>
+<td>Timestamp at which fault
+occured</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>ResolutionReason</td>
+<td>string</td>
+<td>Cleared/Disabled</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>SrcObjUUID</td>
+<td>string</td>
+<td>Fault Object UUID</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
@@ -269,7 +269,7 @@ fault</td>
 </li>
 <li><dl class="first docutils">
 <dt>GET ALL</dt>
-<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/Faults">http://device-management-IP:8080/public/v1/state/Faults</a>?CurrentMarker=&lt;x&gt;&amp;Count=&lt;y&gt;</p>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/Faults">http://device-management-IP:8080/public/v1/state/Faults</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
 </dd>
 </dl>
 </li>
@@ -294,7 +294,7 @@ fault</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getFaultState</span><span class="p">(</span><span class="n">OwnerId</span><span class="o">=</span><span class="n">ownerid</span><span class="p">,</span> <span class="n">EventId</span><span class="o">=</span><span class="n">eventid</span><span class="p">,</span> <span class="n">EventName</span><span class="o">=</span><span class="n">eventname</span><span class="p">,</span> <span class="n">OwnerName</span><span class="o">=</span><span class="n">ownername</span><span class="p">,</span> <span class="n">SrcObjName</span><span class="o">=</span><span class="n">srcobjname</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getFaultState</span><span class="p">(</span><span class="n">EventName</span><span class="o">=</span><span class="n">eventname</span><span class="p">,</span> <span class="n">OwnerId</span><span class="o">=</span><span class="n">ownerid</span><span class="p">,</span> <span class="n">SrcObjName</span><span class="o">=</span><span class="n">srcobjname</span><span class="p">,</span> <span class="n">OwnerName</span><span class="o">=</span><span class="n">ownername</span><span class="p">,</span> <span class="n">EventId</span><span class="o">=</span><span class="n">eventid</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>

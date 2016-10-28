@@ -11,12 +11,14 @@ DaemonState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Name **[KEY]**     | string        | Daemon name                    | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| State              | string        | State of the daemon            | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | Enable             | bool          | If the daemon configured to be | N/A         | N/A              |
 |                    |               | enabled                        |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | StartTime          | string        | Daemon start time              | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| State              | string        | State of the daemon            | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| KeepAlive          | string        | KeepAlive state of the daemon  | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Reason             | string        | Reason for current state of    | N/A         | N/A              |
 |                    |               | the daemon                     |             |                  |
@@ -28,8 +30,6 @@ DaemonState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | RestartTime        | string        | Last restart time              | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| KeepAlive          | string        | KeepAlive state of the daemon  | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 
 
 
@@ -39,7 +39,7 @@ DaemonState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/Daemon
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/Daemons?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/Daemons?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/DaemonState/<uuid>
 

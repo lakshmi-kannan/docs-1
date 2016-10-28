@@ -29,7 +29,7 @@ BGPv6Aggregate Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/BGPv6Aggregate/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/BGPv6Aggregates?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/BGPv6Aggregates?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/BGPv6Aggregate
 	- DELETE By Key

@@ -15,6 +15,16 @@ StpBridgeInstance Object
 |                    |               | vlan; The default domain is    |                   |                               |
 |                    |               |                           4095 |                   |                               |
 +--------------------+---------------+--------------------------------+-------------------+-------------------------------+
+| Address            | string        | The bridge identifier of the   | 00-00-00-00-00-00 | N/A                           |
+|                    |               | root of the spanning tree as   |                   |                               |
+|                    |               | determined by the Spanning     |                   |                               |
+|                    |               | Tree Protocol as executed      |                   |                               |
+|                    |               | by this node.  This value is   |                   |                               |
+|                    |               | used as the Root Identifier    |                   |                               |
+|                    |               | parameter in all Configuration |                   |                               |
+|                    |               | Bridge PDUs originated by this |                   |                               |
+|                    |               | node.                          |                   |                               |
++--------------------+---------------+--------------------------------+-------------------+-------------------------------+
 | ForceVersion       | int32         | Stp Version                    |                 2 | stp(1), rstp-pvst(2), mstp(3) |
 +--------------------+---------------+--------------------------------+-------------------+-------------------------------+
 | ForwardDelay       | int32         | The value that all bridges     |                15 | N/A                           |
@@ -74,16 +84,6 @@ StpBridgeInstance Object
 |                    |               | BPDUs that can be sent before  |                   |                               |
 |                    |               | pausing for 1 second.          |                   |                               |
 +--------------------+---------------+--------------------------------+-------------------+-------------------------------+
-| Address            | string        | The bridge identifier of the   | 00-00-00-00-00-00 | N/A                           |
-|                    |               | root of the spanning tree as   |                   |                               |
-|                    |               | determined by the Spanning     |                   |                               |
-|                    |               | Tree Protocol as executed      |                   |                               |
-|                    |               | by this node.  This value is   |                   |                               |
-|                    |               | used as the Root Identifier    |                   |                               |
-|                    |               | parameter in all Configuration |                   |                               |
-|                    |               | Bridge PDUs originated by this |                   |                               |
-|                    |               | node.                          |                   |                               |
-+--------------------+---------------+--------------------------------+-------------------+-------------------------------+
 
 
 
@@ -95,7 +95,7 @@ StpBridgeInstance Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/StpBridgeInstance/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/StpBridgeInstances?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/StpBridgeInstances?CurrentMarker=<x>\\&Count=<y>
 	- UPDATE(PATCH) By Key
 		 curl -X PATCH -H 'Content-Type: application/json' -d '{<Model Object as json data>}'  http://device-management-IP:8080/public/v1/config/StpBridgeInstance
 	- UPDATE(PATCH) By ID
@@ -182,7 +182,7 @@ StpBridgeInstance Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateStpBridgeInstance(Vlan=vlan, ForceVersion=forceversion, ForwardDelay=forwarddelay, HelloTime=hellotime, MaxAge=maxage, Priority=priority, TxHoldCount=txholdcount, Address=address)
+		response, error = swtch.updateStpBridgeInstance(Vlan=vlan, Address=address, ForceVersion=forceversion, ForwardDelay=forwarddelay, HelloTime=hellotime, MaxAge=maxage, Priority=priority, TxHoldCount=txholdcount)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -201,7 +201,7 @@ StpBridgeInstance Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateStpBridgeInstanceById(ObjectId=objectidForceVersion=forceversion, ForwardDelay=forwarddelay, HelloTime=hellotime, MaxAge=maxage, Priority=priority, TxHoldCount=txholdcount, Address=address)
+		response, error = swtch.updateStpBridgeInstanceById(ObjectId=objectidAddress=address, ForceVersion=forceversion, ForwardDelay=forwarddelay, HelloTime=hellotime, MaxAge=maxage, Priority=priority, TxHoldCount=txholdcount)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

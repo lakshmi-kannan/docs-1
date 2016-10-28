@@ -15,7 +15,7 @@ StpBridgeInstanceState Object
 |                         |               | vlan; The default domain is    |             |                                |
 |                         |               | typically 1                    |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| DesignatedRoot          | string        | The bridge identifier of the   | N/A         | N/A                            |
+| Address                 | string        | The bridge identifier of the   | N/A         | N/A                            |
 |                         |               | root of the spanning tree as   |             |                                |
 |                         |               | determined by the Spanning     |             |                                |
 |                         |               | Tree Protocol as executed      |             |                                |
@@ -35,18 +35,27 @@ StpBridgeInstanceState Object
 |                         |               | is the actual value that this  |             |                                |
 |                         |               | bridge is currently using.     |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfIndex                 | int32         | The value of the instance of   | N/A         | N/A                            |
-|                         |               | the ifIndex object for the     |             |                                |
-|                         |               | bridge                         |             |                                |
+| HoldTime                | int32         | This time value determines     | N/A         | N/A                            |
+|                         |               | the interval length during     |             |                                |
+|                         |               | which no more than two         |             |                                |
+|                         |               | Configuration bridge PDUs      |             |                                |
+|                         |               | shall be transmitted by this   |             |                                |
+|                         |               | node in units of hundredths of |             |                                |
+|                         |               | a second.                      |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| MaxAge                  | int32         | The maximum age of Spanning    | N/A         | N/A                            |
-|                         |               | Tree Protocol information      |             |                                |
-|                         |               | learned from the network       |             |                                |
-|                         |               | on any port before it          |             |                                |
-|                         |               | is discarded in units of       |             |                                |
-|                         |               | hundredths of a second.  This  |             |                                |
-|                         |               | is the actual value that this  |             |                                |
-|                         |               | bridge is currently using.     |             |                                |
+| ProtocolSpecification   | int32         | An indication of what version  | N/A         | ieee8021d(3), unknown(1),      |
+|                         |               | of the Spanning Tree Protocol  |             | decLb100(2)                    |
+|                         |               | is being run.  The value       |             |                                |
+|                         |               | 'decLb100(2)' indicates the    |             |                                |
+|                         |               | DEC LANbridge 100 Spanning     |             |                                |
+|                         |               | Tree protocol. IEEE 802.1D     |             |                                |
+|                         |               | implementations will return    |             |                                |
+|                         |               | 'ieee8021d(3)'. If future      |             |                                |
+|                         |               | versions of the IEEE Spanning  |             |                                |
+|                         |               | Tree Protocol that are         |             |                                |
+|                         |               | incompatible with the current  |             |                                |
+|                         |               | version are released a new     |             |                                |
+|                         |               | value will be defined.         |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | RootPort                | int32         | The port number of the port    | N/A         | N/A                            |
 |                         |               | that offers the lowest cost    |             |                                |
@@ -67,50 +76,14 @@ StpBridgeInstanceState Object
 |                         |               | entity was last reset or       |             |                                |
 |                         |               | initialized.                   |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| BridgeHelloTime         | int32         | The amount of time between the | N/A         | N/A                            |
-|                         |               | transmission of Configuration  |             |                                |
-|                         |               | bridge PDUs by this node on    |             |                                |
-|                         |               | any port when it is the root   |             |                                |
-|                         |               | of the spanning tree or trying |             |                                |
-|                         |               | to become so in units of       |             |                                |
-|                         |               | hundredths of a second.  This  |             |                                |
-|                         |               | is the provisioned value of    |             |                                |
-|                         |               | the local bridge   .           |             |                                |
-+-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | TxHoldCount             | int32         | TODO                           | N/A         | N/A                            |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| Priority                | int32         | The value of the write-able    | N/A         | N/A                            |
-|                         |               | portion of the Bridge ID i.e.  |             |                                |
-|                         |               | the first two octets of the    |             |                                |
-|                         |               | 8 octet long Bridge ID.  The   |             |                                |
-|                         |               | other last 6 octets of the     |             |                                |
-|                         |               | Bridge ID are given by the     |             |                                |
-|                         |               | value of Address. On bridges   |             |                                |
-|                         |               | supporting IEEE 802.1t or IEEE |             |                                |
-|                         |               | 802.1w permissible values are  |             |                                |
-|                         |               | 0-61440 in steps of 4096.      |             |                                |
+| IfIndex                 | int32         | The value of the instance of   | N/A         | N/A                            |
+|                         |               | the ifIndex object for the     |             |                                |
+|                         |               | bridge                         |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| ProtocolSpecification   | int32         | An indication of what version  | N/A         | ieee8021d(3), unknown(1),      |
-|                         |               | of the Spanning Tree Protocol  |             | decLb100(2)                    |
-|                         |               | is being run.  The value       |             |                                |
-|                         |               | 'decLb100(2)' indicates the    |             |                                |
-|                         |               | DEC LANbridge 100 Spanning     |             |                                |
-|                         |               | Tree protocol. IEEE 802.1D     |             |                                |
-|                         |               | implementations will return    |             |                                |
-|                         |               | 'ieee8021d(3)'. If future      |             |                                |
-|                         |               | versions of the IEEE Spanning  |             |                                |
-|                         |               | Tree Protocol that are         |             |                                |
-|                         |               | incompatible with the current  |             |                                |
-|                         |               | version are released a new     |             |                                |
-|                         |               | value will be defined.         |             |                                |
-+-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| HoldTime                | int32         | This time value determines     | N/A         | N/A                            |
-|                         |               | the interval length during     |             |                                |
-|                         |               | which no more than two         |             |                                |
-|                         |               | Configuration bridge PDUs      |             |                                |
-|                         |               | shall be transmitted by this   |             |                                |
-|                         |               | node in units of hundredths of |             |                                |
-|                         |               | a second.                      |             |                                |
+| RootCost                | int32         | The cost of the path to the    | N/A         | N/A                            |
+|                         |               | root as seen from this bridge. |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | BridgeForwardDelay      | int32         | This time value measured       | N/A         | N/A                            |
 |                         |               | in units of hundredths of      |             |                                |
@@ -135,6 +108,16 @@ StpBridgeInstanceState Object
 |                         |               | using if/when this bridge were |             |                                |
 |                         |               | to become the root.]           |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| BridgeHelloTime         | int32         | The amount of time between the | N/A         | N/A                            |
+|                         |               | transmission of Configuration  |             |                                |
+|                         |               | bridge PDUs by this node on    |             |                                |
+|                         |               | any port when it is the root   |             |                                |
+|                         |               | of the spanning tree or trying |             |                                |
+|                         |               | to become so in units of       |             |                                |
+|                         |               | hundredths of a second.  This  |             |                                |
+|                         |               | is the provisioned value of    |             |                                |
+|                         |               | the local bridge   .           |             |                                |
++-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | BridgeHoldTime          | int32         | This time value determines     | N/A         | N/A                            |
 |                         |               | the interval length during     |             |                                |
 |                         |               | which no more than two         |             |                                |
@@ -145,10 +128,7 @@ StpBridgeInstanceState Object
 |                         |               | provisioned value of the local |             |                                |
 |                         |               | bridge                         |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| RootCost                | int32         | The cost of the path to the    | N/A         | N/A                            |
-|                         |               | root as seen from this bridge. |             |                                |
-+-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| Address                 | string        | The bridge identifier of the   | N/A         | N/A                            |
+| DesignatedRoot          | string        | The bridge identifier of the   | N/A         | N/A                            |
 |                         |               | root of the spanning tree as   |             |                                |
 |                         |               | determined by the Spanning     |             |                                |
 |                         |               | Tree Protocol as executed      |             |                                |
@@ -157,6 +137,35 @@ StpBridgeInstanceState Object
 |                         |               | parameter in all Configuration |             |                                |
 |                         |               | Bridge PDUs originated by this |             |                                |
 |                         |               | node.                          |             |                                |
++-------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| MaxAge                  | int32         | The maximum age of Spanning    | N/A         | N/A                            |
+|                         |               | Tree Protocol information      |             |                                |
+|                         |               | learned from the network       |             |                                |
+|                         |               | on any port before it          |             |                                |
+|                         |               | is discarded in units of       |             |                                |
+|                         |               | hundredths of a second.  This  |             |                                |
+|                         |               | is the actual value that this  |             |                                |
+|                         |               | bridge is currently using.     |             |                                |
++-------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| Priority                | int32         | The value of the write-able    | N/A         | N/A                            |
+|                         |               | portion of the Bridge ID i.e.  |             |                                |
+|                         |               | the first two octets of the    |             |                                |
+|                         |               | 8 octet long Bridge ID.  The   |             |                                |
+|                         |               | other last 6 octets of the     |             |                                |
+|                         |               | Bridge ID are given by the     |             |                                |
+|                         |               | value of Address. On bridges   |             |                                |
+|                         |               | supporting IEEE 802.1t or IEEE |             |                                |
+|                         |               | 802.1w permissible values are  |             |                                |
+|                         |               | 0-61440 in steps of 4096.      |             |                                |
++-------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| BridgeMaxAge            | int32         | The maximum age of Spanning    | N/A         | N/A                            |
+|                         |               | Tree Protocol information      |             |                                |
+|                         |               | learned from the network       |             |                                |
+|                         |               | on any port before it          |             |                                |
+|                         |               | is discarded in units of       |             |                                |
+|                         |               | hundredths of a second.  This  |             |                                |
+|                         |               | is the provisioned value of    |             |                                |
+|                         |               | the local bridge.              |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | ForwardDelay            | int32         | This time value measured       | N/A         | N/A                            |
 |                         |               | in units of hundredths of      |             |                                |
@@ -182,15 +191,6 @@ StpBridgeInstanceState Object
 |                         |               | if/when this bridge were to    |             |                                |
 |                         |               | become the root.]              |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| BridgeMaxAge            | int32         | The maximum age of Spanning    | N/A         | N/A                            |
-|                         |               | Tree Protocol information      |             |                                |
-|                         |               | learned from the network       |             |                                |
-|                         |               | on any port before it          |             |                                |
-|                         |               | is discarded in units of       |             |                                |
-|                         |               | hundredths of a second.  This  |             |                                |
-|                         |               | is the provisioned value of    |             |                                |
-|                         |               | the local bridge.              |             |                                |
-+-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 
 
 
@@ -200,7 +200,7 @@ StpBridgeInstanceState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/StpBridgeInstance
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/StpBridgeInstances?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/StpBridgeInstances?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/StpBridgeInstanceState/<uuid>
 

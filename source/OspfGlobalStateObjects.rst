@@ -14,6 +14,15 @@ OspfGlobalState Object
 |                    |               | the Autonomous System. By      |             |                                |
 |                    |               | convention                     |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
+| AreaBdrRtrStatus   | bool          | A flag to note whether this    | N/A         | N/A                            |
+|                    |               | router is an Area Border       |             |                                |
+|                    |               | Router.                        |             |                                |
++--------------------+---------------+--------------------------------+-------------+--------------------------------+
+| ExternLsaCount     | uint32        | The number of external         | N/A         | N/A                            |
+|                    |               | (LS type-5) link state         |             |                                |
+|                    |               | advertisements in the link     |             |                                |
+|                    |               | state database.                |             |                                |
++--------------------+---------------+--------------------------------+-------------+--------------------------------+
 | OpaqueLsaSupport   | bool          | The router's support for       | N/A         | N/A                            |
 |                    |               | Opaque LSA types.              |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
@@ -24,15 +33,6 @@ OspfGlobalState Object
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
 | VersionNumber      | int32         | The current version number of  | N/A         | version2(2)                    |
 |                    |               | the OSPF protocol is 2.        |             |                                |
-+--------------------+---------------+--------------------------------+-------------+--------------------------------+
-| AreaBdrRtrStatus   | bool          | A flag to note whether this    | N/A         | N/A                            |
-|                    |               | router is an Area Border       |             |                                |
-|                    |               | Router.                        |             |                                |
-+--------------------+---------------+--------------------------------+-------------+--------------------------------+
-| ExternLsaCount     | uint32        | The number of external         | N/A         | N/A                            |
-|                    |               | (LS type-5) link state         |             |                                |
-|                    |               | advertisements in the link     |             |                                |
-|                    |               | state database.                |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
 
 

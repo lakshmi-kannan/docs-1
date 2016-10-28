@@ -11,43 +11,43 @@ DHCPRelayClientState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | MacAddr **[KEY]**  | string        | Host Hardware/Mac Address      | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| OfferedIp          | string        | Ip Address offered by DHCP     | N/A         | N/A              |
-|                    |               | Server                         |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| RequestedIp        | string        | Ip Address request from client | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| ServerOffer        | string        | Most recent time stamp of      | N/A         | N/A              |
-|                    |               | server offer message           |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| ServerResponses    | int32         | Total Number of responses      | N/A         | N/A              |
-|                    |               | received from server           |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| AcceptedIp         | string        | Ip Address which client        | N/A         | N/A              |
-|                    |               | accepted                       |             |                  |
+| ClientRequests     | int32         | Total Number of client request | N/A         | N/A              |
+|                    |               | message relayed to server      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | ClientResponses    | int32         | Total Number of server         | N/A         | N/A              |
 |                    |               | response relayed to client     |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| GatewayIp          | string        | Ip Address which client needs  | N/A         | N/A              |
-|                    |               | to use                         |             |                  |
+| RequestedIp        | string        | Ip Address request from client | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| ClientRequests     | int32         | Total Number of client request | N/A         | N/A              |
-|                    |               | message relayed to server      |             |                  |
+| ClientRequest      | string        | Most recent time stamp of      | N/A         | N/A              |
+|                    |               | client request message         |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | ServerIp           | string        | Configured DHCP Server         | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| ServerRequests     | int32         | Total Number of requests       | N/A         | N/A              |
-|                    |               | relayed to server              |             |                  |
+| ServerOffer        | string        | Most recent time stamp of      | N/A         | N/A              |
+|                    |               | server offer message           |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| OfferedIp          | string        | Ip Address offered by DHCP     | N/A         | N/A              |
+|                    |               | Server                         |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | ClientDiscover     | string        | Most recent time stamp of      | N/A         | N/A              |
 |                    |               | client discover message to     |             |                  |
 |                    |               | dhcp server                    |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| ClientRequest      | string        | Most recent time stamp of      | N/A         | N/A              |
-|                    |               | client request message         |             |                  |
+| GatewayIp          | string        | Ip Address which client needs  | N/A         | N/A              |
+|                    |               | to use                         |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| AcceptedIp         | string        | Ip Address which client        | N/A         | N/A              |
+|                    |               | accepted                       |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | ServerAck          | string        | Most recent time stamp of      | N/A         | N/A              |
 |                    |               | server ack message             |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| ServerRequests     | int32         | Total Number of requests       | N/A         | N/A              |
+|                    |               | relayed to server              |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| ServerResponses    | int32         | Total Number of responses      | N/A         | N/A              |
+|                    |               | received from server           |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -58,7 +58,7 @@ DHCPRelayClientState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/DHCPRelayClient
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/DHCPRelayClients?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/DHCPRelayClients?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/DHCPRelayClientState/<uuid>
 

@@ -32,7 +32,7 @@
   
     <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
         <link rel="up" title="FlexSwitch System Objects" href="SystemObjects.html"/>
-        <link rel="next" title="SystemParamState Object" href="SystemParamStateObjects.html"/>
+        <link rel="next" title="ComponentLogging Object" href="ComponentLoggingObjects.html"/>
         <link rel="prev" title="FlexSwitch System Objects" href="SystemObjects.html"/> 
 
   
@@ -96,30 +96,30 @@
 <li class="toctree-l2"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="SystemObjects.html">System Objects</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">SystemParam Objects</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SystemParam Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#config-systemparam"><em>config/SystemParam</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="SystemParamStateObjects.html">SystemParamState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="DaemonStateObjects.html">DaemonState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="IpTableAclObjects.html">IpTableAcl Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ComponentLoggingObjects.html">ComponentLogging Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AclStateObjects.html">AclState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="BufferPortStatStateObjects.html">BufferPortStatState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AclRuleObjects.html">AclRule Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AsicGlobalStateObjects.html">AsicGlobalState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AsicSummaryStateObjects.html">AsicSummaryState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="BufferGlobalStatStateObjects.html">BufferGlobalStatState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AclObjects.html">Acl Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="NotifierEnableObjects.html">NotifierEnable Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SystemSwVersionStateObjects.html">SystemSwVersionState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="XponderGlobalStateObjects.html">XponderGlobalState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="XponderGlobalObjects.html">XponderGlobal Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ConfigLogStateObjects.html">ConfigLogState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SystemStatusStateObjects.html">SystemStatusState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ApiInfoStateObjects.html">ApiInfoState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ComponentLoggingObjects.html">ComponentLogging Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IpTableAclObjects.html">IpTableAcl Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DaemonStateObjects.html">DaemonState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemParamStateObjects.html">SystemParamState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BufferGlobalStatStateObjects.html">BufferGlobalStatState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BufferPortStatStateObjects.html">BufferPortStatState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclRuleObjects.html">AclRule Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclStateObjects.html">AclState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AsicSummaryStateObjects.html">AsicSummaryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AsicGlobalStateObjects.html">AsicGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclObjects.html">Acl Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemSwVersionStateObjects.html">SystemSwVersionState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemStatusStateObjects.html">SystemStatusState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XponderGlobalObjects.html">XponderGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ApiInfoStateObjects.html">ApiInfoState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XponderGlobalStateObjects.html">XponderGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConfigLogStateObjects.html">ConfigLogState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NotifierEnableObjects.html">NotifierEnable Object</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
@@ -203,33 +203,33 @@
 <td>default</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>Description</td>
+<tr class="row-odd"><td>SwitchMac</td>
+<td>string</td>
+<td>Switch Mac Address</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>Description</td>
 <td>string</td>
 <td>System Description</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>Hostname</td>
+<tr class="row-odd"><td>Hostname</td>
 <td>string</td>
 <td>System Host Name</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>MgmtIp</td>
+<tr class="row-even"><td>MgmtIp</td>
 <td>string</td>
 <td>Management Ip of System</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>SwVersion</td>
+<tr class="row-odd"><td>SwVersion</td>
 <td>string</td>
 <td>FlexSwitch Version Information</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>SwitchMac</td>
-<td>string</td>
-<td>Switch Mac Address</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
@@ -254,7 +254,7 @@
 </li>
 <li><dl class="first docutils">
 <dt>GET ALL</dt>
-<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/SystemParams">http://device-management-IP:8080/public/v1/config/SystemParams</a>?CurrentMarker=&lt;x&gt;&amp;Count=&lt;y&gt;</p>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/SystemParams">http://device-management-IP:8080/public/v1/config/SystemParams</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
 </dd>
 </dl>
 </li>
@@ -339,7 +339,7 @@
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateSystemParam</span><span class="p">(</span><span class="n">Vrf</span><span class="o">=</span><span class="n">vrf</span><span class="p">,</span> <span class="n">Description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">Hostname</span><span class="o">=</span><span class="n">hostname</span><span class="p">,</span> <span class="n">MgmtIp</span><span class="o">=</span><span class="n">mgmtip</span><span class="p">,</span> <span class="n">SwVersion</span><span class="o">=</span><span class="n">swversion</span><span class="p">,</span> <span class="n">SwitchMac</span><span class="o">=</span><span class="n">switchmac</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateSystemParam</span><span class="p">(</span><span class="n">Vrf</span><span class="o">=</span><span class="n">vrf</span><span class="p">,</span> <span class="n">SwitchMac</span><span class="o">=</span><span class="n">switchmac</span><span class="p">,</span> <span class="n">Description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">Hostname</span><span class="o">=</span><span class="n">hostname</span><span class="p">,</span> <span class="n">MgmtIp</span><span class="o">=</span><span class="n">mgmtip</span><span class="p">,</span> <span class="n">SwVersion</span><span class="o">=</span><span class="n">swversion</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -357,7 +357,7 @@
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateSystemParamById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidDescription</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">Hostname</span><span class="o">=</span><span class="n">hostname</span><span class="p">,</span> <span class="n">MgmtIp</span><span class="o">=</span><span class="n">mgmtip</span><span class="p">,</span> <span class="n">SwVersion</span><span class="o">=</span><span class="n">swversion</span><span class="p">,</span> <span class="n">SwitchMac</span><span class="o">=</span><span class="n">switchmac</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateSystemParamById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidSwitchMac</span><span class="o">=</span><span class="n">switchmac</span><span class="p">,</span> <span class="n">Description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">Hostname</span><span class="o">=</span><span class="n">hostname</span><span class="p">,</span> <span class="n">MgmtIp</span><span class="o">=</span><span class="n">mgmtip</span><span class="p">,</span> <span class="n">SwVersion</span><span class="o">=</span><span class="n">swversion</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -375,7 +375,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="SystemParamStateObjects.html" class="btn btn-neutral float-right" title="SystemParamState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ComponentLoggingObjects.html" class="btn btn-neutral float-right" title="ComponentLogging Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="SystemObjects.html" class="btn btn-neutral" title="FlexSwitch System Objects" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

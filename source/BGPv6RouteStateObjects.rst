@@ -26,7 +26,7 @@ BGPv6RouteState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/BGPv6Route
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/BGPv6Routes?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/BGPv6Routes?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/BGPv6RouteState/<uuid>
 

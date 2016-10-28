@@ -32,7 +32,7 @@
   
     <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
         <link rel="up" title="FlexSwitch System Objects" href="SystemObjects.html"/>
-        <link rel="next" title="AsicGlobalState Object" href="AsicGlobalStateObjects.html"/>
+        <link rel="next" title="AclState Object" href="AclStateObjects.html"/>
         <link rel="prev" title="BufferPortStatState Object" href="BufferPortStatStateObjects.html"/> 
 
   
@@ -96,30 +96,30 @@
 <li class="toctree-l2"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="SystemObjects.html">System Objects</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="SystemParamObjects.html">SystemParam Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SystemParamStateObjects.html">SystemParamState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="DaemonStateObjects.html">DaemonState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="IpTableAclObjects.html">IpTableAcl Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ComponentLoggingObjects.html">ComponentLogging Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AclStateObjects.html">AclState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="BufferPortStatStateObjects.html">BufferPortStatState Objects</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">AclRule Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SystemParamObjects.html">SystemParam Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ComponentLoggingObjects.html">ComponentLogging Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IpTableAclObjects.html">IpTableAcl Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DaemonStateObjects.html">DaemonState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemParamStateObjects.html">SystemParamState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BufferGlobalStatStateObjects.html">BufferGlobalStatState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BufferPortStatStateObjects.html">BufferPortStatState Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">AclRule Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#config-aclrule"><em>config/AclRule</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="AsicGlobalStateObjects.html">AsicGlobalState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AsicSummaryStateObjects.html">AsicSummaryState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="BufferGlobalStatStateObjects.html">BufferGlobalStatState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AclObjects.html">Acl Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="NotifierEnableObjects.html">NotifierEnable Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SystemSwVersionStateObjects.html">SystemSwVersionState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="XponderGlobalStateObjects.html">XponderGlobalState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="XponderGlobalObjects.html">XponderGlobal Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ConfigLogStateObjects.html">ConfigLogState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="SystemStatusStateObjects.html">SystemStatusState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ApiInfoStateObjects.html">ApiInfoState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclStateObjects.html">AclState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AsicSummaryStateObjects.html">AsicSummaryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AsicGlobalStateObjects.html">AsicGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclObjects.html">Acl Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemSwVersionStateObjects.html">SystemSwVersionState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SystemStatusStateObjects.html">SystemStatusState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XponderGlobalObjects.html">XponderGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ApiInfoStateObjects.html">ApiInfoState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="XponderGlobalStateObjects.html">XponderGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ConfigLogStateObjects.html">ConfigLogState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NotifierEnableObjects.html">NotifierEnable Object</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
@@ -203,23 +203,60 @@
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>DestMask</td>
+<tr class="row-odd"><td>Action</td>
 <td>string</td>
-<td>Network mark for dest IP</td>
+<td>Type of action (ALLOW/DENY)</td>
+<td>Allow</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>L4MaxPort</td>
+<td>int32</td>
+<td>Max port when l4 port is
+specified as range</td>
+<td>0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>L4SrcPort</td>
+<td>int32</td>
+<td>TCP/UDP source port</td>
+<td>0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>SourceMac</td>
+<td>string</td>
+<td>Source MAC address.</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>DstPort</td>
+<tr class="row-odd"><td>SrcPort</td>
+<td>string</td>
+<td>Source Port(used for mlag)</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>DestIp</td>
+<td>string</td>
+<td>Destination IP address</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>DstPort</td>
 <td>string</td>
 <td>Dest Port(used for mlag)</td>
 <td>0</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>Proto</td>
-<td>string</td>
-<td>Protocol type
-TCP/UDP/ICMPv4/ICMPv6</td>
+<tr class="row-even"><td>L4DstPort</td>
+<td>int32</td>
+<td>TCP/UDP destionation port</td>
 <td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>L4PortMatch</td>
+<td>string</td>
+<td>match condition can be
+EQ(equal)</td>
+<td>NA</td>
 <td>N/A</td>
 </tr>
 <tr class="row-even"><td>SourceIp</td>
@@ -234,67 +271,30 @@ TCP/UDP/ICMPv4/ICMPv6</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>SrcPort</td>
+<tr class="row-even"><td>DestMac</td>
 <td>string</td>
-<td>Source Port(used for mlag)</td>
+<td>Destination MAC address</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>Action</td>
+<tr class="row-odd"><td>DestMask</td>
 <td>string</td>
-<td>Type of action (ALLOW/DENY)</td>
-<td>Allow</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>DestIp</td>
-<td>string</td>
-<td>Destination IP address</td>
+<td>Network mark for dest IP</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>L4MinPort</td>
+<tr class="row-even"><td>L4MinPort</td>
 <td>int32</td>
 <td>Min port when l4 port is
 specified as range</td>
 <td>0</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>SourceMac</td>
+<tr class="row-odd"><td>Proto</td>
 <td>string</td>
-<td>Source MAC address.</td>
+<td>Protocol type
+TCP/UDP/ICMPv4/ICMPv6</td>
 <td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>DestMac</td>
-<td>string</td>
-<td>Destination MAC address</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>L4DstPort</td>
-<td>int32</td>
-<td>TCP/UDP destionation port</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>L4SrcPort</td>
-<td>int32</td>
-<td>TCP/UDP source port</td>
-<td>0</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>L4MaxPort</td>
-<td>int32</td>
-<td>Max port when l4 port is
-specified as range</td>
-<td>0</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>L4PortMatch</td>
-<td>string</td>
-<td>match condition can be
-EQ(equal)</td>
-<td>NA</td>
 <td>N/A</td>
 </tr>
 </tbody>
@@ -318,7 +318,7 @@ EQ(equal)</td>
 </li>
 <li><dl class="first docutils">
 <dt>GET ALL</dt>
-<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/AclRules">http://device-management-IP:8080/public/v1/config/AclRules</a>?CurrentMarker=&lt;x&gt;&amp;Count=&lt;y&gt;</p>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/AclRules">http://device-management-IP:8080/public/v1/config/AclRules</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
 </dd>
 </dl>
 </li>
@@ -421,7 +421,7 @@ EQ(equal)</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">createAclRule</span><span class="p">(</span><span class="n">RuleName</span><span class="o">=</span><span class="n">rulename</span><span class="p">,</span> <span class="n">DestMask</span><span class="o">=</span><span class="n">destmask</span><span class="p">,</span> <span class="n">DstPort</span><span class="o">=</span><span class="n">dstport</span><span class="p">,</span> <span class="n">Proto</span><span class="o">=</span><span class="n">proto</span><span class="p">,</span> <span class="n">SourceIp</span><span class="o">=</span><span class="n">sourceip</span><span class="p">,</span> <span class="n">SourceMask</span><span class="o">=</span><span class="n">sourcemask</span><span class="p">,</span> <span class="n">SrcPort</span><span class="o">=</span><span class="n">srcport</span><span class="p">,</span> <span class="n">Action</span><span class="o">=</span><span class="n">action</span><span class="p">,</span> <span class="n">DestIp</span><span class="o">=</span><span class="n">destip</span><span class="p">,</span> <span class="n">L4MinPort</span><span class="o">=</span><span class="n">l4minport</span><span class="p">,</span> <span class="n">SourceMac</span><span class="o">=</span><span class="n">sourcemac</span><span class="p">,</span> <span class="n">DestMac</span><span class="o">=</span><span class="n">destmac</span><span class="p">,</span> <span class="n">L4DstPort</span><span class="o">=</span><span class="n">l4dstport</span><span class="p">,</span> <span class="n">L4SrcPort</span><span class="o">=</span><span class="n">l4srcport</span><span class="p">,</span> <span class="n">L4MaxPort</span><span class="o">=</span><span class="n">l4maxport</span><span class="p">,</span> <span class="n">L4PortMatch</span><span class="o">=</span><span class="n">l4portmatch</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">createAclRule</span><span class="p">(</span><span class="n">RuleName</span><span class="o">=</span><span class="n">rulename</span><span class="p">,</span> <span class="n">Action</span><span class="o">=</span><span class="n">action</span><span class="p">,</span> <span class="n">L4MaxPort</span><span class="o">=</span><span class="n">l4maxport</span><span class="p">,</span> <span class="n">L4SrcPort</span><span class="o">=</span><span class="n">l4srcport</span><span class="p">,</span> <span class="n">SourceMac</span><span class="o">=</span><span class="n">sourcemac</span><span class="p">,</span> <span class="n">SrcPort</span><span class="o">=</span><span class="n">srcport</span><span class="p">,</span> <span class="n">DestIp</span><span class="o">=</span><span class="n">destip</span><span class="p">,</span> <span class="n">DstPort</span><span class="o">=</span><span class="n">dstport</span><span class="p">,</span> <span class="n">L4DstPort</span><span class="o">=</span><span class="n">l4dstport</span><span class="p">,</span> <span class="n">L4PortMatch</span><span class="o">=</span><span class="n">l4portmatch</span><span class="p">,</span> <span class="n">SourceIp</span><span class="o">=</span><span class="n">sourceip</span><span class="p">,</span> <span class="n">SourceMask</span><span class="o">=</span><span class="n">sourcemask</span><span class="p">,</span> <span class="n">DestMac</span><span class="o">=</span><span class="n">destmac</span><span class="p">,</span> <span class="n">DestMask</span><span class="o">=</span><span class="n">destmask</span><span class="p">,</span> <span class="n">L4MinPort</span><span class="o">=</span><span class="n">l4minport</span><span class="p">,</span> <span class="n">Proto</span><span class="o">=</span><span class="n">proto</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -475,7 +475,7 @@ EQ(equal)</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateAclRule</span><span class="p">(</span><span class="n">RuleName</span><span class="o">=</span><span class="n">rulename</span><span class="p">,</span> <span class="n">DestMask</span><span class="o">=</span><span class="n">destmask</span><span class="p">,</span> <span class="n">DstPort</span><span class="o">=</span><span class="n">dstport</span><span class="p">,</span> <span class="n">Proto</span><span class="o">=</span><span class="n">proto</span><span class="p">,</span> <span class="n">SourceIp</span><span class="o">=</span><span class="n">sourceip</span><span class="p">,</span> <span class="n">SourceMask</span><span class="o">=</span><span class="n">sourcemask</span><span class="p">,</span> <span class="n">SrcPort</span><span class="o">=</span><span class="n">srcport</span><span class="p">,</span> <span class="n">Action</span><span class="o">=</span><span class="n">action</span><span class="p">,</span> <span class="n">DestIp</span><span class="o">=</span><span class="n">destip</span><span class="p">,</span> <span class="n">L4MinPort</span><span class="o">=</span><span class="n">l4minport</span><span class="p">,</span> <span class="n">SourceMac</span><span class="o">=</span><span class="n">sourcemac</span><span class="p">,</span> <span class="n">DestMac</span><span class="o">=</span><span class="n">destmac</span><span class="p">,</span> <span class="n">L4DstPort</span><span class="o">=</span><span class="n">l4dstport</span><span class="p">,</span> <span class="n">L4SrcPort</span><span class="o">=</span><span class="n">l4srcport</span><span class="p">,</span> <span class="n">L4MaxPort</span><span class="o">=</span><span class="n">l4maxport</span><span class="p">,</span> <span class="n">L4PortMatch</span><span class="o">=</span><span class="n">l4portmatch</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateAclRule</span><span class="p">(</span><span class="n">RuleName</span><span class="o">=</span><span class="n">rulename</span><span class="p">,</span> <span class="n">Action</span><span class="o">=</span><span class="n">action</span><span class="p">,</span> <span class="n">L4MaxPort</span><span class="o">=</span><span class="n">l4maxport</span><span class="p">,</span> <span class="n">L4SrcPort</span><span class="o">=</span><span class="n">l4srcport</span><span class="p">,</span> <span class="n">SourceMac</span><span class="o">=</span><span class="n">sourcemac</span><span class="p">,</span> <span class="n">SrcPort</span><span class="o">=</span><span class="n">srcport</span><span class="p">,</span> <span class="n">DestIp</span><span class="o">=</span><span class="n">destip</span><span class="p">,</span> <span class="n">DstPort</span><span class="o">=</span><span class="n">dstport</span><span class="p">,</span> <span class="n">L4DstPort</span><span class="o">=</span><span class="n">l4dstport</span><span class="p">,</span> <span class="n">L4PortMatch</span><span class="o">=</span><span class="n">l4portmatch</span><span class="p">,</span> <span class="n">SourceIp</span><span class="o">=</span><span class="n">sourceip</span><span class="p">,</span> <span class="n">SourceMask</span><span class="o">=</span><span class="n">sourcemask</span><span class="p">,</span> <span class="n">DestMac</span><span class="o">=</span><span class="n">destmac</span><span class="p">,</span> <span class="n">DestMask</span><span class="o">=</span><span class="n">destmask</span><span class="p">,</span> <span class="n">L4MinPort</span><span class="o">=</span><span class="n">l4minport</span><span class="p">,</span> <span class="n">Proto</span><span class="o">=</span><span class="n">proto</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -493,7 +493,7 @@ EQ(equal)</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateAclRuleById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidDestMask</span><span class="o">=</span><span class="n">destmask</span><span class="p">,</span> <span class="n">DstPort</span><span class="o">=</span><span class="n">dstport</span><span class="p">,</span> <span class="n">Proto</span><span class="o">=</span><span class="n">proto</span><span class="p">,</span> <span class="n">SourceIp</span><span class="o">=</span><span class="n">sourceip</span><span class="p">,</span> <span class="n">SourceMask</span><span class="o">=</span><span class="n">sourcemask</span><span class="p">,</span> <span class="n">SrcPort</span><span class="o">=</span><span class="n">srcport</span><span class="p">,</span> <span class="n">Action</span><span class="o">=</span><span class="n">action</span><span class="p">,</span> <span class="n">DestIp</span><span class="o">=</span><span class="n">destip</span><span class="p">,</span> <span class="n">L4MinPort</span><span class="o">=</span><span class="n">l4minport</span><span class="p">,</span> <span class="n">SourceMac</span><span class="o">=</span><span class="n">sourcemac</span><span class="p">,</span> <span class="n">DestMac</span><span class="o">=</span><span class="n">destmac</span><span class="p">,</span> <span class="n">L4DstPort</span><span class="o">=</span><span class="n">l4dstport</span><span class="p">,</span> <span class="n">L4SrcPort</span><span class="o">=</span><span class="n">l4srcport</span><span class="p">,</span> <span class="n">L4MaxPort</span><span class="o">=</span><span class="n">l4maxport</span><span class="p">,</span> <span class="n">L4PortMatch</span><span class="o">=</span><span class="n">l4portmatch</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateAclRuleById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidAction</span><span class="o">=</span><span class="n">action</span><span class="p">,</span> <span class="n">L4MaxPort</span><span class="o">=</span><span class="n">l4maxport</span><span class="p">,</span> <span class="n">L4SrcPort</span><span class="o">=</span><span class="n">l4srcport</span><span class="p">,</span> <span class="n">SourceMac</span><span class="o">=</span><span class="n">sourcemac</span><span class="p">,</span> <span class="n">SrcPort</span><span class="o">=</span><span class="n">srcport</span><span class="p">,</span> <span class="n">DestIp</span><span class="o">=</span><span class="n">destip</span><span class="p">,</span> <span class="n">DstPort</span><span class="o">=</span><span class="n">dstport</span><span class="p">,</span> <span class="n">L4DstPort</span><span class="o">=</span><span class="n">l4dstport</span><span class="p">,</span> <span class="n">L4PortMatch</span><span class="o">=</span><span class="n">l4portmatch</span><span class="p">,</span> <span class="n">SourceIp</span><span class="o">=</span><span class="n">sourceip</span><span class="p">,</span> <span class="n">SourceMask</span><span class="o">=</span><span class="n">sourcemask</span><span class="p">,</span> <span class="n">DestMac</span><span class="o">=</span><span class="n">destmac</span><span class="p">,</span> <span class="n">DestMask</span><span class="o">=</span><span class="n">destmask</span><span class="p">,</span> <span class="n">L4MinPort</span><span class="o">=</span><span class="n">l4minport</span><span class="p">,</span> <span class="n">Proto</span><span class="o">=</span><span class="n">proto</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -511,7 +511,7 @@ EQ(equal)</td>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="AsicGlobalStateObjects.html" class="btn btn-neutral float-right" title="AsicGlobalState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="AclStateObjects.html" class="btn btn-neutral float-right" title="AclState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="BufferPortStatStateObjects.html" class="btn btn-neutral" title="BufferPortStatState Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

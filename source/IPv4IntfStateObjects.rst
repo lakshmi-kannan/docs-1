@@ -21,10 +21,6 @@ IPv4IntfState Object
 |                    |               | last UP to DOWN operational    |             |                  |
 |                    |               | state change event             |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| LastUpEventTime    | string        | Timestamp corresponding to the | N/A         | N/A              |
-|                    |               | last DOWN to UP operational    |             |                  |
-|                    |               | state change event             |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | NumDownEvents      | int32         | Number of times the            | N/A         | N/A              |
 |                    |               | operational state transitioned |             |                  |
 |                    |               | from UP to DOWN                |             |                  |
@@ -36,16 +32,20 @@ IPv4IntfState Object
 | OperState          | string        | Operational state of this IP   | N/A         | N/A              |
 |                    |               | interface                      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| IfIndex            | int32         | System assigned interface id   | N/A         | N/A              |
+|                    |               | for this IPv4 interface        |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | IpAddr             | string        | Interface IP/Net mask in CIDR  | N/A         | N/A              |
 |                    |               | format to provision on switch  |             |                  |
 |                    |               | interface                      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| IfIndex            | int32         | System assigned interface id   | N/A         | N/A              |
-|                    |               | for this IPv4 interface        |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | L2IntfType         | string        | Type of L2 interface on        | N/A         | N/A              |
 |                    |               | which IP has been configured   |             |                  |
 |                    |               | (Port/Lag/Vlan)                |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| LastUpEventTime    | string        | Timestamp corresponding to the | N/A         | N/A              |
+|                    |               | last DOWN to UP operational    |             |                  |
+|                    |               | state change event             |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -56,7 +56,7 @@ IPv4IntfState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/IPv4Intf
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv4Intfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv4Intfs?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv4IntfState/<uuid>
 

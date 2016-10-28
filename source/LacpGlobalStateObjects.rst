@@ -14,20 +14,12 @@ LacpGlobalState Object
 +------------------------------+---------------+--------------------------------+-------------+------------------+
 | AdminState                   | string        | Administrative state of LACPD  | DOWN        | UP, DOWN         |
 +------------------------------+---------------+--------------------------------+-------------+------------------+
-| DistributedRelayAttachedList | string        | List of Distributed Relay      | N/A         | N/A              |
-|                              |               | objects who are attached to    |             |                  |
-|                              |               | an Aggregator in the form of   |             |                  |
-|                              |               | DRName-AggName                 |             |                  |
-+------------------------------+---------------+--------------------------------+-------------+------------------+
-| DistributedRelayList         | string        | List of Distributed Relay      | N/A         | N/A              |
-|                              |               | objects                        |             |                  |
-+------------------------------+---------------+--------------------------------+-------------+------------------+
 | DistributedRelayUpList       | string        | List of Distributed Relay      | N/A         | N/A              |
 |                              |               | objects whose Aggregator is in |             |                  |
 |                              |               | Oper State Up                  |             |                  |
 +------------------------------+---------------+--------------------------------+-------------+------------------+
-| LacpTotalRxPkts              | uint64        | Total Rx pkts accross all LACP | N/A         | N/A              |
-|                              |               | Ports                          |             |                  |
+| LacpErrorsInPkts             | uint64        | Total number of Error pkts     | N/A         | N/A              |
+|                              |               | received; Unknown or Illegal   |             |                  |
 +------------------------------+---------------+--------------------------------+-------------+------------------+
 | LacpTotalTxPkts              | uint64        | Total Tx pkts accross all LACP | N/A         | N/A              |
 |                              |               | Ports                          |             |                  |
@@ -39,12 +31,20 @@ LacpGlobalState Object
 |                              |               | which have at least one port   |             |                  |
 |                              |               | in Distributed State           |             |                  |
 +------------------------------+---------------+--------------------------------+-------------+------------------+
-| LacpErrorsInPkts             | uint64        | Total number of Error pkts     | N/A         | N/A              |
-|                              |               | received; Unknown or Illegal   |             |                  |
+| DistributedRelayAttachedList | string        | List of Distributed Relay      | N/A         | N/A              |
+|                              |               | objects who are attached to    |             |                  |
+|                              |               | an Aggregator in the form of   |             |                  |
+|                              |               | DRName-AggName                 |             |                  |
++------------------------------+---------------+--------------------------------+-------------+------------------+
+| DistributedRelayList         | string        | List of Distributed Relay      | N/A         | N/A              |
+|                              |               | objects                        |             |                  |
 +------------------------------+---------------+--------------------------------+-------------+------------------+
 | LacpMissMatchPkts            | uint64        | Total number of pkts           | N/A         | N/A              |
 |                              |               | received which have received   |             |                  |
 |                              |               | missmatched info from peer     |             |                  |
++------------------------------+---------------+--------------------------------+-------------+------------------+
+| LacpTotalRxPkts              | uint64        | Total Rx pkts accross all LACP | N/A         | N/A              |
+|                              |               | Ports                          |             |                  |
 +------------------------------+---------------+--------------------------------+-------------+------------------+
 
 

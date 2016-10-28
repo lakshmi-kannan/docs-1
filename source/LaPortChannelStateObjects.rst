@@ -11,15 +11,15 @@ LaPortChannelState Object
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
 | IntfRef **[KEY]**     | string        | Id of the lag group            | N/A         | N/A                            |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| LagType               | int32         | Sets the type of LAG           | N/A         | LACP(0), STATIC(1)             |
+| Interval              | int32         | Set the period between         |           1 | SLOW(1), FAST(0)               |
+|                       |               | LACP messages -- uses the      |             |                                |
+|                       |               | lacp-period-type enumeration.  |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| MinLinks              | uint16        | Specifies the mininum number   | N/A         | N/A                            |
-|                       |               | of member interfaces that must |             |                                |
-|                       |               | be active for the aggregate    |             |                                |
-|                       |               | interface to be available      |             |                                |
+| IntfRefList           | string        | List of current member         | N/A         | N/A                            |
+|                       |               | interfaces for the aggregate   |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfIndex               | int32         | the ifindex of the bonded      | N/A         | N/A                            |
-|                       |               | interface                      |             |                                |
+| IntfRefListUpInBundle | string        | List of current member         | N/A         | N/A                            |
+|                       |               | interfaces for the aggregate   |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
 | LacpMode              | int32         | ACTIVE is to initiate the      |           0 | ACTIVE(0), PASSIVE(1)          |
 |                       |               | transmission of LACP packets.  |             |                                |
@@ -29,6 +29,11 @@ LaPortChannelState Object
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
 | LagHash               | int32         | The tx hashing algorithm used  |           0 | LAYER2(0), LAYER3_4(2),        |
 |                       |               | by the lag group               |             | LAYER2_3(1)                    |
++-----------------------+---------------+--------------------------------+-------------+--------------------------------+
+| MinLinks              | uint16        | Specifies the mininum number   | N/A         | N/A                            |
+|                       |               | of member interfaces that must |             |                                |
+|                       |               | be active for the aggregate    |             |                                |
+|                       |               | interface to be available      |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
 | OperState             | string        | Operational status of the lag  | N/A         | N/A                            |
 |                       |               | group.  If all ports are DOWN  |             |                                |
@@ -57,15 +62,10 @@ LaPortChannelState Object
 |                       |               | LACP frames should continue to |             |                                |
 |                       |               | be processed                   |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| Interval              | int32         | Set the period between         |           1 | SLOW(1), FAST(0)               |
-|                       |               | LACP messages -- uses the      |             |                                |
-|                       |               | lacp-period-type enumeration.  |             |                                |
+| IfIndex               | int32         | the ifindex of the bonded      | N/A         | N/A                            |
+|                       |               | interface                      |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IntfRefList           | string        | List of current member         | N/A         | N/A                            |
-|                       |               | interfaces for the aggregate   |             |                                |
-+-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IntfRefListUpInBundle | string        | List of current member         | N/A         | N/A                            |
-|                       |               | interfaces for the aggregate   |             |                                |
+| LagType               | int32         | Sets the type of LAG           | N/A         | LACP(0), STATIC(1)             |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
 
 
@@ -76,7 +76,7 @@ LaPortChannelState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/LaPortChannel
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/LaPortChannels?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/LaPortChannels?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/LaPortChannelState/<uuid>
 

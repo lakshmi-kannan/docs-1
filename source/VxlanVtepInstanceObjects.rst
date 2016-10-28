@@ -20,21 +20,13 @@ VxlanVtepInstance Object
 | DstIp                 | string        | Destination IP address for the | N/A         | N/A                            |
 |                       |               | static VxLAN tunnel            |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IntfRef               | string        | Source interface where the     | N/A         | N/A                            |
-|                       |               | source ip will be derived      |             |                                |
-|                       |               | from.  If an interface is      |             |                                |
-|                       |               | not supplied the src-ip        |             |                                |
-|                       |               | will be used. This attribute   |             |                                |
-|                       |               | takes presedence over src-ip   |             |                                |
-|                       |               | attribute.                     |             |                                |
+| InnerVlanHandlingMode | int32         | The inner vlan tag handling    |           0 | DISCARD_INNER_VLAN(0),         |
+|                       |               | mode.                          |             | NO_DISCARD_INNER_VLAN(1)       |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| Mtu                   | uint32        | Set the MTU to be applied to   |        1550 | N/A                            |
+| Mtu                   | uint32        | Set the MTU to be applied to   |        1450 | N/A                            |
 |                       |               | all VTEP within this VxLAN     |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| SrcIp                 | string        | Source IP address for the      | 0.0.0.0     | N/A                            |
-|                       |               | VxLAN tunnel                   |             |                                |
-+-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| TTL                   | uint16        | TTL of the Vxlan tunnel        |          64 | N/A                            |
+| TOS                   | uint16        | Type of Service                |           0 | N/A                            |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
 | VlanId                | uint16        | Vlan Id to encapsulate with    | N/A         | N/A                            |
 |                       |               | the vtep tunnel ethernet       |             |                                |
@@ -46,10 +38,18 @@ VxlanVtepInstance Object
 | DstUDP                | uint16        | vxlan udp port.  Deafult is    |        4789 | N/A                            |
 |                       |               | the iana default udp port      |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| InnerVlanHandlingMode | int32         | The inner vlan tag handling    |           0 | DISCARD_INNER_VLAN(0),         |
-|                       |               | mode.                          |             | NO_DISCARD_INNER_VLAN(1)       |
+| IntfRef               | string        | Source interface where the     | N/A         | N/A                            |
+|                       |               | source ip will be derived      |             |                                |
+|                       |               | from.  If an interface is      |             |                                |
+|                       |               | not supplied the src-ip        |             |                                |
+|                       |               | will be used. This attribute   |             |                                |
+|                       |               | takes presedence over src-ip   |             |                                |
+|                       |               | attribute.                     |             |                                |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
-| TOS                   | uint16        | Type of Service                |           0 | N/A                            |
+| SrcIp                 | string        | Source IP address for the      | 0.0.0.0     | N/A                            |
+|                       |               | VxLAN tunnel                   |             |                                |
++-----------------------+---------------+--------------------------------+-------------+--------------------------------+
+| TTL                   | uint16        | TTL of the Vxlan tunnel        |          64 | N/A                            |
 +-----------------------+---------------+--------------------------------+-------------+--------------------------------+
 
 
@@ -62,7 +62,7 @@ VxlanVtepInstance Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/VxlanVtepInstance/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/VxlanVtepInstances?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/VxlanVtepInstances?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/VxlanVtepInstance
 	- DELETE By Key
@@ -153,7 +153,7 @@ VxlanVtepInstance Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createVxlanVtepInstance(Vni=vni, Intf=intf, DstIp=dstip, IntfRef=intfref, Mtu=mtu, SrcIp=srcip, TTL=ttl, VlanId=vlanid, AdminState=adminstate, DstUDP=dstudp, InnerVlanHandlingMode=innervlanhandlingmode, TOS=tos)
+		response, error = swtch.createVxlanVtepInstance(Vni=vni, Intf=intf, DstIp=dstip, InnerVlanHandlingMode=innervlanhandlingmode, Mtu=mtu, TOS=tos, VlanId=vlanid, AdminState=adminstate, DstUDP=dstudp, IntfRef=intfref, SrcIp=srcip, TTL=ttl)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -210,7 +210,7 @@ VxlanVtepInstance Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateVxlanVtepInstance(Vni=vni, Intf=intf, DstIp=dstip, IntfRef=intfref, Mtu=mtu, SrcIp=srcip, TTL=ttl, VlanId=vlanid, AdminState=adminstate, DstUDP=dstudp, InnerVlanHandlingMode=innervlanhandlingmode, TOS=tos)
+		response, error = swtch.updateVxlanVtepInstance(Vni=vni, Intf=intf, DstIp=dstip, InnerVlanHandlingMode=innervlanhandlingmode, Mtu=mtu, TOS=tos, VlanId=vlanid, AdminState=adminstate, DstUDP=dstudp, IntfRef=intfref, SrcIp=srcip, TTL=ttl)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -229,7 +229,7 @@ VxlanVtepInstance Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateVxlanVtepInstanceById(ObjectId=objectidDstIp=dstip, IntfRef=intfref, Mtu=mtu, SrcIp=srcip, TTL=ttl, VlanId=vlanid, AdminState=adminstate, DstUDP=dstudp, InnerVlanHandlingMode=innervlanhandlingmode, TOS=tos)
+		response, error = swtch.updateVxlanVtepInstanceById(ObjectId=objectidDstIp=dstip, InnerVlanHandlingMode=innervlanhandlingmode, Mtu=mtu, TOS=tos, VlanId=vlanid, AdminState=adminstate, DstUDP=dstudp, IntfRef=intfref, SrcIp=srcip, TTL=ttl)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

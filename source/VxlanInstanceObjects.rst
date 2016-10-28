@@ -11,6 +11,11 @@ VxlanInstance Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Vni **[KEY]**      | uint32        | VXLAN Network Id               | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| UntaggedVlanId     | uint16        | Vlan associated with the       | N/A         | N/A              |
+|                    |               | untagged traffic.  Used in     |             |                  |
+|                    |               | conjunction with a given VTEP  |             |                  |
+|                    |               | inner-vlan-handling-mode       |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | VlanId             | uint16        | Vlan associated with the       | N/A         | N/A              |
 |                    |               | Access targets.  Used in       |             |                  |
 |                    |               | conjunction with a given VTEP  |             |                  |
@@ -18,11 +23,6 @@ VxlanInstance Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | AdminState         | string        | Administrative state of VXLAN  | UP          | UP, DOWN         |
 |                    |               | layer                          |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| UntaggedVlanId     | uint16        | Vlan associated with the       | N/A         | N/A              |
-|                    |               | untagged traffic.  Used in     |             |                  |
-|                    |               | conjunction with a given VTEP  |             |                  |
-|                    |               | inner-vlan-handling-mode       |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -35,7 +35,7 @@ VxlanInstance Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/VxlanInstance/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/VxlanInstances?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/VxlanInstances?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/VxlanInstance
 	- DELETE By Key
@@ -126,7 +126,7 @@ VxlanInstance Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createVxlanInstance(Vni=vni, VlanId=vlanid, AdminState=adminstate, UntaggedVlanId=untaggedvlanid)
+		response, error = swtch.createVxlanInstance(Vni=vni, UntaggedVlanId=untaggedvlanid, VlanId=vlanid, AdminState=adminstate)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -183,7 +183,7 @@ VxlanInstance Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateVxlanInstance(Vni=vni, VlanId=vlanid, AdminState=adminstate, UntaggedVlanId=untaggedvlanid)
+		response, error = swtch.updateVxlanInstance(Vni=vni, UntaggedVlanId=untaggedvlanid, VlanId=vlanid, AdminState=adminstate)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -202,7 +202,7 @@ VxlanInstance Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateVxlanInstanceById(ObjectId=objectidVlanId=vlanid, AdminState=adminstate, UntaggedVlanId=untaggedvlanid)
+		response, error = swtch.updateVxlanInstanceById(ObjectId=objectidUntaggedVlanId=untaggedvlanid, VlanId=vlanid, AdminState=adminstate)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

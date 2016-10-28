@@ -17,15 +17,27 @@ StpPort Object
 | Vlan **[KEY]**     | int32         | The value of instance of the   | N/A         | N/A                            |
 |                    |               | vlan object                    |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
-| Priority           | int32         | The value of the priority      |         128 | N/A                            |
-|                    |               | field that is contained in the |             |                                |
-|                    |               | first in network byte order    |             |                                |
-|                    |               | octet of the 2 octet long      |             |                                |
-|                    |               | Port ID.  The other octet of   |             |                                |
-|                    |               | the Port ID is given by the    |             |                                |
-|                    |               | value of StpPort. On bridges   |             |                                |
-|                    |               | supporting IEEE 802.1t or IEEE |             |                                |
-|                    |               | 802.1w                         |             |                                |
+| AdminEdgePort      | int32         | The administrative value of    |           2 | false(2), true(1)              |
+|                    |               | the Edge Port parameter.  A    |             |                                |
+|                    |               | value of true(1) indicates     |             |                                |
+|                    |               | that this port should be       |             |                                |
+|                    |               | assumed as an edge-port and    |             |                                |
+|                    |               | a value of false(2) indicates  |             |                                |
+|                    |               | that this port should be       |             |                                |
+|                    |               | assumed as a non-edge-port.    |             |                                |
+|                    |               |  Setting this object will      |             |                                |
+|                    |               | also cause the corresponding   |             |                                |
+|                    |               | instance of OperEdgePort to    |             |                                |
+|                    |               | change to the same value.      |             |                                |
+|                    |               |  Note that even when this      |             |                                |
+|                    |               | object's value is true the     |             |                                |
+|                    |               | value of the corresponding     |             |                                |
+|                    |               | instance of OperEdgePort can   |             |                                |
+|                    |               | be false if a BPDU has been    |             |                                |
+|                    |               | received.  The value of this   |             |                                |
+|                    |               | object MUST be retained across |             |                                |
+|                    |               | reinitializations of the       |             |                                |
+|                    |               | management system.             |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
 | AdminState         | string        | The enabled/disabled status of | UP          | UP, DOWN                       |
 |                    |               | the port.                      |             |                                |
@@ -48,17 +60,6 @@ StpPort Object
 |                    |               | to zero then timer is inactive |             |                                |
 |                    |               | and recovery is based on       |             |                                |
 |                    |               | manual intervention.           |             |                                |
-+--------------------+---------------+--------------------------------+-------------+--------------------------------+
-| BridgeAssurance    | int32         | When enabled BPDUs will be     |           2 | false(2), true(1)              |
-|                    |               | transmitted out of all stp     |             |                                |
-|                    |               | ports regardless of state.     |             |                                |
-|                    |               |  When an stp port fails to     |             |                                |
-|                    |               | receive a BPDU the port should |             |                                |
-|                    |               |  transition to a Blocked       |             |                                |
-|                    |               | state.  Upon reception of      |             |                                |
-|                    |               | BDPU after shutdown  should    |             |                                |
-|                    |               | transition port into the       |             |                                |
-|                    |               | bridge.                        |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
 | PathCost           | int32         | The contribution of this       |           1 | N/A                            |
 |                    |               | port to the path cost of       |             |                                |
@@ -84,27 +85,14 @@ StpPort Object
 |                    |               |        based on the ports      |             |                                |
 |                    |               | capabilities.                  |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
-| AdminEdgePort      | int32         | The administrative value of    |           2 | false(2), true(1)              |
-|                    |               | the Edge Port parameter.  A    |             |                                |
-|                    |               | value of true(1) indicates     |             |                                |
-|                    |               | that this port should be       |             |                                |
-|                    |               | assumed as an edge-port and    |             |                                |
-|                    |               | a value of false(2) indicates  |             |                                |
-|                    |               | that this port should be       |             |                                |
-|                    |               | assumed as a non-edge-port.    |             |                                |
-|                    |               |  Setting this object will      |             |                                |
-|                    |               | also cause the corresponding   |             |                                |
-|                    |               | instance of OperEdgePort to    |             |                                |
-|                    |               | change to the same value.      |             |                                |
-|                    |               |  Note that even when this      |             |                                |
-|                    |               | object's value is true the     |             |                                |
-|                    |               | value of the corresponding     |             |                                |
-|                    |               | instance of OperEdgePort can   |             |                                |
-|                    |               | be false if a BPDU has been    |             |                                |
-|                    |               | received.  The value of this   |             |                                |
-|                    |               | object MUST be retained across |             |                                |
-|                    |               | reinitializations of the       |             |                                |
-|                    |               | management system.             |             |                                |
+| ProtocolMigration  | int32         | When operating in RSTP         |           1 | false(2), true(1)              |
+|                    |               | (version 2) mode writing       |             |                                |
+|                    |               | true(1) to this object forces  |             |                                |
+|                    |               | this port to transmit RSTP     |             |                                |
+|                    |               | BPDUs. Any other operation on  |             |                                |
+|                    |               | this object has no effect and  |             |                                |
+|                    |               | it always returns false(2)     |             |                                |
+|                    |               | when read.                     |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
 | AdminPathCost      | int32         | The administratively assigned  |      200000 | N/A                            |
 |                    |               | value for the contribution     |             |                                |
@@ -148,6 +136,17 @@ StpPort Object
 |                    |               | entity is configured for full  |             |                                |
 |                    |               | duplex operation               |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
+| BridgeAssurance    | int32         | When enabled BPDUs will be     |           2 | false(2), true(1)              |
+|                    |               | transmitted out of all stp     |             |                                |
+|                    |               | ports regardless of state.     |             |                                |
+|                    |               |  When an stp port fails to     |             |                                |
+|                    |               | receive a BPDU the port should |             |                                |
+|                    |               |  transition to a Blocked       |             |                                |
+|                    |               | state.  Upon reception of      |             |                                |
+|                    |               | BDPU after shutdown  should    |             |                                |
+|                    |               | transition port into the       |             |                                |
+|                    |               | bridge.                        |             |                                |
++--------------------+---------------+--------------------------------+-------------+--------------------------------+
 | PathCost32         | int32         | The contribution of this       |           1 | N/A                            |
 |                    |               | port to the path cost of       |             |                                |
 |                    |               | paths towards the spanning     |             |                                |
@@ -163,14 +162,15 @@ StpPort Object
 |                    |               | the value        based on the  |             |                                |
 |                    |               | ports capabilities.            |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
-| ProtocolMigration  | int32         | When operating in RSTP         |           1 | false(2), true(1)              |
-|                    |               | (version 2) mode writing       |             |                                |
-|                    |               | true(1) to this object forces  |             |                                |
-|                    |               | this port to transmit RSTP     |             |                                |
-|                    |               | BPDUs. Any other operation on  |             |                                |
-|                    |               | this object has no effect and  |             |                                |
-|                    |               | it always returns false(2)     |             |                                |
-|                    |               | when read.                     |             |                                |
+| Priority           | int32         | The value of the priority      |         128 | N/A                            |
+|                    |               | field that is contained in the |             |                                |
+|                    |               | first in network byte order    |             |                                |
+|                    |               | octet of the 2 octet long      |             |                                |
+|                    |               | Port ID.  The other octet of   |             |                                |
+|                    |               | the Port ID is given by the    |             |                                |
+|                    |               | value of StpPort. On bridges   |             |                                |
+|                    |               | supporting IEEE 802.1t or IEEE |             |                                |
+|                    |               | 802.1w                         |             |                                |
 +--------------------+---------------+--------------------------------+-------------+--------------------------------+
 
 
@@ -183,7 +183,7 @@ StpPort Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/StpPort/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/StpPorts?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/StpPorts?CurrentMarker=<x>\\&Count=<y>
 	- UPDATE(PATCH) By Key
 		 curl -X PATCH -H 'Content-Type: application/json' -d '{<Model Object as json data>}'  http://device-management-IP:8080/public/v1/config/StpPort
 	- UPDATE(PATCH) By ID
@@ -270,7 +270,7 @@ StpPort Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateStpPort(IntfRef=intfref, Vlan=vlan, Priority=priority, AdminState=adminstate, BpduGuard=bpduguard, BpduGuardInterval=bpduguardinterval, BridgeAssurance=bridgeassurance, PathCost=pathcost, AdminEdgePort=adminedgeport, AdminPathCost=adminpathcost, AdminPointToPoint=adminpointtopoint, PathCost32=pathcost32, ProtocolMigration=protocolmigration)
+		response, error = swtch.updateStpPort(IntfRef=intfref, Vlan=vlan, AdminEdgePort=adminedgeport, AdminState=adminstate, BpduGuard=bpduguard, BpduGuardInterval=bpduguardinterval, PathCost=pathcost, ProtocolMigration=protocolmigration, AdminPathCost=adminpathcost, AdminPointToPoint=adminpointtopoint, BridgeAssurance=bridgeassurance, PathCost32=pathcost32, Priority=priority)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -289,7 +289,7 @@ StpPort Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateStpPortById(ObjectId=objectidPriority=priority, AdminState=adminstate, BpduGuard=bpduguard, BpduGuardInterval=bpduguardinterval, BridgeAssurance=bridgeassurance, PathCost=pathcost, AdminEdgePort=adminedgeport, AdminPathCost=adminpathcost, AdminPointToPoint=adminpointtopoint, PathCost32=pathcost32, ProtocolMigration=protocolmigration)
+		response, error = swtch.updateStpPortById(ObjectId=objectidAdminEdgePort=adminedgeport, AdminState=adminstate, BpduGuard=bpduguard, BpduGuardInterval=bpduguardinterval, PathCost=pathcost, ProtocolMigration=protocolmigration, AdminPathCost=adminpathcost, AdminPointToPoint=adminpointtopoint, BridgeAssurance=bridgeassurance, PathCost32=pathcost32, Priority=priority)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

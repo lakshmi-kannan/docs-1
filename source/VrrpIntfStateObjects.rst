@@ -9,11 +9,11 @@ VrrpIntfState Object
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 |   **PARAMETER NAME**    | **DATA TYPE** |        **DESCRIPTION**         | **DEFAULT** | **VALID VALUES** |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
-| VRID **[KEY]**          | int32         | Virtual Router's Unique        | N/A         | N/A              |
-|                         |               | Identifier                     |             |                  |
-+-------------------------+---------------+--------------------------------+-------------+------------------+
 | IfIndex **[KEY]**       | int32         | Interface index for which VRRP | N/A         | N/A              |
 |                         |               | state is requested             |             |                  |
++-------------------------+---------------+--------------------------------+-------------+------------------+
+| VRID **[KEY]**          | int32         | Virtual Router's Unique        | N/A         | N/A              |
+|                         |               | Identifier                     |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 | AdvertisementInterval   | int32         | Time interval between          | N/A         | N/A              |
 |                         |               | Advertisements                 |             |                  |
@@ -21,23 +21,23 @@ VrrpIntfState Object
 | IntfIpAddr              | string        | Ip Address of Interface where  | N/A         | N/A              |
 |                         |               | VRRP is configured             |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
-| PreemptMode             | bool          | States Whether Preempt is      | N/A         | N/A              |
-|                         |               | Supported or not               |             |                  |
+| MasterDownTimer         | int32         | Time interval for Backup to    | N/A         | N/A              |
+|                         |               | declare Master down            |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 | SkewTime                | int32         | Time to skew Master Down       | N/A         | N/A              |
 |                         |               | Interval                       |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
-| VirtualIPv4Addr         | string        | Ip Address of Virtual Router   | N/A         | N/A              |
+| VrrpState               | string        | Current vrrp state i.e. backup | N/A         | N/A              |
+|                         |               | or master                      |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
-| MasterDownTimer         | int32         | Time interval for Backup to    | N/A         | N/A              |
-|                         |               | declare Master down            |             |                  |
+| PreemptMode             | bool          | States Whether Preempt is      | N/A         | N/A              |
+|                         |               | Supported or not               |             |                  |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 | Priority                | int32         | Virtual router's Priority      | N/A         | N/A              |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
-| VirtualRouterMACAddress | string        | VRRP router's Mac Address      | N/A         | N/A              |
+| VirtualIPv4Addr         | string        | Ip Address of Virtual Router   | N/A         | N/A              |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
-| VrrpState               | string        | Current vrrp state i.e. backup | N/A         | N/A              |
-|                         |               | or master                      |             |                  |
+| VirtualRouterMACAddress | string        | VRRP router's Mac Address      | N/A         | N/A              |
 +-------------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -48,7 +48,7 @@ VrrpIntfState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/VrrpIntf
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/VrrpIntfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/VrrpIntfs?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/VrrpIntfState/<uuid>
 
@@ -70,7 +70,7 @@ VrrpIntfState Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.getVrrpIntfState(VRID=vrid, IfIndex=ifindex)
+		response, error = swtch.getVrrpIntfState(IfIndex=ifindex, VRID=vrid)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

@@ -11,11 +11,11 @@ BufferGlobalStatState Object
 +--------------------+---------------+-----------------------------+-------------+------------------+
 | DeviceId **[KEY]** | uint32        | Device id                   | N/A         | N/A              |
 +--------------------+---------------+-----------------------------+-------------+------------------+
-| IngressBufferStat  | uint64        | Ingress buffer stats        | N/A         | N/A              |
-+--------------------+---------------+-----------------------------+-------------+------------------+
 | BufferStat         | uint64        | Buffer stats for the device | N/A         | N/A              |
 +--------------------+---------------+-----------------------------+-------------+------------------+
 | EgressBufferStat   | uint64        | Egress Buffer stats         | N/A         | N/A              |
++--------------------+---------------+-----------------------------+-------------+------------------+
+| IngressBufferStat  | uint64        | Ingress buffer stats        | N/A         | N/A              |
 +--------------------+---------------+-----------------------------+-------------+------------------+
 
 
@@ -26,7 +26,7 @@ BufferGlobalStatState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/BufferGlobalStat
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/BufferGlobalStats?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/BufferGlobalStats?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/BufferGlobalStatState/<uuid>
 

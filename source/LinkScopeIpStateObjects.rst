@@ -11,14 +11,14 @@ LinkScopeIpState Object
 +-----------------------+---------------+--------------------------------+-------------+------------------+
 | LinkScopeIp **[KEY]** | string        | Link scope IP Address          | N/A         | N/A              |
 +-----------------------+---------------+--------------------------------+-------------+------------------+
+| Used                  | bool          | states whether the ip being    | N/A         | N/A              |
+|                       |               | used                           |             |                  |
++-----------------------+---------------+--------------------------------+-------------+------------------+
 | IfIndex               | int32         | System Generated Unique        | N/A         | N/A              |
 |                       |               | Interface Id                   |             |                  |
 +-----------------------+---------------+--------------------------------+-------------+------------------+
 | IntfRef               | string        | Interface where the link scope | N/A         | N/A              |
 |                       |               | ip is configured               |             |                  |
-+-----------------------+---------------+--------------------------------+-------------+------------------+
-| Used                  | bool          | states whether the ip being    | N/A         | N/A              |
-|                       |               | used                           |             |                  |
 +-----------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -29,7 +29,7 @@ LinkScopeIpState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/LinkScopeIp
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/LinkScopeIps?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/LinkScopeIps?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/LinkScopeIpState/<uuid>
 

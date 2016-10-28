@@ -11,9 +11,19 @@ AsicSummaryState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | ModuleId **[KEY]** | uint8         | Module identifier              | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| NumPortsDown       | int32         | Summary stating number of      | N/A         | N/A              |
+|                    |               | ports that have operstate DOWN |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| NumV4Adjs          | int32         | Summary stating number of IPv4 | N/A         | N/A              |
+|                    |               | adjacencies configured in the  |             |                  |
+|                    |               | asic                           |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | NumV6Intfs         | int32         | Summary stating number of IPv6 | N/A         | N/A              |
 |                    |               | interfaces configured in the   |             |                  |
 |                    |               | asic                           |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| NumV6Routes        | int32         | Summary stating number of IPv6 | N/A         | N/A              |
+|                    |               | routes configured in the asic  |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | NumVlans           | int32         | Summary stating number of      | N/A         | N/A              |
 |                    |               | vlans configured in the asic   |             |                  |
@@ -24,22 +34,12 @@ AsicSummaryState Object
 | NumPortsUp         | int32         | Summary stating number of      | N/A         | N/A              |
 |                    |               | ports that have operstate UP   |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| NumV4Routes        | int32         | Summary stating number of IPv4 | N/A         | N/A              |
-|                    |               | routes configured in the asic  |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| NumV6Routes        | int32         | Summary stating number of IPv6 | N/A         | N/A              |
-|                    |               | routes configured in the asic  |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| NumPortsDown       | int32         | Summary stating number of      | N/A         | N/A              |
-|                    |               | ports that have operstate DOWN |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| NumV4Adjs          | int32         | Summary stating number of IPv4 | N/A         | N/A              |
-|                    |               | adjacencies configured in the  |             |                  |
-|                    |               | asic                           |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | NumV4Intfs         | int32         | Summary stating number of IPv4 | N/A         | N/A              |
 |                    |               | interfaces configured in the   |             |                  |
 |                    |               | asic                           |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| NumV4Routes        | int32         | Summary stating number of IPv4 | N/A         | N/A              |
+|                    |               | routes configured in the asic  |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | NumV6Adjs          | int32         | Summary stating number of IPv6 | N/A         | N/A              |
 |                    |               | adjacencies configured in the  |             |                  |

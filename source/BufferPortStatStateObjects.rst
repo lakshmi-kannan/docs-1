@@ -12,6 +12,8 @@ BufferPortStatState Object
 | IntfRef **[KEY]**  | string        | Front panel port name          | N/A         | N/A              |
 |                    |               | interface id                   |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| PortBufferStat     | uint64        | Per port buffer stats          | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | EgressPort         | uint64        | Egress port buffer stats       | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | IfIndex            | int32         | System assigned interface      | N/A         | N/A              |
@@ -19,8 +21,6 @@ BufferPortStatState Object
 |                    |               | attribute                      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | IngressPort        | uint64        | Ingress port buffer stats      | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| PortBufferStat     | uint64        | Per port buffer stats          | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -31,7 +31,7 @@ BufferPortStatState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/BufferPortStat
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/BufferPortStats?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/BufferPortStats?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/BufferPortStatState/<uuid>
 

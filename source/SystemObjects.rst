@@ -5,22 +5,22 @@ FlexSwitch System Objects
 .. toctree::
    :maxdepth: 1
 
-   SystemParam Objects  <SystemParamObjects.rst>
-   SystemParamState Objects  <SystemParamStateObjects.rst>
-   DaemonState Objects  <DaemonStateObjects.rst>
-   IpTableAcl Objects  <IpTableAclObjects.rst>
-   ComponentLogging Objects  <ComponentLoggingObjects.rst>
-   AclState Objects  <AclStateObjects.rst>
-   BufferPortStatState Objects  <BufferPortStatStateObjects.rst>
-   AclRule Objects  <AclRuleObjects.rst>
-   AsicGlobalState Objects  <AsicGlobalStateObjects.rst>
-   AsicSummaryState Objects  <AsicSummaryStateObjects.rst>
-   BufferGlobalStatState Objects  <BufferGlobalStatStateObjects.rst>
-   Acl Objects  <AclObjects.rst>
-   NotifierEnable Objects  <NotifierEnableObjects.rst>
-   SystemSwVersionState Objects  <SystemSwVersionStateObjects.rst>
-   XponderGlobalState Objects  <XponderGlobalStateObjects.rst>
-   XponderGlobal Objects  <XponderGlobalObjects.rst>
-   ConfigLogState Objects  <ConfigLogStateObjects.rst>
-   SystemStatusState Objects  <SystemStatusStateObjects.rst>
-   ApiInfoState Objects  <ApiInfoStateObjects.rst>
+   SystemParam Object  <SystemParamObjects.rst>
+   ComponentLogging Object  <ComponentLoggingObjects.rst>
+   IpTableAcl Object  <IpTableAclObjects.rst>
+   DaemonState Object  <DaemonStateObjects.rst>
+   SystemParamState Object  <SystemParamStateObjects.rst>
+   BufferGlobalStatState Object  <BufferGlobalStatStateObjects.rst>
+   BufferPortStatState Object  <BufferPortStatStateObjects.rst>
+   AclRule Object  <AclRuleObjects.rst>
+   AclState Object  <AclStateObjects.rst>
+   AsicSummaryState Object  <AsicSummaryStateObjects.rst>
+   AsicGlobalState Object  <AsicGlobalStateObjects.rst>
+   Acl Object  <AclObjects.rst>
+   SystemSwVersionState Object  <SystemSwVersionStateObjects.rst>
+   SystemStatusState Object  <SystemStatusStateObjects.rst>
+   XponderGlobal Object  <XponderGlobalObjects.rst>
+   ApiInfoState Object  <ApiInfoStateObjects.rst>
+   XponderGlobalState Object  <XponderGlobalStateObjects.rst>
+   ConfigLogState Object  <ConfigLogStateObjects.rst>
+   NotifierEnable Object  <NotifierEnableObjects.rst>

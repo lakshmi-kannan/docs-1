@@ -13,19 +13,9 @@ BGPv6NeighborState Object
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 | NeighborAddress **[KEY]** | string        | Address of the BGP neighbor    | N/A         | N/A              |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| AdjRIBInFilter            | string        | Policy that is applied for     | N/A         | N/A              |
-|                           |               | Adj-RIB-In prefix filtering    |             |                  |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
-| BfdNeighborState          | string        | BFD state of the BGP neighbor  | N/A         | N/A              |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
-| Messages                  | BGPMessages   | Rx/Tx counter for BGP update   | N/A         | N/A              |
-|                           |               | and notification packets       |             |                  |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
-| PeerType                  | int8          | Type of the peer               | N/A         | N/A              |
-|                           |               | (internal/external)            |             |                  |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
-| TotalPrefixes             | uint32        | Total number of prefixes       | N/A         | N/A              |
-|                           |               | received from the BGP neighbor |             |                  |
+| RouteReflectorClusterId   | uint32        | Cluster Id of the internal     | N/A         | N/A              |
+|                           |               | BGP neighbor route reflector   |             |                  |
+|                           |               | client                         |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 | AddPathsMaxTx             | uint8         | Max number of additional paths | N/A         | N/A              |
 |                           |               | that can be transmitted to BGP |             |                  |
@@ -34,73 +24,83 @@ BGPv6NeighborState Object
 | AddPathsRx                | bool          | Receive additional paths from  | N/A         | N/A              |
 |                           |               | BGP neighbor                   |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| MultiHopTTL               | uint8         | TTL for multi hop BGP neighbor | N/A         | N/A              |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
-| PeerGroup                 | string        | Peer group of the BGP neighbor | N/A         | N/A              |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
-| AdjRIBOutFilter           | string        | Policy that is applied for     | N/A         | N/A              |
-|                           |               | Adj-RIB-Out prefix filtering   |             |                  |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
 | Description               | string        | Description of the BGP         | N/A         | N/A              |
 |                           |               | neighbor                       |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| Disabled                  | bool          | Enable/Disable the BGP         | false       | N/A              |
+| KeepaliveTime             | uint32        | Keep alive time for the BGP    | N/A         | N/A              |
 |                           |               | neighbor                       |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| MaxPrefixes               | uint32        | Maximum number of prefixes     | N/A         | N/A              |
-|                           |               | that can be received from the  |             |                  |
+| MultiHopEnable            | bool          | Enable/Disable multi hop for   | N/A         | N/A              |
 |                           |               | BGP neighbor                   |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| RouteReflectorClusterId   | uint32        | Cluster Id of the internal     | N/A         | N/A              |
-|                           |               | BGP neighbor route reflector   |             |                  |
-|                           |               | client                         |             |                  |
+| RouteReflectorClient      | bool          | Set/Clear BGP neighbor as a    | N/A         | N/A              |
+|                           |               | route reflector client         |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| HoldTime                  | uint32        | Hold time for the BGP neighbor | N/A         | N/A              |
+| Messages                  | BGPMessages   | Rx/Tx counter for BGP update   | N/A         | N/A              |
+|                           |               | and notification packets       |             |                  |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| PeerAS                    | string        | Peer AS of the BGP neighbor    | N/A         | N/A              |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| BfdNeighborState          | string        | BFD state of the BGP neighbor  | N/A         | N/A              |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 | MaxPrefixesThresholdPct   | uint8         | The percentage of maximum      | N/A         | N/A              |
 |                           |               | prefixes before we start       |             |                  |
 |                           |               | logging                        |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
+| PeerGroup                 | string        | Peer group of the BGP neighbor | N/A         | N/A              |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| PeerType                  | int8          | Type of the peer               | N/A         | N/A              |
+|                           |               | (internal/external)            |             |                  |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| AdjRIBOutFilter           | string        | Policy that is applied for     | N/A         | N/A              |
+|                           |               | Adj-RIB-Out prefix filtering   |             |                  |
++---------------------------+---------------+--------------------------------+-------------+------------------+
 | Queues                    | BGPQueues     | Input/Output size of BGP       | N/A         | N/A              |
 |                           |               | packet queues                  |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| RouteReflectorClient      | bool          | Set/Clear BGP neighbor as a    | N/A         | N/A              |
-|                           |               | route reflector client         |             |                  |
+| UpdateSource              | string        | Source IP to connect to the    | N/A         | N/A              |
+|                           |               | BGP neighbor                   |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| NextHopSelf               | bool          | Use neighbor source IP as the  | N/A         | N/A              |
-|                           |               | next hop for IBGP neighbors    |             |                  |
+| HoldTime                  | uint32        | Hold time for the BGP neighbor | N/A         | N/A              |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| ConnectRetryTime          | uint32        | Connect retry time to          | N/A         | N/A              |
-|                           |               | connect to BGP neighbor after  |             |                  |
-|                           |               | disconnect                     |             |                  |
+| LocalAS                   | string        | Local AS of the BGP neighbor   | N/A         | N/A              |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 | MaxPrefixesDisconnect     | bool          | Disconnect the BGP peer        | N/A         | N/A              |
 |                           |               | session when we receive the    |             |                  |
 |                           |               | max prefixes from the neighbor |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| MaxPrefixesRestartTimer   | uint8         | Time to wait before we start   | N/A         | N/A              |
-|                           |               | BGP peer session when we       |             |                  |
-|                           |               | receive max prefixes           |             |                  |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
-| MultiHopEnable            | bool          | Enable/Disable multi hop for   | N/A         | N/A              |
-|                           |               | BGP neighbor                   |             |                  |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
-| KeepaliveTime             | uint32        | Keep alive time for the BGP    | N/A         | N/A              |
+| SessionState              | uint32        | Session state of the BGP       | N/A         | N/A              |
 |                           |               | neighbor                       |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| LocalAS                   | string        | Local AS of the BGP neighbor   | N/A         | N/A              |
+| TotalPrefixes             | uint32        | Total number of prefixes       | N/A         | N/A              |
+|                           |               | received from the BGP neighbor |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| PeerAS                    | string        | Peer AS of the BGP neighbor    | N/A         | N/A              |
+| MultiHopTTL               | uint8         | TTL for multi hop BGP neighbor | N/A         | N/A              |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 | SessionStateDuration      | string        | Time duration for which this   | N/A         | N/A              |
 |                           |               | neighbor is in the current     |             |                  |
 |                           |               | session state.                 |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| SessionState              | uint32        | Session state of the BGP       | N/A         | N/A              |
-|                           |               | neighbor                       |             |                  |
+| AdjRIBInFilter            | string        | Policy that is applied for     | N/A         | N/A              |
+|                           |               | Adj-RIB-In prefix filtering    |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| UpdateSource              | string        | Source IP to connect to the    | N/A         | N/A              |
+| ConnectRetryTime          | uint32        | Connect retry time to          | N/A         | N/A              |
+|                           |               | connect to BGP neighbor after  |             |                  |
+|                           |               | disconnect                     |             |                  |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| MaxPrefixes               | uint32        | Maximum number of prefixes     | N/A         | N/A              |
+|                           |               | that can be received from the  |             |                  |
 |                           |               | BGP neighbor                   |             |                  |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| MaxPrefixesRestartTimer   | uint8         | Time to wait before we start   | N/A         | N/A              |
+|                           |               | BGP peer session when we       |             |                  |
+|                           |               | receive max prefixes           |             |                  |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| NextHopSelf               | bool          | Use neighbor source IP as the  | N/A         | N/A              |
+|                           |               | next hop for IBGP neighbors    |             |                  |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| Disabled                  | bool          | Enable/Disable the BGP         | false       | N/A              |
+|                           |               | neighbor                       |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -111,7 +111,7 @@ BGPv6NeighborState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/BGPv6Neighbor
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/BGPv6Neighbors?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/BGPv6Neighbors?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/BGPv6NeighborState/<uuid>
 

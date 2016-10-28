@@ -32,7 +32,7 @@
   
     <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
         <link rel="up" title="FlexSwitch Physical Objects" href="PhysicalObjects.html"/>
-        <link rel="next" title="CoppStatState Object" href="CoppStatStateObjects.html"/>
+        <link rel="next" title="PortState Object" href="PortStateObjects.html"/>
         <link rel="prev" title="Port Object" href="PortObjects.html"/> 
 
   
@@ -91,16 +91,16 @@
 <li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="apis.html">API reference!</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="PhysicalObjects.html">Physical Objects</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="LogicalIntfObjects.html">LogicalIntf Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="PortObjects.html">Port Objects</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">LogicalIntfState Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="LogicalIntfObjects.html">LogicalIntf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PortObjects.html">Port Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">LogicalIntfState Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#state-logicalintf"><em>state/LogicalIntf</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="CoppStatStateObjects.html">CoppStatState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="PortStateObjects.html">PortState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PortStateObjects.html">PortState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CoppStatStateObjects.html">CoppStatState Object</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="PlatformObjects.html">Platform Objects</a></li>
@@ -189,21 +189,6 @@
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>IfInOctets</td>
-<td>int64</td>
-<td>RFC2233 Total number of octets
-received on this port</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>IfInUcastPkts</td>
-<td>int64</td>
-<td>RFC2233 Total number of
-unicast packets received on
-this port</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
 <tr class="row-odd"><td>IfOutErrors</td>
 <td>int64</td>
 <td>RFC2233 Total number of
@@ -213,24 +198,23 @@ errors</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>IfOutUcastPkts</td>
+<tr class="row-even"><td>IfOutOctets</td>
 <td>int64</td>
-<td>RFC2233 Total number of
-unicast packets transmitted on
-this port</td>
+<td>RFC2233 Total number of octets
+transmitted on this port</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>SrcMac</td>
+<tr class="row-odd"><td>OperState</td>
 <td>string</td>
-<td>Source Mac assigned to the
+<td>Operational state of logical
 interface</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>OperState</td>
+<tr class="row-even"><td>SrcMac</td>
 <td>string</td>
-<td>Operational state of logical
+<td>Source Mac assigned to the
 interface</td>
 <td>N/A</td>
 <td>N/A</td>
@@ -243,11 +227,10 @@ discarded</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>IfInErrors</td>
+<tr class="row-even"><td>IfInOctets</td>
 <td>int64</td>
-<td>RFC2233 Total number of
-inbound packets that contained
-an error</td>
+<td>RFC2233 Total number of octets
+received on this port</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
@@ -259,14 +242,7 @@ to unknown protocol</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>IfIndex</td>
-<td>int32</td>
-<td>System assigned interface id
-for this logical interface</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>IfOutDiscards</td>
+<tr class="row-even"><td>IfOutDiscards</td>
 <td>int64</td>
 <td>RFC2233 Total number of error
 free packets discarded and not
@@ -274,10 +250,34 @@ transmitted</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>IfOutOctets</td>
+<tr class="row-odd"><td>IfOutUcastPkts</td>
 <td>int64</td>
-<td>RFC2233 Total number of octets
-transmitted on this port</td>
+<td>RFC2233 Total number of
+unicast packets transmitted on
+this port</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>IfInErrors</td>
+<td>int64</td>
+<td>RFC2233 Total number of
+inbound packets that contained
+an error</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>IfInUcastPkts</td>
+<td>int64</td>
+<td>RFC2233 Total number of
+unicast packets received on
+this port</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>IfIndex</td>
+<td>int32</td>
+<td>System assigned interface id
+for this logical interface</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
@@ -296,7 +296,7 @@ transmitted on this port</td>
 </li>
 <li><dl class="first docutils">
 <dt>GET ALL</dt>
-<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/LogicalIntfs">http://device-management-IP:8080/public/v1/state/LogicalIntfs</a>?CurrentMarker=&lt;x&gt;&amp;Count=&lt;y&gt;</p>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/LogicalIntfs">http://device-management-IP:8080/public/v1/state/LogicalIntfs</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
 </dd>
 </dl>
 </li>
@@ -375,7 +375,7 @@ transmitted on this port</td>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="CoppStatStateObjects.html" class="btn btn-neutral float-right" title="CoppStatState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="PortStateObjects.html" class="btn btn-neutral float-right" title="PortState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="PortObjects.html" class="btn btn-neutral" title="Port Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

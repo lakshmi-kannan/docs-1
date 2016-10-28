@@ -11,14 +11,14 @@ PolicyStmt Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Name **[KEY]**     | string        | Policy Statement Name          | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| MatchConditions    | string        | Specifies whether to match     | all         | any, all         |
+|                    |               | all/any of the conditions of   |             |                  |
+|                    |               | this policy statement          |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | Action             | string        | Action for this policy         | deny        | permit, deny     |
 |                    |               | statement                      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Conditions         | string        | List of conditions added to    | N/A         | N/A              |
-|                    |               | this policy statement          |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| MatchConditions    | string        | Specifies whether to match     | all         | any, all         |
-|                    |               | all/any of the conditions of   |             |                  |
 |                    |               | this policy statement          |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
@@ -32,7 +32,7 @@ PolicyStmt Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyStmt/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyStmts?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyStmts?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/PolicyStmt
 	- DELETE By Key
@@ -123,7 +123,7 @@ PolicyStmt Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createPolicyStmt(Name=name, Action=action, Conditions=conditions, MatchConditions=matchconditions)
+		response, error = swtch.createPolicyStmt(Name=name, MatchConditions=matchconditions, Action=action, Conditions=conditions)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -180,7 +180,7 @@ PolicyStmt Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updatePolicyStmt(Name=name, Action=action, Conditions=conditions, MatchConditions=matchconditions)
+		response, error = swtch.updatePolicyStmt(Name=name, MatchConditions=matchconditions, Action=action, Conditions=conditions)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -199,7 +199,7 @@ PolicyStmt Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updatePolicyStmtById(ObjectId=objectidAction=action, Conditions=conditions, MatchConditions=matchconditions)
+		response, error = swtch.updatePolicyStmtById(ObjectId=objectidMatchConditions=matchconditions, Action=action, Conditions=conditions)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

@@ -11,19 +11,16 @@ LaPortChannel Object
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
 | IntfRef **[KEY]**  | string        | Id of the lag group            | N/A               | N/A                            |
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
-| AdminState         | string        | Convenient way to              | UP                | UP, DOWN                       |
-|                    |               | disable/enable a lag group.    |                   |                                |
-|                    |               | The behaviour should be such   |                   |                                |
-|                    |               | that all traffic should stop.  |                   |                                |
-|                    |               | LACP frames should continue to |                   |                                |
-|                    |               | be processed                   |                   |                                |
+| LacpMode           | int32         | ACTIVE is to initiate the      |                 0 | ACTIVE(0), PASSIVE(1)          |
+|                    |               | transmission of LACP packets.  |                   |                                |
+|                    |               | PASSIVE is to wait for peer to |                   |                                |
+|                    |               | initiate the transmission of   |                   |                                |
+|                    |               | LACP packets.                  |                   |                                |
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
-| Interval           | int32         | Set the period between         |                 1 | SLOW(1), FAST(0)               |
-|                    |               | LACP messages -- uses the      |                   |                                |
-|                    |               | lacp-period-type enumeration.  |                   |                                |
-+--------------------+---------------+--------------------------------+-------------------+--------------------------------+
-| LagHash            | int32         | The tx hashing algorithm used  |                 0 | LAYER2(0), LAYER3_4(2),        |
-|                    |               | by the lag group               |                   | LAYER2_3(1)                    |
+| MinLinks           | uint16        | Specifies the mininum number   |                 1 | N/A                            |
+|                    |               | of member interfaces that must |                   |                                |
+|                    |               | be active for the aggregate    |                   |                                |
+|                    |               | interface to be available      |                   |                                |
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
 | SystemIdMac        | string        | The MAC address portion of     | 00-00-00-00-00-00 | N/A                            |
 |                    |               | the nodes System ID. This      |                   |                                |
@@ -37,21 +34,24 @@ LaPortChannel Object
 |                    |               | for determining which node is  |                   |                                |
 |                    |               | the controlling system.        |                   |                                |
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
+| AdminState         | string        | Convenient way to              | UP                | UP, DOWN                       |
+|                    |               | disable/enable a lag group.    |                   |                                |
+|                    |               | The behaviour should be such   |                   |                                |
+|                    |               | that all traffic should stop.  |                   |                                |
+|                    |               | LACP frames should continue to |                   |                                |
+|                    |               | be processed                   |                   |                                |
++--------------------+---------------+--------------------------------+-------------------+--------------------------------+
 | IntfRefList        | string        | List of current member         | N/A               | N/A                            |
 |                    |               | interfaces for the aggregate   |                   |                                |
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
-| LacpMode           | int32         | ACTIVE is to initiate the      |                 0 | ACTIVE(0), PASSIVE(1)          |
-|                    |               | transmission of LACP packets.  |                   |                                |
-|                    |               | PASSIVE is to wait for peer to |                   |                                |
-|                    |               | initiate the transmission of   |                   |                                |
-|                    |               | LACP packets.                  |                   |                                |
+| LagHash            | int32         | The tx hashing algorithm used  |                 0 | LAYER2(0), LAYER3_4(2),        |
+|                    |               | by the lag group               |                   | LAYER2_3(1)                    |
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
 | LagType            | int32         | Sets the type of LAG           |                 0 | LACP(0), STATIC(1)             |
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
-| MinLinks           | uint16        | Specifies the mininum number   |                 1 | N/A                            |
-|                    |               | of member interfaces that must |                   |                                |
-|                    |               | be active for the aggregate    |                   |                                |
-|                    |               | interface to be available      |                   |                                |
+| Interval           | int32         | Set the period between         |                 1 | SLOW(1), FAST(0)               |
+|                    |               | LACP messages -- uses the      |                   |                                |
+|                    |               | lacp-period-type enumeration.  |                   |                                |
 +--------------------+---------------+--------------------------------+-------------------+--------------------------------+
 
 
@@ -64,7 +64,7 @@ LaPortChannel Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/LaPortChannel/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/LaPortChannels?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/LaPortChannels?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/LaPortChannel
 	- DELETE By Key
@@ -155,7 +155,7 @@ LaPortChannel Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createLaPortChannel(IntfRef=intfref, AdminState=adminstate, Interval=interval, LagHash=laghash, SystemIdMac=systemidmac, SystemPriority=systempriority, IntfRefList=intfreflist, LacpMode=lacpmode, LagType=lagtype, MinLinks=minlinks)
+		response, error = swtch.createLaPortChannel(IntfRef=intfref, LacpMode=lacpmode, MinLinks=minlinks, SystemIdMac=systemidmac, SystemPriority=systempriority, AdminState=adminstate, IntfRefList=intfreflist, LagHash=laghash, LagType=lagtype, Interval=interval)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -212,7 +212,7 @@ LaPortChannel Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateLaPortChannel(IntfRef=intfref, AdminState=adminstate, Interval=interval, LagHash=laghash, SystemIdMac=systemidmac, SystemPriority=systempriority, IntfRefList=intfreflist, LacpMode=lacpmode, LagType=lagtype, MinLinks=minlinks)
+		response, error = swtch.updateLaPortChannel(IntfRef=intfref, LacpMode=lacpmode, MinLinks=minlinks, SystemIdMac=systemidmac, SystemPriority=systempriority, AdminState=adminstate, IntfRefList=intfreflist, LagHash=laghash, LagType=lagtype, Interval=interval)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -231,7 +231,7 @@ LaPortChannel Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateLaPortChannelById(ObjectId=objectidAdminState=adminstate, Interval=interval, LagHash=laghash, SystemIdMac=systemidmac, SystemPriority=systempriority, IntfRefList=intfreflist, LacpMode=lacpmode, LagType=lagtype, MinLinks=minlinks)
+		response, error = swtch.updateLaPortChannelById(ObjectId=objectidLacpMode=lacpmode, MinLinks=minlinks, SystemIdMac=systemidmac, SystemPriority=systempriority, AdminState=adminstate, IntfRefList=intfreflist, LagHash=laghash, LagType=lagtype, Interval=interval)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

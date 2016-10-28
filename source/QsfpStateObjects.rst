@@ -11,39 +11,39 @@ QsfpState Object
 +--------------------+---------------+----------------------+-------------+------------------+
 | QsfpId **[KEY]**   | int32         | QSFP Id              | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
-| VendorOUI          | string        | Vendor OUI           | N/A         | N/A              |
-+--------------------+---------------+----------------------+-------------+------------------+
-| VendorPartNumber   | string        | Vendor Part Number   | N/A         | N/A              |
-+--------------------+---------------+----------------------+-------------+------------------+
-| DataCode           | string        | Data Code            | N/A         | N/A              |
-+--------------------+---------------+----------------------+-------------+------------------+
-| Present            | bool          | Present or Not Value | N/A         | N/A              |
-+--------------------+---------------+----------------------+-------------+------------------+
-| Temperature        | float64       | Current temperature  | N/A         | N/A              |
-+--------------------+---------------+----------------------+-------------+------------------+
-| UDF0               | float64       | User defined field 0 | N/A         | N/A              |
+| UDF1               | float64       | User defined field 1 | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
 | VendorName         | string        | Vendor Name          | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
-| AccBER             | float64       | Accumulated BER      | N/A         | N/A              |
+| VendorRevision     | string        | Vendor Revision      | N/A         | N/A              |
++--------------------+---------------+----------------------+-------------+------------------+
+| DataCode           | string        | Data Code            | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
 | MinBER             | float64       | Minimum BER          | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
-| VendorRevision     | string        | Vendor Revision      | N/A         | N/A              |
-+--------------------+---------------+----------------------+-------------+------------------+
-| Voltage            | float64       | Current Voltage      | N/A         | N/A              |
+| UDF0               | float64       | User defined field 0 | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
 | CurrBER            | float64       | Current BER          | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
+| UDF3               | float64       | User defined field 3 | N/A         | N/A              |
++--------------------+---------------+----------------------+-------------+------------------+
+| VendorOUI          | string        | Vendor OUI           | N/A         | N/A              |
++--------------------+---------------+----------------------+-------------+------------------+
+| Temperature        | float64       | Current temperature  | N/A         | N/A              |
++--------------------+---------------+----------------------+-------------+------------------+
+| AccBER             | float64       | Accumulated BER      | N/A         | N/A              |
++--------------------+---------------+----------------------+-------------+------------------+
 | MaxBER             | float64       | Maximum BER          | N/A         | N/A              |
++--------------------+---------------+----------------------+-------------+------------------+
+| Present            | bool          | Present or Not Value | N/A         | N/A              |
++--------------------+---------------+----------------------+-------------+------------------+
+| VendorSerialNumber | string        | Vendor Serial Number | N/A         | N/A              |
++--------------------+---------------+----------------------+-------------+------------------+
+| Voltage            | float64       | Current Voltage      | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
 | UDF2               | float64       | User defined field 2 | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
-| UDF1               | float64       | User defined field 1 | N/A         | N/A              |
-+--------------------+---------------+----------------------+-------------+------------------+
-| UDF3               | float64       | User defined field 3 | N/A         | N/A              |
-+--------------------+---------------+----------------------+-------------+------------------+
-| VendorSerialNumber | string        | Vendor Serial Number | N/A         | N/A              |
+| VendorPartNumber   | string        | Vendor Part Number   | N/A         | N/A              |
 +--------------------+---------------+----------------------+-------------+------------------+
 
 
@@ -54,7 +54,7 @@ QsfpState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/Qsfp
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/Qsfps?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/Qsfps?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/QsfpState/<uuid>
 

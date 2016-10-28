@@ -11,6 +11,10 @@ SfpState Object
 +--------------------+---------------+----------------------------+-------------+------------------+
 | SfpId **[KEY]**    | int32         | SFP id                     |           0 | N/A              |
 +--------------------+---------------+----------------------------+-------------+------------------+
+| SfpLOS             | string        | SFP status RX LOS          | N/A         | N/A              |
++--------------------+---------------+----------------------------+-------------+------------------+
+| SfpPresent         | string        | SFP status PRESENT/MISSING | N/A         | N/A              |
++--------------------+---------------+----------------------------+-------------+------------------+
 | SfpSpeed           | string        | SFP speed in MBPS          | N/A         | N/A              |
 +--------------------+---------------+----------------------------+-------------+------------------+
 | SfpType            | string        | SFP type Copper/Optical    | N/A         | N/A              |
@@ -18,10 +22,6 @@ SfpState Object
 | EEPROM             | string        | SFP eeprom                 | N/A         | N/A              |
 +--------------------+---------------+----------------------------+-------------+------------------+
 | SerialNum          | string        | SFP SerialNum              | N/A         | N/A              |
-+--------------------+---------------+----------------------------+-------------+------------------+
-| SfpLOS             | string        | SFP status RX LOS          | N/A         | N/A              |
-+--------------------+---------------+----------------------------+-------------+------------------+
-| SfpPresent         | string        | SFP status PRESENT/MISSING | N/A         | N/A              |
 +--------------------+---------------+----------------------------+-------------+------------------+
 
 
@@ -32,7 +32,7 @@ SfpState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/Sfp
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/Sfps?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/Sfps?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/SfpState/<uuid>
 

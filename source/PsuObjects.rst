@@ -24,7 +24,7 @@ Psu Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/Psu/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/Psus?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/Psus?CurrentMarker=<x>\\&Count=<y>
 	- UPDATE(PATCH) By Key
 		 curl -X PATCH -H 'Content-Type: application/json' -d '{<Model Object as json data>}'  http://device-management-IP:8080/public/v1/config/Psu
 	- UPDATE(PATCH) By ID

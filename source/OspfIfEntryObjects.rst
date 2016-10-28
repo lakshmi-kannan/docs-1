@@ -21,15 +21,11 @@ OspfIfEntry Object
 |                         |               | ifIndex for interfaces having  |             |                                |
 |                         |               | no IP address.                 |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfPollInterval          | int32         | The larger time interval       | N/A         | N/A                            |
+| IfHelloInterval         | int32         | The length of time             |          10 | N/A                            |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | IfRetransInterval       | int32         | The number of seconds between  | N/A         | N/A                            |
 |                         |               | link state advertisement       |             |                                |
 |                         |               | retransmissions                |             |                                |
-+-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfRtrPriority           | int32         | The priority of this           | N/A         | N/A                            |
-|                         |               | interface.  Used in            |             |                                |
-|                         |               | multi-access networks          |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | IfTransitDelay          | int32         | The estimated number of        | N/A         | N/A                            |
 |                         |               | seconds it takes to transmit a |             |                                |
@@ -41,16 +37,16 @@ OspfIfEntry Object
 | IfType                  | string        | The OSPF interface type. By    | N/A         | broadcast, nbma, pointToPoint, |
 |                         |               | way of a default               |             | pointToMultipoint              |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfAdminStat             | int32         | Indiacates if OSPF is enabled  | N/A         | N/A                            |
-|                         |               | on this interface              |             |                                |
-+-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | IfAreaId                | string        | A 32-bit integer uniquely      | N/A         | N/A                            |
 |                         |               | identifying the area to which  |             |                                |
 |                         |               | the interface connects.  Area  |             |                                |
 |                         |               | ID 0.0.0.0 is used for the     |             |                                |
 |                         |               | OSPF backbone.                 |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfHelloInterval         | int32         | The length of time             |          10 | N/A                            |
+| IfAdminStat             | int32         | Indiacates if OSPF is enabled  | N/A         | N/A                            |
+|                         |               | on this interface              |             |                                |
++-------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| IfPollInterval          | int32         | The larger time interval       | N/A         | N/A                            |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | IfRtrDeadInterval       | int32         | The number of seconds that     |          40 | N/A                            |
 |                         |               | a router's Hello packets       |             |                                |
@@ -61,6 +57,10 @@ OspfIfEntry Object
 |                         |               | interval.  This value must     |             |                                |
 |                         |               | be the same for all routers    |             |                                |
 |                         |               | attached to a common network.  |             |                                |
++-------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| IfRtrPriority           | int32         | The priority of this           | N/A         | N/A                            |
+|                         |               | interface.  Used in            |             |                                |
+|                         |               | multi-access networks          |             |                                |
 +-------------------------+---------------+--------------------------------+-------------+--------------------------------+
 
 
@@ -73,7 +73,7 @@ OspfIfEntry Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/OspfIfEntry/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/OspfIfEntrys?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/OspfIfEntrys?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/OspfIfEntry
 	- DELETE By Key
@@ -164,7 +164,7 @@ OspfIfEntry Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createOspfIfEntry(IfIpAddress=ifipaddress, AddressLessIf=addresslessif, IfPollInterval=ifpollinterval, IfRetransInterval=ifretransinterval, IfRtrPriority=ifrtrpriority, IfTransitDelay=iftransitdelay, IfType=iftype, IfAdminStat=ifadminstat, IfAreaId=ifareaid, IfHelloInterval=ifhellointerval, IfRtrDeadInterval=ifrtrdeadinterval)
+		response, error = swtch.createOspfIfEntry(IfIpAddress=ifipaddress, AddressLessIf=addresslessif, IfHelloInterval=ifhellointerval, IfRetransInterval=ifretransinterval, IfTransitDelay=iftransitdelay, IfType=iftype, IfAreaId=ifareaid, IfAdminStat=ifadminstat, IfPollInterval=ifpollinterval, IfRtrDeadInterval=ifrtrdeadinterval, IfRtrPriority=ifrtrpriority)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -221,7 +221,7 @@ OspfIfEntry Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateOspfIfEntry(IfIpAddress=ifipaddress, AddressLessIf=addresslessif, IfPollInterval=ifpollinterval, IfRetransInterval=ifretransinterval, IfRtrPriority=ifrtrpriority, IfTransitDelay=iftransitdelay, IfType=iftype, IfAdminStat=ifadminstat, IfAreaId=ifareaid, IfHelloInterval=ifhellointerval, IfRtrDeadInterval=ifrtrdeadinterval)
+		response, error = swtch.updateOspfIfEntry(IfIpAddress=ifipaddress, AddressLessIf=addresslessif, IfHelloInterval=ifhellointerval, IfRetransInterval=ifretransinterval, IfTransitDelay=iftransitdelay, IfType=iftype, IfAreaId=ifareaid, IfAdminStat=ifadminstat, IfPollInterval=ifpollinterval, IfRtrDeadInterval=ifrtrdeadinterval, IfRtrPriority=ifrtrpriority)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -240,7 +240,7 @@ OspfIfEntry Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateOspfIfEntryById(ObjectId=objectidIfPollInterval=ifpollinterval, IfRetransInterval=ifretransinterval, IfRtrPriority=ifrtrpriority, IfTransitDelay=iftransitdelay, IfType=iftype, IfAdminStat=ifadminstat, IfAreaId=ifareaid, IfHelloInterval=ifhellointerval, IfRtrDeadInterval=ifrtrdeadinterval)
+		response, error = swtch.updateOspfIfEntryById(ObjectId=objectidIfHelloInterval=ifhellointerval, IfRetransInterval=ifretransinterval, IfTransitDelay=iftransitdelay, IfType=iftype, IfAreaId=ifareaid, IfAdminStat=ifadminstat, IfPollInterval=ifpollinterval, IfRtrDeadInterval=ifrtrdeadinterval, IfRtrPriority=ifrtrpriority)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

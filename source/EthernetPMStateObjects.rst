@@ -9,9 +9,9 @@ EthernetPMState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | **PARAMETER NAME** | **DATA TYPE** |        **DESCRIPTION**         | **DEFAULT** | **VALID VALUES** |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| IntfRef **[KEY]**  | string        | Interface name of port         | N/A         | N/A              |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | Resource **[KEY]** | string        | Resource identifier            | N/A         | N/A              |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| IntfRef **[KEY]**  | string        | Interface name of port         | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | ClassAPMData       | PMData        | PM Data corresponding to PM    | N/A         | N/A              |
 |                    |               | Class A                        |             |                  |
@@ -31,7 +31,7 @@ EthernetPMState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/EthernetPM
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/EthernetPMs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/EthernetPMs?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/EthernetPMState/<uuid>
 
@@ -53,7 +53,7 @@ EthernetPMState Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.getEthernetPMState(IntfRef=intfref, Resource=resource)
+		response, error = swtch.getEthernetPMState(Resource=resource, IntfRef=intfref)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

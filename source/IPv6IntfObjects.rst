@@ -13,15 +13,15 @@ IPv6Intf Object
 |                    |               | port/lag or vlan on which this |             |                  |
 |                    |               | IPv4 object is configured      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| AdminState         | string        | Administrative state of this   | UP          | UP, DOWN         |
-|                    |               | IP interface                   |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | IpAddr             | string        | Interface Global Scope IP      |             | N/A              |
 |                    |               | Address/Prefix-Length to       |             |                  |
 |                    |               | provision on switch interface  |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | LinkIp             | bool          | Interface Link Scope IP        | true        | N/A              |
 |                    |               | Address auto-configured        |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| AdminState         | string        | Administrative state of this   | UP          | UP, DOWN         |
+|                    |               | IP interface                   |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -34,7 +34,7 @@ IPv6Intf Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv6Intf/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv6Intfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv6Intfs?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/IPv6Intf
 	- DELETE By Key
@@ -125,7 +125,7 @@ IPv6Intf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createIPv6Intf(IntfRef=intfref, AdminState=adminstate, IpAddr=ipaddr, LinkIp=linkip)
+		response, error = swtch.createIPv6Intf(IntfRef=intfref, IpAddr=ipaddr, LinkIp=linkip, AdminState=adminstate)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -182,7 +182,7 @@ IPv6Intf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateIPv6Intf(IntfRef=intfref, AdminState=adminstate, IpAddr=ipaddr, LinkIp=linkip)
+		response, error = swtch.updateIPv6Intf(IntfRef=intfref, IpAddr=ipaddr, LinkIp=linkip, AdminState=adminstate)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -201,7 +201,7 @@ IPv6Intf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateIPv6IntfById(ObjectId=objectidAdminState=adminstate, IpAddr=ipaddr, LinkIp=linkip)
+		response, error = swtch.updateIPv6IntfById(ObjectId=objectidIpAddr=ipaddr, LinkIp=linkip, AdminState=adminstate)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

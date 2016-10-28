@@ -11,9 +11,6 @@ PolicyStmtState Object
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | Name **[KEY]**     | string        | PolicyStmtState                | N/A         | N/A              |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| PolicyList         | string        | List of policies using this    | N/A         | N/A              |
-|                    |               | policy statement               |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | Action             | string        | Action corresponding to this   | N/A         | N/A              |
 |                    |               | policy statement               |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
@@ -24,6 +21,9 @@ PolicyStmtState Object
 |                    |               | all/any of the conditions of   |             |                  |
 |                    |               | this policy statement          |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| PolicyList         | string        | List of policies using this    | N/A         | N/A              |
+|                    |               | policy statement               |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 
 
 
@@ -33,7 +33,7 @@ PolicyStmtState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/PolicyStmt
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/PolicyStmts?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/PolicyStmts?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/PolicyStmtState/<uuid>
 

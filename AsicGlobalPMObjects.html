@@ -32,8 +32,8 @@
   
     <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
         <link rel="up" title="FlexSwitch Performance Objects" href="PerformanceObjects.html"/>
-        <link rel="next" title="AsicGlobalPMState Object" href="AsicGlobalPMStateObjects.html"/>
-        <link rel="prev" title="EthernetPMState Object" href="EthernetPMStateObjects.html"/> 
+        <link rel="next" title="EthernetPMState Object" href="EthernetPMStateObjects.html"/>
+        <link rel="prev" title="EthernetPM Object" href="EthernetPMObjects.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -97,21 +97,21 @@
 <li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SystemObjects.html">System Objects</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="QsfpPMDataStateObjects.html">QsfpPMDataState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FanSensorPMDataStateObjects.html">FanSensorPMDataState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="VoltageSensorPMDataStateObjects.html">VoltageSensorPMDataState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="PowerConverterSensorPMDataStateObjects.html">PowerConverterSensorPMDataState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="TemperatureSensorPMDataStateObjects.html">TemperatureSensorPMDataState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="QsfpChannelPMDataStateObjects.html">QsfpChannelPMDataState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="EthernetPMObjects.html">EthernetPM Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="EthernetPMStateObjects.html">EthernetPMState Objects</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">AsicGlobalPM Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="EthernetPMObjects.html">EthernetPM Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">AsicGlobalPM Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#config-asicglobalpm"><em>config/AsicGlobalPM</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="AsicGlobalPMStateObjects.html">AsicGlobalPMState Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="EthernetPMStateObjects.html">EthernetPMState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AsicGlobalPMStateObjects.html">AsicGlobalPMState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QsfpPMDataStateObjects.html">QsfpPMDataState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VoltageSensorPMDataStateObjects.html">VoltageSensorPMDataState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FanSensorPMDataStateObjects.html">FanSensorPMDataState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PowerConverterSensorPMDataStateObjects.html">PowerConverterSensorPMDataState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QsfpChannelPMDataStateObjects.html">QsfpChannelPMDataState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TemperatureSensorPMDataStateObjects.html">TemperatureSensorPMDataState Object</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Faults and AlarmsObjects.html">Faults and Alarms Objects</a></li>
@@ -200,20 +200,6 @@
 <td>N/A</td>
 <td>Temperature</td>
 </tr>
-<tr class="row-even"><td>HighAlarmThreshold</td>
-<td>float64</td>
-<td>High alarm threshold value for
-this PM</td>
-<td>100000</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>LowAlarmThreshold</td>
-<td>float64</td>
-<td>Low alarm threshold value for
-this PM</td>
-<td>-100000</td>
-<td>N/A</td>
-</tr>
 <tr class="row-even"><td>LowWarnThreshold</td>
 <td>float64</td>
 <td>Low warning threshold value
@@ -221,25 +207,39 @@ for this PM</td>
 <td>-100000</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>PMClassCEnable</td>
+<tr class="row-odd"><td>PMClassAEnable</td>
 <td>bool</td>
 <td>Enable/Disable control for
-CLASS-C PM</td>
+CLASS-A PM</td>
 <td>true</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>HighWarnThreshold</td>
+<tr class="row-even"><td>HighAlarmThreshold</td>
+<td>float64</td>
+<td>High alarm threshold value for
+this PM</td>
+<td>100000</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>HighWarnThreshold</td>
 <td>float64</td>
 <td>High warning threshold value
 for this PM</td>
 <td>100000</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>PMClassAEnable</td>
+<tr class="row-even"><td>PMClassCEnable</td>
 <td>bool</td>
 <td>Enable/Disable control for
-CLASS-A PM</td>
+CLASS-C PM</td>
 <td>true</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>LowAlarmThreshold</td>
+<td>float64</td>
+<td>Low alarm threshold value for
+this PM</td>
+<td>-100000</td>
 <td>N/A</td>
 </tr>
 <tr class="row-even"><td>PMClassBEnable</td>
@@ -349,7 +349,7 @@ CLASS-B PM</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateAsicGlobalPM</span><span class="p">(</span><span class="n">ModuleId</span><span class="o">=</span><span class="n">moduleid</span><span class="p">,</span> <span class="n">Resource</span><span class="o">=</span><span class="n">resource</span><span class="p">,</span> <span class="n">HighAlarmThreshold</span><span class="o">=</span><span class="n">highalarmthreshold</span><span class="p">,</span> <span class="n">LowAlarmThreshold</span><span class="o">=</span><span class="n">lowalarmthreshold</span><span class="p">,</span> <span class="n">LowWarnThreshold</span><span class="o">=</span><span class="n">lowwarnthreshold</span><span class="p">,</span> <span class="n">PMClassCEnable</span><span class="o">=</span><span class="n">pmclasscenable</span><span class="p">,</span> <span class="n">HighWarnThreshold</span><span class="o">=</span><span class="n">highwarnthreshold</span><span class="p">,</span> <span class="n">PMClassAEnable</span><span class="o">=</span><span class="n">pmclassaenable</span><span class="p">,</span> <span class="n">PMClassBEnable</span><span class="o">=</span><span class="n">pmclassbenable</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateAsicGlobalPM</span><span class="p">(</span><span class="n">ModuleId</span><span class="o">=</span><span class="n">moduleid</span><span class="p">,</span> <span class="n">Resource</span><span class="o">=</span><span class="n">resource</span><span class="p">,</span> <span class="n">LowWarnThreshold</span><span class="o">=</span><span class="n">lowwarnthreshold</span><span class="p">,</span> <span class="n">PMClassAEnable</span><span class="o">=</span><span class="n">pmclassaenable</span><span class="p">,</span> <span class="n">HighAlarmThreshold</span><span class="o">=</span><span class="n">highalarmthreshold</span><span class="p">,</span> <span class="n">HighWarnThreshold</span><span class="o">=</span><span class="n">highwarnthreshold</span><span class="p">,</span> <span class="n">PMClassCEnable</span><span class="o">=</span><span class="n">pmclasscenable</span><span class="p">,</span> <span class="n">LowAlarmThreshold</span><span class="o">=</span><span class="n">lowalarmthreshold</span><span class="p">,</span> <span class="n">PMClassBEnable</span><span class="o">=</span><span class="n">pmclassbenable</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -367,7 +367,7 @@ CLASS-B PM</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateAsicGlobalPMById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidHighAlarmThreshold</span><span class="o">=</span><span class="n">highalarmthreshold</span><span class="p">,</span> <span class="n">LowAlarmThreshold</span><span class="o">=</span><span class="n">lowalarmthreshold</span><span class="p">,</span> <span class="n">LowWarnThreshold</span><span class="o">=</span><span class="n">lowwarnthreshold</span><span class="p">,</span> <span class="n">PMClassCEnable</span><span class="o">=</span><span class="n">pmclasscenable</span><span class="p">,</span> <span class="n">HighWarnThreshold</span><span class="o">=</span><span class="n">highwarnthreshold</span><span class="p">,</span> <span class="n">PMClassAEnable</span><span class="o">=</span><span class="n">pmclassaenable</span><span class="p">,</span> <span class="n">PMClassBEnable</span><span class="o">=</span><span class="n">pmclassbenable</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateAsicGlobalPMById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidLowWarnThreshold</span><span class="o">=</span><span class="n">lowwarnthreshold</span><span class="p">,</span> <span class="n">PMClassAEnable</span><span class="o">=</span><span class="n">pmclassaenable</span><span class="p">,</span> <span class="n">HighAlarmThreshold</span><span class="o">=</span><span class="n">highalarmthreshold</span><span class="p">,</span> <span class="n">HighWarnThreshold</span><span class="o">=</span><span class="n">highwarnthreshold</span><span class="p">,</span> <span class="n">PMClassCEnable</span><span class="o">=</span><span class="n">pmclasscenable</span><span class="p">,</span> <span class="n">LowAlarmThreshold</span><span class="o">=</span><span class="n">lowalarmthreshold</span><span class="p">,</span> <span class="n">PMClassBEnable</span><span class="o">=</span><span class="n">pmclassbenable</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -385,10 +385,10 @@ CLASS-B PM</td>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="AsicGlobalPMStateObjects.html" class="btn btn-neutral float-right" title="AsicGlobalPMState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="EthernetPMStateObjects.html" class="btn btn-neutral float-right" title="EthernetPMState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="EthernetPMStateObjects.html" class="btn btn-neutral" title="EthernetPMState Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="EthernetPMObjects.html" class="btn btn-neutral" title="EthernetPM Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

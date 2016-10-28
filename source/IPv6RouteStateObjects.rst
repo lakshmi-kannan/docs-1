@@ -11,14 +11,6 @@ IPv6RouteState Object
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
 | DestinationNw **[KEY]** | string            | IP address of the route        | N/A         | N/A              |
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
-| RouteUpdatedTime        | string            | Time when the route was last   | N/A         | N/A              |
-|                         |                   | updated                        |             |                  |
-+-------------------------+-------------------+--------------------------------+-------------+------------------+
-| IsNetworkReachable      | bool              | Indicates whether this network | N/A         | N/A              |
-|                         |                   | is reachable                   |             |                  |
-+-------------------------+-------------------+--------------------------------+-------------+------------------+
-| NextBestRoute           | NextBestRouteInfo |                                | N/A         | N/A              |
-+-------------------------+-------------------+--------------------------------+-------------+------------------+
 | NextHopList             | NextHopInfo       | List of next hops to reach     | N/A         | N/A              |
 |                         |                   | this network                   |             |                  |
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
@@ -29,6 +21,14 @@ IPv6RouteState Object
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
 | RouteCreatedTime        | string            | Time when the route was added  | N/A         | N/A              |
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
+| RouteUpdatedTime        | string            | Time when the route was last   | N/A         | N/A              |
+|                         |                   | updated                        |             |                  |
++-------------------------+-------------------+--------------------------------+-------------+------------------+
+| IsNetworkReachable      | bool              | Indicates whether this network | N/A         | N/A              |
+|                         |                   | is reachable                   |             |                  |
++-------------------------+-------------------+--------------------------------+-------------+------------------+
+| NextBestRoute           | NextBestRouteInfo |                                | N/A         | N/A              |
++-------------------------+-------------------+--------------------------------+-------------+------------------+
 
 
 
@@ -38,7 +38,7 @@ IPv6RouteState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/IPv6Route
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv6Routes?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv6Routes?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv6RouteState/<uuid>
 

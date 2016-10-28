@@ -12,14 +12,6 @@ DHCPRelayIntfState Object
 | IntfRef **[KEY]**  | string        | Interface for which state is   | N/A         | N/A              |
 |                    |               | required to be collected       |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| TotalDhcpClientRx  | int32         | Total number of client         | N/A         | N/A              |
-|                    |               | requests that came to relay    |             |                  |
-|                    |               | agent                          |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| TotalDhcpClientTx  | int32         | Total number of client         | N/A         | N/A              |
-|                    |               | responses send out by relay    |             |                  |
-|                    |               | agent                          |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | TotalDhcpServerRx  | int32         | Total number of server         | N/A         | N/A              |
 |                    |               | requests made by relay agent   |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
@@ -30,6 +22,14 @@ DHCPRelayIntfState Object
 | TotalDrops         | int32         | Total number of DHCP Packets   | N/A         | N/A              |
 |                    |               | dropped by relay agent         |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| TotalDhcpClientRx  | int32         | Total number of client         | N/A         | N/A              |
+|                    |               | requests that came to relay    |             |                  |
+|                    |               | agent                          |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| TotalDhcpClientTx  | int32         | Total number of client         | N/A         | N/A              |
+|                    |               | responses send out by relay    |             |                  |
+|                    |               | agent                          |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 
 
 
@@ -39,7 +39,7 @@ DHCPRelayIntfState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/DHCPRelayIntf
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/DHCPRelayIntfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/DHCPRelayIntfs?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/DHCPRelayIntfState/<uuid>
 

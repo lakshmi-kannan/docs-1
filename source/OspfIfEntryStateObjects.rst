@@ -21,16 +21,10 @@ OspfIfEntryState Object
 |                            |               | ifIndex for interfaces having  |             |                                |
 |                            |               | no IP address.                 |             |                                |
 +----------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfBackupDesignatedRouterId | string        | The Router ID of the backup    | N/A         | N/A                            |
-|                            |               | designated router.             |             |                                |
-+----------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfDesignatedRouter         | string        | The IP address of the          | N/A         | N/A                            |
+| IfBackupDesignatedRouter   | string        | The IP address of the backup   | N/A         | N/A                            |
 |                            |               | designated router.             |             |                                |
 +----------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | IfDesignatedRouterId       | string        | The Router ID of the           | N/A         | N/A                            |
-|                            |               | designated router.             |             |                                |
-+----------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfBackupDesignatedRouter   | string        | The IP address of the backup   | N/A         | N/A                            |
 |                            |               | designated router.             |             |                                |
 +----------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | IfEvents                   | uint32        | The number of times this       | N/A         | N/A                            |
@@ -41,16 +35,22 @@ OspfIfEntryState Object
 |                            |               | occur at re-initialization of  |             |                                |
 |                            |               | the management system          |             |                                |
 +----------------------------+---------------+--------------------------------+-------------+--------------------------------+
-| IfLsaCount                 | uint32        | The total number of link-local | N/A         | N/A                            |
-|                            |               | link state advertisements in   |             |                                |
-|                            |               | this interface's link-local    |             |                                |
-|                            |               | link state database.           |             |                                |
-+----------------------------+---------------+--------------------------------+-------------+--------------------------------+
 | IfState                    | int32         | The OSPF Interface State.      | N/A         | otherDesignatedRouter(7),      |
 |                            |               |                                |             | backupDesignatedRouter(6),     |
 |                            |               |                                |             | loopback(2), down(1),          |
 |                            |               |                                |             | designatedRouter(5),           |
 |                            |               |                                |             | waiting(3), pointToPoint(4)    |
++----------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| IfBackupDesignatedRouterId | string        | The Router ID of the backup    | N/A         | N/A                            |
+|                            |               | designated router.             |             |                                |
++----------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| IfDesignatedRouter         | string        | The IP address of the          | N/A         | N/A                            |
+|                            |               | designated router.             |             |                                |
++----------------------------+---------------+--------------------------------+-------------+--------------------------------+
+| IfLsaCount                 | uint32        | The total number of link-local | N/A         | N/A                            |
+|                            |               | link state advertisements in   |             |                                |
+|                            |               | this interface's link-local    |             |                                |
+|                            |               | link state database.           |             |                                |
 +----------------------------+---------------+--------------------------------+-------------+--------------------------------+
 
 
@@ -61,7 +61,7 @@ OspfIfEntryState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/OspfIfEntry
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/OspfIfEntrys?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/OspfIfEntrys?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/OspfIfEntryState/<uuid>
 

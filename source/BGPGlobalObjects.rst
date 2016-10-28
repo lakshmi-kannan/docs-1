@@ -11,19 +11,7 @@ BGPGlobal Object
 +---------------------+------------------+--------------------------------+-------------+------------------+
 | Vrf **[KEY]**       | string           | VRF id for BGP global config   | default     | N/A              |
 +---------------------+------------------+--------------------------------+-------------+------------------+
-| ASNum               | string           | Local AS for BGP global        |             | N/A              |
-|                     |                  | config. Both AsPlain and AsDot |             |                  |
-|                     |                  | formats are supported.         |             |                  |
-+---------------------+------------------+--------------------------------+-------------+------------------+
 | Disabled            | bool             | Enable/Disable BGP globally    | false       | N/A              |
-+---------------------+------------------+--------------------------------+-------------+------------------+
-| IBGPMaxPaths        | uint32           | Max ECMP paths from Internal   |           0 | N/A              |
-|                     |                  | BGP neighbors                  |             |                  |
-+---------------------+------------------+--------------------------------+-------------+------------------+
-| RouterId            | string           | Router id for BGP global       | 0.0.0.0     | N/A              |
-|                     |                  | config                         |             |                  |
-+---------------------+------------------+--------------------------------+-------------+------------------+
-| UseMultiplePaths    | bool             | Enable/disable ECMP for BGP    | false       | N/A              |
 +---------------------+------------------+--------------------------------+-------------+------------------+
 | EBGPAllowMultipleAS | bool             | Enable/diable ECMP paths from  | false       | N/A              |
 |                     |                  | multiple ASes                  |             |                  |
@@ -34,6 +22,18 @@ BGPGlobal Object
 | Redistribution      | SourcePolicyList | Provide redistribution         | []          | N/A              |
 |                     |                  | policies for BGP from          |             |                  |
 |                     |                  | different sources              |             |                  |
++---------------------+------------------+--------------------------------+-------------+------------------+
+| RouterId            | string           | Router id for BGP global       | 0.0.0.0     | N/A              |
+|                     |                  | config                         |             |                  |
++---------------------+------------------+--------------------------------+-------------+------------------+
+| UseMultiplePaths    | bool             | Enable/disable ECMP for BGP    | false       | N/A              |
++---------------------+------------------+--------------------------------+-------------+------------------+
+| ASNum               | string           | Local AS for BGP global        |             | N/A              |
+|                     |                  | config. Both AsPlain and AsDot |             |                  |
+|                     |                  | formats are supported.         |             |                  |
++---------------------+------------------+--------------------------------+-------------+------------------+
+| IBGPMaxPaths        | uint32           | Max ECMP paths from Internal   |           0 | N/A              |
+|                     |                  | BGP neighbors                  |             |                  |
 +---------------------+------------------+--------------------------------+-------------+------------------+
 
 
@@ -131,7 +131,7 @@ BGPGlobal Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateBGPGlobal(Vrf=vrf, ASNum=asnum, Disabled=disabled, IBGPMaxPaths=ibgpmaxpaths, RouterId=routerid, UseMultiplePaths=usemultiplepaths, EBGPAllowMultipleAS=ebgpallowmultipleas, EBGPMaxPaths=ebgpmaxpaths, Redistribution=redistribution)
+		response, error = swtch.updateBGPGlobal(Vrf=vrf, Disabled=disabled, EBGPAllowMultipleAS=ebgpallowmultipleas, EBGPMaxPaths=ebgpmaxpaths, Redistribution=redistribution, RouterId=routerid, UseMultiplePaths=usemultiplepaths, ASNum=asnum, IBGPMaxPaths=ibgpmaxpaths)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -150,7 +150,7 @@ BGPGlobal Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateBGPGlobalById(ObjectId=objectidASNum=asnum, Disabled=disabled, IBGPMaxPaths=ibgpmaxpaths, RouterId=routerid, UseMultiplePaths=usemultiplepaths, EBGPAllowMultipleAS=ebgpallowmultipleas, EBGPMaxPaths=ebgpmaxpaths, Redistribution=redistribution)
+		response, error = swtch.updateBGPGlobalById(ObjectId=objectidDisabled=disabled, EBGPAllowMultipleAS=ebgpallowmultipleas, EBGPMaxPaths=ebgpmaxpaths, Redistribution=redistribution, RouterId=routerid, UseMultiplePaths=usemultiplepaths, ASNum=asnum, IBGPMaxPaths=ibgpmaxpaths)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

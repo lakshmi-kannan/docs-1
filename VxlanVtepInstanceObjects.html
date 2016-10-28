@@ -94,17 +94,17 @@
 <li class="toctree-l2"><a class="reference internal" href="PlatformObjects.html">Platform Objects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="L2Objects.html">L2 Objects</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="VxlanInstanceObjects.html">VxlanInstance Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="VxlanGlobalStateObjects.html">VxlanGlobalState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="VxlanInstanceStateObjects.html">VxlanInstanceState Objects</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">VxlanVtepInstance Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="VxlanGlobalObjects.html">VxlanGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VxlanGlobalStateObjects.html">VxlanGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VxlanInstanceObjects.html">VxlanInstance Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VxlanInstanceStateObjects.html">VxlanInstanceState Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VxlanVtepInstance Object</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#config-vxlanvtepinstance"><em>config/VxlanVtepInstance</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="VxlanVtepInstanceStateObjects.html">VxlanVtepInstanceState Objects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="VxlanGlobalObjects.html">VxlanGlobal Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VxlanVtepInstanceStateObjects.html">VxlanVtepInstanceState Object</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
@@ -207,6 +207,49 @@ static VxLAN tunnel</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
+<tr class="row-odd"><td>InnerVlanHandlingMode</td>
+<td>int32</td>
+<td>The inner vlan tag handling
+mode.</td>
+<td>0</td>
+<td>DISCARD_INNER_VLAN(0),
+NO_DISCARD_INNER_VLAN(1)</td>
+</tr>
+<tr class="row-even"><td>Mtu</td>
+<td>uint32</td>
+<td>Set the MTU to be applied to
+all VTEP within this VxLAN</td>
+<td>1450</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>TOS</td>
+<td>uint16</td>
+<td>Type of Service</td>
+<td>0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>VlanId</td>
+<td>uint16</td>
+<td>Vlan Id to encapsulate with
+the vtep tunnel ethernet
+header</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>AdminState</td>
+<td>string</td>
+<td>Administrative state of VXLAN
+MAC/IP layer</td>
+<td>DOWN</td>
+<td>UP, DOWN</td>
+</tr>
+<tr class="row-even"><td>DstUDP</td>
+<td>uint16</td>
+<td>vxlan udp port.  Deafult is
+the iana default udp port</td>
+<td>4789</td>
+<td>N/A</td>
+</tr>
 <tr class="row-odd"><td>IntfRef</td>
 <td>string</td>
 <td>Source interface where the
@@ -219,60 +262,17 @@ attribute.</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>Mtu</td>
-<td>uint32</td>
-<td>Set the MTU to be applied to
-all VTEP within this VxLAN</td>
-<td>1550</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>SrcIp</td>
+<tr class="row-even"><td>SrcIp</td>
 <td>string</td>
 <td>Source IP address for the
 VxLAN tunnel</td>
 <td>0.0.0.0</td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>TTL</td>
+<tr class="row-odd"><td>TTL</td>
 <td>uint16</td>
 <td>TTL of the Vxlan tunnel</td>
 <td>64</td>
-<td>N/A</td>
-</tr>
-<tr class="row-odd"><td>VlanId</td>
-<td>uint16</td>
-<td>Vlan Id to encapsulate with
-the vtep tunnel ethernet
-header</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>AdminState</td>
-<td>string</td>
-<td>Administrative state of VXLAN
-MAC/IP layer</td>
-<td>DOWN</td>
-<td>UP, DOWN</td>
-</tr>
-<tr class="row-odd"><td>DstUDP</td>
-<td>uint16</td>
-<td>vxlan udp port.  Deafult is
-the iana default udp port</td>
-<td>4789</td>
-<td>N/A</td>
-</tr>
-<tr class="row-even"><td>InnerVlanHandlingMode</td>
-<td>int32</td>
-<td>The inner vlan tag handling
-mode.</td>
-<td>0</td>
-<td>DISCARD_INNER_VLAN(0),
-NO_DISCARD_INNER_VLAN(1)</td>
-</tr>
-<tr class="row-odd"><td>TOS</td>
-<td>uint16</td>
-<td>Type of Service</td>
-<td>0</td>
 <td>N/A</td>
 </tr>
 </tbody>
@@ -296,7 +296,7 @@ NO_DISCARD_INNER_VLAN(1)</td>
 </li>
 <li><dl class="first docutils">
 <dt>GET ALL</dt>
-<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/VxlanVtepInstances">http://device-management-IP:8080/public/v1/config/VxlanVtepInstances</a>?CurrentMarker=&lt;x&gt;&amp;Count=&lt;y&gt;</p>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/VxlanVtepInstances">http://device-management-IP:8080/public/v1/config/VxlanVtepInstances</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
 </dd>
 </dl>
 </li>
@@ -399,7 +399,7 @@ NO_DISCARD_INNER_VLAN(1)</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">createVxlanVtepInstance</span><span class="p">(</span><span class="n">Vni</span><span class="o">=</span><span class="n">vni</span><span class="p">,</span> <span class="n">Intf</span><span class="o">=</span><span class="n">intf</span><span class="p">,</span> <span class="n">DstIp</span><span class="o">=</span><span class="n">dstip</span><span class="p">,</span> <span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">Mtu</span><span class="o">=</span><span class="n">mtu</span><span class="p">,</span> <span class="n">SrcIp</span><span class="o">=</span><span class="n">srcip</span><span class="p">,</span> <span class="n">TTL</span><span class="o">=</span><span class="n">ttl</span><span class="p">,</span> <span class="n">VlanId</span><span class="o">=</span><span class="n">vlanid</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">DstUDP</span><span class="o">=</span><span class="n">dstudp</span><span class="p">,</span> <span class="n">InnerVlanHandlingMode</span><span class="o">=</span><span class="n">innervlanhandlingmode</span><span class="p">,</span> <span class="n">TOS</span><span class="o">=</span><span class="n">tos</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">createVxlanVtepInstance</span><span class="p">(</span><span class="n">Vni</span><span class="o">=</span><span class="n">vni</span><span class="p">,</span> <span class="n">Intf</span><span class="o">=</span><span class="n">intf</span><span class="p">,</span> <span class="n">DstIp</span><span class="o">=</span><span class="n">dstip</span><span class="p">,</span> <span class="n">InnerVlanHandlingMode</span><span class="o">=</span><span class="n">innervlanhandlingmode</span><span class="p">,</span> <span class="n">Mtu</span><span class="o">=</span><span class="n">mtu</span><span class="p">,</span> <span class="n">TOS</span><span class="o">=</span><span class="n">tos</span><span class="p">,</span> <span class="n">VlanId</span><span class="o">=</span><span class="n">vlanid</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">DstUDP</span><span class="o">=</span><span class="n">dstudp</span><span class="p">,</span> <span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">SrcIp</span><span class="o">=</span><span class="n">srcip</span><span class="p">,</span> <span class="n">TTL</span><span class="o">=</span><span class="n">ttl</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -453,7 +453,7 @@ NO_DISCARD_INNER_VLAN(1)</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateVxlanVtepInstance</span><span class="p">(</span><span class="n">Vni</span><span class="o">=</span><span class="n">vni</span><span class="p">,</span> <span class="n">Intf</span><span class="o">=</span><span class="n">intf</span><span class="p">,</span> <span class="n">DstIp</span><span class="o">=</span><span class="n">dstip</span><span class="p">,</span> <span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">Mtu</span><span class="o">=</span><span class="n">mtu</span><span class="p">,</span> <span class="n">SrcIp</span><span class="o">=</span><span class="n">srcip</span><span class="p">,</span> <span class="n">TTL</span><span class="o">=</span><span class="n">ttl</span><span class="p">,</span> <span class="n">VlanId</span><span class="o">=</span><span class="n">vlanid</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">DstUDP</span><span class="o">=</span><span class="n">dstudp</span><span class="p">,</span> <span class="n">InnerVlanHandlingMode</span><span class="o">=</span><span class="n">innervlanhandlingmode</span><span class="p">,</span> <span class="n">TOS</span><span class="o">=</span><span class="n">tos</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateVxlanVtepInstance</span><span class="p">(</span><span class="n">Vni</span><span class="o">=</span><span class="n">vni</span><span class="p">,</span> <span class="n">Intf</span><span class="o">=</span><span class="n">intf</span><span class="p">,</span> <span class="n">DstIp</span><span class="o">=</span><span class="n">dstip</span><span class="p">,</span> <span class="n">InnerVlanHandlingMode</span><span class="o">=</span><span class="n">innervlanhandlingmode</span><span class="p">,</span> <span class="n">Mtu</span><span class="o">=</span><span class="n">mtu</span><span class="p">,</span> <span class="n">TOS</span><span class="o">=</span><span class="n">tos</span><span class="p">,</span> <span class="n">VlanId</span><span class="o">=</span><span class="n">vlanid</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">DstUDP</span><span class="o">=</span><span class="n">dstudp</span><span class="p">,</span> <span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">SrcIp</span><span class="o">=</span><span class="n">srcip</span><span class="p">,</span> <span class="n">TTL</span><span class="o">=</span><span class="n">ttl</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>
@@ -471,7 +471,7 @@ NO_DISCARD_INNER_VLAN(1)</td>
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
         <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
         <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
-        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateVxlanVtepInstanceById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidDstIp</span><span class="o">=</span><span class="n">dstip</span><span class="p">,</span> <span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">Mtu</span><span class="o">=</span><span class="n">mtu</span><span class="p">,</span> <span class="n">SrcIp</span><span class="o">=</span><span class="n">srcip</span><span class="p">,</span> <span class="n">TTL</span><span class="o">=</span><span class="n">ttl</span><span class="p">,</span> <span class="n">VlanId</span><span class="o">=</span><span class="n">vlanid</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">DstUDP</span><span class="o">=</span><span class="n">dstudp</span><span class="p">,</span> <span class="n">InnerVlanHandlingMode</span><span class="o">=</span><span class="n">innervlanhandlingmode</span><span class="p">,</span> <span class="n">TOS</span><span class="o">=</span><span class="n">tos</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateVxlanVtepInstanceById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidDstIp</span><span class="o">=</span><span class="n">dstip</span><span class="p">,</span> <span class="n">InnerVlanHandlingMode</span><span class="o">=</span><span class="n">innervlanhandlingmode</span><span class="p">,</span> <span class="n">Mtu</span><span class="o">=</span><span class="n">mtu</span><span class="p">,</span> <span class="n">TOS</span><span class="o">=</span><span class="n">tos</span><span class="p">,</span> <span class="n">VlanId</span><span class="o">=</span><span class="n">vlanid</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">DstUDP</span><span class="o">=</span><span class="n">dstudp</span><span class="p">,</span> <span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">SrcIp</span><span class="o">=</span><span class="n">srcip</span><span class="p">,</span> <span class="n">TTL</span><span class="o">=</span><span class="n">ttl</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
                 <span class="nb">print</span> <span class="n">error</span>

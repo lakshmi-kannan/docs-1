@@ -15,6 +15,9 @@ VrrpIntf Object
 | VRID **[KEY]**        | int32         | Virtual Router's Unique        | N/A         | N/A              |
 |                       |               | Identifier                     |             |                  |
 +-----------------------+---------------+--------------------------------+-------------+------------------+
+| AdvertisementInterval | int32         | Time interval between          |           1 | N/A              |
+|                       |               | ADVERTISEMENTS                 |             |                  |
++-----------------------+---------------+--------------------------------+-------------+------------------+
 | PreemptMode           | bool          | Controls whether a (starting   | true        | N/A              |
 |                       |               | or restarting) higher-priority |             |                  |
 |                       |               | Backup router preempts a       |             |                  |
@@ -32,9 +35,6 @@ VrrpIntf Object
 |                       |               | address as its own if it is    |             |                  |
 |                       |               | not the IPvX address owner.    |             |                  |
 +-----------------------+---------------+--------------------------------+-------------+------------------+
-| AdvertisementInterval | int32         | Time interval between          |           1 | N/A              |
-|                       |               | ADVERTISEMENTS                 |             |                  |
-+-----------------------+---------------+--------------------------------+-------------+------------------+
 
 
 
@@ -46,7 +46,7 @@ VrrpIntf Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/VrrpIntf/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/VrrpIntfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/VrrpIntfs?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/VrrpIntf
 	- DELETE By Key
@@ -137,7 +137,7 @@ VrrpIntf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createVrrpIntf(IfIndex=ifindex, VRID=vrid, PreemptMode=preemptmode, Priority=priority, VirtualIPv4Addr=virtualipv4addr, AcceptMode=acceptmode, AdvertisementInterval=advertisementinterval)
+		response, error = swtch.createVrrpIntf(IfIndex=ifindex, VRID=vrid, AdvertisementInterval=advertisementinterval, PreemptMode=preemptmode, Priority=priority, VirtualIPv4Addr=virtualipv4addr, AcceptMode=acceptmode)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -194,7 +194,7 @@ VrrpIntf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateVrrpIntf(IfIndex=ifindex, VRID=vrid, PreemptMode=preemptmode, Priority=priority, VirtualIPv4Addr=virtualipv4addr, AcceptMode=acceptmode, AdvertisementInterval=advertisementinterval)
+		response, error = swtch.updateVrrpIntf(IfIndex=ifindex, VRID=vrid, AdvertisementInterval=advertisementinterval, PreemptMode=preemptmode, Priority=priority, VirtualIPv4Addr=virtualipv4addr, AcceptMode=acceptmode)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -213,7 +213,7 @@ VrrpIntf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateVrrpIntfById(ObjectId=objectidPreemptMode=preemptmode, Priority=priority, VirtualIPv4Addr=virtualipv4addr, AcceptMode=acceptmode, AdvertisementInterval=advertisementinterval)
+		response, error = swtch.updateVrrpIntfById(ObjectId=objectidAdvertisementInterval=advertisementinterval, PreemptMode=preemptmode, Priority=priority, VirtualIPv4Addr=virtualipv4addr, AcceptMode=acceptmode)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

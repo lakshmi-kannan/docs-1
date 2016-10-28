@@ -18,38 +18,6 @@ DistributedRelay Object
 |                           |               | objects of the containing      |                   |                  |
 |                           |               | object.                        |                   |                  |
 +---------------------------+---------------+--------------------------------+-------------------+------------------+
-| NeighborGatewayAlgorithm  | string        | TThis object identifies        | 00-80-C2-01       | N/A              |
-|                           |               | the value for the Gateway      |                   |                  |
-|                           |               | algorithm of the Neighbor      |                   |                  |
-|                           |               | Portal System                  |                   |                  |
-+---------------------------+---------------+--------------------------------+-------------------+------------------+
-| PortalAddress             | string        | A read-write identifier        | N/A               | N/A              |
-|                           |               | of a particular Portal.        |                   |                  |
-|                           |               | Portal-Addr has to be unique   |                   |                  |
-|                           |               | among at least all of the      |                   |                  |
-|                           |               | potential Portal Systems to    |                   |                  |
-|                           |               | which a given Portal System    |                   |                  |
-|                           |               | might be attached via an       |                   |                  |
-|                           |               | IPL Intra-Portal Link. Also    |                   |                  |
-|                           |               | used as the Actors System      |                   |                  |
-|                           |               | ID (6.3.2) for the emulated    |                   |                  |
-|                           |               | system                         |                   |                  |
-+---------------------------+---------------+--------------------------------+-------------------+------------------+
-| PortalPriority            | uint16        | A 2octet read-write value      |             32768 | N/A              |
-|                           |               | indicating the priority value  |                   |                  |
-|                           |               | associated with the Portals    |                   |                  |
-|                           |               | System ID. Also used as the    |                   |                  |
-|                           |               | Actors System Priority (6.3.2) |                   |                  |
-|                           |               | for the emulated system.       |                   |                  |
-+---------------------------+---------------+--------------------------------+-------------------+------------------+
-| ThreePortalSystem         | bool          | A read-write Boolean value     | false             | N/A              |
-|                           |               | indicating whether this Portal |                   |                  |
-|                           |               | System is part of a Portal     |                   |                  |
-|                           |               | consisting of three Portal     |                   |                  |
-|                           |               | Systems or not. Value 1 stands |                   |                  |
-|                           |               | for a Portal of three Portal   |                   |                  |
-|                           |               | Systems                        |                   |                  |
-+---------------------------+---------------+--------------------------------+-------------------+------------------+
 | EncapMethod               | string        | This managed object is         | 00-80-C2-01       | N/A              |
 |                           |               | applicable only when Network / |                   |                  |
 |                           |               | IPL sharing by time (9.3.2.1)  |                   |                  |
@@ -101,10 +69,47 @@ DistributedRelay Object
 |                           |               | Port assigned to this          |                   |                  |
 |                           |               | Distributed Relay              |                   |                  |
 +---------------------------+---------------+--------------------------------+-------------------+------------------+
+| NeighborGatewayAlgorithm  | string        | TThis object identifies        | 00-80-C2-01       | N/A              |
+|                           |               | the value for the Gateway      |                   |                  |
+|                           |               | algorithm of the Neighbor      |                   |                  |
+|                           |               | Portal System                  |                   |                  |
++---------------------------+---------------+--------------------------------+-------------------+------------------+
+| NeighborPortAlgorithm     | string        | This object identifies the     | 00-80-C2-01       | N/A              |
+|                           |               | value for the Port Algorithm   |                   |                  |
+|                           |               | of the Neighbor Portal System  |                   |                  |
++---------------------------+---------------+--------------------------------+-------------------+------------------+
+| PortalPriority            | uint16        | A 2octet read-write value      |             32768 | N/A              |
+|                           |               | indicating the priority value  |                   |                  |
+|                           |               | associated with the Portals    |                   |                  |
+|                           |               | System ID. Also used as the    |                   |                  |
+|                           |               | Actors System Priority (6.3.2) |                   |                  |
+|                           |               | for the emulated system.       |                   |                  |
++---------------------------+---------------+--------------------------------+-------------------+------------------+
+| IntfReflist               | string        | Read-write list of the         | N/A               | N/A              |
+|                           |               | Interface Identifiers of the   |                   |                  |
+|                           |               | Ports to the Intra-Portal      |                   |                  |
+|                           |               | Links assigned to this         |                   |                  |
+|                           |               | Distributed Relay. Each        |                   |                  |
+|                           |               | Interface Identifier           |                   |                  |
++---------------------------+---------------+--------------------------------+-------------------+------------------+
 | IntraPortalPortProtocolDA | string        | A 6-octet read-write MAC       | 01-80-C2-00-00-03 | N/A              |
 |                           |               | Address value specifying the   |                   |                  |
 |                           |               | DA to be used when sending     |                   |                  |
 |                           |               | DRCPDUs                        |                   |                  |
++---------------------------+---------------+--------------------------------+-------------------+------------------+
+| NeighborAdminDRCPState    | string        | A string of 8 bits             |          00000000 | N/A              |
++---------------------------+---------------+--------------------------------+-------------------+------------------+
+| PortalAddress             | string        | A read-write identifier        | N/A               | N/A              |
+|                           |               | of a particular Portal.        |                   |                  |
+|                           |               | Portal-Addr has to be unique   |                   |                  |
+|                           |               | among at least all of the      |                   |                  |
+|                           |               | potential Portal Systems to    |                   |                  |
+|                           |               | which a given Portal System    |                   |                  |
+|                           |               | might be attached via an       |                   |                  |
+|                           |               | IPL Intra-Portal Link. Also    |                   |                  |
+|                           |               | used as the Actors System      |                   |                  |
+|                           |               | ID (6.3.2) for the emulated    |                   |                  |
+|                           |               | system                         |                   |                  |
 +---------------------------+---------------+--------------------------------+-------------------+------------------+
 | PortalSystemNumber        | uint8         | A read-write identifier of     | N/A               | N/A              |
 |                           |               | this particular Portal System  |                   |                  |
@@ -116,18 +121,13 @@ DistributedRelay Object
 |                           |               | with the same aDrniPortalAddr  |                   |                  |
 |                           |               | (7.4.1.1.4)                    |                   |                  |
 +---------------------------+---------------+--------------------------------+-------------------+------------------+
-| IntfReflist               | string        | Read-write list of the         | N/A               | N/A              |
-|                           |               | Interface Identifiers of the   |                   |                  |
-|                           |               | Ports to the Intra-Portal      |                   |                  |
-|                           |               | Links assigned to this         |                   |                  |
-|                           |               | Distributed Relay. Each        |                   |                  |
-|                           |               | Interface Identifier           |                   |                  |
-+---------------------------+---------------+--------------------------------+-------------------+------------------+
-| NeighborAdminDRCPState    | string        | A string of 8 bits             |          00000000 | N/A              |
-+---------------------------+---------------+--------------------------------+-------------------+------------------+
-| NeighborPortAlgorithm     | string        | This object identifies the     | 00-80-C2-01       | N/A              |
-|                           |               | value for the Port Algorithm   |                   |                  |
-|                           |               | of the Neighbor Portal System  |                   |                  |
+| ThreePortalSystem         | bool          | A read-write Boolean value     | false             | N/A              |
+|                           |               | indicating whether this Portal |                   |                  |
+|                           |               | System is part of a Portal     |                   |                  |
+|                           |               | consisting of three Portal     |                   |                  |
+|                           |               | Systems or not. Value 1 stands |                   |                  |
+|                           |               | for a Portal of three Portal   |                   |                  |
+|                           |               | Systems                        |                   |                  |
 +---------------------------+---------------+--------------------------------+-------------------+------------------+
 
 
@@ -140,7 +140,7 @@ DistributedRelay Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/DistributedRelay/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/DistributedRelays?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/DistributedRelays?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/DistributedRelay
 	- DELETE By Key
@@ -231,7 +231,7 @@ DistributedRelay Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createDistributedRelay(DrniName=drniname, NeighborGatewayAlgorithm=neighborgatewayalgorithm, PortalAddress=portaladdress, PortalPriority=portalpriority, ThreePortalSystem=threeportalsystem, EncapMethod=encapmethod, GatewayAlgorithm=gatewayalgorithm, IntfRef=intfref, IntraPortalPortProtocolDA=intraportalportprotocolda, PortalSystemNumber=portalsystemnumber, IntfReflist=intfreflist, NeighborAdminDRCPState=neighboradmindrcpstate, NeighborPortAlgorithm=neighborportalgorithm)
+		response, error = swtch.createDistributedRelay(DrniName=drniname, EncapMethod=encapmethod, GatewayAlgorithm=gatewayalgorithm, IntfRef=intfref, NeighborGatewayAlgorithm=neighborgatewayalgorithm, NeighborPortAlgorithm=neighborportalgorithm, PortalPriority=portalpriority, IntfReflist=intfreflist, IntraPortalPortProtocolDA=intraportalportprotocolda, NeighborAdminDRCPState=neighboradmindrcpstate, PortalAddress=portaladdress, PortalSystemNumber=portalsystemnumber, ThreePortalSystem=threeportalsystem)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -288,7 +288,7 @@ DistributedRelay Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateDistributedRelay(DrniName=drniname, NeighborGatewayAlgorithm=neighborgatewayalgorithm, PortalAddress=portaladdress, PortalPriority=portalpriority, ThreePortalSystem=threeportalsystem, EncapMethod=encapmethod, GatewayAlgorithm=gatewayalgorithm, IntfRef=intfref, IntraPortalPortProtocolDA=intraportalportprotocolda, PortalSystemNumber=portalsystemnumber, IntfReflist=intfreflist, NeighborAdminDRCPState=neighboradmindrcpstate, NeighborPortAlgorithm=neighborportalgorithm)
+		response, error = swtch.updateDistributedRelay(DrniName=drniname, EncapMethod=encapmethod, GatewayAlgorithm=gatewayalgorithm, IntfRef=intfref, NeighborGatewayAlgorithm=neighborgatewayalgorithm, NeighborPortAlgorithm=neighborportalgorithm, PortalPriority=portalpriority, IntfReflist=intfreflist, IntraPortalPortProtocolDA=intraportalportprotocolda, NeighborAdminDRCPState=neighboradmindrcpstate, PortalAddress=portaladdress, PortalSystemNumber=portalsystemnumber, ThreePortalSystem=threeportalsystem)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -307,7 +307,7 @@ DistributedRelay Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateDistributedRelayById(ObjectId=objectidNeighborGatewayAlgorithm=neighborgatewayalgorithm, PortalAddress=portaladdress, PortalPriority=portalpriority, ThreePortalSystem=threeportalsystem, EncapMethod=encapmethod, GatewayAlgorithm=gatewayalgorithm, IntfRef=intfref, IntraPortalPortProtocolDA=intraportalportprotocolda, PortalSystemNumber=portalsystemnumber, IntfReflist=intfreflist, NeighborAdminDRCPState=neighboradmindrcpstate, NeighborPortAlgorithm=neighborportalgorithm)
+		response, error = swtch.updateDistributedRelayById(ObjectId=objectidEncapMethod=encapmethod, GatewayAlgorithm=gatewayalgorithm, IntfRef=intfref, NeighborGatewayAlgorithm=neighborgatewayalgorithm, NeighborPortAlgorithm=neighborportalgorithm, PortalPriority=portalpriority, IntfReflist=intfreflist, IntraPortalPortProtocolDA=intraportalportprotocolda, NeighborAdminDRCPState=neighboradmindrcpstate, PortalAddress=portaladdress, PortalSystemNumber=portalsystemnumber, ThreePortalSystem=threeportalsystem)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

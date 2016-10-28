@@ -11,23 +11,23 @@ VoltageSensor Object
 +------------------------+---------------+--------------------------------+-------------+------------------+
 | Name **[KEY]**         | string        | Voltage Sensor Name            | N/A         | N/A              |
 +------------------------+---------------+--------------------------------+-------------+------------------+
-| HigherAlarmThreshold   | float64       | Higher Alarm Threshold for TCA | N/A         | N/A              |
-+------------------------+---------------+--------------------------------+-------------+------------------+
 | LowerAlarmThreshold    | float64       | Lower Alarm Threshold for TCA  | N/A         | N/A              |
 +------------------------+---------------+--------------------------------+-------------+------------------+
 | LowerWarningThreshold  | float64       | Lower Warning Threshold for    | N/A         | N/A              |
 |                        |               | TCA                            |             |                  |
++------------------------+---------------+--------------------------------+-------------+------------------+
+| HigherAlarmThreshold   | float64       | Higher Alarm Threshold for TCA | N/A         | N/A              |
++------------------------+---------------+--------------------------------+-------------+------------------+
+| HigherWarningThreshold | float64       | Higher Warning Threshold for   | N/A         | N/A              |
+|                        |               | TCA                            |             |                  |
++------------------------+---------------+--------------------------------+-------------+------------------+
+| PMClassAAdminState     | string        | PM Class-A Admin State         | Enable      | Enable, Disable  |
 +------------------------+---------------+--------------------------------+-------------+------------------+
 | PMClassBAdminState     | string        | PM Class-B Admin State         | Enable      | Enable, Disable  |
 +------------------------+---------------+--------------------------------+-------------+------------------+
 | PMClassCAdminState     | string        | PM Class-C Admin State         | Enable      | Enable, Disable  |
 +------------------------+---------------+--------------------------------+-------------+------------------+
 | AdminState             | string        | Enable/Disable                 | Enable      | Enable, Disable  |
-+------------------------+---------------+--------------------------------+-------------+------------------+
-| HigherWarningThreshold | float64       | Higher Warning Threshold for   | N/A         | N/A              |
-|                        |               | TCA                            |             |                  |
-+------------------------+---------------+--------------------------------+-------------+------------------+
-| PMClassAAdminState     | string        | PM Class-A Admin State         | Enable      | Enable, Disable  |
 +------------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -40,7 +40,7 @@ VoltageSensor Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/VoltageSensor/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/VoltageSensors?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/VoltageSensors?CurrentMarker=<x>\\&Count=<y>
 	- UPDATE(PATCH) By Key
 		 curl -X PATCH -H 'Content-Type: application/json' -d '{<Model Object as json data>}'  http://device-management-IP:8080/public/v1/config/VoltageSensor
 	- UPDATE(PATCH) By ID
@@ -127,7 +127,7 @@ VoltageSensor Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateVoltageSensor(Name=name, HigherAlarmThreshold=higheralarmthreshold, LowerAlarmThreshold=loweralarmthreshold, LowerWarningThreshold=lowerwarningthreshold, PMClassBAdminState=pmclassbadminstate, PMClassCAdminState=pmclasscadminstate, AdminState=adminstate, HigherWarningThreshold=higherwarningthreshold, PMClassAAdminState=pmclassaadminstate)
+		response, error = swtch.updateVoltageSensor(Name=name, LowerAlarmThreshold=loweralarmthreshold, LowerWarningThreshold=lowerwarningthreshold, HigherAlarmThreshold=higheralarmthreshold, HigherWarningThreshold=higherwarningthreshold, PMClassAAdminState=pmclassaadminstate, PMClassBAdminState=pmclassbadminstate, PMClassCAdminState=pmclasscadminstate, AdminState=adminstate)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -146,7 +146,7 @@ VoltageSensor Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateVoltageSensorById(ObjectId=objectidHigherAlarmThreshold=higheralarmthreshold, LowerAlarmThreshold=loweralarmthreshold, LowerWarningThreshold=lowerwarningthreshold, PMClassBAdminState=pmclassbadminstate, PMClassCAdminState=pmclasscadminstate, AdminState=adminstate, HigherWarningThreshold=higherwarningthreshold, PMClassAAdminState=pmclassaadminstate)
+		response, error = swtch.updateVoltageSensorById(ObjectId=objectidLowerAlarmThreshold=loweralarmthreshold, LowerWarningThreshold=lowerwarningthreshold, HigherAlarmThreshold=higheralarmthreshold, HigherWarningThreshold=higherwarningthreshold, PMClassAAdminState=pmclassaadminstate, PMClassBAdminState=pmclassbadminstate, PMClassCAdminState=pmclasscadminstate, AdminState=adminstate)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

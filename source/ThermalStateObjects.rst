@@ -11,8 +11,6 @@ ThermalState Object
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 | ThermalId **[KEY]**       | int32         | Thermal sensor id              |           0 | N/A              |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
-| UpperWatermarkTemperature | string        | Temperature error              | N/A         | N/A              |
-+---------------------------+---------------+--------------------------------+-------------+------------------+
 | Location                  | string        | Thermal sensor location        | N/A         | N/A              |
 |                           |               | CPU/PSU/Motherboard            |             |                  |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
@@ -21,6 +19,8 @@ ThermalState Object
 | ShutdownTemperature       | string        | Temperature panic              | N/A         | N/A              |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 | Temperature               | string        | Temperature current            | N/A         | N/A              |
++---------------------------+---------------+--------------------------------+-------------+------------------+
+| UpperWatermarkTemperature | string        | Temperature error              | N/A         | N/A              |
 +---------------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -31,7 +31,7 @@ ThermalState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/Thermal
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/Thermals?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/Thermals?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/ThermalState/<uuid>
 

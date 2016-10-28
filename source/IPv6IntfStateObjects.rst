@@ -14,8 +14,23 @@ IPv6IntfState Object
 |                    |               | (port/lag/vlan) to which this  |             |                  |
 |                    |               | IPv4 object is linked          |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| OperState          | string        | Operational state of this IP   | N/A         | N/A              |
+|                    |               | interface                      |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | IfIndex            | int32         | System assigned interface id   | N/A         | N/A              |
 |                    |               | for this IPv4 interface        |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| LastDownEventTime  | string        | Timestamp corresponding to the | N/A         | N/A              |
+|                    |               | last UP to DOWN operational    |             |                  |
+|                    |               | state change event             |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| NumDownEvents      | int32         | Number of times the            | N/A         | N/A              |
+|                    |               | operational state transitioned |             |                  |
+|                    |               | from UP to DOWN                |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
+| NumUpEvents        | int32         | Number of times the            | N/A         | N/A              |
+|                    |               | operational state transitioned |             |                  |
+|                    |               | from DOWN to UP                |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 | IpAddr             | string        | Interface IP                   | N/A         | N/A              |
 |                    |               | Address/Prefix-Lenght          |             |                  |
@@ -29,24 +44,9 @@ IPv6IntfState Object
 |                    |               | which IP has been configured   |             |                  |
 |                    |               | (Port/Lag/Vlan)                |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
-| LastDownEventTime  | string        | Timestamp corresponding to the | N/A         | N/A              |
-|                    |               | last UP to DOWN operational    |             |                  |
-|                    |               | state change event             |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| NumDownEvents      | int32         | Number of times the            | N/A         | N/A              |
-|                    |               | operational state transitioned |             |                  |
-|                    |               | from UP to DOWN                |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
 | LastUpEventTime    | string        | Timestamp corresponding to the | N/A         | N/A              |
 |                    |               | last DOWN to UP operational    |             |                  |
 |                    |               | state change event             |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| NumUpEvents        | int32         | Number of times the            | N/A         | N/A              |
-|                    |               | operational state transitioned |             |                  |
-|                    |               | from DOWN to UP                |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| OperState          | string        | Operational state of this IP   | N/A         | N/A              |
-|                    |               | interface                      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -57,7 +57,7 @@ IPv6IntfState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/IPv6Intf
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv6Intfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv6Intfs?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv6IntfState/<uuid>
 

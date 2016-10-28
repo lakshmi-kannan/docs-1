@@ -5,9 +5,9 @@ FlexSwitch Tunnel Objects
 .. toctree::
    :maxdepth: 1
 
-   VxlanInstance Objects  <VxlanInstanceObjects.rst>
-   VxlanGlobalState Objects  <VxlanGlobalStateObjects.rst>
-   VxlanInstanceState Objects  <VxlanInstanceStateObjects.rst>
-   VxlanVtepInstance Objects  <VxlanVtepInstanceObjects.rst>
-   VxlanVtepInstanceState Objects  <VxlanVtepInstanceStateObjects.rst>
-   VxlanGlobal Objects  <VxlanGlobalObjects.rst>
+   VxlanGlobal Object  <VxlanGlobalObjects.rst>
+   VxlanGlobalState Object  <VxlanGlobalStateObjects.rst>
+   VxlanInstance Object  <VxlanInstanceObjects.rst>
+   VxlanInstanceState Object  <VxlanInstanceStateObjects.rst>
+   VxlanVtepInstance Object  <VxlanVtepInstanceObjects.rst>
+   VxlanVtepInstanceState Object  <VxlanVtepInstanceStateObjects.rst>

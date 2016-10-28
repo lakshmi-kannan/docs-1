@@ -5,13 +5,13 @@ FlexSwitch Performance Objects
 .. toctree::
    :maxdepth: 1
 
-   QsfpPMDataState Objects  <QsfpPMDataStateObjects.rst>
-   FanSensorPMDataState Objects  <FanSensorPMDataStateObjects.rst>
-   VoltageSensorPMDataState Objects  <VoltageSensorPMDataStateObjects.rst>
-   PowerConverterSensorPMDataState Objects  <PowerConverterSensorPMDataStateObjects.rst>
-   TemperatureSensorPMDataState Objects  <TemperatureSensorPMDataStateObjects.rst>
-   QsfpChannelPMDataState Objects  <QsfpChannelPMDataStateObjects.rst>
-   EthernetPM Objects  <EthernetPMObjects.rst>
-   EthernetPMState Objects  <EthernetPMStateObjects.rst>
-   AsicGlobalPM Objects  <AsicGlobalPMObjects.rst>
-   AsicGlobalPMState Objects  <AsicGlobalPMStateObjects.rst>
+   EthernetPM Object  <EthernetPMObjects.rst>
+   AsicGlobalPM Object  <AsicGlobalPMObjects.rst>
+   EthernetPMState Object  <EthernetPMStateObjects.rst>
+   AsicGlobalPMState Object  <AsicGlobalPMStateObjects.rst>
+   QsfpPMDataState Object  <QsfpPMDataStateObjects.rst>
+   VoltageSensorPMDataState Object  <VoltageSensorPMDataStateObjects.rst>
+   FanSensorPMDataState Object  <FanSensorPMDataStateObjects.rst>
+   PowerConverterSensorPMDataState Object  <PowerConverterSensorPMDataStateObjects.rst>
+   QsfpChannelPMDataState Object  <QsfpChannelPMDataStateObjects.rst>
+   TemperatureSensorPMDataState Object  <TemperatureSensorPMDataStateObjects.rst>

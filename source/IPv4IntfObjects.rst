@@ -13,12 +13,12 @@ IPv4Intf Object
 |                    |               | port/lag or vlan on which this |             |                  |
 |                    |               | IPv4 object is configured      |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
+| AdminState         | string        | Administrative state of this   | UP          | UP, DOWN         |
+|                    |               | IP interface                   |             |                  |
++--------------------+---------------+--------------------------------+-------------+------------------+
 | IpAddr             | string        | Interface IP/Net mask in CIDR  | N/A         | N/A              |
 |                    |               | format to provision on switch  |             |                  |
 |                    |               | interface                      |             |                  |
-+--------------------+---------------+--------------------------------+-------------+------------------+
-| AdminState         | string        | Administrative state of this   | UP          | UP, DOWN         |
-|                    |               | IP interface                   |             |                  |
 +--------------------+---------------+--------------------------------+-------------+------------------+
 
 
@@ -31,7 +31,7 @@ IPv4Intf Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv4Intf/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv4Intfs?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv4Intfs?CurrentMarker=<x>\\&Count=<y>
 	- CREATE(POST)
 		 curl -X POST -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/config/IPv4Intf
 	- DELETE By Key
@@ -122,7 +122,7 @@ IPv4Intf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.createIPv4Intf(IntfRef=intfref, IpAddr=ipaddr, AdminState=adminstate)
+		response, error = swtch.createIPv4Intf(IntfRef=intfref, AdminState=adminstate, IpAddr=ipaddr)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -179,7 +179,7 @@ IPv4Intf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateIPv4Intf(IntfRef=intfref, IpAddr=ipaddr, AdminState=adminstate)
+		response, error = swtch.updateIPv4Intf(IntfRef=intfref, AdminState=adminstate, IpAddr=ipaddr)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -198,7 +198,7 @@ IPv4Intf Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateIPv4IntfById(ObjectId=objectidIpAddr=ipaddr, AdminState=adminstate)
+		response, error = swtch.updateIPv4IntfById(ObjectId=objectidAdminState=adminstate, IpAddr=ipaddr)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

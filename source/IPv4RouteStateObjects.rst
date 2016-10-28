@@ -11,11 +11,6 @@ IPv4RouteState Object
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
 | DestinationNw **[KEY]** | string            | IP address of the route        | N/A         | N/A              |
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
-| PolicyList              | string            | List of policies applied on    | N/A         | N/A              |
-|                         |                   | this route                     |             |                  |
-+-------------------------+-------------------+--------------------------------+-------------+------------------+
-| Protocol                | string            | Protocol type of the route     | N/A         | N/A              |
-+-------------------------+-------------------+--------------------------------+-------------+------------------+
 | RouteCreatedTime        | string            | Time when the route was added  | N/A         | N/A              |
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
 | RouteUpdatedTime        | string            | Time when the route was last   | N/A         | N/A              |
@@ -29,6 +24,11 @@ IPv4RouteState Object
 | NextHopList             | NextHopInfo       | List of next hops to reach     | N/A         | N/A              |
 |                         |                   | this network                   |             |                  |
 +-------------------------+-------------------+--------------------------------+-------------+------------------+
+| PolicyList              | string            | List of policies applied on    | N/A         | N/A              |
+|                         |                   | this route                     |             |                  |
++-------------------------+-------------------+--------------------------------+-------------+------------------+
+| Protocol                | string            | Protocol type of the route     | N/A         | N/A              |
++-------------------------+-------------------+--------------------------------+-------------+------------------+
 
 
 
@@ -38,7 +38,7 @@ IPv4RouteState Object
 	- GET By Key
 		 curl -X GET -H 'Content-Type: application/json' --header 'Accept: application/json' -d '{<Model Object as json-Data>}' http://device-management-IP:8080/public/v1/state/IPv4Route
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv4Routes?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/state/IPv4Routes?CurrentMarker=<x>\\&Count=<y>
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/IPv4RouteState/<uuid>
 

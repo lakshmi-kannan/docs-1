@@ -11,9 +11,9 @@ Led Object
 +--------------------+---------------+-----------------+-------------+------------------+
 | LedId **[KEY]**    | int32         | LED id          |           0 | N/A              |
 +--------------------+---------------+-----------------+-------------+------------------+
-| LedSetColor        | string        | LED set color   | N/A         | N/A              |
-+--------------------+---------------+-----------------+-------------+------------------+
 | LedAdmin           | string        | LED ON/OFF      | N/A         | N/A              |
++--------------------+---------------+-----------------+-------------+------------------+
+| LedSetColor        | string        | LED set color   | N/A         | N/A              |
 +--------------------+---------------+-----------------+-------------+------------------+
 
 
@@ -26,7 +26,7 @@ Led Object
 	- GET By ID
 		 curl -X GET http://device-management-IP:8080/public/v1/config/Led/<uuid>
 	- GET ALL
-		 curl -X GET http://device-management-IP:8080/public/v1/config/Leds?CurrentMarker=<x>&Count=<y>
+		 curl -X GET http://device-management-IP:8080/public/v1/config/Leds?CurrentMarker=<x>\\&Count=<y>
 	- UPDATE(PATCH) By Key
 		 curl -X PATCH -H 'Content-Type: application/json' -d '{<Model Object as json data>}'  http://device-management-IP:8080/public/v1/config/Led
 	- UPDATE(PATCH) By ID
@@ -113,7 +113,7 @@ Led Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateLed(LedId=ledid, LedSetColor=ledsetcolor, LedAdmin=ledadmin)
+		response, error = swtch.updateLed(LedId=ledid, LedAdmin=ledadmin, LedSetColor=ledsetcolor)
 
 		if error != None: #Error not being None implies there is some problem
 			print error
@@ -132,7 +132,7 @@ Led Object
 	if __name__ == '__main__':
 		switchIP := "192.168.56.101"
 		swtch = FlexSwitch (switchIP, 8080)  # Instantiate object to talk to flexSwitch
-		response, error = swtch.updateLedById(ObjectId=objectidLedSetColor=ledsetcolor, LedAdmin=ledadmin)
+		response, error = swtch.updateLedById(ObjectId=objectidLedAdmin=ledadmin, LedSetColor=ledsetcolor)
 
 		if error != None: #Error not being None implies there is some problem
 			print error

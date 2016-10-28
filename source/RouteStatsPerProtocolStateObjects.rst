@@ -11,10 +11,10 @@ RouteStatsPerProtocolState Object
 +--------------------+------------------+--------------------------------+-------------+------------------+
 | Protocol **[KEY]** | string           | Protocol type of the route     | N/A         | N/A              |
 +--------------------+------------------+--------------------------------+-------------+------------------+
-| V6Routes           | RouteInfoSummary | Brief summary info of ipv6     | N/A         | N/A              |
+| V4Routes           | RouteInfoSummary | Brief summary info of ipv4     | N/A         | N/A              |
 |                    |                  | routes of this protocol type   |             |                  |
 +--------------------+------------------+--------------------------------+-------------+------------------+
-| V4Routes           | RouteInfoSummary | Brief summary info of ipv4     | N/A         | N/A              |
+| V6Routes           | RouteInfoSummary | Brief summary info of ipv6     | N/A         | N/A              |
 |                    |                  | routes of this protocol type   |             |                  |
 +--------------------+------------------+--------------------------------+-------------+------------------+
 

@@ -11,34 +11,34 @@ BGPGlobalState Object
 +---------------------+---------------+--------------------------------+-------------+------------------+
 | Vrf **[KEY]**       | string        | VRF id for BGP global config   | N/A         | N/A              |
 +---------------------+---------------+--------------------------------+-------------+------------------+
-| Totalv6Prefixes     | uint32        | Total number of IPv6           | N/A         | N/A              |
-|                     |               | destinations received from     |             |                  |
-|                     |               | neighbors                      |             |                  |
+| AS                  | string        | Local AS for BGP global config | N/A         | N/A              |
 +---------------------+---------------+--------------------------------+-------------+------------------+
 | Disabled            | bool          | Enable/Disable BGP globally    | N/A         | N/A              |
 +---------------------+---------------+--------------------------------+-------------+------------------+
 | EBGPAllowMultipleAS | bool          | Enable/diable ECMP paths from  | N/A         | N/A              |
 |                     |               | multiple ASes                  |             |                  |
 +---------------------+---------------+--------------------------------+-------------+------------------+
-| Totalv4Prefixes     | uint32        | Total number of IPv4           | N/A         | N/A              |
-|                     |               | destinations received from     |             |                  |
-|                     |               | neighbors                      |             |                  |
-+---------------------+---------------+--------------------------------+-------------+------------------+
-| RouterId            | string        | Router id for BGP global       | N/A         | N/A              |
-|                     |               | config                         |             |                  |
-+---------------------+---------------+--------------------------------+-------------+------------------+
-| TotalPaths          | uint32        | Total number of paths received | N/A         | N/A              |
-|                     |               | from neighbors                 |             |                  |
-+---------------------+---------------+--------------------------------+-------------+------------------+
-| UseMultiplePaths    | bool          | Enable/disable ECMP for BGP    | N/A         | N/A              |
-+---------------------+---------------+--------------------------------+-------------+------------------+
-| AS                  | string        | Local AS for BGP global config | N/A         | N/A              |
-+---------------------+---------------+--------------------------------+-------------+------------------+
 | EBGPMaxPaths        | uint32        | Max ECMP paths from External   | N/A         | N/A              |
 |                     |               | BGP neighbors                  |             |                  |
 +---------------------+---------------+--------------------------------+-------------+------------------+
 | IBGPMaxPaths        | uint32        | Max ECMP paths from Internal   | N/A         | N/A              |
 |                     |               | BGP neighbors                  |             |                  |
++---------------------+---------------+--------------------------------+-------------+------------------+
+| RouterId            | string        | Router id for BGP global       | N/A         | N/A              |
+|                     |               | config                         |             |                  |
++---------------------+---------------+--------------------------------+-------------+------------------+
+| Totalv6Prefixes     | uint32        | Total number of IPv6           | N/A         | N/A              |
+|                     |               | destinations received from     |             |                  |
+|                     |               | neighbors                      |             |                  |
++---------------------+---------------+--------------------------------+-------------+------------------+
+| UseMultiplePaths    | bool          | Enable/disable ECMP for BGP    | N/A         | N/A              |
++---------------------+---------------+--------------------------------+-------------+------------------+
+| TotalPaths          | uint32        | Total number of paths received | N/A         | N/A              |
+|                     |               | from neighbors                 |             |                  |
++---------------------+---------------+--------------------------------+-------------+------------------+
+| Totalv4Prefixes     | uint32        | Total number of IPv4           | N/A         | N/A              |
+|                     |               | destinations received from     |             |                  |
+|                     |               | neighbors                      |             |                  |
 +---------------------+---------------+--------------------------------+-------------+------------------+
 
 
