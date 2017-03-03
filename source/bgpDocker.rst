@@ -68,6 +68,7 @@ Configure d_inst1
 ::
 
 
+
     
     curl -X PATCH "Content-Type: application/json" -d '{"ASNum":"500","RouterId":"10.1.10.2"}' http://localhost:8080/public/v1/config/BGPGlobal
  
