@@ -12,10 +12,12 @@ used to experiment with flexswitch.
 
 :: 
     
-    To run the script 
-
-    sh docker_startup.sh
-    Get the script here  - https://github.com/OpenSnaproute/test
+    To get the script
+    wget https://raw.githubusercontent.com/OpenSnaproute/test/master/docker_startup.sh
+    
+    To run the script
+    chmod +x docker_startup.sh 
+    sudo ./docker_startup.sh
 
 The script sets up the docker environment. 
 
@@ -40,7 +42,7 @@ This command will pull the latest image from docker hub.
   
    auto - This is the default ubuntu image with packages installed that are needed for flexswitch. 
           Such as redis , syslog. This DOES NOT have flexswitch installed on it.
-   Flexv<version_number> - Latest flexswitch image for docker. This image tag will be used for all   
+   latest - Latest flexswitch image for docker. This image tag will be used for all   
                            the tutorials next.
  
    Example - 
