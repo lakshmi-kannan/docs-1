@@ -12,7 +12,6 @@ FlexSwitch is the first open source network protocol suite offering complete lay
     - Fully programmable network protocol stack 
     - RESTful APIs at every level 
     - Highly customizable behavior
-    - Works on variety of switching silicon like Broadcom, Mellonox, Cavium, Barefoot                                   
     - Portable architecture to work on hardware from variety of vendors like Acton, Celestica, Alpha Networks, Facebook Wedge
     - Highly instrumented to help the Network operators troubleshoot issues
 	- Thirft APIs for integrating, data polling, or manipulating every daemon

@@ -15,6 +15,7 @@ Run the docker_startup script
 
 
    sh docker_startup.sh
+   Get the script here  - https://github.com/OpenSnaproute/test
 
  
 
@@ -31,10 +32,10 @@ Configure d_inst1 docker
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ::
-
-    (Get curl - apt-get install curl)
-    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth25"}' http://localhost:8080/public/v1/config/IPv4Intf
-
+      
+      Configure IPv4 intf
+      curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.1/24", "IntfRef": "eth25"}' http://localhost:8080/public/v1/config/IPv4Intf
+   
 - Below steps carry out OSPF specific configurations
 
 OspfAreaEntry
@@ -101,14 +102,11 @@ Configure d_inst2 docker
     sudo docker exec -it d_inst2 bash
 
 
-Create the layer3 interface.
-
 ::
+      
+      Configure IPv4 intf
+      curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth35"}' http://localhost:8080/public/v1/config/IPv4Intf
 
-
-    (Install curl - apt-get install curl) 
-    curl -H "Content-Type: application/json" -d '{"IpAddr": "40.1.1.2/24", "IntfRef": "eth35"}' http://localhost:8080/public/v1/config/IPv4Intf
- 
 - Configure OSPF 
 
 **Ospf Area config**

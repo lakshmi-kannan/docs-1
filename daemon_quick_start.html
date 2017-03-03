@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Quick Start Guide &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="Developers Home" href="developer.html"/>
+        <link rel="next" title="Design decisions" href="decisions.html"/>
+        <link rel="prev" title="Open Source Components" href="opensources.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="developer.html"> Developer Home</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="developer.html#how-to-contribute">How to contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#setting-up-development-environment">Setting Up Development Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#building-flexswitch-from-sources">Building FlexSwitch From Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#system-architecture">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#open-source-components">Open Source Components</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="developer.html#creating-new-component">Creating New Component</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Daemon Creation Quick Start Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-model-objects">Create Model Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-model-object-to-daemon-map">Add Model Object to Daemon Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-module-to-thirft-client-handle">Add module to thirft client handle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-module-to-client-port-list">Add module to client port list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-example-daemon-skeleton-back-end-code">Build Example Daemon Skeleton Back-End Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-example-daemon-code-for-configmgr">Build Example Daemon Code for ConfigMgr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-module-to-top-level-repo-makefile">Add Module to Top Level Repo Makefile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-module-into-flexswitch">Package module into FlexSwitch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#loading-module-to-flexswitch">Loading module to FlexSwitch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#design-decisions">Design Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html">API reference!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="developer.html">Developers Home</a> &raquo;</li>
+      
+    <li>Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/daemon_quick_start.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quick-start-guide">
+<h1>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this headline">¶</a></h1>
+<p>Quick start guide to create a new daemon within flexswitch</p>
+<img alt="_images/daemon1.png" src="_images/daemon1.png" />
+<p>This guide helps you to create a small daemon skeleton which would run as part of FlexSwitch.
+The daemon is named as Example Daemon.  This daemon is assumed to belong to layer 2
+of the networking stack, so we make this daemon under $SR_CODE_BASE/snaproute/src/l2</p>
+<div class="section" id="create-model-objects">
+<h2>Create Model Objects<a class="headerlink" href="#create-model-objects" title="Permalink to this headline">¶</a></h2>
+<p>First step in writing a daemon is to define the data model.</p>
+<p>Our datamodel would consist of the objects that represent state and configuration of the daemon.</p>
+<p>Here we would create our model in a golang source file in $SR_CODE_BASE/snaproute/src/models repo under objects directory.</p>
+<p>File name for the below example <strong>exampleObjects.go</strong></p>
+<p>Example</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>package objects
+
+   /*
+    * Config object of exampled
+    */
+   type Example struct {
+       baseObj
+       VlanId        int32    `SNAPROUTE: &quot;KEY&quot;, ACCESS:&quot;w&quot;, MULTIPLICITY: &quot;*&quot;, MIN:&quot;1&quot;, MAX: &quot;4094&quot;, DESCRIPTION: &quot;802.1Q tag/Vlan ID for vlan being provisioned&quot;`
+       IntfList      []string `DESCRIPTION: &quot;List of interface names or ifindex values to  be added as tagged members of the vlan&quot;`
+       UntagIntfList []string `DESCRIPTION: &quot;List of interface names or ifindex values to  be added as untagged members of the vlan&quot;`
+   }
+
+   /*
+    * State object of exampled
+    */
+    type ExampleState struct {
+       baseObj
+       VlanId        int32    `SNAPROUTE: &quot;KEY&quot;, ACCESS:&quot;r&quot;, MULTIPLICITY: &quot;*&quot;, DESCRIPTION: &quot;802.1Q tag/Vlan ID for vlan being provisioned&quot;`
+       IntfList      []string `DESCRIPTION: &quot;List of interface names or ifindex values to  be added as tagged members of the vlan&quot;`
+       UntagIntfList []string `DESCRIPTION: &quot;List of interface names or ifindex values to  be added as untagged members of the vlan&quot;`
+   }
+</pre></div>
+</div>
+<p>Look at the &#8220;ACCESS&#8221; tag in above objects.</p>
+<p>An access type of &#8220;w&#8221; is considered as a configuration object and &#8220;r&#8221; as a state object.</p>
+<p>Configuration objects can be created/updated/deleted, where as state objects can be only queried.</p>
+<p>An object can have access type as &#8220;rw&#8221; as well. Objects with access type as &#8220;rw&#8221; are considered as configuration as well as state objects.</p>
+<p>State objects should have &#8220;State&#8221; appended to the object name. E.g. ExampleState.</p>
+</div>
+<div class="section" id="add-model-object-to-daemon-map">
+<h2>Add Model Object to Daemon Map<a class="headerlink" href="#add-model-object-to-daemon-map" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have defined the model, we need to let the system know that the &#8216;Example Daemon&#8217; is responsible for the functionality.
+So we specify that these objects have an owner. As mentioned in the &#8216;Architecture&#8217; section we use thrift as our RPC. So we need to specify
+path to a generated thrift file.</p>
+<p>Add the following lines to <strong>models/objects/goObjInfo.json</strong> before localObjects entry</p>
+<p>Example</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;exampleOjects.go&quot;</span> <span class="p">:</span>  <span class="p">{</span><span class="s2">&quot;owner&quot;</span><span class="p">:</span>     <span class="s2">&quot;exampled&quot;</span><span class="p">,</span>
+                       <span class="s2">&quot;location&quot;</span> <span class="p">:</span> <span class="s2">&quot;l2/example/rpc&quot;</span><span class="p">,</span>
+                       <span class="s2">&quot;svcName&quot;</span>  <span class="p">:</span> <span class="s2">&quot;nil&quot;</span><span class="p">},</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-module-to-thirft-client-handle">
+<h2>Add module to thirft client handle<a class="headerlink" href="#add-module-to-thirft-client-handle" title="Permalink to this headline">¶</a></h2>
+<p>ConfigManager in FlexSwitch needs to delegate the REST APIs to the new daemon. So we need to update the clients of ConfigManager</p>
+<p>Add the following lines to <strong>config/clients/clientmap.go</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;exampled&quot;</span><span class="p">:</span>    <span class="o">&amp;</span><span class="n">EXAMPLEDClient</span><span class="p">{},</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-module-to-client-port-list">
+<h2>Add module to client port list<a class="headerlink" href="#add-module-to-client-port-list" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the ConfigManager there would be other modules like system daemon that would communicate with the new daemon.
+To let the other daemons know the existance of &#8216;Example Daemon&#8217; we need to update
+<strong>config/params/clients.json</strong></p>
+<p>Pick a port number that does not conflict with any other port within the json. Make sure the port is not used by any other client or any service in your system.</p>
+<p>Example</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;Name&quot;</span><span class="p">:</span><span class="s2">&quot;exampled&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;Port&quot;</span><span class="p">:</span><span class="mi">10018</span><span class="p">},</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-example-daemon-skeleton-back-end-code">
+<h2>Build Example Daemon Skeleton Back-End Code<a class="headerlink" href="#build-example-daemon-skeleton-back-end-code" title="Permalink to this headline">¶</a></h2>
+<p>Skeleton daemon code can be autogenerated by executing below command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>cd $SR_CODE_BASE/reltools
+python codegentools/daemon/daemon.py -d exampled -r l2 -o exampleObjects.go
+</pre></div>
+</div>
+<p>Usage of daemon.py is as shown below</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span> <span class="n">daemon</span><span class="o">.</span><span class="n">py</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span>
+
+<span class="n">Options</span><span class="p">:</span>
+  <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">--</span><span class="n">help</span>            <span class="n">show</span> <span class="n">this</span> <span class="n">help</span> <span class="n">message</span> <span class="ow">and</span> <span class="n">exit</span>
+  <span class="o">-</span><span class="n">d</span> <span class="n">DAEMON</span><span class="p">,</span> <span class="o">--</span><span class="n">daemon</span><span class="o">=</span><span class="n">DAEMON</span>
+                        <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">daemon</span>
+  <span class="o">-</span><span class="n">m</span> <span class="n">MODULE</span><span class="p">,</span> <span class="o">--</span><span class="n">module</span><span class="o">=</span><span class="n">MODULE</span>
+                        <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">module</span>
+  <span class="o">-</span><span class="n">r</span> <span class="n">REPO</span><span class="p">,</span> <span class="o">--</span><span class="n">repo</span><span class="o">=</span><span class="n">REPO</span>  <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">repo</span> <span class="n">this</span> <span class="n">demon</span> <span class="n">belongs</span> <span class="n">to</span>
+  <span class="o">-</span><span class="n">o</span> <span class="n">OBJECTS</span><span class="p">,</span> <span class="o">--</span><span class="n">objects</span><span class="o">=</span><span class="n">OBJECTS</span>
+                        <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span> <span class="n">containing</span> <span class="n">config</span> <span class="n">objects</span> <span class="k">for</span> <span class="n">this</span>
+                        <span class="n">daemon</span>
+</pre></div>
+</div>
+<p>Daemon name is mandatory parameter in daemon.py script.
+If the daemon is part of any particular repo, e.g. as described above exampled is part of l2,
+then repo name should be provided.
+If we want to have different name for the module than the daemon name then module name should be provided.
+By default, module name is derevived from daemon name by dropping last character &#8216;d&#8217;. For example, if daemon name is &#8220;exampled&#8221; the module name will be &#8220;example&#8221;
+If the daemon has config objects defined in a file then that can be passed to the script as objects.
+Here we are passing exampleObjects.go.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Verify directory structure is created for this daemon. Directories created are -</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>$SR_CODE_BASE/snaproute/src/repo/module</dt>
+<dd><ul class="first last simple">
+<li>Verify main.go and Makefile are created</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>$SR_CODE_BASE/snaproute/src/repo/module/server</dt>
+<dd><ul class="first last simple">
+<li>Verify server.go file created</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>$SR_CODE_BASE/snaproute/src/repo/module/rpc</dt>
+<dd><ul class="first last simple">
+<li>Verify rpc.go and rpcHdl.go files are created</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="build-example-daemon-code-for-configmgr">
+<h2>Build Example Daemon Code for ConfigMgr<a class="headerlink" href="#build-example-daemon-code-for-configmgr" title="Permalink to this headline">¶</a></h2>
+<p>To generate code used by ConfigMgr, execute below commands from $SR_CODE_BASE/snaproute/src/ directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">codegen</span>
+<span class="n">make</span> <span class="n">ipc</span>
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Verify that within l2/example/rpc directory that there is a thrift file <strong>exampled.thrift</strong> created.</dt>
+<dd><ul class="first last simple">
+<li>For each object with access type as &#8220;w&#8221;, there should be CreateXXX, UpdateXXX, and DeleteXXX APIs in EXAMPLEDServices thrift service.</li>
+<li>For each object with access type as &#8220;r&#8221;, there should be GetBulkYYY and GetYYY APIs in EXAMPLEDServices thrift service.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Verify in models/objects that you see something similar to the following</dt>
+<dd><ul class="first last simple">
+<li>gen_Exampledbif.go</li>
+<li>gen_ExampleStatedbif.go</li>
+<li>gen_exampledObjects_serializer.go</li>
+<li>gen_exampledthriftutil.go</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Verify FlexSdk repo to see if APIs are generated for the above Objects in <strong>flexSdk/py/flexprintV2.py</strong> and <strong>flexSdk/py/flexswitchV2.py</strong></p>
+</li>
+</ul>
+</div>
+<div class="section" id="add-module-to-top-level-repo-makefile">
+<h2>Add Module to Top Level Repo Makefile<a class="headerlink" href="#add-module-to-top-level-repo-makefile" title="Permalink to this headline">¶</a></h2>
+<p>We want this module to be part of other l2 components. So edit Makefile under l2/ directory as follows.</p>
+<p>Add the following line to COMPS</p>
+<blockquote>
+<div>example</div></blockquote>
+<p>Add the following lines to IPCS</p>
+<blockquote>
+<div>example</div></blockquote>
+</div>
+<div class="section" id="package-module-into-flexswitch">
+<h2>Package module into FlexSwitch<a class="headerlink" href="#package-module-into-flexswitch" title="Permalink to this headline">¶</a></h2>
+<p>We need to add ExampleDaemon to the top level Makefile so that it can be picked up for packaging
+Make these changes on the top level Makefile as follows.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>install $(SRCDIR)/$(BUILD_DIR)/exampled $(DESTDIR)/$(EXT_INSTALL_PATH)/bin
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-module-to-flexswitch">
+<h2>Loading module to FlexSwitch<a class="headerlink" href="#loading-module-to-flexswitch" title="Permalink to this headline">¶</a></h2>
+<p>Now we need to make the ExampleDaemon start on every FlexSwitch instantiation.
+This can be done by editing flexswitch script under $SR_CODE_BASE/reltools/ directory
+as  follows. Make sure to change runlevel to avoid conflict.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first last docutils">
+<dt>{&#8216;name&#8217;: &#8216;fMgrd&#8217;,</dt>
+<dd>&#8216;runlevel&#8217; : 17,
+&#8216;params&#8217;: &#8216;-params=&#8217; + baseDir + &#8216;/params&#8217;},</dd>
+<dt>{&#8216;name&#8217;: &#8216;exampled&#8217;,</dt>
+<dd>&#8216;runlevel&#8217; : 18,
+&#8216;params&#8217;: &#8216;-params=&#8217; + baseDir + &#8216;/params&#8217;},</dd>
+<dt>{&#8216;name&#8217;: &#8216;confd&#8217;,</dt>
+<dd>&#8216;runlevel&#8217; : 19,
+&#8216;params&#8217;: &#8216;-params=&#8217; + baseDir + &#8216;/params&#8217;},</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Now you should be able to see your daemon running as part of the FlexSwitch along with the other daemons.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="decisions.html" class="btn btn-neutral float-right" title="Design decisions" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="opensources.html" class="btn btn-neutral" title="Open Source Components" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

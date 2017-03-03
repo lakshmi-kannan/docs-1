@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LaPortChannelIntfRefListState Object &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="FlexSwitch L2 Objects" href="L2Objects.html"/>
+        <link rel="next" title="MacTableEntryState Object" href="MacTableEntryStateObjects.html"/>
+        <link rel="prev" title="LacpGlobalState Object" href="LacpGlobalStateObjects.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="apis.html">API reference!</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="PhysicalObjects.html">Physical Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PlatformObjects.html">Platform Objects</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="L2Objects.html">L2 Objects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="StpPortStateObjects.html">StpPortState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpGlobalObjects.html">StpGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpBridgeInstanceObjects.html">StpBridgeInstance Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpPortObjects.html">StpPort Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpBridgeInstanceStateObjects.html">StpBridgeInstanceState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPGlobalStateObjects.html">LLDPGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPIntfStateObjects.html">LLDPIntfState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPGlobalObjects.html">LLDPGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPIntfObjects.html">LLDPIntf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IppLinkStateObjects.html">IppLinkState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LaPortChannelObjects.html">LaPortChannel Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LaPortChannelStateObjects.html">LaPortChannelState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DistributedRelayObjects.html">DistributedRelay Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DistributedRelayStateObjects.html">DistributedRelayState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LacpGlobalObjects.html">LacpGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LacpGlobalStateObjects.html">LacpGlobalState Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">LaPortChannelIntfRefListState Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state-laportchannelintfreflist"><em>state/LaPortChannelIntfRefList</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="MacTableEntryStateObjects.html">MacTableEntryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VlanObjects.html">Vlan Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VlanStateObjects.html">VlanState Object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SystemObjects.html">System Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Faults and AlarmsObjects.html">Faults and Alarms Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="apis.html">API reference!</a> &raquo;</li>
+      
+          <li><a href="L2Objects.html">FlexSwitch L2 Objects</a> &raquo;</li>
+      
+    <li>LaPortChannelIntfRefListState Object</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/LaPortChannelIntfRefListStateObjects.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="laportchannelintfrefliststate-object">
+<h1>LaPortChannelIntfRefListState Object<a class="headerlink" href="#laportchannelintfrefliststate-object" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="state-laportchannelintfreflist">
+<h2><em>state/LaPortChannelIntfRefList</em><a class="headerlink" href="#state-laportchannelintfreflist" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Multiple objects of this type can exist in a system.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="11%" />
+<col width="24%" />
+<col width="10%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>PARAMETER NAME</strong></td>
+<td><strong>DATA TYPE</strong></td>
+<td><strong>DESCRIPTION</strong></td>
+<td><strong>DEFAULT</strong></td>
+<td><strong>VALID VALUES</strong></td>
+</tr>
+<tr class="row-even"><td>IntfRef <strong>[KEY]</strong></td>
+<td>string</td>
+<td>Reference to aggregate member
+interface</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>RxMachine</td>
+<td>int32</td>
+<td>Current Rx Machine State</td>
+<td>N/A</td>
+<td>RX_CURRENT(0),
+RX_PORT_DISABLE(5),
+RX_DEFAULTED(2),
+RX_LACP_DISABLED(4),
+RX_EXPIRED(1),
+RX_INITIALIZE(3)</td>
+</tr>
+<tr class="row-even"><td>ActorCdsChurnCount</td>
+<td>uint64</td>
+<td>If supported the number
+of times the Actor CDS
+Churn state has entered the
+ACTOR_CDS_CHURN state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>IfIndex</td>
+<td>int32</td>
+<td>Interface member of the LACP
+aggregate</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>LampInResponsePdu</td>
+<td>uint64</td>
+<td>Number of LAMPDU Response
+received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PartnerChangeCount</td>
+<td>uint64</td>
+<td>Number of times the Partners
+perception of the LAG ID for
+the  Aggregation Port has
+changed.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PartnerId</td>
+<td>string</td>
+<td>MAC address representing the
+protocol partners interface
+system ID</td>
+<td>N/A</td>
+<td>[0-9a-fA-F]{2}(</td>
+</tr>
+<tr class="row-odd"><td>Collecting</td>
+<td>bool</td>
+<td>If true</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>LampInPdu</td>
+<td>uint64</td>
+<td>Number of LAMPDU received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PartnerChurnCount</td>
+<td>uint64</td>
+<td>Number of times the Partner
+State machine has entered the
+ACTOR_CHURN state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PartnerSyncTransitionCount</td>
+<td>uint64</td>
+<td>Number of times the Partners
+Mux state machine has entered
+the  IN_SYNC state.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>MuxMachine</td>
+<td>int32</td>
+<td>Current MUX Machine State</td>
+<td>N/A</td>
+<td>MUX_COLLECTING(3),
+MUX_COLLECTING_DISTRIBUTING_DEFAULTED(7),
+MUX_COLLECTING_DISTRIBUTING(5),
+MUX_DISTRIBUTING_DEFAULTED(6),
+MUX_ATTACHED(2), MUX_DETACHED(0),
+MUX_DISTRIBUTING(4), MUX_WAITING(1)</td>
+</tr>
+<tr class="row-even"><td>PartnerCdsChurnMachine</td>
+<td>int32</td>
+<td>If supported Partner CDS Churn
+Machine State</td>
+<td>N/A</td>
+<td>CHURN_NO_CHURN(0), CHURN_CHURN(1)</td>
+</tr>
+<tr class="row-odd"><td>Timeout</td>
+<td>int32</td>
+<td>The timeout type (short or
+long) used by the participant</td>
+<td>N/A</td>
+<td>SHORT(1), LONG(0)</td>
+</tr>
+<tr class="row-even"><td>DrniName</td>
+<td>string</td>
+<td>Defines the Lag is owned by
+the Distributed Relay Object</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>DrniSynced</td>
+<td>bool</td>
+<td>Identify that the Distributed
+Relay is in sync with neighbor</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>LacpInMissMatchPkts</td>
+<td>uint64</td>
+<td>Numeer of LACPDU which are
+received with mismatched info
+from Peer</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>LacpOutPkts</td>
+<td>uint64</td>
+<td>Number of LACPDUs transmitted</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>LampOutPdu</td>
+<td>uint64</td>
+<td>Number of LAMPDU transmited</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>Synchronization</td>
+<td>int32</td>
+<td>Indicates whether the
+participant is in-sync or
+out-of-sync</td>
+<td>N/A</td>
+<td>OUT_SYNC(1), IN_SYNC(0)</td>
+</tr>
+<tr class="row-even"><td>DebugId</td>
+<td>uint32</td>
+<td>Debug Information Id</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>LacpErrors</td>
+<td>uint64</td>
+<td>Number of LACPDU Errors; sum
+of all Rx Errors</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>LacpRxErrors</td>
+<td>uint64</td>
+<td>The number of frames received
+that carry the Slow Protocols
+Ethernet Type value (IEEE Std
+802.3-2008</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>MuxReason</td>
+<td>string</td>
+<td>Reason for the most recent MUX
+state change</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PartnerKey</td>
+<td>uint16</td>
+<td>Operational value of the
+protocol partners key</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>ActorCdsChurnMachine</td>
+<td>int32</td>
+<td>If supported Actor CDS Churn
+Machine State</td>
+<td>N/A</td>
+<td>CHURN_NO_CHURN(0), CHURN_CHURN(1)</td>
+</tr>
+<tr class="row-even"><td>LacpInPkts</td>
+<td>uint64</td>
+<td>Number of LACPDUs received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>OperState</td>
+<td>string</td>
+<td>The operation state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>PartnerCdsChurnCount</td>
+<td>uint64</td>
+<td>If supported the number
+of times the Actor CDS
+Churn state has entered the
+ACTOR_CDS_CHURN state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>Aggregatable</td>
+<td>bool</td>
+<td>A true value indicates that
+the participant will allow
+the link to be used as part of
+the aggregate. A false value
+indicates the link should be
+used as an individual link</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>LacpUnknownErrors</td>
+<td>uint64</td>
+<td>Carry the Slow Protocols
+Ethernet Type value (IEEE Std
+802.3-2008</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>PartnerChurnMachine</td>
+<td>int32</td>
+<td>Partner Churn Detection
+Machine State</td>
+<td>N/A</td>
+<td>CHURN_NO_CHURN(0), CHURN_CHURN(1)</td>
+</tr>
+<tr class="row-even"><td>RxTime</td>
+<td>uint32</td>
+<td>Time at which the last LACPDU
+was received by a given port</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>SystemId</td>
+<td>string</td>
+<td>MAC address that defines
+the local system ID for the
+aggregate interface</td>
+<td>N/A</td>
+<td>[0-9a-fA-F]{2}(</td>
+</tr>
+<tr class="row-even"><td>LacpTxErrors</td>
+<td>uint64</td>
+<td>Number of LACPDU transmit
+packet errors</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>LagIntfRef</td>
+<td>string</td>
+<td>Id of the lag group to which
+this port is associated with</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>Activity</td>
+<td>int32</td>
+<td>Indicates participant is
+active or passive</td>
+<td>N/A</td>
+<td>ACTIVE(0), PASSIVE(1)</td>
+</tr>
+<tr class="row-odd"><td>ActorChangeCount</td>
+<td>uint64</td>
+<td>Number of times the Actors
+perception of the LAG ID for
+the  Aggregation Port has
+changed.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>ActorChurnCount</td>
+<td>uint64</td>
+<td>Number of times the Actor
+State machine has entered the
+ACTOR_CHURN state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>Defaulted</td>
+<td>bool</td>
+<td>When no partner information is
+exchanged port will come up in
+a defaulted state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>Distributing</td>
+<td>bool</td>
+<td>When true</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>ActorChurnMachine</td>
+<td>int32</td>
+<td>Actor Churn Detection Machine
+State</td>
+<td>N/A</td>
+<td>CHURN_NO_CHURN(0), CHURN_CHURN(1)</td>
+</tr>
+<tr class="row-even"><td>ActorSyncTransitionCount</td>
+<td>uint64</td>
+<td>Number of times the Actors Mux
+state machine has entered the
+IN_SYNC state.</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>LampOutResponsePdu</td>
+<td>uint64</td>
+<td>Number of LAMPDU Response
+received</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>OperKey</td>
+<td>uint16</td>
+<td>Current operational value
+of the key for the aggregate
+interface</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="flexswitch-curl-api-supported">
+<h2><em>FlexSwitch CURL API Supported</em><a class="headerlink" href="#flexswitch-curl-api-supported" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>GET By Key</dt>
+<dd><p class="first last">curl -X GET -H &#8216;Content-Type: application/json&#8217; &#8211;header &#8216;Accept: application/json&#8217; -d &#8216;{&lt;Model Object as json-Data&gt;}&#8217; <a class="reference external" href="http://device-management-IP:8080/public/v1/state/LaPortChannelIntfRefList">http://device-management-IP:8080/public/v1/state/LaPortChannelIntfRefList</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET ALL</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/LaPortChannelIntfRefLists">http://device-management-IP:8080/public/v1/state/LaPortChannelIntfRefLists</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET By ID</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/LaPortChannelIntfRefListState">http://device-management-IP:8080/public/v1/config/LaPortChannelIntfRefListState</a>/&lt;uuid&gt;</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="flexswitch-sdk-api-supported">
+<h2><em>FlexSwitch SDK API Supported:</em><a class="headerlink" href="#flexswitch-sdk-api-supported" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>GET</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getLaPortChannelIntfRefListState</span><span class="p">(</span><span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET By ID</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getLaPortChannelIntfRefListStateById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET ALL</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getAllLaPortChannelIntfRefListStates</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="MacTableEntryStateObjects.html" class="btn btn-neutral float-right" title="MacTableEntryState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="LacpGlobalStateObjects.html" class="btn btn-neutral" title="LacpGlobalState Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

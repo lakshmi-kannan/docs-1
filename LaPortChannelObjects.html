@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>LaPortChannel Object &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="FlexSwitch L2 Objects" href="L2Objects.html"/>
+        <link rel="next" title="LaPortChannelState Object" href="LaPortChannelStateObjects.html"/>
+        <link rel="prev" title="IppLinkState Object" href="IppLinkStateObjects.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="apis.html">API reference!</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="PhysicalObjects.html">Physical Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PlatformObjects.html">Platform Objects</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="L2Objects.html">L2 Objects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="StpPortStateObjects.html">StpPortState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpGlobalObjects.html">StpGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpBridgeInstanceObjects.html">StpBridgeInstance Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpPortObjects.html">StpPort Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="StpBridgeInstanceStateObjects.html">StpBridgeInstanceState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPGlobalStateObjects.html">LLDPGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPIntfStateObjects.html">LLDPIntfState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPGlobalObjects.html">LLDPGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LLDPIntfObjects.html">LLDPIntf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IppLinkStateObjects.html">IppLinkState Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">LaPortChannel Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#config-laportchannel"><em>config/LaPortChannel</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="LaPortChannelStateObjects.html">LaPortChannelState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DistributedRelayObjects.html">DistributedRelay Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DistributedRelayStateObjects.html">DistributedRelayState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LacpGlobalObjects.html">LacpGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LacpGlobalStateObjects.html">LacpGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LaPortChannelIntfRefListStateObjects.html">LaPortChannelIntfRefListState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MacTableEntryStateObjects.html">MacTableEntryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VlanObjects.html">Vlan Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VlanStateObjects.html">VlanState Object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SystemObjects.html">System Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Faults and AlarmsObjects.html">Faults and Alarms Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="apis.html">API reference!</a> &raquo;</li>
+      
+          <li><a href="L2Objects.html">FlexSwitch L2 Objects</a> &raquo;</li>
+      
+    <li>LaPortChannel Object</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/LaPortChannelObjects.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="laportchannel-object">
+<h1>LaPortChannel Object<a class="headerlink" href="#laportchannel-object" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="config-laportchannel">
+<h2><em>config/LaPortChannel</em><a class="headerlink" href="#config-laportchannel" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Multiple objects of this type can exist in a system.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="13%" />
+<col width="27%" />
+<col width="16%" />
+<col width="27%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>PARAMETER NAME</strong></td>
+<td><strong>DATA TYPE</strong></td>
+<td><strong>DESCRIPTION</strong></td>
+<td><strong>DEFAULT</strong></td>
+<td><strong>VALID VALUES</strong></td>
+</tr>
+<tr class="row-even"><td>IntfRef <strong>[KEY]</strong></td>
+<td>string</td>
+<td>Id of the lag group</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>LacpMode</td>
+<td>int32</td>
+<td>ACTIVE is to initiate the
+transmission of LACP packets.
+PASSIVE is to wait for peer to
+initiate the transmission of
+LACP packets.</td>
+<td>0</td>
+<td>ACTIVE(0), PASSIVE(1)</td>
+</tr>
+<tr class="row-even"><td>MinLinks</td>
+<td>uint16</td>
+<td>Specifies the mininum number
+of member interfaces that must
+be active for the aggregate
+interface to be available</td>
+<td>1</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>SystemIdMac</td>
+<td>string</td>
+<td>The MAC address portion of
+the nodes System ID. This
+is combined with the system
+priority to construct the
+8-octet system-id</td>
+<td>00-00-00-00-00-00</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>SystemPriority</td>
+<td>uint16</td>
+<td>Sytem priority used by the
+node on this LAG interface.
+Lower value is higher priority
+for determining which node is
+the controlling system.</td>
+<td>32768</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>AdminState</td>
+<td>string</td>
+<td>Convenient way to
+disable/enable a lag group.
+The behaviour should be such
+that all traffic should stop.
+LACP frames should continue to
+be processed</td>
+<td>UP</td>
+<td>UP, DOWN</td>
+</tr>
+<tr class="row-even"><td>IntfRefList</td>
+<td>string</td>
+<td>List of current member
+interfaces for the aggregate</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>LagHash</td>
+<td>int32</td>
+<td>The tx hashing algorithm used
+by the lag group</td>
+<td>0</td>
+<td>LAYER2(0), LAYER3_4(2),
+LAYER2_3(1)</td>
+</tr>
+<tr class="row-even"><td>LagType</td>
+<td>int32</td>
+<td>Sets the type of LAG</td>
+<td>0</td>
+<td>LACP(0), STATIC(1)</td>
+</tr>
+<tr class="row-odd"><td>Interval</td>
+<td>int32</td>
+<td>Set the period between
+LACP messages &#8211; uses the
+lacp-period-type enumeration.</td>
+<td>1</td>
+<td>SLOW(1), FAST(0)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="flexswitch-curl-api-supported">
+<h2><em>FlexSwitch CURL API Supported</em><a class="headerlink" href="#flexswitch-curl-api-supported" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>GET By Key</dt>
+<dd><p class="first last">curl -X GET -H &#8216;Content-Type: application/json&#8217; &#8211;header &#8216;Accept: application/json&#8217; -d &#8216;{&lt;Model Object as json-Data&gt;}&#8217; <a class="reference external" href="http://device-management-IP:8080/public/v1/config/LaPortChannel">http://device-management-IP:8080/public/v1/config/LaPortChannel</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET By ID</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/LaPortChannel">http://device-management-IP:8080/public/v1/config/LaPortChannel</a>/&lt;uuid&gt;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET ALL</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/LaPortChannels">http://device-management-IP:8080/public/v1/config/LaPortChannels</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>CREATE(POST)</dt>
+<dd><p class="first last">curl -X POST -H &#8216;Content-Type: application/json&#8217; &#8211;header &#8216;Accept: application/json&#8217; -d &#8216;{&lt;Model Object as json-Data&gt;}&#8217; <a class="reference external" href="http://device-management-IP:8080/public/v1/config/LaPortChannel">http://device-management-IP:8080/public/v1/config/LaPortChannel</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>DELETE By Key</dt>
+<dd><p class="first last">curl -X DELETE -i -H &#8216;Accept:application/json&#8217; -d &#8216;{&lt;Model Object as json data&gt;}&#8217; http://device-management-IP:8080/public/v1/config/LaPortChannel</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>DELETE By ID</dt>
+<dd><p class="first last">curl -X DELETE <a class="reference external" href="http://device-management-IP:8080/public/v1/config">http://device-management-IP:8080/public/v1/config</a>/LaPortChannel&lt;uuid&gt;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>UPDATE(PATCH) By Key</dt>
+<dd><p class="first last">curl -X PATCH -H &#8216;Content-Type: application/json&#8217; -d &#8216;{&lt;Model Object as json data&gt;}&#8217;  <a class="reference external" href="http://device-management-IP:8080/public/v1/config/LaPortChannel">http://device-management-IP:8080/public/v1/config/LaPortChannel</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>UPDATE(PATCH) By ID</dt>
+<dd><p class="first last">curl -X PATCH -H &#8216;Content-Type: application/json&#8217; -d &#8216;{&lt;Model Object as json data&gt;}&#8217;  <a class="reference external" href="http://device-management-IP:8080/public/v1/config">http://device-management-IP:8080/public/v1/config</a>/LaPortChannel&lt;uuid&gt;</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="flexswitch-sdk-api-supported">
+<h2><em>FlexSwitch SDK API Supported:</em><a class="headerlink" href="#flexswitch-sdk-api-supported" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>GET</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getLaPortChannel</span><span class="p">(</span><span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET By ID</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getLaPortChannelById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET ALL</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getAllLaPortChannels</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>CREATE</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">createLaPortChannel</span><span class="p">(</span><span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">LacpMode</span><span class="o">=</span><span class="n">lacpmode</span><span class="p">,</span> <span class="n">MinLinks</span><span class="o">=</span><span class="n">minlinks</span><span class="p">,</span> <span class="n">SystemIdMac</span><span class="o">=</span><span class="n">systemidmac</span><span class="p">,</span> <span class="n">SystemPriority</span><span class="o">=</span><span class="n">systempriority</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">IntfRefList</span><span class="o">=</span><span class="n">intfreflist</span><span class="p">,</span> <span class="n">LagHash</span><span class="o">=</span><span class="n">laghash</span><span class="p">,</span> <span class="n">LagType</span><span class="o">=</span><span class="n">lagtype</span><span class="p">,</span> <span class="n">Interval</span><span class="o">=</span><span class="n">interval</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>DELETE</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">deleteLaPortChannel</span><span class="p">(</span><span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>DELETE By ID</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">deleteLaPortChannelById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectid</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>UPDATE</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateLaPortChannel</span><span class="p">(</span><span class="n">IntfRef</span><span class="o">=</span><span class="n">intfref</span><span class="p">,</span> <span class="n">LacpMode</span><span class="o">=</span><span class="n">lacpmode</span><span class="p">,</span> <span class="n">MinLinks</span><span class="o">=</span><span class="n">minlinks</span><span class="p">,</span> <span class="n">SystemIdMac</span><span class="o">=</span><span class="n">systemidmac</span><span class="p">,</span> <span class="n">SystemPriority</span><span class="o">=</span><span class="n">systempriority</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">IntfRefList</span><span class="o">=</span><span class="n">intfreflist</span><span class="p">,</span> <span class="n">LagHash</span><span class="o">=</span><span class="n">laghash</span><span class="p">,</span> <span class="n">LagType</span><span class="o">=</span><span class="n">lagtype</span><span class="p">,</span> <span class="n">Interval</span><span class="o">=</span><span class="n">interval</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>UPDATE By ID</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateLaPortChannelById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidLacpMode</span><span class="o">=</span><span class="n">lacpmode</span><span class="p">,</span> <span class="n">MinLinks</span><span class="o">=</span><span class="n">minlinks</span><span class="p">,</span> <span class="n">SystemIdMac</span><span class="o">=</span><span class="n">systemidmac</span><span class="p">,</span> <span class="n">SystemPriority</span><span class="o">=</span><span class="n">systempriority</span><span class="p">,</span> <span class="n">AdminState</span><span class="o">=</span><span class="n">adminstate</span><span class="p">,</span> <span class="n">IntfRefList</span><span class="o">=</span><span class="n">intfreflist</span><span class="p">,</span> <span class="n">LagHash</span><span class="o">=</span><span class="n">laghash</span><span class="p">,</span> <span class="n">LagType</span><span class="o">=</span><span class="n">lagtype</span><span class="p">,</span> <span class="n">Interval</span><span class="o">=</span><span class="n">interval</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="LaPortChannelStateObjects.html" class="btn btn-neutral float-right" title="LaPortChannelState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="IppLinkStateObjects.html" class="btn btn-neutral" title="IppLinkState Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

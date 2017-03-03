@@ -4392,7 +4392,6 @@ This object will enable the global ospf feature. Unless ospf global is enabled  
     curl -H "Content-Type: application/json" -d '{"RouterId": "10.1.1.1", "AdminStat":1, "ASBdrRtrStatus":true, "TOSSupport":true,  "RestartSupport":1, "RestartInterval":10}' http://localhost:8080/public/v1/config/OspfGlobal
 
 
-
 Show commands 
 ^^^^^^^^^^^^^
 

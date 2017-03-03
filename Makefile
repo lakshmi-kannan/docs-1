@@ -50,7 +50,7 @@ help:
 .PHONY: clean
 clean:
 	@echo "Not Cleaning up any thing in $(BUILDDIR)/."
-	#rm -f $(BUILDDIR)/*
+	#rm -rf $(BUILDDIR)/*
 
 .PHONY: html
 html:

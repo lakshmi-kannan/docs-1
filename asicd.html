@@ -99,6 +99,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="developer.html#open-source-components">Open Source Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer.html#creating-new-component">Creating New Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="developer.html#design-decisions">Design Decisions</a></li>
 </ul>
 </li>
@@ -162,7 +163,7 @@
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Snaproute&#8217;s asic daemon serves as a hardware abstraction layer (HAL). A common northbound API interface is presented to all protocol daemons.
-This interface allows provisioning a range of packet processing ASICs such as Broadcom, Mellanox, Cavium. Support for software simulation with docker instances is also provided.</p>
+This interface allows provisioning a range of packet processing ASICs. Support for software simulation with docker instances is also provided.</p>
 </div>
 <div class="section" id="software-architecture">
 <h2>Software Architecture<a class="headerlink" href="#software-architecture" title="Permalink to this headline">¶</a></h2>
@@ -178,10 +179,10 @@ These resource managers also maintain any relevant state data for each correspon
 </div>
 <div class="section" id="plugins">
 <h2>Plugins :<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
-<p>ASICd uses a plugin based approach to effectively abstract away differences between ASICs from multiple vendors. The following plugins and asic vendors are currently supported</p>
-<p>OpenNsl (Broadcom)</p>
-<p>SAI (Mellanox, Barefoot)</p>
-<p>Softswitch (Linux host)</p>
+<p>ASICd uses a plugin based approach to effectively abstract away differences between ASICs. The following plugins are currently supported</p>
+<p>OpenNsl</p>
+<p>SAI</p>
+<p>Softswitch</p>
 </div>
 <div class="section" id="notifications">
 <h2>Notifications :<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h2>

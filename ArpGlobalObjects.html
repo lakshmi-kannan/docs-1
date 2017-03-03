@@ -1,0 +1,471 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ArpGlobal Object &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="FlexSwitch L3 Objects" href="L3Objects.html"/>
+        <link rel="next" title="ArpEntryState Object" href="ArpEntryStateObjects.html"/>
+        <link rel="prev" title="ArpLinuxEntryState Object" href="ArpLinuxEntryStateObjects.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="apis.html">API reference!</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="PhysicalObjects.html">Physical Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PlatformObjects.html">Platform Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L2Objects.html">L2 Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="L3Objects.html">L3 Objects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="BGPv6NeighborObjects.html">BGPv6Neighbor Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv4NeighborStateObjects.html">BGPv4NeighborState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv4RouteStateObjects.html">BGPv4RouteState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPGlobalObjects.html">BGPGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv4PeerGroupObjects.html">BGPv4PeerGroup Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv6PeerGroupObjects.html">BGPv6PeerGroup Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv6RouteStateObjects.html">BGPv6RouteState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv6NeighborStateObjects.html">BGPv6NeighborState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv4AggregateObjects.html">BGPv4Aggregate Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv6AggregateObjects.html">BGPv6Aggregate Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPGlobalStateObjects.html">BGPGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BGPv4NeighborObjects.html">BGPv4Neighbor Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv6RouteStateObjects.html">IPv6RouteState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv6RouteObjects.html">IPv6Route Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolicyDefinitionObjects.html">PolicyDefinition Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolicyStmtObjects.html">PolicyStmt Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RouteStatsPerInterfaceStateObjects.html">RouteStatsPerInterfaceState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolicyPrefixSetStateObjects.html">PolicyPrefixSetState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv4RouteStateObjects.html">IPv4RouteState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolicyConditionObjects.html">PolicyCondition Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RouteDistanceStateObjects.html">RouteDistanceState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RouteStatStateObjects.html">RouteStatState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolicyDefinitionStateObjects.html">PolicyDefinitionState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RIBEventStateObjects.html">RIBEventState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolicyConditionStateObjects.html">PolicyConditionState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv4RouteObjects.html">IPv4Route Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RouteStatsPerProtocolStateObjects.html">RouteStatsPerProtocolState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolicyPrefixSetObjects.html">PolicyPrefixSet Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PolicyStmtStateObjects.html">PolicyStmtState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BfdSessionStateObjects.html">BfdSessionState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BfdSessionParamObjects.html">BfdSessionParam Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BfdGlobalObjects.html">BfdGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BfdSessionObjects.html">BfdSession Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BfdGlobalStateObjects.html">BfdGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BfdSessionParamStateObjects.html">BfdSessionParamState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArpLinuxEntryStateObjects.html">ArpLinuxEntryState Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ArpGlobal Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#config-arpglobal"><em>config/ArpGlobal</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ArpEntryStateObjects.html">ArpEntryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VrrpIntfStateObjects.html">VrrpIntfState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VrrpIntfObjects.html">VrrpIntf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VrrpVridStateObjects.html">VrrpVridState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPv6RelayGlobalObjects.html">DHCPv6RelayGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPRelayGlobalObjects.html">DHCPRelayGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPRelayIntfStateObjects.html">DHCPRelayIntfState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPRelayClientStateObjects.html">DHCPRelayClientState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPv6RelayIntfObjects.html">DHCPv6RelayIntf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPv6RelayIntfServerStateObjects.html">DHCPv6RelayIntfServerState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPv6RelayIntfStateObjects.html">DHCPv6RelayIntfState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPRelayIntfObjects.html">DHCPRelayIntf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPRelayIntfServerStateObjects.html">DHCPRelayIntfServerState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DHCPv6RelayClientStateObjects.html">DHCPv6RelayClientState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DhcpIntfConfigObjects.html">DhcpIntfConfig Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DhcpGlobalConfigObjects.html">DhcpGlobalConfig Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv6RouteHwStateObjects.html">IPv6RouteHwState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubIPv4IntfObjects.html">SubIPv4Intf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv6IntfStateObjects.html">IPv6IntfState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv6IntfObjects.html">IPv6Intf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv4RouteHwStateObjects.html">IPv4RouteHwState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv4IntfStateObjects.html">IPv4IntfState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LinkScopeIpStateObjects.html">LinkScopeIpState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NdpEntryHwStateObjects.html">NdpEntryHwState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="AclRuleStateObjects.html">AclRuleState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ArpEntryHwStateObjects.html">ArpEntryHwState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPv4IntfObjects.html">IPv4Intf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SubIPv6IntfObjects.html">SubIPv6Intf Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfGlobalStateObjects.html">OspfGlobalState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfAreaEntryObjects.html">OspfAreaEntry Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfIfMetricEntryObjects.html">OspfIfMetricEntry Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfIPv4RouteStateObjects.html">OspfIPv4RouteState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfAreaEntryStateObjects.html">OspfAreaEntryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfEventStateObjects.html">OspfEventState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfGlobalObjects.html">OspfGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfLsdbEntryStateObjects.html">OspfLsdbEntryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfIfEntryStateObjects.html">OspfIfEntryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfIfEntryObjects.html">OspfIfEntry Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="OspfNbrEntryStateObjects.html">OspfNbrEntryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IPV6AdjStateObjects.html">IPV6AdjState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NDPEntryStateObjects.html">NDPEntryState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NDPGlobalObjects.html">NDPGlobal Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NDPGlobalStateObjects.html">NDPGlobalState Object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SystemObjects.html">System Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Faults and AlarmsObjects.html">Faults and Alarms Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="apis.html">API reference!</a> &raquo;</li>
+      
+          <li><a href="L3Objects.html">FlexSwitch L3 Objects</a> &raquo;</li>
+      
+    <li>ArpGlobal Object</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ArpGlobalObjects.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="arpglobal-object">
+<h1>ArpGlobal Object<a class="headerlink" href="#arpglobal-object" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="config-arpglobal">
+<h2><em>config/ArpGlobal</em><a class="headerlink" href="#config-arpglobal" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Only one object of this type can exist in a system.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="33%" />
+<col width="13%" />
+<col width="18%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>PARAMETER NAME</strong></td>
+<td><strong>DATA TYPE</strong></td>
+<td><strong>DESCRIPTION</strong></td>
+<td><strong>DEFAULT</strong></td>
+<td><strong>VALID VALUES</strong></td>
+</tr>
+<tr class="row-even"><td>Vrf <strong>[KEY]</strong></td>
+<td>string</td>
+<td>System Vrf</td>
+<td>default</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>Timeout</td>
+<td>int32</td>
+<td>Global Arp entry timeout
+value. Default value</td>
+<td>600</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="flexswitch-curl-api-supported">
+<h2><em>FlexSwitch CURL API Supported</em><a class="headerlink" href="#flexswitch-curl-api-supported" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>GET By Key</dt>
+<dd><p class="first last">curl -X GET -H &#8216;Content-Type: application/json&#8217; &#8211;header &#8216;Accept: application/json&#8217; -d &#8216;{&lt;Model Object as json-Data&gt;}&#8217; <a class="reference external" href="http://device-management-IP:8080/public/v1/config/ArpGlobal">http://device-management-IP:8080/public/v1/config/ArpGlobal</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET By ID</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/ArpGlobal">http://device-management-IP:8080/public/v1/config/ArpGlobal</a>/&lt;uuid&gt;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>UPDATE(PATCH) By Key</dt>
+<dd><p class="first last">curl -X PATCH -H &#8216;Content-Type: application/json&#8217; -d &#8216;{&lt;Model Object as json data&gt;}&#8217;  <a class="reference external" href="http://device-management-IP:8080/public/v1/config/ArpGlobal">http://device-management-IP:8080/public/v1/config/ArpGlobal</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>UPDATE(PATCH) By ID</dt>
+<dd><p class="first last">curl -X PATCH -H &#8216;Content-Type: application/json&#8217; -d &#8216;{&lt;Model Object as json data&gt;}&#8217;  <a class="reference external" href="http://device-management-IP:8080/public/v1/config">http://device-management-IP:8080/public/v1/config</a>/ArpGlobal&lt;uuid&gt;</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="flexswitch-sdk-api-supported">
+<h2><em>FlexSwitch SDK API Supported:</em><a class="headerlink" href="#flexswitch-sdk-api-supported" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>GET</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getArpGlobal</span><span class="p">(</span><span class="n">Vrf</span><span class="o">=</span><span class="n">vrf</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET By ID</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getArpGlobalById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET ALL</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getAllArpGlobals</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>UPDATE</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateArpGlobal</span><span class="p">(</span><span class="n">Vrf</span><span class="o">=</span><span class="n">vrf</span><span class="p">,</span> <span class="n">Timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>UPDATE By ID</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">updateArpGlobalById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectidTimeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ArpEntryStateObjects.html" class="btn btn-neutral float-right" title="ArpEntryState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ArpLinuxEntryStateObjects.html" class="btn btn-neutral" title="ArpLinuxEntryState Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

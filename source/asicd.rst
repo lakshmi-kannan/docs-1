@@ -10,7 +10,7 @@ Welcome to FlexSwitch ASICd's documentation!
 Overview
 --------
 Snaproute's asic daemon serves as a hardware abstraction layer (HAL). A common northbound API interface is presented to all protocol daemons.
-This interface allows provisioning a range of packet processing ASICs such as Broadcom, Mellanox, Cavium. Support for software simulation with docker instances is also provided.
+This interface allows provisioning a range of packet processing ASICs. Support for software simulation with docker instances is also provided.
 
 Software Architecture
 ---------------------
@@ -26,13 +26,13 @@ These resource managers also maintain any relevant state data for each correspon
 
 Plugins :
 ---------
-ASICd uses a plugin based approach to effectively abstract away differences between ASICs from multiple vendors. The following plugins and asic vendors are currently supported
+ASICd uses a plugin based approach to effectively abstract away differences between ASICs. The following plugins are currently supported
 
-OpenNsl (Broadcom)
+OpenNsl 
 
-SAI (Mellanox, Barefoot)
+SAI 
 
-Softswitch (Linux host)
+Softswitch 
 
 Notifications :
 ---------------

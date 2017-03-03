@@ -79,7 +79,7 @@ RIBd code can be found `here <https://github.com/opensnaproute/l3>`_
 ASIC Daemon
 """""""""""
 ASIC Daemon serves as a hardware abstraction layer (HAL). A common northbound API interface is exposed to all protocol daemons.
-This interface allows provisioning of a range of packet processing ASICs such as Broadcom, Mellanox, Cavium etc.
+This interface allows provisioning of a range of packet processing ASICs.
 Support for software simulation with docker instances is also provided.
 
 ASICd binaries can be found `here <https://github.com/opensnaproute/asicd>`_

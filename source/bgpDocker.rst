@@ -19,6 +19,7 @@ Run docker_startup script
 
 
    sh docker_startup.sh
+   Get the script here - https://github.com/OpenSnaproute/test
     
  
  
@@ -67,9 +68,13 @@ Configure d_inst1
 ::
 
 
-    curl -H "Content-Type: application/json" -d '{"ASNum":"500","RouterId":"10.1.10.2"}' http://localhost:8080/public/v1/config/BGPGlobal
+
+    
+    curl -X PATCH "Content-Type: application/json" -d '{"ASNum":"500","RouterId":"10.1.10.2"}' http://localhost:8080/public/v1/config/BGPGlobal
  
-    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":"500","NeighborAddress":"40.1.1.2","IfIndex":0,"RouteReflectorClusterId":0,"MultiHopTTL":0,"ConnectRetryTime":60,"HoldTime":180,"KeepaliveTime":60,"AddPathsMaxTx":0}' 'http://localhost:8080/public/v1/config/BGPv4Neighbor'
+    curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"PeerAS":"500","NeighborAddress":"40.1.1.2","RouteReflectorClusterId":0,"MultiHopTTL":0,"ConnectRetryTime":60,"HoldTime":180,"KeepaliveTime":60,"AddPathsMaxTx":0}' 'http://localhost:8080/public/v1/config/BGPv4Neighbor'
+ 
+   
  
 Configure d_inst2
 """""""""""""""""""""""""

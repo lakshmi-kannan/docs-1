@@ -1,0 +1,396 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ThermalState Object &mdash; FlexSwitch 1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="FlexSwitch 1.0 documentation" href="index.html"/>
+        <link rel="up" title="FlexSwitch Platform Objects" href="PlatformObjects.html"/>
+        <link rel="next" title="FanState Object" href="FanStateObjects.html"/>
+        <link rel="prev" title="TemperatureSensor Object" href="TemperatureSensorObjects.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FlexSwitch
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html"> Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer.html"> Developer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nwengineer.html"> Network Engineer Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="example.html"> Example Configurations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="softwareflexswitch.html"> Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ONIE_install.html"> ONIE Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="apis.html">API reference!</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="PhysicalObjects.html">Physical Objects</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="PlatformObjects.html">Platform Objects</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="SfpStateObjects.html">SfpState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QsfpChannelStateObjects.html">QsfpChannelState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PsuObjects.html">Psu Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VoltageSensorObjects.html">VoltageSensor Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FanSensorStateObjects.html">FanSensorState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LedStateObjects.html">LedState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QsfpChannelObjects.html">QsfpChannel Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PowerConverterSensorObjects.html">PowerConverterSensor Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TemperatureSensorStateObjects.html">TemperatureSensorState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PsuStateObjects.html">PsuState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PlatformMgmtDeviceStateObjects.html">PlatformMgmtDeviceState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FanObjects.html">Fan Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QsfpStateObjects.html">QsfpState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="TemperatureSensorObjects.html">TemperatureSensor Object</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ThermalState Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state-thermal"><em>state/Thermal</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-curl-api-supported"><em>FlexSwitch CURL API Supported</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flexswitch-sdk-api-supported"><em>FlexSwitch SDK API Supported:</em></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FanStateObjects.html">FanState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VoltageSensorStateObjects.html">VoltageSensorState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="QsfpObjects.html">Qsfp Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LedObjects.html">Led Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PowerConverterSensorStateObjects.html">PowerConverterSensorState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PlatformStateObjects.html">PlatformState Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SfpObjects.html">Sfp Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FanSensorObjects.html">FanSensor Object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="L2Objects.html">L2 Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="TunnelObjects.html">Tunnel Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="L3Objects.html">L3 Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SystemObjects.html">System Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PerformanceObjects.html">Performance Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Faults and AlarmsObjects.html">Faults and Alarms Objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apis.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">FlexSwitch</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="apis.html">API reference!</a> &raquo;</li>
+      
+          <li><a href="PlatformObjects.html">FlexSwitch Platform Objects</a> &raquo;</li>
+      
+    <li>ThermalState Object</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/ThermalStateObjects.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="thermalstate-object">
+<h1>ThermalState Object<a class="headerlink" href="#thermalstate-object" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="state-thermal">
+<h2><em>state/Thermal</em><a class="headerlink" href="#state-thermal" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Multiple objects of this type can exist in a system.</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="14%" />
+<col width="30%" />
+<col width="12%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>PARAMETER NAME</strong></td>
+<td><strong>DATA TYPE</strong></td>
+<td><strong>DESCRIPTION</strong></td>
+<td><strong>DEFAULT</strong></td>
+<td><strong>VALID VALUES</strong></td>
+</tr>
+<tr class="row-even"><td>ThermalId <strong>[KEY]</strong></td>
+<td>int32</td>
+<td>Thermal sensor id</td>
+<td>0</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>Location</td>
+<td>string</td>
+<td>Thermal sensor location
+CPU/PSU/Motherboard</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>LowerWatermarkTemperature</td>
+<td>string</td>
+<td>Temperature warning</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>ShutdownTemperature</td>
+<td>string</td>
+<td>Temperature panic</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-even"><td>Temperature</td>
+<td>string</td>
+<td>Temperature current</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr class="row-odd"><td>UpperWatermarkTemperature</td>
+<td>string</td>
+<td>Temperature error</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="flexswitch-curl-api-supported">
+<h2><em>FlexSwitch CURL API Supported</em><a class="headerlink" href="#flexswitch-curl-api-supported" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>GET By Key</dt>
+<dd><p class="first last">curl -X GET -H &#8216;Content-Type: application/json&#8217; &#8211;header &#8216;Accept: application/json&#8217; -d &#8216;{&lt;Model Object as json-Data&gt;}&#8217; <a class="reference external" href="http://device-management-IP:8080/public/v1/state/Thermal">http://device-management-IP:8080/public/v1/state/Thermal</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET ALL</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/state/Thermals">http://device-management-IP:8080/public/v1/state/Thermals</a>?CurrentMarker=&lt;x&gt;\&amp;Count=&lt;y&gt;</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GET By ID</dt>
+<dd><p class="first last">curl -X GET <a class="reference external" href="http://device-management-IP:8080/public/v1/config/ThermalState">http://device-management-IP:8080/public/v1/config/ThermalState</a>/&lt;uuid&gt;</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="flexswitch-sdk-api-supported">
+<h2><em>FlexSwitch SDK API Supported:</em><a class="headerlink" href="#flexswitch-sdk-api-supported" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><strong>GET</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getThermalState</span><span class="p">(</span><span class="n">ThermalId</span><span class="o">=</span><span class="n">thermalid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET By ID</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getThermalStateById</span><span class="p">(</span><span class="n">ObjectId</span><span class="o">=</span><span class="n">objectid</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>GET ALL</strong></li>
+</ul>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">flexswitchV2</span> <span class="k">import</span> <span class="n">FlexSwitch</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+        <span class="n">switchIP</span> <span class="p">:</span><span class="o">=</span> <span class="s2">&quot;192.168.56.101&quot;</span>
+        <span class="n">swtch</span> <span class="o">=</span> <span class="n">FlexSwitch</span> <span class="p">(</span><span class="n">switchIP</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>  <span class="c1"># Instantiate object to talk to flexSwitch</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">swtch</span><span class="o">.</span><span class="n">getAllThermalStates</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">error</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#Error not being None implies there is some problem</span>
+                <span class="nb">print</span> <span class="n">error</span>
+        <span class="k">else</span> <span class="p">:</span>
+                <span class="nb">print</span> <span class="s1">&#39;Success&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="FanStateObjects.html" class="btn btn-neutral float-right" title="FanState Object" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="TemperatureSensorObjects.html" class="btn btn-neutral" title="TemperatureSensor Object" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Snaproute.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
