@@ -313,8 +313,7 @@ It shows details if each daemon is up/down along and reason of failure if any.
 
 ::
 
-	$ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/public/v1/state/ArpEntrys' | python -m json.tool
-	root@d28c36ed59e5:/# curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/public/v1/state/ArpEntrys' | python -m json.tool
+	curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/public/v1/state/ArpLinuxEntrys' | python -m json.tool
   	% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
         	                         Dload  Upload   Total   Spent    Left  Speed
 	100   227  100   227    0     0  32922      0 --:--:-- --:--:-- --:--:-- 37833
