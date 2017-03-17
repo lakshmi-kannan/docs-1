@@ -91,9 +91,9 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#"> OSPF with 2 nodes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#run-the-docker-startup-script">Run the docker_startup script</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configure-d-inst1-docker">Configure d_inst1 docker</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ospfareaentry">OspfAreaEntry</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ospfifentry">OspfIfEntry</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ospfglobal">OspfGlobal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ospfv2areaentry">Ospfv2AreaEntry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ospfv2intf">Ospfv2Intf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ospfv2global">Ospfv2Global</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configure-d-inst2-docker">Configure d_inst2 docker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#show-commands">Show commands</a></li>
 </ul>
@@ -192,35 +192,33 @@ d_inst1 and d_inst2</p>
 <li>Below steps carry out OSPF specific configurations</li>
 </ul>
 </div>
-<div class="section" id="ospfareaentry">
-<h2>OspfAreaEntry<a class="headerlink" href="#ospfareaentry" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ospfv2areaentry">
+<h2>Ospfv2AreaEntry<a class="headerlink" href="#ospfv2areaentry" title="Permalink to this headline">¶</a></h2>
 <p>It will configure OSPF area specific params.
-If ospfArea Entry is not added by default area 0.0.0.0 is created.</p>
+If ospfArea Entry is not added by default area 0.0.0.0 is created but its admin state will be DOWN.</p>
 <p><strong>AreaId</strong> = Unique area id . Used as key.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;AreaId&quot;: &quot;0.0.0.2&quot;, &quot;AuthType&quot;:0, &quot;ImportAsExtern&quot;:1, &quot;AreaSummary&quot;:1, &quot;AreaNssaTranslatorRole&quot;:2, &quot;AreaNssaTranslatorStabilityInterval&quot;:40}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfAreaEntry</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span>  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;AreaId&quot;:&quot;0.0.0.0&quot;, &quot;AdminState&quot;:&quot;UP&quot;}&#39;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">Ospfv2Area</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="ospfifentry">
-<h2>OspfIfEntry<a class="headerlink" href="#ospfifentry" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ospfv2intf">
+<h2>Ospfv2Intf<a class="headerlink" href="#ospfv2intf" title="Permalink to this headline">¶</a></h2>
 <p>IfEntry configures OSPF interface.</p>
 <p><strong>IfIpAddress</strong> = Ip address of the interface</p>
 <p><strong>AddressLessIf</strong> = Ip index . Used to configure unnumbered P2P links.</p>
 <p>The default IfRtrDeadInterval is 40 s whereas HelloInterval is 10s.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="n">configure</span> <span class="n">Ospf</span> <span class="n">Interface</span> <span class="k">with</span> <span class="n">ip</span> <span class="n">address</span> <span class="mf">40.1</span><span class="o">.</span><span class="mf">1.1</span> <span class="ow">and</span> <span class="n">area</span> <span class="nb">id</span> <span class="mf">0.0</span><span class="o">.</span><span class="mf">0.2</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">configure</span> <span class="n">Ospfv2</span> <span class="n">Interface</span> <span class="k">with</span> <span class="n">ip</span> <span class="n">address</span> <span class="mf">40.1</span><span class="o">.</span><span class="mf">1.1</span>
 
-<span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IfIpAddress&quot;: &quot;40.1.1.1&quot;, &quot;AddressLessIf&quot;:0, &quot;IfAreaId&quot;:&quot;0.0.0.2&quot;, &quot;IfType&quot;:&quot;Broadcast&quot;, &quot;IfAdminStat&quot;:1, &quot;IfRtrPriority&quot;:1, &quot;IfTransitDelay&quot;:1, &quot;IfRetransInterval&quot;:5, &quot;IfHelloInterval&quot;:10, &quot;IfRtrDeadInterval&quot;:40, &quot;IfPollInterval&quot;:120, &quot;IfAuthKey&quot;:&quot;0.0.0.0.0.0.0.0&quot;, &quot;IfAuthType&quot;:0}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfIfEntry</span>
+<span class="n">curl</span>  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddress&quot;:&quot;40.1.1.1&quot;, &quot;AddressLessIfIdx&quot;:0, &quot;AdminState&quot;:&quot;UP&quot;, &quot;Type&quot;:&quot;PointToPoint&quot;}&#39;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">Ospfv2Intf</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="ospfglobal">
-<h2>OspfGlobal<a class="headerlink" href="#ospfglobal" title="Permalink to this headline">¶</a></h2>
-<p>This object will enable the global ospf feature. Unless ospf global is enabled  ,OspfAreaEntry wont take effect.</p>
+<div class="section" id="ospfv2global">
+<h2>Ospfv2Global<a class="headerlink" href="#ospfv2global" title="Permalink to this headline">¶</a></h2>
+<p>This object will enable the global ospf feature. Unless ospf global is enabled  ,Ospfv2AreaEntry wont take effect.</p>
 <p><strong>RouterId</strong> = OSPF router id.</p>
 <p><strong>ASBdrRtrStatus</strong> = set to true if router acts as ASBR.</p>
-<p><strong>TOSSupport</strong> = OSPF TOS support. (Currently not supported.)</p>
-<p><strong>RestartSupport</strong> = If the process restart is supported.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;RouterId&quot;: &quot;10.1.1.1&quot;, &quot;AdminStat&quot;:1, &quot;ASBdrRtrStatus&quot;:true, &quot;TOSSupport&quot;:true,  &quot;RestartSupport&quot;:1, &quot;RestartInterval&quot;:10}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfGlobal</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PATCH</span> <span class="o">-</span><span class="n">i</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;Vrf&quot;:&quot;default&quot;, &quot;RouterId&quot;:&quot;10.1.1.1&quot;, &quot;AdminState&quot;:&quot;UP&quot;}&#39;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">Ospfv2Global</span>
 </pre></div>
 </div>
 </div>
@@ -239,62 +237,66 @@ If ospfArea Entry is not added by default area 0.0.0.0 is created.</p>
 <ul class="simple">
 <li>Configure OSPF</li>
 </ul>
-<p><strong>Ospf Area config</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;AreaId&quot;: &quot;0.0.0.2&quot;, &quot;AuthType&quot;:0, &quot;ImportAsExtern&quot;:1, &quot;AreaSummary&quot;:1, &quot;AreaNssaTranslatorRole&quot;:2, &quot;AreaNssaTranslatorStabilityInterval&quot;:40}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfAreaEntry</span>
+<p><strong>Ospfv2 Area config</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span>  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;AreaId&quot;:&quot;0.0.0.0&quot;, &quot;AdminState&quot;:&quot;UP&quot;}&#39;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">Ospfv2Area</span>
 </pre></div>
 </div>
-<p><strong>Ospf Interface config</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IfIpAddress&quot;: &quot;40.1.1.2&quot;, &quot;AddressLessIf&quot;:0, &quot;IfAreaId&quot;:&quot;0.0.0.2&quot;, &quot;IfType&quot;:&quot;Broadcast&quot;, &quot;IfAdminStat&quot;:1, &quot;IfRtrPriority&quot;:1, &quot;IfTransitDelay&quot;:1, &quot;IfRetransInterval&quot;:5, &quot;IfHelloInterval&quot;:10, &quot;IfRtrDeadInterval&quot;:40, &quot;IfPollInterval&quot;:120, &quot;IfAuthKey&quot;:&quot;0.0.0.0.0.0.0.0&quot;, &quot;IfMulticastForwarding&quot;:1, &quot;IfDemand&quot;:false, &quot;IfAuthType&quot;:0}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfIfEntry</span>
+<p><strong>Ospfv2 Interface config</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span>  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;IpAddress&quot;:&quot;40.1.1.2&quot;, &quot;AddressLessIfIdx&quot;:0, &quot;AdminState&quot;:&quot;UP&quot;, &quot;Type&quot;:&quot;PointToPoint&quot;}&#39;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">Ospfv2Intf</span>
 </pre></div>
 </div>
 <p><strong>Enable global OSPF parameters</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;RouterId&quot;: &quot;10.1.1.2&quot;, &quot;AdminStat&quot;:1, &quot;ASBdrRtrStatus&quot;:true, &quot;TOSSupport&quot;:true,  &quot;RestartSupport&quot;:1, &quot;RestartInterval&quot;:10}&#39;</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">OspfGlobal</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PATCH</span> <span class="o">-</span><span class="n">i</span> <span class="s2">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;{&quot;Vrf&quot;:&quot;default&quot;, &quot;RouterId&quot;:&quot;10.1.1.2&quot;, &quot;AdminState&quot;:&quot;UP&quot;}&#39;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">public</span><span class="o">/</span><span class="n">v1</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">Ospfv2Global</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="show-commands">
 <h2>Show commands<a class="headerlink" href="#show-commands" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Check Ospf Neighbors</li>
+<li>Check Ospfv2 Neighbors</li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span>   <span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Accept: application/json&quot;</span> <span class="s2">&quot;http://localhost:8080/public/v1/state/OspfNbrEntrys?CurrentMarker=0&amp;NextMarker=0&amp;Count=10&quot;</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="n">curl</span>  <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Accept: application/json&quot;</span> <span class="s2">&quot;http://localhost:8080/public/v1/state/Ospfv2Nbrs&quot;</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
 
-   <span class="o">%</span> <span class="n">Total</span>    <span class="o">%</span> <span class="n">Received</span> <span class="o">%</span> <span class="n">Xferd</span>  <span class="n">Average</span> <span class="n">Speed</span>   <span class="n">Time</span>    <span class="n">Time</span>     <span class="n">Time</span>  <span class="n">Current</span>
-                                <span class="n">Dload</span>  <span class="n">Upload</span>   <span class="n">Total</span>   <span class="n">Spent</span>    <span class="n">Left</span>  <span class="n">Speed</span>
-   <span class="mi">100</span>   <span class="mi">367</span>  <span class="mi">100</span>   <span class="mi">367</span>    <span class="mi">0</span>     <span class="mi">0</span>  <span class="mi">58272</span>      <span class="mi">0</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span> <span class="o">--</span><span class="p">:</span><span class="o">--</span><span class="p">:</span><span class="o">--</span> <span class="mi">61166</span>
-  <span class="p">{</span>
-   <span class="s2">&quot;CurrentMarker&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="s2">&quot;MoreExist&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-   <span class="s2">&quot;NextMarker&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-   <span class="s2">&quot;ObjCount&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-   <span class="s2">&quot;Objects&quot;</span><span class="p">:</span> <span class="p">[</span>
-       <span class="p">{</span>
-           <span class="s2">&quot;Object&quot;</span><span class="p">:</span> <span class="p">{</span>
-               <span class="s2">&quot;NbmaNbrPermanence&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-               <span class="s2">&quot;NbrAddressLessIndex&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-               <span class="s2">&quot;NbrEvents&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-               <span class="s2">&quot;NbrHelloSuppressed&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-               <span class="s2">&quot;NbrIpAddr&quot;</span><span class="p">:</span> <span class="s2">&quot;51.1.1.6&quot;</span><span class="p">,</span>
-               <span class="s2">&quot;NbrLsRetransQLen&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-               <span class="s2">&quot;NbrOptions&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-               <span class="s2">&quot;NbrRestartHelperAge&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-               <span class="s2">&quot;NbrRestartHelperExitReason&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-               <span class="s2">&quot;NbrRestartHelperStatus&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-               <span class="s2">&quot;NbrRtrId&quot;</span><span class="p">:</span> <span class="s2">&quot;10.1.1.3&quot;</span><span class="p">,</span>
-               <span class="s2">&quot;NbrState&quot;</span><span class="p">:</span> <span class="mi">7</span>
-           <span class="p">},</span>
-           <span class="s2">&quot;ObjectId&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span>
-       <span class="p">}</span>
-   <span class="p">]</span>
-<span class="p">}</span>
+ <span class="n">root</span><span class="nd">@snaproute</span><span class="o">-</span><span class="n">lab</span><span class="o">-</span><span class="n">r815</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">snaproute</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">setups</span><span class="c1"># curl  -H &quot;Accept: application/json&quot; &quot;http://localhost:8080/public/v1/state/Ospfv2Nbrs&quot; | python -m json.tool</span>
+<span class="o">%</span> <span class="n">Total</span>    <span class="o">%</span> <span class="n">Received</span> <span class="o">%</span> <span class="n">Xferd</span>  <span class="n">Average</span> <span class="n">Speed</span>   <span class="n">Time</span>    <span class="n">Time</span>     <span class="n">Time</span>  <span class="n">Current</span>
+                               <span class="n">Dload</span>  <span class="n">Upload</span>   <span class="n">Total</span>   <span class="n">Spent</span>    <span class="n">Left</span>  <span class="n">Speed</span>
 </pre></div>
 </div>
+<p>100   191  100   191    0     0  90392      0 &#8211;:&#8211;:&#8211; &#8211;:&#8211;:&#8211; &#8211;:&#8211;:&#8211;  186k
+{</p>
+<blockquote>
+<div><p>&#8220;CurrentMarker&#8221;: 0,
+&#8220;MoreExist&#8221;: false,
+&#8220;NextMarker&#8221;: 1,
+&#8220;ObjCount&#8221;: 1,
+&#8220;Objects&#8221;: [</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>{</dt>
+<dd><dl class="first docutils">
+<dt>&#8220;Object&#8221;: {</dt>
+<dd>&#8220;AddressLessIfIdx&#8221;: 0,
+&#8220;IpAddr&#8221;: &#8220;10.1.1.2&#8221;,
+&#8220;Options&#8221;: 0,
+&#8220;RtrId&#8221;: &#8220;10.1.1.2&#8221;,
+&#8220;State&#8221;: &#8220;FULL&#8221;</dd>
+</dl>
+<p class="last">},
+&#8220;ObjectId&#8221;: &#8220;&#8221;</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
 <ul class="simple">
 <li>check LSA database</li>
 </ul>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="s2">&quot;Accept: application/json&quot;</span> <span class="s2">&quot;http://localhost:8080/public/v1/state/OspfLsdbEntrys&quot;</span> <span class="o">|</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">json</span><span class="o">.</span><span class="n">tool</span>
-</pre></div>
-</div>
+<dl class="docutils">
+<dt>::</dt>
+<dd>curl  -H &#8220;Accept: application/json&#8221; &#8220;<a class="reference external" href="http://localhost:8080/public/v1/state/Ospfv2Lsdbs">http://localhost:8080/public/v1/state/Ospfv2Lsdbs</a>&#8221; | python -m json.tool</dd>
+</dl>
 </div>
 </div>
 
