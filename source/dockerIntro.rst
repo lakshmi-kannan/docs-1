@@ -1,8 +1,8 @@
 Getting started with flexswitch on Docker
 ==========================================
 
-This tutorial is going to help you to understand more about Flexswitch . 
-All the tutorials following this section are intended for users who want to learn 
+This tutorial is going to help you to understand more about Flexswitch .
+All the tutorials following this section are intended for users who want to learn
 
 - Install flexswitch on docker with our base docker image.
 - How to use flexswitch APIs.
@@ -10,16 +10,16 @@ All the tutorials following this section are intended for users who want to lear
 - Get acquainted with flexsdk to confiugure protocols/interfaces and other features.
 - Get a sneak peak on protocol configurations such as ospf/bgp/ECMP.
 
-::
+.. note::
 
-    when you run through these tutorials we don't expect you to know details about 
-    complex configurations. Just primary knowledge of english would be enough to run 
-    through commands :) 
-
-
+    When you run through these tutorials, we don't expect you to know details about
+    complex configurations. Just a primary knowledge of English should be enough to run
+    through commands :)
 
 
-Go to next page to install docker image 
+
+
+Go to next page to install docker image
 
 .. toctree::
    :maxdepth: 1
